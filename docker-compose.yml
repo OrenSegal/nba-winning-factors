@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+    depends_on:
+      - mlflow
+    volumes:
+      - ./data:/app/data
+      - ./api/app:/app/app  # For hot reload
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://api:8000
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+    depends_on:
+      - api
+      - mlflow
+    volumes:
+      - ./data:/app/data
+
+  mlflow:
+    build: ./mlflow
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+      - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+    volumes:
+      - ./mlflow/mlruns:/mlflow/mlruns
+      - ./mlflow/artifacts:/mlflow/artifacts
+      - ./data:/mlflow/data
+
+volumes:
+  data:
+
+networks:
+  default:
+    name: nba-analytics-network

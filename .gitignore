@@ -20,3 +20,6 @@ mlflow.db
 .ipynb_checkpoints/
 .vscode/
 .idea/
+site/report.md
+site/*.png
+.vercel/

@@ -24,3 +24,7 @@ site/report.md
 site/*.png
 .vercel/
 site/metrics.json
+data/live/
+scripts/fetch_live.py
+site/dashboard.json
+site/factor_atlas.csv

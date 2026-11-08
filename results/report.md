@@ -97,7 +97,7 @@ Same-game four-factor differences against final margin. These are outcomes, not 
 
 ## Beyond the four factors: a wide factor screen
 
-50 candidate factors, each added to team strength (Elo, season-to-date net rating) and the current home-court regime. Train 23970 games, test 3212. 'z' is the in-sample Wald statistic (Bonferroni threshold 3.29); 'test log-loss change' is out of sample (negative = better), with a paired bootstrap CI.
+54 candidate factors, each added to team strength (Elo, season-to-date net rating) and the current home-court regime. Train 23970 games, test 3212. 'z' is the in-sample Wald statistic (Bonferroni threshold 3.31); 'test log-loss change' is out of sample (negative = better), with a paired bootstrap CI.
 
 | Factor | Family | Effect per 1 SD (log-odds) | z | Test log-loss change [95% CI] |
 |---|---|---|---|---|
@@ -124,20 +124,21 @@ Gain over strength-only (log loss, positive = family helps) and loss when remove
 
 | Family | Factors | Gain over strength [95% CI] | Loss if removed [95% CI] |
 |---|---|---|---|
-| Strength | 3 | baseline | -0.0001 [-0.0014, +0.0012] |
-| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | +0.0008 [-0.0001, +0.0018] |
-| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | -0.0000 [-0.0010, +0.0011] |
-| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | -0.0003 [-0.0015, +0.0010] |
-| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | +0.0034 [+0.0012, +0.0056] |
-| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | -0.0003 [-0.0009, +0.0003] |
-| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | +0.0003 [-0.0003, +0.0010] |
-| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | +0.0001 [-0.0009, +0.0009] |
-| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | +0.0000 [-0.0006, +0.0006] |
-| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | -0.0001 [-0.0004, +0.0002] |
+| Strength | 3 | baseline | -0.0002 [-0.0016, +0.0012] |
+| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | +0.0009 [-0.0001, +0.0019] |
+| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | -0.0005 [-0.0015, +0.0007] |
+| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | -0.0000 [-0.0010, +0.0008] |
+| Shot profile | 4 | -0.0003 [-0.0008, +0.0002] | -0.0004 [-0.0010, +0.0002] |
+| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | +0.0033 [+0.0012, +0.0056] |
+| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | -0.0004 [-0.0010, +0.0002] |
+| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | +0.0003 [-0.0004, +0.0010] |
+| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | +0.0000 [-0.0009, +0.0009] |
+| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | -0.0000 [-0.0008, +0.0007] |
+| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | -0.0002 [-0.0005, +0.0001] |
 | Era regime | 1 | baseline | +0.0019 [+0.0008, +0.0030] |
-| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | +0.0000 [-0.0002, +0.0003] |
+| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | -0.0001 [-0.0003, +0.0002] |
 
-All 53 factors in a logistic model: log loss 0.5986, accuracy 0.678 (strength only 0.6029, 0.672; gradient boosting 0.6030).
+All 57 factors in a logistic model: log loss 0.5990, accuracy 0.674 (strength only 0.6029, 0.672; gradient boosting 0.6035).
 
 ### How long is a team's memory?
 
@@ -229,3 +230,83 @@ Split-half reliability (odd vs even games, Spearman-Brown) and year-over-year co
 | PHI | 1.99 | 0.40 |
 | CHI | 1.90 | 0.40 |
 | BKN | 1.67 | 0.40 |
+
+## What separates winning teams: style or execution?
+
+86 metrics for 776 team-seasons (26 seasons), each z-scored within its season. Shot-zone and advanced tables cover every season; tracking (drives, touches, catch-and-shoot) starts 2013-14 and hustle 2016-17. 'Chance ceiling' is the correlation the best of all these metrics would reach by luck alone (win % shuffled within each season).
+
+| Metric | Family | Role | r with win % [95% CI, seasons resampled] | Chance ceiling | Beats chance |
+|---|---|---|---|---|---|
+| True shooting % | Shot making | execution | +0.71 [+0.68, +0.75] | 0.12 | yes |
+| Effective FG% | Shot making | execution | +0.71 [+0.68, +0.74] | 0.12 | yes |
+| Opponent eFG% | Defence | execution | -0.70 [-0.73, -0.66] | 0.12 | yes |
+| Catch-and-shoot eFG% | Shot making | execution | +0.59 [+0.52, +0.66] | 0.17 | yes |
+| Opponent points off turnovers per 100 | Defence | execution | -0.57 [-0.62, -0.52] | 0.12 | yes |
+| Pull-up eFG% | Shot making | execution | +0.56 [+0.51, +0.62] | 0.17 | yes |
+| Drive FG% | Shot making | execution | +0.56 [+0.52, +0.59] | 0.17 | yes |
+| 3-point % | Shot making | execution | +0.54 [+0.49, +0.59] | 0.12 | yes |
+| Opponent 3-point % | Defence | execution | -0.52 [-0.56, -0.47] | 0.12 | yes |
+| Assist-to-turnover | Ball security | execution | +0.52 [+0.48, +0.56] | 0.12 | yes |
+| Rim FG% | Shot making | execution | +0.51 [+0.49, +0.53] | 0.12 | yes |
+| Above-the-break three % | Shot making | execution | +0.50 [+0.45, +0.55] | 0.12 | yes |
+| Opponent paint points per 100 | Defence | execution | -0.43 [-0.50, -0.36] | 0.12 | yes |
+| Opponent rim FG% | Defence | execution | -0.43 [-0.53, -0.33] | 0.17 | yes |
+| Assist ratio | Ball movement | execution | +0.41 [+0.36, +0.46] | 0.12 | yes |
+| Total rebound % | Rebounding | execution | +0.41 [+0.35, +0.47] | 0.12 | yes |
+| Mid-range FG% | Shot making | execution | +0.40 [+0.36, +0.46] | 0.12 | yes |
+| Turnover % | Ball security | execution | -0.39 [-0.45, -0.34] | 0.12 | yes |
+| Opponent fast-break points per 100 | Defence | execution | -0.38 [-0.44, -0.32] | 0.12 | yes |
+| Defensive speed | Effort and movement | effort | -0.37 [-0.41, -0.33] | 0.17 | yes |
+| Points created by assists per 100 | Ball movement | execution | +0.37 [+0.21, +0.49] | 0.17 | yes |
+| Rim attempts faced per 100 | Defence | style | -0.36 [-0.51, -0.20] | 0.17 | yes |
+| Paint (non-rim) FG% | Shot making | execution | +0.36 [+0.30, +0.42] | 0.12 | yes |
+| Paint-touch FG% | Shot making | execution | +0.35 [+0.28, +0.41] | 0.17 | yes |
+| Corner-three share | Shot diet | style | +0.35 [+0.28, +0.40] | 0.12 | yes |
+
+### All 26 seasons: cross-validated R-squared by factor block (776 team-seasons, leave one season out)
+
+| Block | Metrics | Win % | Offence | Defence |
+|---|---|---|---|---|
+| Style (choices) | 9 | 0.12 [0.07, 0.16] | 0.09 [-0.02, 0.15] | 0.11 [0.07, 0.15] |
+| Execution (results) | 35 | 0.92 [0.91, 0.93] | 0.97 [0.97, 0.98] | 0.97 [0.97, 0.98] |
+| Everything | 44 | 0.92 [0.91, 0.93] | 0.97 [0.95, 0.98] | 0.97 [0.97, 0.98] |
+
+Net rating alone explains 0.94 [0.93, 0.95] of win %. Beyond net rating, everything else explains 0.01 [-0.02, 0.03] of what is left.
+
+| Family | Metrics | Alone | Loss in R-squared if removed |
+|---|---|---|---|
+| Defence | 9 | 0.62 [0.58, 0.66] | +0.079 |
+| Where points come from | 8 | 0.53 [0.36, 0.63] | +0.000 |
+| Shot making | 8 | 0.51 [0.47, 0.56] | +0.009 |
+| Rebounding | 3 | 0.44 [0.39, 0.49] | +0.013 |
+| Ball movement | 4 | 0.43 [0.39, 0.46] | -0.000 |
+| Ball security | 2 | 0.27 [0.22, 0.31] | +0.005 |
+| Shot diet | 8 | 0.12 [0.07, 0.16] | +0.001 |
+| Free throws | 2 | 0.08 [0.06, 0.11] | +0.006 |
+
+### Tracking era (2016-17 on): cross-validated R-squared by factor block (300 team-seasons, leave one season out)
+
+| Block | Metrics | Win % | Offence | Defence |
+|---|---|---|---|---|
+| Style (choices) | 26 | 0.31 [0.20, 0.41] | 0.17 [-0.12, 0.36] | 0.31 [0.24, 0.40] |
+| Execution (results) | 51 | 0.91 [0.89, 0.92] | 0.97 [0.95, 0.98] | 0.96 [0.95, 0.97] |
+| Effort (hustle, speed) | 8 | 0.21 [0.09, 0.31] | 0.20 [0.12, 0.29] | 0.17 [0.00, 0.29] |
+| Style + effort | 34 | 0.40 [0.28, 0.47] | 0.17 [-0.20, 0.40] | 0.46 [0.38, 0.54] |
+| Everything | 85 | 0.90 [0.89, 0.92] | 0.95 [0.92, 0.98] | 0.96 [0.96, 0.97] |
+
+Net rating alone explains 0.93 [0.91, 0.94] of win %. Beyond net rating, everything else explains 0.04 [0.01, 0.07] of what is left.
+
+| Family | Metrics | Alone | Loss in R-squared if removed |
+|---|---|---|---|
+| Defence | 13 | 0.62 [0.52, 0.70] | +0.097 |
+| Shot making | 14 | 0.53 [0.47, 0.61] | +0.012 |
+| Rebounding | 6 | 0.48 [0.40, 0.52] | +0.011 |
+| Where points come from | 8 | 0.47 [0.12, 0.68] | -0.000 |
+| Ball movement | 11 | 0.42 [0.16, 0.59] | +0.003 |
+| Attacking the paint | 8 | 0.40 [0.32, 0.47] | -0.002 |
+| Ball security | 4 | 0.23 [0.17, 0.30] | +0.004 |
+| Effort and movement | 8 | 0.21 [0.08, 0.31] | -0.001 |
+| Shot diet | 11 | 0.11 [-0.03, 0.21] | +0.002 |
+| Free throws | 2 | 0.05 [0.01, 0.07] | +0.004 |
+
+Redundancy: 85 tracking-era metrics carry about 26 independent signals (27 principal components reach 90% of the variance).

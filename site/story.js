@@ -1,4 +1,5 @@
 "use strict";
+(() => {
 /* Every number on the page comes from metrics.json (written by nbawin.run). Charts are plain SVG. */
 const NS = "http://www.w3.org/2000/svg";
 const $ = (s) => document.querySelector(s);
@@ -27,6 +28,7 @@ function hover(node, htmlFn) {
 
 function mount(id, height, draw) {
   const box = document.getElementById(id);
+  if (!box) return;
   const go = () => {
     box.querySelectorAll(":scope > svg").forEach((n) => n.remove());
     const w = Math.max(260, Math.floor(box.clientWidth)), h = typeof height === "function" ? height(w) : height;
@@ -36,7 +38,7 @@ function mount(id, height, draw) {
   go();
   new ResizeObserver(() => { if (Math.floor(box.clientWidth) !== box._w) go(); }).observe(box);
 }
-const setHTML = (id, html) => { document.getElementById(id).innerHTML = html; };
+const setHTML = (id, html) => { const n = document.getElementById(id); if (n) n.innerHTML = html; };
 function legend(id, items) {
   setHTML(id, items.map(([c, label, kind]) => `<span><i class="${kind || ""}" style="background:${COLOR[c]};border-color:${COLOR[c]}"></i>${label}</span>`).join(""));
 }
@@ -57,7 +59,7 @@ const NAMES = {
 };
 const nice = (f) => NAMES[f] || f.replace(/^d_/, "").replace(/_/g, " ");
 
-fetch("metrics.json").then((r) => r.json()).then(main).catch((e) => { $("#hero-sub").textContent = "Could not load metrics.json"; console.error(e); });
+fetch("metrics.json").then((r) => r.json()).then(main).catch((e) => console.error(e));
 
 function main(M) {
   const X = M.explore, fam = X.families, ov = fam.overall, D = M.descriptive_same_game_factors, byModel = Object.fromEntries(M.results.map((r) => [r.model, r]));
@@ -65,8 +67,8 @@ function main(M) {
   const first = (key) => X.trends[0][key], last = (key) => X.trends[X.trends.length - 1][key];
 
   /* hero */
-  setHTML("hero-sub", `${seasons.length} seasons, ${M.games_total.toLocaleString()} games and ${ov.n_factors} candidate factors, from Dean Oliver's four factors to altitude, back-to-backs, travel and luck. Here is what survives contact with games it has never seen.`);
-  setHTML("board", [[M.games_total.toLocaleString(), "games"], [ov.n_factors, "factors tested"], [pct(ov.full_logistic_accuracy, 1), "best pre-game call"], [pct(D.test_accuracy_win_from_same_game_factors, 1), "after the buzzer"]]
+  setHTML("hero-sub", `${seasons.length} seasons, ${M.games_total.toLocaleString()} games and ${ov.n_factors + M.style.n_metrics} factors, from Dean Oliver's four factors to altitude, travel, luck, three-point rates and drives. Act I tests what survives contact with games it has never seen. Act II asks whether style or execution wins seasons.`);
+  setHTML("board", [[M.games_total.toLocaleString(), "games"], [ov.n_factors + M.style.n_metrics, "factors tested"], [pct(ov.full_logistic_accuracy, 1), "all-factor model, unseen seasons"], [pct(D.test_accuracy_win_from_same_game_factors, 1), "box score, after the fact"]]
     .map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join(""));
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) document.querySelectorAll("#ball animateMotion").forEach((n) => n.remove());
 
@@ -74,8 +76,8 @@ function main(M) {
   const four = [["d_efg", "Shooting efficiency (eFG%)", 40], ["d_tov_rate", "Fewer turnovers", 25], ["d_orb_rate", "More offensive rebounds", 20], ["d_ft_rate", "More free-throw trips", 15]]
     .map(([k, label, oliver]) => ({ k, label, oliver, v: Math.abs(D.points_per_1sd[k].coef), sd: D.points_per_1sd[k]["1sd"] }));
   const tot = four.reduce((s, r) => s + r.v, 0); four.forEach((r) => { r.share = r.v / tot; });
-  setHTML("t-after", `Shooting efficiency, turnovers, offensive rebounds and free throws explain <b>${pct(D.test_r2_margin)}</b> of the final margin and name the winner in <b>${pct(D.test_accuracy_win_from_same_game_factors)}</b> of games. A one-standard-deviation shooting edge is worth <b>${four[0].v.toFixed(1)} points</b>. But this is the autopsy: the numbers only exist once the game is over. They explain how games are won; they cannot tell you who will win.`);
-  setHTML("n-after", `<b>Oliver's rule of thumb</b> weights the four factors 40 / 25 / 20 / 15. Measured over ${seasons.length} seasons they split <b>${four.map((r) => Math.round(r.share * 100)).join(" / ")}</b>. Shooting really is about half the story.`);
+  setHTML("t-after", `Once a game is over, four box-score numbers account for ${pct(D.test_r2_margin)} of the final margin and pick the winner ${pct(D.test_accuracy_win_from_same_game_factors)} of the time: shooting efficiency, turnovers, offensive rebounds and free throws. A one-standard-deviation edge in shooting is worth ${four[0].v.toFixed(1)} points. Most of that is bookkeeping, since the four numbers nearly determine the score, and none of them exist before tip-off.`);
+  setHTML("n-after", `Dean Oliver's rule of thumb weights the four factors 40/25/20/15. Measured over ${seasons.length} seasons the split is ${four.map((r) => Math.round(r.share * 100)).join("/")}.`);
   mount("c-after", 4 * 62 + 8, (svg, w) => {
     const sx = lin(0, four[0].v * 1.12, 6, w - 78);
     four.forEach((r, i) => {
@@ -98,7 +100,7 @@ function main(M) {
     { label: `Wide model, all ${ov.n_factors} factors`, v: ov.full_logistic_accuracy, c: "s2" },
     { label: "The box score of the game itself", v: D.test_accuracy_win_from_same_game_factors, c: "s3", cap: "Only knowable afterwards" },
   ];
-  setHTML("t-ladder", `Use only what is known at tip-off and accuracy tops out near <b>${pct(ov.full_logistic_accuracy, 0)}</b>. The cheap rule <i>pick the team with the better record</i> already gets <b>${pct(rec.accuracy, 0)}</b>. Everything clever on top is worth about a point and a half, and on ${M.test_games.toLocaleString()} test games that gap sits at the edge of statistical noise.`);
+  setHTML("t-ladder", `Using only what is known before the game, the best model here is right ${pct(ov.full_logistic_accuracy, 1)} of the time on ${M.test_games.toLocaleString()} games from three seasons it never trained on. Picking the team with the better record gets ${pct(rec.accuracy, 1)}. Everything layered on top is worth about ${((ov.full_logistic_accuracy - rec.accuracy) * 100).toFixed(1)} points, close to the noise floor for a sample this size.`);
   mount("c-ladder", 5 * 52 + 88, (svg, w) => {
     const L = 6, R = w - 62, sx = lin(0, 1, L, R); let y = 14;
     [0, 0.25, 0.5, 0.75, 1].forEach((t) => { el("line", { x1: sx(t), x2: sx(t), y1: 6, y2: 5 * 52 + 52, class: "grid-line" }, svg); txt(svg, sx(t), 5 * 52 + 66, pct(t, 0), { class: "t-axis", "text-anchor": "middle" }); });
@@ -114,6 +116,7 @@ function main(M) {
       y += 52;
     });
   });
+  setHTML("n-ladder", `The four-factor model was singled out after the results were in, so its margin is optimistic. The all-factor model has no interval. Betting lines are not included and would very likely beat every row.`);
   dtable("d-ladder", ["Predictor", "Accuracy"], ladder.map((r) => [r.label, pct(r.v)]));
 
   /* 3: the wide screen */
@@ -122,7 +125,7 @@ function main(M) {
     return { name: f.family, n: f.n_factors, v: m[0] * 1000, lo: m[1] * 1000, hi: m[2] * 1000, era };
   }).sort((a, b) => b.v - a.v);
   const winners = famRows.filter((r) => r.lo > 0);
-  setHTML("t-screen", `Four factors were the start. We built <b>${X.n_factors_screened + X.base.length} candidate factors</b> from box scores and the calendar: pace and style, three-point luck, rest, back-to-backs, road trips, travel and time zones, altitude, recent form, volatility, rematches, day of the week. Each was tested on top of team strength and scored on three seasons it never saw. Only <b>${winners.map((w) => w.name.toLowerCase()).join(" and ")}</b> clearly improve forecasts. The rest are statistically indistinguishable from zero.`);
+  setHTML("t-screen", `${X.n_factors_screened + X.base.length} candidate factors, each added to a baseline of team strength and the league's current home-court level, then scored on three seasons the model never saw. Families whose interval clears zero: ${winners.map((w) => w.name.toLowerCase()).join(" and ")}. The rest, including ${famRows.filter((r) => r.lo <= 0).slice(0, 5).map((r) => r.name.toLowerCase()).join(", ")}, cannot be told apart from no effect.`);
   mount("c-fam", famRows.length * 30 + 44, (svg, w) => {
     const lw = Math.min(210, w * 0.42), lo = Math.min(0, ...famRows.map((r) => r.lo)) - 0.3, hi = Math.max(...famRows.map((r) => r.hi)) + 0.3, sx = lin(lo, hi, lw, w - 16);
     const ticks = []; for (let t = Math.ceil(lo); t <= hi; t++) ticks.push(t);
@@ -148,8 +151,8 @@ function main(M) {
     for (let t = -zmax; t <= zmax; t += 2) txt(svg, sx(t), h - m.b + 16, t, { class: "t-axis", "text-anchor": "middle" });
     [-X.bonferroni_z, X.bonferroni_z].forEach((z) => el("line", { x1: sx(z), x2: sx(z), y1: m.t, y2: h - m.b, style: "stroke:var(--muted);stroke-dasharray:3 4" }, svg));
     txt(svg, sx(X.bonferroni_z) + 4, m.t + 10, "significant", { class: "t-axis" });
-    txt(svg, (m.l + w - m.r) / 2, h - 6, "in-sample z-score (effect size relative to its noise)", { class: "t-axis", "text-anchor": "middle" });
-    txt(svg, 0, 0, "forecast gain on unseen seasons (thousandths of log loss)", { class: "t-axis", "text-anchor": "middle", transform: `translate(11 ${(m.t + h - m.b) / 2}) rotate(-90)` });
+    txt(svg, (m.l + w - m.r) / 2, h - 6, w < 520 ? "in-sample z-score" : "in-sample z-score (effect relative to its noise)", { class: "t-axis", "text-anchor": "middle" });
+    txt(svg, 0, 0, h < 380 ? "gain on unseen seasons" : "forecast gain on unseen seasons (milli log loss)", { class: "t-axis", "text-anchor": "middle", transform: `translate(11 ${(m.t + h - m.b) / 2}) rotate(-90)` });
     pts.slice().sort((a, b) => (a.cat === "gray") - (b.cat === "gray")).reverse().forEach((p) => {
       const c = el("circle", { cx: sx(p.z), cy: sy(p.gain), r: p.holds ? 6.5 : 5, style: `fill:${COLOR[p.cat]};stroke:var(--surface);stroke-width:2` }, svg);
       hover(c, () => `<b>${nice(p.feature)}</b><br>${p.family}<br>z ${sgn(p.z, 1)} in-sample<br>forecast gain ${sgn(p.gain)} thousandths [${sgn(-p.d_logloss_ci[1] * 1000)}, ${sgn(-p.d_logloss_ci[0] * 1000)}]`);
@@ -159,11 +162,11 @@ function main(M) {
   });
   dtable("d-scatter", ["Factor", "Family", "z", "Gain (milli log loss)"], pts.slice(0, 20).map((p) => [nice(p.feature), p.family, p.z.toFixed(1), p.gain.toFixed(2)]));
   const e = X.era_confound;
-  setHTML("n-era", `<b>Catch: a factor that was only the era.</b> Combined game pace looked like a winning factor (z ${e.z_without_era_control.toFixed(1)}). But faster eras were also the eras with less home advantage. Control for the league's recent home-win rate and it falls to z ${e.z_with_era_control.toFixed(1)}, and its family adds nothing out of sample. Factors that merely track time are the quiet way a model fools itself.`);
+  setHTML("n-era", `Raw combined pace looked predictive (z ${e.z_without_era_control.toFixed(1)}) until the league's recent home-win rate was added: faster eras were also eras with weaker home court. With that control it drops to z ${e.z_with_era_control.toFixed(1)} and adds nothing on new seasons, so the model uses pace relative to the league.`);
 
   /* 4: memory */
   const ew = X.memory.filter((m) => m.halflife_games), elo = X.memory.find((m) => m.signal === "elo_diff"), std = X.memory.find((m) => m.signal === "d_net_rtg"), best = ew.reduce((a, b) => (b.logloss < a.logloss ? b : a));
-  setHTML("t-memory", `Weight recent games with a half-life of <b>${best.halflife_games} games</b> and a rating predicts best among season-only ratings. Remember only two or three games and you chase noise (log loss ${ew[0].logloss.toFixed(3)}); remember the whole season and you are a touch slow (${std.logloss.toFixed(3)}). The best signal of all is <b>Elo</b> (${elo.logloss.toFixed(3)}), because it also remembers last season.`);
+  setHTML("t-memory", `A rating that weights recent games with a half-life of ${best.halflife_games} games predicts best among season-only ratings (log loss ${best.logloss.toFixed(3)}). Two or three games of memory chase noise (${ew[0].logloss.toFixed(3)}); the full season reacts a little slowly (${std.logloss.toFixed(3)}). Elo, which carries last season forward, beats all of them (${elo.logloss.toFixed(3)}).`);
   legend("l-memory", [["s2", "Recency-weighted net rating", ""], ["s1", "Season-to-date net rating", ""], ["s3", "Elo, carries over across seasons", ""]]);
   mount("c-memory", 300, (svg, w, h) => {
     const m = { l: 52, r: 16, t: 14, b: 40 }, ys = [...ew.map((e2) => e2.logloss + e2.se * 0), elo.logloss, std.logloss], y0 = Math.min(...ys) - 0.004, y1 = Math.max(...ys) + 0.004;
@@ -180,7 +183,7 @@ function main(M) {
 
   /* 5: skill or luck */
   const P = X.persistence, p3 = P.find((p) => p.stat === "fg3_pct"), pd3 = P.find((p) => p.stat === "def_fg3_pct"), pr3 = P.find((p) => p.stat === "fg3a_rate");
-  setHTML("t-luck", `Almost every style stat repeats: three-point attempt rate is close to pure identity (split-half <b>${pr3.split_half.toFixed(2)}</b>). Three-point accuracy is shakier (<b>${p3.split_half.toFixed(2)}</b>). And opponents' three-point percentage against a team is mostly noise: <b>${pd3.split_half.toFixed(2)}</b> within a season and <b>${pd3.year_over_year.toFixed(2)}</b> from one year to the next. A team's three-point defense is largely luck.`);
+  setHTML("t-luck", `Split-half reliability compares a team's odd and even games within a season. Three-point attempt rate barely moves (${pr3.split_half.toFixed(2)}), because it is a choice. Three-point accuracy is less stable (${p3.split_half.toFixed(2)}). The three-point percentage a defence allows is mostly noise: ${pd3.split_half.toFixed(2)} within a season and ${pd3.year_over_year.toFixed(2)} from one year to the next.`);
   legend("l-luck", [["s2", "Split-half, same season"], ["s1", "Year over year", "ring"]]);
   mount("c-luck", P.length * 26 + 40, (svg, w) => {
     const narrow = w < 480, lw = narrow ? w * 0.56 : Math.min(230, w * 0.46), sx = lin(0, 1, lw, w - 18);
@@ -198,7 +201,7 @@ function main(M) {
 
   /* 6: opening week */
   const E = X.early_season, e1 = E[0], e3 = E.find((b) => b.bucket === "11-20");
-  setHTML("t-early", `Elo, which remembers last season, calls <b>${pct(e1.acc_elo, 1)}</b> of games in the first five correctly, against <b>${pct(e1.acc_record, 1)}</b> for the current record and <b>${pct(e1.acc_home, 1)}</b> for picking the home team (${e1.n_games} test games). By games 11 to 20 the record has caught up (${pct(e3.acc_record, 1)} vs ${pct(e3.acc_elo, 1)}). The opening weeks we usually throw away are not unpredictable; they just need memory.`);
+  setHTML("t-early", `In each team's first five games, Elo picks ${pct(e1.acc_elo, 1)} correctly, against ${pct(e1.acc_record, 1)} for the current record and ${pct(e1.acc_home, 1)} for the home team (${e1.n_games} test games). By games 11 to 20 the record has caught up (${pct(e3.acc_record, 1)} against ${pct(e3.acc_elo, 1)}).`);
   legend("l-early", [["s3", "Elo (remembers last season)"], ["s1", "This season's record"], ["gray", "Always the home team"]]);
   mount("c-early", 280, (svg, w, h) => lineChart(svg, w, h, { xs: E.map((b) => b.bucket), y: [0.45, 0.75], ticks: [0.5, 0.6, 0.7], fmt: (v) => pct(v, 0), every: 1,
     series: [{ name: "Elo", c: "s3", vals: E.map((b) => b.acc_elo) }, { name: "Record", c: "s1", vals: E.map((b) => b.acc_record) }, { name: "Home team", c: "gray", vals: E.map((b) => b.acc_home) }], markers: true, vfmt: (v) => pct(v, 1), caption: "games played this season by the less-experienced team" }));
@@ -207,7 +210,7 @@ function main(M) {
   /* 7: home court */
   const H = X.home_court, T = H.teams, top = T.slice(0, 3), bot = T[T.length - 1];
   const pre = X.trends.filter((t) => t.SEASON < "2019-20"), post = X.trends.filter((t) => t.SEASON >= "2019-20"), avg = (a, k) => a.reduce((s, t) => s + t[k], 0) / a.length;
-  setHTML("t-home", `Controlling for team strength, home court is worth <b>${H.league_avg_points.toFixed(1)} points</b> a game on average. Denver (${sgn(top[0].hca, 1)}) and Utah are near the top, and both play a mile or so above sea level; ${bot.team} sits at the bottom (${sgn(bot.hca, 1)}). Each estimate carries about a 0.4-point error bar, so the extremes are real but the middle of the pack is mostly noise. Meanwhile home teams won <b>${pct(avg(pre, "home_win_rate"), 0)}</b> of games through 2018-19 and <b>${pct(avg(post, "home_win_rate"), 0)}</b> since.`);
+  setHTML("t-home", `After adjusting for team strength, playing at home is worth ${H.league_avg_points.toFixed(1)} points a game. ${top.map((t) => t.team).join(", ")} lead the table and ${bot.team} trails it (${sgn(bot.hca, 1)}). Each estimate carries about 0.4 points of standard error, so only the ends of the table are clearly different. Home teams won ${pct(avg(pre, "home_win_rate"), 0)} of games through 2018-19 and ${pct(avg(post, "home_win_rate"), 0)} since.`);
   const ALT = { DEN: "5,280 ft", UTA: "4,226 ft" };
   mount("c-hca", T.length * 21 + 40, (svg, w) => {
     const lw = 44, hi = Math.max(...T.map((t) => t.hca + 1.96 * t.se)) + 0.2, lo = Math.min(...T.map((t) => t.hca - 1.96 * t.se)) - 0.2, sx = lin(lo, hi, lw, w - 60);
@@ -238,11 +241,115 @@ function main(M) {
   const wfNames = { "Baseline: home team wins": ["Home team", "gray"], "Baseline: better season-to-date record wins": ["Better record", "s1"], "Logistic regression (four factors + rest only)": ["Four-factor model", "s2"] };
   const wfSeasons = [...new Set(M.walk_forward.map((r) => r.season))].sort();
   const wfSeries = Object.entries(wfNames).map(([m, [name, c]]) => ({ name, c, vals: wfSeasons.map((s) => M.walk_forward.find((r) => r.season === s && r.model === m).accuracy) }));
-  const wins = wfSeasons.filter((s, i) => wfSeries[2].vals[i] > wfSeries[1].vals[i]).length, gap = wfSeasons.reduce((s, _, i) => s + wfSeries[2].vals[i] - wfSeries[1].vals[i], 0) / wfSeasons.length;
-  setHTML("t-wf", `The four-factor model beats <i>pick the better record</i> in <b>${wins} of ${wfSeasons.length}</b> seasons, by <b>${(gap * 100).toFixed(1)} points</b> on average. It is a small edge that shows up in most years rather than a big one that shows up in a few. No season is ever predicted much better than seven games in ten.`);
+  const diffs = wfSeasons.map((s, i) => wfSeries[2].vals[i] - wfSeries[1].vals[i]), nS = diffs.length, wins = diffs.filter((d) => d > 0).length, gap = diffs.reduce((a, b) => a + b, 0) / nS;
+  const sdD = Math.sqrt(diffs.reduce((a, d) => a + (d - gap) ** 2, 0) / (nS - 1)), tcrit = { 20: 2.086 }[nS - 1] || 1.96, half = tcrit * sdD / Math.sqrt(nS);
+  const choose = (n, k) => { let r = 1; for (let i = 1; i <= k; i++) r = (r * (n - k + i)) / i; return r; };
+  const signP = Math.min(1, 2 * Array.from({ length: nS - wins + 1 }, (_, k) => choose(nS, k)).reduce((a, b) => a + b, 0) / 2 ** nS);
+  setHTML("t-wf", `Each season is predicted by models trained only on the seasons before it. The four-factor model beats "better record wins" in ${wins} of ${wfSeasons.length} seasons, by ${(gap * 100).toFixed(1)} points on average (95% interval ${((gap - half) * 100).toFixed(1)} to ${((gap + half) * 100).toFixed(1)}; sign test p = ${signP < 0.01 ? signP.toFixed(3) : signP.toFixed(2)}). Seasons are treated as independent and this comparison was picked after looking. No season is predicted much better than 70%.`);
   legend("l-wf", [["gray", "Home team"], ["s1", "Better record"], ["s2", "Four-factor model"]]);
   mount("c-wf", 300, (svg, w, h) => lineChart(svg, w, h, { xs: wfSeasons, y: [0.52, 0.74], ticks: [0.55, 0.6, 0.65, 0.7], fmt: (v) => pct(v, 0), every: 4, rot: true, series: wfSeries, markers: true, vfmt: (v) => pct(v, 1), direct: true }));
   dtable("d-wf", ["Season", ...wfSeries.map((s) => s.name)], wfSeasons.map((s, i) => [s, ...wfSeries.map((r) => pct(r.vals[i]))]));
+
+  /* ---------- Act II: style or substance ---------- */
+  const S = M.style, AT = S.atlas, A = Object.fromEntries(AT.map((r) => [r.key, r])), BA = S.blocks_all_seasons, BT = S.blocks_tracking_era;
+  const R2 = (d) => `${(d.r2 * 100).toFixed(0)}%`;
+  setHTML("t-act2", `A different question, asked of whole seasons: do the ways teams choose to play (shot locations, pace, drives, passing) explain winning, or only how well they execute? ${S.n_metrics} metrics for ${S.n_team_seasons} team-seasons, each compared only with its own season so league-wide trends cannot pose as advantages. Shot zones and advanced stats cover 2000-01 on, player tracking 2013-14 on, hustle stats 2016-17 on.`);
+
+  const sty = BT.sets["Style (choices)"], eff = BT.sets["Effort (hustle, speed)"], exe = BT.sets["Execution (results)"], all = BT.sets.Everything, dive = BA.sets["Style (choices)"];
+  const blk = [
+    { label: "Shot diet: zones, three-point rate, pace", sub: `${dive.n_metrics} metrics, all ${BA.n_seasons} seasons`, d: dive.win, c: "s1" },
+    { label: "All measurable style: plus drives, touches, passing", sub: `${sty.n_metrics} metrics, tracking era`, d: sty.win, c: "s1" },
+    { label: "Hustle and speed", sub: `${eff.n_metrics} metrics, tracking era`, d: eff.win, c: "s3" },
+    { label: "Execution: shooting, turnovers, rebounds, what defences allow", sub: `${exe.n_metrics} metrics, tracking era`, d: exe.win, c: "s2" },
+    { label: "Everything together", sub: `${all.n_metrics} metrics`, d: all.win, c: "gray" },
+    { label: "Net rating alone", sub: "one number", d: BT.net_rating_alone, c: "gray" },
+  ];
+  const bn = BT.beyond_net_rating.Everything, dm = S.dimension;
+  setHTML("t-blocks", `Shot diet alone (zones, three-point rate, pace) explains ${R2(dive.win)} of the differences in win % within a season. Every style signal in the tracking data together explains ${R2(sty.win)}; hustle and speed, ${R2(eff.win)}. Results (shooting %, turnovers, rebounds, what the defence allows) explain ${R2(exe.win)}, largely by construction, since they are what net rating is made of.`);
+  setHTML("n-blocks", `Net rating alone explains ${R2(BT.net_rating_alone)} of win %. Adding all ${all.n_metrics} other metrics explains ${(bn.r2 * 100).toFixed(1)}% of what remains (95% interval ${(bn.ci[0] * 100).toFixed(1)} to ${(bn.ci[1] * 100).toFixed(1)}%). The ${dm.n_metrics} metrics behave like about ${Math.round(dm.effective_rank)} independent measurements; most restate each other.`);
+  legend("l-blocks", [["s1", "Style: choices", "sq"], ["s3", "Effort", "sq"], ["s2", "Execution: results", "sq"], ["gray", "Reference", "sq"]]);
+  mount("c-blocks", blk.length * 58 + 44, (svg, w) => {
+    const L = 6, R = w - 52, sx = lin(0, 1, L, R), H = blk.length * 58;
+    [0, 0.25, 0.5, 0.75, 1].forEach((t) => { el("line", { x1: sx(t), x2: sx(t), y1: 4, y2: H + 2, class: "grid-line" }, svg); txt(svg, sx(t), H + 18, pct(t, 0), { class: "t-axis", "text-anchor": "middle" }); });
+    txt(svg, R, H + 36, "share of win % explained on seasons the model never saw", { class: "t-axis", "text-anchor": "end" });
+    blk.forEach((r, i) => {
+      const y = 8 + i * 58, bar = el("path", { d: barPath(L, y + 24, Math.max(2, sx(r.d.r2) - L), 18), style: `fill:${COLOR[r.c]}` }, svg);
+      txt(svg, L, y + 14, r.label, { class: "t-lab", style: w < 480 ? "font-size:11.5px" : "" });
+      const [a, b] = r.d.ci; el("path", { d: `M${sx(a)} ${y + 33}H${sx(b)}M${sx(a)} ${y + 28}V${y + 38}M${sx(b)} ${y + 28}V${y + 38}`, style: "stroke:var(--ink);stroke-width:1.5;fill:none" }, svg);
+      txt(svg, sx(b) + 8, y + 38, R2(r.d), { class: "t-val" });
+      hover(bar, () => `<b>${r.label}</b><br>${r.sub}<br>${(r.d.r2 * 100).toFixed(1)}% explained [${(a * 100).toFixed(0)}%, ${(b * 100).toFixed(0)}%]`);
+    });
+  });
+  dtable("d-blocks", ["Block", "Metrics", "R-squared", "Low", "High"], blk.map((r) => [r.label, r.sub, pct(r.d.r2, 0), pct(r.d.ci[0], 0), pct(r.d.ci[1], 0)]));
+  const real = AT.filter((r) => r.beats_chance && r.role !== "execution"), li = (r) => `<li><span>${r.label}</span><b>${sgn(r.r_win)}</b></li>`;
+  setHTML("up", real.filter((r) => r.r_win > 0).slice(0, 6).map(li).join("")); setHTML("down", real.filter((r) => r.r_win < 0).slice(0, 6).map(li).join(""));
+
+  /* 11: the explorer (plain HTML so it can be searched, sorted and read by a screen reader) */
+  const ROLE = { style: ["Style: a choice", "var(--s1)"], execution: ["Execution: a result", "var(--s2)"], effort: ["Effort", "var(--s3)"], "pre-game": ["Known before tip-off", "var(--s1)"] };
+  const seasonRows = AT.map((r) => ({ id: r.key, name: r.label, family: r.family, role: r.role, def: r.definition, v: r.r_win, lo: r.ci_low, hi: r.ci_high, band: r.chance_ceiling, real: r.beats_chance,
+    stat: `r ${sgn(r.r_win)} [${sgn(r.ci_low)}, ${sgn(r.ci_high)}], chance ceiling ${r.chance_ceiling.toFixed(2)}, ${r.n} team-seasons from ${r.first_season}` }));
+  const gameRows = pts.map((r) => ({ id: r.feature, name: nice(r.feature), family: r.family, role: "pre-game", def: r.definition, v: r.gain, lo: -r.d_logloss_ci[1] * 1000, hi: -r.d_logloss_ci[0] * 1000, real: r.holds,
+    stat: `forecast gain ${sgn(r.gain)} thousandths of log loss [${sgn(-r.d_logloss_ci[1] * 1000)}, ${sgn(-r.d_logloss_ci[0] * 1000)}], in-sample z ${sgn(r.z, 1)}` }));
+  const tabs = { season: { rows: seasonRows, scale: 0.8, fmt: (v) => sgn(v), help: "Bars show correlation with win % within the season. The grey band is what chance alone produces; the thin line is the 95% interval (whole seasons resampled).", roles: true },
+                 game: { rows: gameRows, scale: Math.max(...gameRows.map((r) => Math.max(Math.abs(r.lo), Math.abs(r.hi)))) * 1.05, fmt: (v) => sgn(v, 1), help: "Bars show the forecast gain on three unseen seasons, in thousandths of log loss (right of the line helps). Team strength, Elo and the era are already in the baseline, so these are extras.", roles: false } };
+  const st = { tab: "season" }, $q = $("#ex-q"), $f = $("#ex-family"), $r = $("#ex-role"), $s = $("#ex-sort"), $c = $("#ex-real");
+  setHTML("t-explorer", `All ${seasonRows.length} season metrics and ${gameRows.length} pre-game factors, with definitions. Filter by family or by choice versus result, search by name, or keep only what clears the chance threshold.`);
+  const opts = (a, all) => `<option value="">${all}</option>` + a.map((x) => `<option value="${x[0]}">${x[1]}</option>`).join("");
+  $s.innerHTML = opts([], "Strongest effect first").replace('value=""', 'value="effect"') + '<option value="name">A to Z</option><option value="family">By family</option>'; $s.value = "effect";
+  function setupTab(t) {
+    st.tab = t; const T = tabs[t];
+    document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", b.id === "tab-" + t));
+    $f.innerHTML = opts([...new Set(T.rows.map((r) => r.family))].map((f) => [f, f]), "All families");
+    $r.innerHTML = opts(Object.entries(ROLE).filter(([k]) => k !== "pre-game").map(([k, v]) => [k, v[0]]), "Style, execution and effort"); $r.hidden = !T.roles; $r.value = "";
+    render();
+  }
+  function render() {
+    const T = tabs[st.tab], q = $q.value.trim().toLowerCase();
+    let rows = T.rows.filter((r) => (!$f.value || r.family === $f.value) && (!$r.value || r.role === $r.value) && (!$c.checked || r.real) && (!q || `${r.name} ${r.family} ${r.def} ${r.id}`.toLowerCase().includes(q)));
+    rows.sort($s.value === "name" ? (a, b) => a.name.localeCompare(b.name) : $s.value === "family" ? (a, b) => a.family.localeCompare(b.family) || Math.abs(b.v) - Math.abs(a.v) : (a, b) => Math.abs(b.v) - Math.abs(a.v));
+    const pos = (x) => 50 + (x / T.scale) * 50;
+    setHTML("ex-count", `Showing ${rows.length} of ${T.rows.length}. ${T.help}`);
+    setHTML("ex-rows", rows.length ? rows.map((r) => {
+      const [rl, rc] = ROLE[r.role], col = st.tab === "game" ? (r.real ? "var(--s3)" : "var(--gray)") : rc, a = Math.min(pos(0), pos(r.v)), wd = Math.abs(pos(r.v) - pos(0));
+      return `<div class="xr${r.real ? "" : " dim"}" role="listitem"><div><div class="nm">${r.name}</div><div class="df">${r.def}</div><div class="meta"><i class="role" style="background:${rc}"></i>${rl} &middot; ${r.family}${r.real ? " &middot; <b>clears the chance bar</b>" : ""}<br>${r.stat}</div></div>` +
+        `<div class="bar" aria-hidden="true">${r.band ? `<i class="band" style="left:${pos(-r.band)}%;width:${pos(r.band) - pos(-r.band)}%"></i>` : ""}<i class="zero"></i><i class="fill" style="left:${a}%;width:${wd}%;background:${col}"></i><i class="ci" style="left:${pos(r.lo)}%;width:${pos(r.hi) - pos(r.lo)}%"></i><span class="v">${T.fmt(r.v)}</span></div></div>`;
+    }).join("") : `<p class="sub">Nothing matches. Clear the search or uncheck the filter.</p>`);
+  }
+  [$q, $f, $r, $s, $c].forEach((n) => n.addEventListener("input", render));
+  $("#tab-season").addEventListener("click", () => setupTab("season")); $("#tab-game").addEventListener("click", () => setupTab("game"));
+  setupTab("season");
+
+  /* 12: the three-point edge over time */
+  const EG = S.edge, edgeKeys = [["fg3a_rate", "s2", "3PA rate"], ["mid_share", "s1", "Mid-range"], ["rim_share", "s3", "Rim"], ["pace", "gray", "Pace"]], g3 = EG.fg3a_rate.rolling5, gm = EG.mid_share.rolling5;
+  const peak = g3.reduce((a, b) => (b.r > a.r ? b : a)), lastE = g3[g3.length - 1], midLo = gm.reduce((a, b) => (b.r < a.r ? b : a)), midNow = gm[gm.length - 1];
+  setHTML("t-edge", `Over five-season windows, the correlation between a team's three-point rate and its net rating rose to ${sgn(peak.r)} (window ending ${peak.season}) and has fallen to ${sgn(lastE.r)} (${lastE.season}).${lastE.lo <= 0 ? " The latest interval includes zero." : ""} Once most teams shoot threes, shooting more of them separates teams less. Mid-range share moved the other way, from ${sgn(midLo.r)} (${midLo.season}) to ${sgn(midNow.r)}. Single windows are noisy and the bands are optimistic.`);
+  legend("l-edge", edgeKeys.map(([, c, l]) => [c, l]));
+  const exs = g3.map((r) => r.season);
+  mount("c-edge", 300, (svg, w, h) => lineChart(svg, w, h, { xs: exs, y: [-0.4, 0.5], ticks: [-0.3, -0.15, 0, 0.15, 0.3, 0.45], fmt: (v) => sgn(v, 2), every: 3, rot: true, direct: true, vfmt: (v) => sgn(v, 2), band: { lo: g3.map((r) => r.lo), hi: g3.map((r) => r.hi), c: "s2" },
+    series: edgeKeys.map(([k, c, name]) => ({ name, c, vals: EG[k].rolling5.map((r) => r.r) })) }));
+  dtable("d-edge", ["Window ending", ...edgeKeys.map((k) => k[2])], exs.map((s2, i) => [s2, ...edgeKeys.map(([k]) => sgn(EG[k].rolling5[i].r))]));
+
+  /* 13: drives */
+  const DR = S.drives, mean = (a) => a.reduce((x, y) => x + y, 0) / a.length, mx = mean(DR.map((p) => p.drives_z)), my = mean(DR.map((p) => p.win));
+  const sxy = DR.reduce((a, p) => a + (p.drives_z - mx) * (p.win - my), 0), sxx = DR.reduce((a, p) => a + (p.drives_z - mx) ** 2, 0), syy = DR.reduce((a, p) => a + (p.win - my) ** 2, 0), slope = sxy / sxx, rD = sxy / Math.sqrt(sxx * syy);
+  setHTML("t-drives", `Across ${DR.length} team-seasons since 2013-14, drive volume and win % correlate at ${sgn(rD)}: teams that drive more than their rivals win slightly less. Finishing is what tracks winning, with drive FG% at ${sgn(A.drive_fg.r_win)} and points per drive at ${sgn(A.drive_pts_per.r_win)}.`);
+  mount("c-drives", (w) => (w < 520 ? 320 : 380), (svg, w, h) => {
+    const m = { l: 48, r: 14, t: 12, b: 40 }, sx = lin(-3, 3, m.l, w - m.r), sy = lin(0.1, 0.9, h - m.b, m.t);
+    [0.2, 0.35, 0.5, 0.65, 0.8].forEach((t) => { el("line", { x1: m.l, x2: w - m.r, y1: sy(t), y2: sy(t), class: t === 0.5 ? "zero" : "grid-line" }, svg); txt(svg, m.l - 6, sy(t) + 4, pct(t, 0), { class: "t-axis", "text-anchor": "end" }); });
+    [-2, -1, 0, 1, 2].forEach((t) => txt(svg, sx(t), h - m.b + 16, t > 0 ? "+" + t : t, { class: "t-axis", "text-anchor": "middle" }));
+    txt(svg, (m.l + w - m.r) / 2, h - 6, w < 520 ? "drives per 100, SD vs. league that season" : "drives per 100 possessions, standard deviations from that season's league average", { class: "t-axis", "text-anchor": "middle" });
+    txt(svg, 0, 0, "win %", { class: "t-axis", "text-anchor": "middle", transform: `translate(11 ${(m.t + h - m.b) / 2}) rotate(-90)` });
+    DR.forEach((p) => { const c = el("circle", { cx: sx(Math.max(-3, Math.min(3, p.drives_z))), cy: sy(p.win), r: 4.5, style: "fill:var(--s1);opacity:.5" }, svg);
+      hover(c, () => `<b>${p.team}, ${p.season}</b><br>drives ${sgn(p.drives_z, 1)} SD vs league<br>win % ${pct(p.win, 0)}<br>drive FG% ${pct(p.drive_fg, 0)}`); });
+    el("path", { d: `M${sx(-2.6)} ${sy(my + slope * (-2.6 - mx))}L${sx(2.6)} ${sy(my + slope * (2.6 - mx))}`, style: "stroke:var(--s2);stroke-width:3;fill:none" }, svg);
+    txt(svg, sx(2.6) - 6, sy(my + slope * (2.6 - mx)) - 12, `r ${sgn(rD)}`, { class: "t-val", "text-anchor": "end" });
+  });
+  dtable("d-drives", ["Metric", "r with win %", "95% interval", "Beats chance"], ["drives_100", "drive_fg", "drive_pts_per", "drive_pass_pct", "drive_tov_pct", "drive_pf_pct"].map((k) => [A[k].label, sgn(A[k].r_win), `${sgn(A[k].ci_low)} to ${sgn(A[k].ci_high)}`, A[k].beats_chance ? "yes" : "no"]));
+  setHTML("n-drives", `Season data cannot say why. One plausible reading is that offences with fewer good options drive more, in which case telling a team to drive less would not make it better.`);
+
+  /* 14: materials */
+  setHTML("t-materials", `The atlas has ${S.n_metrics} metrics with definitions, ready for a spreadsheet or a notebook. Everything on this page, including the pipeline that fetches the data, is reproducible from the repository: <code>uv run python -m nbawin.run</code> rebuilds every number in about four minutes.`);
+  setHTML("n-materials", `<b>What this cannot tell you.</b> These are season-level correlations explaining a finished season, not causes and not forecasts. The ${S.n_metrics} rows are about ${Math.round(dm.effective_rank)} independent ideas, not ${S.n_metrics} separate findings, and the chance bar already accounts for testing them all at once. Tracking starts in 2013-14, hustle in 2016-17, so those rows rest on fewer seasons. Style metrics are not free of results (a drive that ends in a pass still needs a shot to follow), which is why the style/execution split is a gradient, not a wall.`);
 }
 
 /* shared line chart: crosshair tooltip, optional direct labels, shaded band, mini mode */
@@ -252,11 +359,12 @@ function lineChart(svg, w, h, o) {
   const m = mini ? { l: 4, r: 6, t: 8, b: 6 } : { l: 46, r: direct ? 118 : 16, t: 14, b: o.rot ? 46 : o.caption ? 44 : 28 };
   const X = (i) => m.l + (n === 1 ? 0 : (i / (n - 1))) * (w - m.l - m.r), [y0, y1] = o.y, Y = (v) => h - m.b - ((v - y0) / (y1 - y0)) * (h - m.t - m.b);
   if (!mini) {
-    (o.ticks || []).forEach((t) => { el("line", { x1: m.l, x2: w - m.r, y1: Y(t), y2: Y(t), class: "grid-line" }, svg); txt(svg, m.l - 6, Y(t) + 4, o.fmt(t), { class: "t-axis", "text-anchor": "end" }); });
+    (o.ticks || []).forEach((t) => { el("line", { x1: m.l, x2: w - m.r, y1: Y(t), y2: Y(t), class: t === 0 ? "zero" : "grid-line" }, svg); txt(svg, m.l - 6, Y(t) + 4, o.fmt(t), { class: "t-axis", "text-anchor": "end" }); });
     o.xs.forEach((x, i) => { if (i % (o.every || 1) === 0 || i === n - 1 && n < 8) { const t = txt(svg, X(i), h - m.b + 16, o.rot ? x : x, { class: "t-axis", "text-anchor": o.rot ? "end" : "middle" }); if (o.rot) t.setAttribute("transform", `rotate(-40 ${X(i)} ${h - m.b + 16})`); } });
     if (o.caption) txt(svg, (m.l + w - m.r) / 2, h - 4, o.caption, { class: "t-axis", "text-anchor": "middle" });
   }
   if (o.shade) { const [a, b, label] = o.shade; el("rect", { x: X(a) - 6, y: m.t, width: X(b) - X(a) + 12, height: h - m.t - m.b, style: "fill:var(--wood);opacity:.18" }, svg); txt(svg, X(a) - 10, m.t + 12, label, { class: "t-axis", "text-anchor": "end" }); }
+  if (o.band) el("path", { d: o.band.hi.map((v, i) => `${i ? "L" : "M"}${X(i)} ${Y(v)}`).join("") + o.band.lo.map((v, i) => `L${X(n - 1 - i)} ${Y(o.band.lo[n - 1 - i])}`).join("") + "Z", style: `fill:${COLOR[o.band.c]};opacity:.14` }, svg);
   o.series.forEach((s) => {
     el("path", { d: s.vals.map((v, i) => `${i ? "L" : "M"}${X(i)} ${Y(v)}`).join(""), style: `fill:none;stroke:${COLOR[s.c]};stroke-width:${mini ? 2.2 : 2.5};stroke-linejoin:round` }, svg);
     if (o.markers) s.vals.forEach((v, i) => el("circle", { cx: X(i), cy: Y(v), r: n > 12 ? 2.8 : 4.5, style: `fill:${COLOR[s.c]};stroke:var(--surface);stroke-width:1.5` }, svg));
@@ -277,3 +385,4 @@ function lineChart(svg, w, h, o) {
   hit.addEventListener("pointermove", draw); hit.addEventListener("pointerdown", draw);
   hit.addEventListener("pointerleave", () => { cross.style.opacity = 0; dots.forEach((d) => (d.style.opacity = 0)); hideTip(); });
 }
+})();

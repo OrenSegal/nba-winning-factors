@@ -41,5 +41,6 @@ A hiring manager, collaborator or reader of the repo who wants to see sound data
 
 ## Known weaknesses / next experiments
 - Home-court advantage fell from about 60% to about 55%; try a rolling or recency-weighted training window.
-- Season-to-date means ignore the previous season; an Elo-style carry-over prior would help early-season games (currently dropped).
+- Elo (cross-season carry-over) is implemented in `nbawin/factors.py` and beats season-to-date ratings in the opening weeks; a market-implied baseline (closing lines) is the next benchmark, subject to the data licence.
+- Evaluation: bootstrap resamples games as independent (resample by date or week); the model comparison is not multiplicity-corrected beyond the factor screen.
 - CIs treat games as independent.

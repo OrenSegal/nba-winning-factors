@@ -57,7 +57,7 @@ What this says, plainly:
 
 - Every model beats "home team wins" by a wide margin (about +12 accuracy points).
 - **On the held-out seasons no model clearly beats "the team with the better record wins" on accuracy**: the all-features logistic is 0.7 points better (95% interval [-0.7, +2.1]) and the four-factors-plus-rest logistic, the best single model, is 1.5 points better with an interval of [0.0, +2.9], on the edge of significance.
-- The walk-forward backtest is kinder to the models: averaged over 21 seasons they reach about 0.664 accuracy against 0.647 for the record rule, and they beat it in most seasons. Treat the edge as real but small, roughly 1 to 2 points.
+- The walk-forward backtest is kinder to the models: averaged over 21 seasons they reach about 0.664 accuracy against 0.647 for the record rule, and they beat it in most seasons. The edge looks small, roughly 1 to 2 points; no interval is computed over the per-season differences, and the record rule wins a few seasons.
 - On probabilities, the full logistic regression is reliably better than a logistic on win % alone (log loss about -0.010, interval excludes zero). Four factors, rest and back-to-backs add a small, real signal beyond record.
 - Gradient boosting does no better than logistic regression, and is worse on log loss in the walk-forward (0.612 vs 0.609).
 - The four-factors-only logistic matches the full model on log loss and leads slightly on accuracy. Win % and net rating are summaries of the four factors and add little once those are in.
@@ -95,7 +95,7 @@ Standardized coefficients from the four-factors-only logistic regression, fit on
 | Home team on a back-to-back | -0.09 [-0.12, -0.06] |
 | Rest days difference | -0.02 [-0.06, 0.02] |
 
-Shooting efficiency, on both ends, is the strongest pre-game signal, followed by turnovers and rebounding; free-throw rate is weaker. Back-to-backs matter; extra rest beyond that does not show a measurable effect. Permutation importance on the test seasons (in `results/metrics.json`) puts net rating first, then win %, then offensive eFG% for the logistic model. Correlated features share credit, so permutation importance understates each of them.
+Shooting efficiency, on both ends, is the strongest pre-game signal, followed by turnovers and rebounding; free-throw rate is weaker. Back-to-backs are associated with lower win odds (an association in observational data, not a proven cause); extra rest beyond that shows no measurable effect. Permutation importance on the test seasons (in `results/metrics.json`) puts net rating first, then win %, then offensive eFG% for the logistic model. Correlated features share credit, so permutation importance understates each of them.
 
 ### Descriptive: what separates winners within a game
 
@@ -105,6 +105,21 @@ Linear regression of home margin on same-game home-minus-away four factors, trai
 - Points of margin per 1 SD (95% bootstrap CI): eFG% +12.3 [12.3, 12.4], turnover rate -5.9 [-6.0, -5.9], offensive rebound rate +5.3 [5.3, 5.4], free-throw rate +2.9 [2.8, 2.9].
 
 Shooting comes first, then turnovers and rebounding, then free throws. That is the same order as the pre-game coefficients, and close to Oliver's 40/25/20/15 weighting.
+
+## Beyond the four factors: a 53-factor screen
+
+`nbawin/factors.py` builds every candidate factor from information available at tipoff, and `nbawin/explore.py` screens them. Families: team strength (Elo with cross-season carry-over, season-to-date record), recent form (recency-weighted net rating, last 10 vs season), the four factors, pace and style (threes, assists, steals, blocks, fouls), rest and schedule load (back-to-backs, 3-in-4 and 4-in-6 nights), home stands and road trips, travel distance and time zones, altitude, luck (record vs point differential, close games), volatility, calendar, rematches, and an era control (the league's recent home-win rate). Each factor is added to team strength and scored on the three held-out seasons; the in-sample Wald z uses a Bonferroni threshold across everything screened. Live write-up with charts: https://nba-winning-factors.vercel.app (built from `site/`).
+
+What came out (full tables in `results/report.md`):
+
+- **Only two families clearly help out of sample**: rest and schedule load (+3.2 thousandths of log loss over strength alone, interval [1.0, 5.5]) and the era's home-court regime (+1.9 when removed, [0.8, 3.0]). Travel, time zones, altitude, road trips, pace and style, luck, volatility and calendar are all indistinguishable from zero. The road team on a back-to-back is the strongest single in-sample signal (z +8.3).
+- **Significant in-sample is not useful out of sample.** Several factors clear the Bonferroni bar in the training seasons (road team's 3rd game in 4 nights, altitude, opponents' 3P% allowed) and add nothing on unseen seasons.
+- **An era confound caught by the screen.** Raw combined pace looks predictive (z -3.8), but faster eras were also eras with less home advantage; controlling for the home-court regime drops it to z -2.4 and the family's out-of-sample gain to zero. The model uses era-relative pace.
+- **Team memory.** A recency-weighted net rating predicts best with a half-life of about 30 games (leave-one-season-out log loss 0.6096); remembering 2 to 3 games is much worse (0.639). Elo, which also remembers last season, is best (0.6074).
+- **Skill vs luck.** Three-point attempt rate is nearly pure identity (split-half 1.00), three-point accuracy is shaky (0.60), and opponents' three-point percentage allowed is mostly noise (0.35 within a season, 0.22 year over year).
+- **Opening weeks are predictable.** Games 1 to 5: Elo 63.6%, this season's record 57.7%, home team 54.0% (239 test games); by games 11 to 20 the record has caught up.
+- **Home court by franchise** (points, controlling for Elo; league average 2.7): Denver +4.0, Utah +3.7, Golden State +3.7 at the top, Brooklyn +1.7 at the bottom, each with about 0.4 of standard error.
+- **All 53 factors together** reach log loss 0.5986 and 67.7% accuracy against 0.6030 and 67.2% for strength alone. Gradient boosting on all of them does not beat the logistic model (0.6038).
 
 ## Limitations
 
@@ -123,8 +138,8 @@ Requires [uv](https://docs.astral.sh/uv/) and Python 3.12 (pinned in `.python-ve
 
 ```bash
 uv sync --locked                 # install pinned dependencies
-uv run pytest                    # 13 tests, about 90 s
-uv run python -m nbawin.run      # full analysis, about 5 min; writes results/
+uv run pytest                    # 15 tests, about 2.5 min
+uv run python -m nbawin.run      # full analysis, about 2 min; writes results/
 ```
 
 `results/metrics.json` has every number above; `results/report.md` has the main table. All randomness is seeded.
@@ -141,6 +156,10 @@ uv run --group fetch python scripts/fetch_data.py
 data/raw/            game logs, one CSV per season (source of truth)
 nbawin/data.py       load logs, build one row per game
 nbawin/features.py   pre-game features and same-game four factors
+nbawin/factors.py    53-factor candidate table (Elo, form, schedule, travel, altitude, luck, ...)
+nbawin/explore.py    factor screen, family value, memory, persistence, home court, trends
+nbawin/teams.py      arena coordinates, altitude, franchise identity
+site/                static story page (index.html, story.js) built from metrics.json
 nbawin/metrics.py    ECE, scoring, bootstrap CIs
 nbawin/run.py        models, baselines, figures, report
 scripts/fetch_data.py

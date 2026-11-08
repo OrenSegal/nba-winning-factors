@@ -118,3 +118,27 @@ def test_bootstrap_ci_brackets_point_estimate():
     y = np.r_[np.ones(600), np.zeros(400)]
     lo, hi = bootstrap_ci(y, lambda i: y[i].mean(), n=500)
     assert lo < 0.6 < hi and hi - lo < 0.08
+
+
+def test_validate_logs_rejects_orphan_and_duplicate_rows():
+    from nbawin.data import validate_logs
+
+    logs = load_team_logs()
+    good = logs[logs["GAME_ID"].isin(logs["GAME_ID"].unique()[:100])]
+    validate_logs(good)
+    with pytest.raises(ValueError, match="exactly two"):
+        validate_logs(good.iloc[:-1])
+    with pytest.raises(ValueError, match="duplicate"):
+        validate_logs(pd.concat([good, good.iloc[[0]]]))
+
+
+def test_run_writes_outputs(tmp_path, monkeypatch):
+    from nbawin import run
+
+    monkeypatch.setattr(run, "OUT", tmp_path)
+    monkeypatch.setattr(run, "N_BOOT", 20)
+    monkeypatch.setattr(run, "WF_MIN_TRAIN", 23)  # walk-forward over the last 3 seasons only, keeps this fast
+    run.main()
+    report = (tmp_path / "report.md").read_text()
+    assert "## What predicts a win before tipoff" in report and "## Walk-forward across all seasons" in report
+    assert (tmp_path / "metrics.json").exists() and (tmp_path / "walk_forward.png").exists()

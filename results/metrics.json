@@ -1,0 +1,1247 @@
+{
+  "games_total": 31245,
+  "games_after_min_prior_filter": 27182,
+  "train_games": 23970,
+  "test_games": 3212,
+  "train_seasons": "2000-01 to 2022-23",
+  "train_home_win_rate": 0.5898206090947017,
+  "test_home_win_rate": 0.5429638854296388,
+  "results": [
+    {
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5429638854296388,
+      "log_loss": 0.6939432511869522,
+      "brier": 0.25034965710141294,
+      "ece": 0.04685672366506277,
+      "accuracy_ci": [
+        0.5264632627646326,
+        0.5604062889165629
+      ],
+      "log_loss_ci": [
+        0.6876077544923542,
+        0.6999366706392269
+      ],
+      "accuracy_2023-24": 0.537243947858473,
+      "accuracy_2024-25": 0.5425631431244153,
+      "accuracy_2025-26": 0.54911131898971
+    },
+    {
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6575342465753424,
+      "log_loss": NaN,
+      "brier": NaN,
+      "ece": NaN,
+      "accuracy_ci": [
+        0.6400996264009963,
+        0.674346201743462
+      ],
+      "log_loss_ci": NaN,
+      "accuracy_2023-24": 0.6405959031657356,
+      "accuracy_2024-25": 0.6557530402245089,
+      "accuracy_2025-26": 0.676333021515435
+    },
+    {
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6643835616438356,
+      "log_loss": 0.6053065657308232,
+      "brier": 0.20901558587682192,
+      "ece": 0.03643898757415323,
+      "accuracy_ci": [
+        0.6497509339975094,
+        0.6793275217932753
+      ],
+      "log_loss_ci": [
+        0.5908381361270941,
+        0.6192897993106304
+      ],
+      "accuracy_2023-24": 0.6508379888268156,
+      "accuracy_2024-25": 0.6594948550046773,
+      "accuracy_2025-26": 0.6828811973807296
+    },
+    {
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6721668742216688,
+      "log_loss": 0.6054326238324419,
+      "brier": 0.2089176326075243,
+      "ece": 0.03800106129570665,
+      "accuracy_ci": [
+        0.6569115815691158,
+        0.6874299501867994
+      ],
+      "log_loss_ci": [
+        0.5913124886566443,
+        0.6191106019055813
+      ],
+      "accuracy_2023-24": 0.6610800744878957,
+      "accuracy_2024-25": 0.6651075771749299,
+      "accuracy_2025-26": 0.6903648269410664
+    },
+    {
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6631382316313823,
+      "log_loss": 0.6098249541540832,
+      "brier": 0.21078864777746445,
+      "ece": 0.03984782679037268,
+      "accuracy_ci": [
+        0.648186488169365,
+        0.6790161892901619
+      ],
+      "log_loss_ci": [
+        0.5952932791930452,
+        0.6237012299363155
+      ],
+      "accuracy_2023-24": 0.654562383612663,
+      "accuracy_2024-25": 0.6548175865294668,
+      "accuracy_2025-26": 0.6800748362956034
+    },
+    {
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6590909090909091,
+      "log_loss": 0.6154162790727314,
+      "brier": 0.21381793517325107,
+      "ece": 0.04749416851196986,
+      "accuracy_ci": [
+        0.6432129514321295,
+        0.6743539850560398
+      ],
+      "log_loss_ci": [
+        0.6017143503322631,
+        0.6286432683311671
+      ],
+      "accuracy_2023-24": 0.6536312849162011,
+      "accuracy_2024-25": 0.6501403180542563,
+      "accuracy_2025-26": 0.6735266604303087
+    }
+  ],
+  "deltas": {
+    "Logistic regression (all features)": {
+      "Baseline: home team wins": {
+        "accuracy_delta": 0.1214196762141968,
+        "accuracy_delta_ci": [
+          0.10087173100871738,
+          0.1404109589041096
+        ],
+        "log_loss_delta": -0.08863668545612902,
+        "log_loss_delta_ci": [
+          -0.10116007650508867,
+          -0.07549323107648255
+        ]
+      },
+      "Baseline: better season-to-date record wins": {
+        "accuracy_delta": 0.006849315068493178,
+        "accuracy_delta_ci": [
+          -0.007168430884184337,
+          0.020547945205479427
+        ]
+      },
+      "Simple model: logistic on win% difference only": {
+        "accuracy_delta": 0.005292652552926547,
+        "accuracy_delta_ci": [
+          -0.003424657534246589,
+          0.014943960149439554
+        ],
+        "log_loss_delta": -0.010109713341908244,
+        "log_loss_delta_ci": [
+          -0.013770036442763806,
+          -0.0060748761892343
+        ]
+      }
+    },
+    "Logistic regression (four factors + rest only)": {
+      "Baseline: home team wins": {
+        "accuracy_delta": 0.12920298879202996,
+        "accuracy_delta_ci": [
+          0.10926992528019924,
+          0.1488169364881693
+        ],
+        "log_loss_delta": -0.08851062735451032,
+        "log_loss_delta_ci": [
+          -0.10055278430852711,
+          -0.0759885501166877
+        ]
+      },
+      "Baseline: better season-to-date record wins": {
+        "accuracy_delta": 0.014632627646326335,
+        "accuracy_delta_ci": [
+          0.0,
+          0.028969489414694884
+        ]
+      },
+      "Simple model: logistic on win% difference only": {
+        "accuracy_delta": 0.013075965130759704,
+        "accuracy_delta_ci": [
+          0.0031133250311332628,
+          0.023038605230386037
+        ],
+        "log_loss_delta": -0.009983655240289546,
+        "log_loss_delta_ci": [
+          -0.014536628821667095,
+          -0.005157910635071961
+        ]
+      }
+    },
+    "Gradient boosting (all features)": {
+      "Baseline: home team wins": {
+        "accuracy_delta": 0.1201743462017435,
+        "accuracy_delta_ci": [
+          0.09961861768368624,
+          0.1404109589041096
+        ],
+        "log_loss_delta": -0.084118297032869,
+        "log_loss_delta_ci": [
+          -0.09681691964144092,
+          -0.0713338623265742
+        ]
+      },
+      "Baseline: better season-to-date record wins": {
+        "accuracy_delta": 0.005603985056039873,
+        "accuracy_delta_ci": [
+          -0.00841376089663764,
+          0.0186877334993774
+        ]
+      },
+      "Simple model: logistic on win% difference only": {
+        "accuracy_delta": 0.004047322540473242,
+        "accuracy_delta_ci": [
+          -0.005292652552926547,
+          0.013395080946450855
+        ],
+        "log_loss_delta": -0.005591324918648222,
+        "log_loss_delta_ci": [
+          -0.009461332755708471,
+          -0.001568314386553152
+        ]
+      }
+    }
+  },
+  "factor_coefficients": [
+    {
+      "feature": "d_off_efg",
+      "coef": 0.5064268380722616,
+      "ci_low": 0.477693061804734,
+      "ci_high": 0.5391255975613689
+    },
+    {
+      "feature": "d_def_efg",
+      "coef": -0.37884182780004505,
+      "ci_low": -0.4153847571545635,
+      "ci_high": -0.35371374271644557
+    },
+    {
+      "feature": "d_off_tov_rate",
+      "coef": -0.26489661474700005,
+      "ci_low": -0.29597737237300037,
+      "ci_high": -0.23711673998085395
+    },
+    {
+      "feature": "d_def_tov_rate",
+      "coef": 0.24723291306327813,
+      "ci_low": 0.22103878187494988,
+      "ci_high": 0.27316334002793685
+    },
+    {
+      "feature": "d_off_orb_rate",
+      "coef": 0.20964767230563158,
+      "ci_low": 0.18168238762505134,
+      "ci_high": 0.24050597850903463
+    },
+    {
+      "feature": "d_def_orb_rate",
+      "coef": -0.20248506463501287,
+      "ci_low": -0.23334026529743127,
+      "ci_high": -0.17480026750969438
+    },
+    {
+      "feature": "away_b2b",
+      "coef": 0.14284207545705904,
+      "ci_low": 0.10543087100347706,
+      "ci_high": 0.18131367724271877
+    },
+    {
+      "feature": "d_off_ft_rate",
+      "coef": 0.11692260102355913,
+      "ci_low": 0.08892527640299797,
+      "ci_high": 0.1412672523993807
+    },
+    {
+      "feature": "d_def_ft_rate",
+      "coef": -0.10237540024096703,
+      "ci_low": -0.13021937583191337,
+      "ci_high": -0.07131387671988693
+    },
+    {
+      "feature": "home_b2b",
+      "coef": -0.08618237653485004,
+      "ci_low": -0.11841147197742961,
+      "ci_high": -0.05696685933105144
+    },
+    {
+      "feature": "d_rest",
+      "coef": -0.01759848193040316,
+      "ci_low": -0.05640945438449552,
+      "ci_high": 0.018414468514668204
+    }
+  ],
+  "permutation_importance_test_neg_log_loss": {
+    "Logistic regression (all features)": [
+      {
+        "feature": "d_net_rtg",
+        "mean": 0.02282312639848111,
+        "std": 0.0026096901481049675
+      },
+      {
+        "feature": "d_win",
+        "mean": 0.010003492941070632,
+        "std": 0.001765179609530436
+      },
+      {
+        "feature": "d_off_efg",
+        "mean": 0.007831512100194109,
+        "std": 0.0014107470990464143
+      },
+      {
+        "feature": "d_def_efg",
+        "mean": 0.00378039550626111,
+        "std": 0.0010224862979635815
+      },
+      {
+        "feature": "home_b2b",
+        "mean": 0.0033675361804705204,
+        "std": 0.0007629722372788484
+      },
+      {
+        "feature": "d_def_tov_rate",
+        "mean": 0.003225626012380578,
+        "std": 0.0006646212368507315
+      },
+      {
+        "feature": "d_off_tov_rate",
+        "mean": 0.0026469014315351016,
+        "std": 0.0006632934844994769
+      },
+      {
+        "feature": "d_def_orb_rate",
+        "mean": 0.0024117174402993546,
+        "std": 0.0008257618791190089
+      },
+      {
+        "feature": "away_b2b",
+        "mean": 0.002280781835892942,
+        "std": 0.0010537613883765708
+      },
+      {
+        "feature": "d_off_orb_rate",
+        "mean": 0.001858250534011078,
+        "std": 0.000687835278543212
+      },
+      {
+        "feature": "d_off_ft_rate",
+        "mean": 0.000573461971539709,
+        "std": 0.0002446738774459816
+      },
+      {
+        "feature": "d_def_ft_rate",
+        "mean": 0.0001889622482566596,
+        "std": 0.00019173175682346934
+      },
+      {
+        "feature": "d_rest",
+        "mean": -0.00010963203469157578,
+        "std": 0.00015866950973433813
+      }
+    ],
+    "Gradient boosting (all features)": [
+      {
+        "feature": "d_net_rtg",
+        "mean": 0.06294252493559908,
+        "std": 0.004080314919652495
+      },
+      {
+        "feature": "d_win",
+        "mean": 0.018196447240347656,
+        "std": 0.0024366959983866
+      },
+      {
+        "feature": "home_b2b",
+        "mean": 0.0017581089305058453,
+        "std": 0.0005068402732676808
+      },
+      {
+        "feature": "away_b2b",
+        "mean": 0.0009837346596239176,
+        "std": 0.0006765898199747269
+      },
+      {
+        "feature": "d_off_efg",
+        "mean": 0.0008193527558306639,
+        "std": 0.0004992911762274158
+      },
+      {
+        "feature": "d_def_orb_rate",
+        "mean": 0.0007270824321451911,
+        "std": 0.00040090153584081215
+      },
+      {
+        "feature": "d_def_efg",
+        "mean": 0.0005119897613314402,
+        "std": 0.00023288970207231103
+      },
+      {
+        "feature": "d_def_tov_rate",
+        "mean": 0.000405702156377219,
+        "std": 0.0004279300364950111
+      },
+      {
+        "feature": "d_def_ft_rate",
+        "mean": 0.00014199986130409477,
+        "std": 0.00011203300706122703
+      },
+      {
+        "feature": "d_rest",
+        "mean": 3.370298113845038e-05,
+        "std": 0.00011972918347626468
+      },
+      {
+        "feature": "d_off_orb_rate",
+        "mean": 1.177976586281826e-05,
+        "std": 0.00016594008258828048
+      },
+      {
+        "feature": "d_off_ft_rate",
+        "mean": -4.422766862098489e-05,
+        "std": 0.0002140533832395923
+      },
+      {
+        "feature": "d_off_tov_rate",
+        "mean": -0.00022199283025395867,
+        "std": 0.0003093842867045392
+      }
+    ]
+  },
+  "walk_forward": [
+    {
+      "season": "2005-06",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.6,
+      "log_loss": 0.673088454349471
+    },
+    {
+      "season": "2005-06",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6317757009345795,
+      "log_loss": NaN
+    },
+    {
+      "season": "2005-06",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6579439252336449,
+      "log_loss": 0.6182785251116182
+    },
+    {
+      "season": "2005-06",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6542056074766355,
+      "log_loss": 0.6192697888632392
+    },
+    {
+      "season": "2005-06",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6523364485981309,
+      "log_loss": 0.6247307820994612
+    },
+    {
+      "season": "2005-06",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6542056074766355,
+      "log_loss": 0.6255975344341669
+    },
+    {
+      "season": "2006-07",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5882352941176471,
+      "log_loss": 0.6780817057969463
+    },
+    {
+      "season": "2006-07",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6199813258636788,
+      "log_loss": NaN
+    },
+    {
+      "season": "2006-07",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6507936507936508,
+      "log_loss": 0.6311015699388374
+    },
+    {
+      "season": "2006-07",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6479925303454716,
+      "log_loss": 0.6314036146893989
+    },
+    {
+      "season": "2006-07",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6405228758169934,
+      "log_loss": 0.6451257712431255
+    },
+    {
+      "season": "2006-07",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.646125116713352,
+      "log_loss": 0.6366553577570846
+    },
+    {
+      "season": "2007-08",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.6026119402985075,
+      "log_loss": 0.6719383946947636
+    },
+    {
+      "season": "2007-08",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6595149253731343,
+      "log_loss": NaN
+    },
+    {
+      "season": "2007-08",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6875,
+      "log_loss": 0.5877341006390762
+    },
+    {
+      "season": "2007-08",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6884328358208955,
+      "log_loss": 0.5898864065819441
+    },
+    {
+      "season": "2007-08",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6940298507462687,
+      "log_loss": 0.5853996337518008
+    },
+    {
+      "season": "2007-08",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6772388059701493,
+      "log_loss": 0.5895630150336836
+    },
+    {
+      "season": "2008-09",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.6154562383612663,
+      "log_loss": 0.6665918821402091
+    },
+    {
+      "season": "2008-09",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6694599627560521,
+      "log_loss": NaN
+    },
+    {
+      "season": "2008-09",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.7113594040968343,
+      "log_loss": 0.5648285159152151
+    },
+    {
+      "season": "2008-09",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.7160148975791434,
+      "log_loss": 0.5648411340011419
+    },
+    {
+      "season": "2008-09",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.7039106145251397,
+      "log_loss": 0.5717982383601959
+    },
+    {
+      "season": "2008-09",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.7104283054003724,
+      "log_loss": 0.5691982910693346
+    },
+    {
+      "season": "2009-10",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5966386554621849,
+      "log_loss": 0.6744653873158203
+    },
+    {
+      "season": "2009-10",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6451914098972923,
+      "log_loss": NaN
+    },
+    {
+      "season": "2009-10",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6862745098039216,
+      "log_loss": 0.5900500919081895
+    },
+    {
+      "season": "2009-10",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6872082166199813,
+      "log_loss": 0.590487336110082
+    },
+    {
+      "season": "2009-10",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.676937441643324,
+      "log_loss": 0.6022766527613718
+    },
+    {
+      "season": "2009-10",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6816059757236228,
+      "log_loss": 0.5987897383211436
+    },
+    {
+      "season": "2010-11",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.6120930232558139,
+      "log_loss": 0.6679648916491475
+    },
+    {
+      "season": "2010-11",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6632558139534884,
+      "log_loss": NaN
+    },
+    {
+      "season": "2010-11",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.7032558139534884,
+      "log_loss": 0.5769597938438356
+    },
+    {
+      "season": "2010-11",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.7041860465116279,
+      "log_loss": 0.5763413754254888
+    },
+    {
+      "season": "2010-11",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6986046511627907,
+      "log_loss": 0.5807086989052895
+    },
+    {
+      "season": "2010-11",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.693953488372093,
+      "log_loss": 0.5874556950514368
+    },
+    {
+      "season": "2011-12",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5757211538461539,
+      "log_loss": 0.6833069594840401
+    },
+    {
+      "season": "2011-12",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6382211538461539,
+      "log_loss": NaN
+    },
+    {
+      "season": "2011-12",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6490384615384616,
+      "log_loss": 0.6226767135089104
+    },
+    {
+      "season": "2011-12",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6502403846153846,
+      "log_loss": 0.6265739885289884
+    },
+    {
+      "season": "2011-12",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6430288461538461,
+      "log_loss": 0.6235922498593929
+    },
+    {
+      "season": "2011-12",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6490384615384616,
+      "log_loss": 0.6202489003972756
+    },
+    {
+      "season": "2012-13",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.6132339235787512,
+      "log_loss": 0.6675339060681882
+    },
+    {
+      "season": "2012-13",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6598322460391426,
+      "log_loss": NaN
+    },
+    {
+      "season": "2012-13",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6719478098788444,
+      "log_loss": 0.5921516333158894
+    },
+    {
+      "season": "2012-13",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6616961789375583,
+      "log_loss": 0.5924616141833293
+    },
+    {
+      "season": "2012-13",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6821994408201305,
+      "log_loss": 0.5908325141039734
+    },
+    {
+      "season": "2012-13",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6663560111835974,
+      "log_loss": 0.6001062977118554
+    },
+    {
+      "season": "2013-14",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5707635009310987,
+      "log_loss": 0.6852621300712096
+    },
+    {
+      "season": "2013-14",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6713221601489758,
+      "log_loss": NaN
+    },
+    {
+      "season": "2013-14",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.659217877094972,
+      "log_loss": 0.6052675623585697
+    },
+    {
+      "season": "2013-14",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6629422718808193,
+      "log_loss": 0.6064409501846625
+    },
+    {
+      "season": "2013-14",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6517690875232774,
+      "log_loss": 0.6131384362041933
+    },
+    {
+      "season": "2013-14",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6517690875232774,
+      "log_loss": 0.6121445183487805
+    },
+    {
+      "season": "2014-15",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5755597014925373,
+      "log_loss": 0.6829948413181388
+    },
+    {
+      "season": "2014-15",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.683768656716418,
+      "log_loss": NaN
+    },
+    {
+      "season": "2014-15",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6819029850746269,
+      "log_loss": 0.5932327711308373
+    },
+    {
+      "season": "2014-15",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6772388059701493,
+      "log_loss": 0.5954328716435089
+    },
+    {
+      "season": "2014-15",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.683768656716418,
+      "log_loss": 0.5946234490429352
+    },
+    {
+      "season": "2014-15",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6800373134328358,
+      "log_loss": 0.5957789668649467
+    },
+    {
+      "season": "2015-16",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5936626281453867,
+      "log_loss": 0.6755567933045584
+    },
+    {
+      "season": "2015-16",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6691519105312209,
+      "log_loss": NaN
+    },
+    {
+      "season": "2015-16",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6887232059645852,
+      "log_loss": 0.5808848404791682
+    },
+    {
+      "season": "2015-16",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6840633737185461,
+      "log_loss": 0.5807645763757171
+    },
+    {
+      "season": "2015-16",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6905871388630009,
+      "log_loss": 0.5822708803675348
+    },
+    {
+      "season": "2015-16",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6877912395153775,
+      "log_loss": 0.5862894988567747
+    },
+    {
+      "season": "2016-17",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5837988826815642,
+      "log_loss": 0.6794935191138853
+    },
+    {
+      "season": "2016-17",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6061452513966481,
+      "log_loss": NaN
+    },
+    {
+      "season": "2016-17",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.633147113594041,
+      "log_loss": 0.631882866429782
+    },
+    {
+      "season": "2016-17",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6312849162011173,
+      "log_loss": 0.634137040637627
+    },
+    {
+      "season": "2016-17",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6396648044692738,
+      "log_loss": 0.6328021891406977
+    },
+    {
+      "season": "2016-17",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6350093109869647,
+      "log_loss": 0.6376846009712891
+    },
+    {
+      "season": "2017-18",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5832558139534884,
+      "log_loss": 0.6796550642487619
+    },
+    {
+      "season": "2017-18",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6558139534883721,
+      "log_loss": NaN
+    },
+    {
+      "season": "2017-18",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6641860465116279,
+      "log_loss": 0.6128237202503962
+    },
+    {
+      "season": "2017-18",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6613953488372093,
+      "log_loss": 0.6161727923816207
+    },
+    {
+      "season": "2017-18",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6688372093023256,
+      "log_loss": 0.6112998706338985
+    },
+    {
+      "season": "2017-18",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6623255813953488,
+      "log_loss": 0.6172536111536777
+    },
+    {
+      "season": "2018-19",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.590316573556797,
+      "log_loss": 0.6768339727815791
+    },
+    {
+      "season": "2018-19",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6350093109869647,
+      "log_loss": NaN
+    },
+    {
+      "season": "2018-19",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6564245810055865,
+      "log_loss": 0.6177030199723427
+    },
+    {
+      "season": "2018-19",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6517690875232774,
+      "log_loss": 0.6187343108635515
+    },
+    {
+      "season": "2018-19",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6508379888268156,
+      "log_loss": 0.6190513823504062
+    },
+    {
+      "season": "2018-19",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6461824953445066,
+      "log_loss": 0.6241448227227004
+    },
+    {
+      "season": "2019-20",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5496688741721855,
+      "log_loss": 0.6927270941869607
+    },
+    {
+      "season": "2019-20",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6456953642384106,
+      "log_loss": NaN
+    },
+    {
+      "season": "2019-20",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.652317880794702,
+      "log_loss": 0.6222276602759694
+    },
+    {
+      "season": "2019-20",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6479028697571744,
+      "log_loss": 0.6217878645047038
+    },
+    {
+      "season": "2019-20",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.652317880794702,
+      "log_loss": 0.6295580686744505
+    },
+    {
+      "season": "2019-20",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6423841059602649,
+      "log_loss": 0.6256153426288166
+    },
+    {
+      "season": "2020-21",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5541125541125541,
+      "log_loss": 0.6906386490696306
+    },
+    {
+      "season": "2020-21",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6417748917748918,
+      "log_loss": NaN
+    },
+    {
+      "season": "2020-21",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6287878787878788,
+      "log_loss": 0.6312179657072555
+    },
+    {
+      "season": "2020-21",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6341991341991342,
+      "log_loss": 0.6315533408904976
+    },
+    {
+      "season": "2020-21",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6352813852813853,
+      "log_loss": 0.6322463672163477
+    },
+    {
+      "season": "2020-21",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6201298701298701,
+      "log_loss": 0.6434091352050679
+    },
+    {
+      "season": "2021-22",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5424044734389561,
+      "log_loss": 0.6947564113235689
+    },
+    {
+      "season": "2021-22",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6197576887232059,
+      "log_loss": NaN
+    },
+    {
+      "season": "2021-22",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6374650512581547,
+      "log_loss": 0.6424903803365207
+    },
+    {
+      "season": "2021-22",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6402609506057781,
+      "log_loss": 0.6431497112512208
+    },
+    {
+      "season": "2021-22",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6328052190121156,
+      "log_loss": 0.6429301971479675
+    },
+    {
+      "season": "2021-22",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6262814538676608,
+      "log_loss": 0.6508260873967078
+    },
+    {
+      "season": "2022-23",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.575955265610438,
+      "log_loss": 0.6819981155528326
+    },
+    {
+      "season": "2022-23",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.5983224603914259,
+      "log_loss": NaN
+    },
+    {
+      "season": "2022-23",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6328052190121156,
+      "log_loss": 0.6460570650198963
+    },
+    {
+      "season": "2022-23",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6281453867660765,
+      "log_loss": 0.6462421665408078
+    },
+    {
+      "season": "2022-23",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6356011183597391,
+      "log_loss": 0.6472195461340908
+    },
+    {
+      "season": "2022-23",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6188257222739981,
+      "log_loss": 0.6535892684739297
+    },
+    {
+      "season": "2023-24",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.537243947858473,
+      "log_loss": 0.696020868850286
+    },
+    {
+      "season": "2023-24",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6405959031657356,
+      "log_loss": NaN
+    },
+    {
+      "season": "2023-24",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6508379888268156,
+      "log_loss": 0.6082523478135573
+    },
+    {
+      "season": "2023-24",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6610800744878957,
+      "log_loss": 0.6097566306126139
+    },
+    {
+      "season": "2023-24",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.654562383612663,
+      "log_loss": 0.6132052171084451
+    },
+    {
+      "season": "2023-24",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6536312849162011,
+      "log_loss": 0.6151329366411419
+    },
+    {
+      "season": "2024-25",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.5425631431244153,
+      "log_loss": 0.6936592473063272
+    },
+    {
+      "season": "2024-25",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.6557530402245089,
+      "log_loss": NaN
+    },
+    {
+      "season": "2024-25",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6594948550046773,
+      "log_loss": 0.607529728243271
+    },
+    {
+      "season": "2024-25",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.666043030869972,
+      "log_loss": 0.6072484525845133
+    },
+    {
+      "season": "2024-25",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.64733395696913,
+      "log_loss": 0.6159842203946507
+    },
+    {
+      "season": "2024-25",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.6492048643592142,
+      "log_loss": 0.619813537214343
+    },
+    {
+      "season": "2025-26",
+      "model": "Baseline: home team wins",
+      "accuracy": 0.54911131898971,
+      "log_loss": 0.6910566140600467
+    },
+    {
+      "season": "2025-26",
+      "model": "Baseline: better season-to-date record wins",
+      "accuracy": 0.676333021515435,
+      "log_loss": NaN
+    },
+    {
+      "season": "2025-26",
+      "model": "Logistic regression (all features)",
+      "accuracy": 0.6903648269410664,
+      "log_loss": 0.5993809389330705
+    },
+    {
+      "season": "2025-26",
+      "model": "Logistic regression (four factors + rest only)",
+      "accuracy": 0.6922357343311506,
+      "log_loss": 0.5983532278789104
+    },
+    {
+      "season": "2025-26",
+      "model": "Gradient boosting (all features)",
+      "accuracy": 0.6791393826005613,
+      "log_loss": 0.5991561347960885
+    },
+    {
+      "season": "2025-26",
+      "model": "Simple model: logistic on win% difference only",
+      "accuracy": 0.676333021515435,
+      "log_loss": 0.6100677895591023
+    }
+  ],
+  "home_win_rate_by_season": {
+    "2000-01": 0.5969141755062681,
+    "2001-02": 0.5880077369439072,
+    "2002-03": 0.6242774566473989,
+    "2003-04": 0.6148648648648649,
+    "2004-05": 0.6061739943872778,
+    "2005-06": 0.6,
+    "2006-07": 0.5882352941176471,
+    "2007-08": 0.6026119402985075,
+    "2008-09": 0.6154562383612663,
+    "2009-10": 0.5966386554621849,
+    "2010-11": 0.6120930232558139,
+    "2011-12": 0.5757211538461539,
+    "2012-13": 0.6132339235787512,
+    "2013-14": 0.5707635009310987,
+    "2014-15": 0.5755597014925373,
+    "2015-16": 0.5936626281453867,
+    "2016-17": 0.5837988826815642,
+    "2017-18": 0.5832558139534884,
+    "2018-19": 0.590316573556797,
+    "2019-20": 0.5496688741721855,
+    "2020-21": 0.5541125541125541,
+    "2021-22": 0.5424044734389561,
+    "2022-23": 0.575955265610438,
+    "2023-24": 0.537243947858473,
+    "2024-25": 0.5425631431244153,
+    "2025-26": 0.54911131898971
+  },
+  "descriptive_same_game_factors": {
+    "n_train_games": 27564,
+    "n_test_games": 3680,
+    "test_r2_margin": 0.9447791635803463,
+    "test_accuracy_win_from_same_game_factors": 0.9584239130434783,
+    "points_per_1sd": {
+      "d_efg": {
+        "coef": 12.307790020615842,
+        "ci": [
+          12.262972233456832,
+          12.356145539561677
+        ],
+        "1sd": 0.08963398226511711
+      },
+      "d_tov_rate": {
+        "coef": -5.933465820821838,
+        "ci": [
+          -5.976283343489734,
+          -5.889896435006693
+        ],
+        "1sd": 0.05181129728040374
+      },
+      "d_orb_rate": {
+        "coef": 5.340466986196508,
+        "ci": [
+          5.298042867924705,
+          5.381671241940676
+        ],
+        "1sd": 0.10621271513400947
+      },
+      "d_ft_rate": {
+        "coef": 2.8523906408417554,
+        "ci": [
+          2.811679237134966,
+          2.8942122207190555
+        ],
+        "1sd": 0.10960144195437833
+      }
+    }
+  }
+}

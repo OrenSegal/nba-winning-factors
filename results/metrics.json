@@ -1248,8 +1248,8 @@
     "n_games": 27182,
     "n_train": 23970,
     "n_test": 3212,
-    "n_factors_screened": 50,
-    "bonferroni_z": 3.2905267314919247,
+    "n_factors_screened": 54,
+    "bonferroni_z": 3.3121176662593372,
     "base": [
       "elo_diff",
       "d_net_rtg",
@@ -1259,6 +1259,7 @@
       {
         "feature": "away_b2b",
         "family": "Rest and schedule load",
+        "definition": "Away team played yesterday",
         "coef": 0.11855585028391112,
         "ci_low": 0.09050727849714786,
         "ci_high": 0.1466044220706744,
@@ -1273,6 +1274,7 @@
       {
         "feature": "d_rest",
         "family": "Rest and schedule load",
+        "definition": "Home minus away days since the last game (capped at 7)",
         "coef": 0.08764486308590794,
         "ci_low": 0.05971261084558017,
         "ci_high": 0.11557711532623571,
@@ -1287,6 +1289,7 @@
       {
         "feature": "away_g4n3",
         "family": "Rest and schedule load",
+        "definition": "Away team's earlier games in the last 3 days",
         "coef": 0.06171930274059285,
         "ci_low": 0.03398098193018158,
         "ci_high": 0.08945762355100412,
@@ -1301,6 +1304,7 @@
       {
         "feature": "d_def_fg3_pct",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date opponent three-point % allowed",
         "coef": 0.06316837670125934,
         "ci_low": 0.03276464170023642,
         "ci_high": 0.09357211170228226,
@@ -1315,6 +1319,7 @@
       {
         "feature": "home_b2b",
         "family": "Rest and schedule load",
+        "definition": "Home team played yesterday",
         "coef": -0.05566850650980917,
         "ci_low": -0.08314146156686034,
         "ci_high": -0.028195551452758004,
@@ -1329,6 +1334,7 @@
       {
         "feature": "away_g6n5",
         "family": "Rest and schedule load",
+        "definition": "Away team's earlier games in the last 5 days",
         "coef": 0.051744077482491574,
         "ci_low": 0.024098116557406218,
         "ci_high": 0.07939003840757693,
@@ -1343,6 +1349,7 @@
       {
         "feature": "home_alt_km",
         "family": "Altitude",
+        "definition": "Altitude of the arena, km",
         "coef": 0.05056319790276892,
         "ci_low": 0.02226956582593733,
         "ci_high": 0.0788568299796005,
@@ -1357,6 +1364,7 @@
       {
         "feature": "d_ewm5",
         "family": "Recent form",
+        "definition": "Home minus away net rating, recency-weighted with a 5-game half-life",
         "coef": 0.09654073299579782,
         "ci_low": 0.03991871776185102,
         "ci_high": 0.15316274822974463,
@@ -1371,6 +1379,7 @@
       {
         "feature": "d_ewm8",
         "family": "Recent form",
+        "definition": "Home minus away net rating, recency-weighted with a 8-game half-life",
         "coef": 0.12387289152150992,
         "ci_low": 0.04897169710766923,
         "ci_high": 0.19877408593535062,
@@ -1385,6 +1394,7 @@
       {
         "feature": "d_form10",
         "family": "Recent form",
+        "definition": "Home minus away last-10-game net rating relative to the season average",
         "coef": 0.041485242415620814,
         "ci_low": 0.01276911023314702,
         "ci_high": 0.07020137459809461,
@@ -1399,6 +1409,7 @@
       {
         "feature": "d_ewm20",
         "family": "Recent form",
+        "definition": "Home minus away net rating, recency-weighted with a 20-game half-life",
         "coef": 0.2173583550195436,
         "ci_low": 0.062339827889801275,
         "ci_high": 0.3723768821492859,
@@ -1413,6 +1424,7 @@
       {
         "feature": "d_def_orb_rate",
         "family": "Four factors",
+        "definition": "Home minus away season-to-date opponent-allowed offensive rebound rate",
         "coef": -0.03721006251988083,
         "ci_low": -0.0660490748261767,
         "ci_high": -0.008371050213584967,
@@ -1427,6 +1439,7 @@
       {
         "feature": "d_ast_rate",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date assists per made field goal",
         "coef": 0.034770965948123206,
         "ci_low": 0.00631029795135701,
         "ci_high": 0.0632316339448894,
@@ -1441,6 +1454,7 @@
       {
         "feature": "d_blk_rate",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date blocks per opponent two-point attempt",
         "coef": 0.02907345034250123,
         "ci_low": 0.0006870321097865936,
         "ci_high": 0.057459868575215865,
@@ -1455,6 +1469,7 @@
       {
         "feature": "home_streak",
         "family": "Home stands and road trips",
+        "definition": "Consecutive earlier home games for the home team",
         "coef": 0.02605182500047386,
         "ci_low": -0.0018678902528898658,
         "ci_high": 0.05397154025383759,
@@ -1469,6 +1484,7 @@
       {
         "feature": "d_fg3a_rate",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date three-point attempt rate",
         "coef": 0.025902053520777527,
         "ci_low": -0.0028143399001410822,
         "ci_high": 0.05461844694169614,
@@ -1483,6 +1499,7 @@
       {
         "feature": "home_g4n3",
         "family": "Rest and schedule load",
+        "definition": "Home team's earlier games in the last 3 days (3-in-4 when 2+)",
         "coef": -0.023497165292207,
         "ci_low": -0.05114677537306621,
         "ci_high": 0.004152444788652211,
@@ -1495,8 +1512,24 @@
         ]
       },
       {
+        "feature": "d_fg3a",
+        "family": "Shot profile",
+        "definition": "Home minus away season-to-date three-point attempts per game",
+        "coef": 0.024188382861373463,
+        "ci_low": -0.004375611931338178,
+        "ci_high": 0.05275237765408511,
+        "z": 1.6597549030637997,
+        "significant_after_bonferroni": false,
+        "d_logloss": 0.0002739539203088573,
+        "d_logloss_ci": [
+          -5.141679356136251e-05,
+          0.0006628921822663515
+        ]
+      },
+      {
         "feature": "pace_sum_rel",
         "family": "Volatility and matchup shape",
+        "definition": "Combined pace of both teams relative to the league's recent average",
         "coef": 0.020449759781388237,
         "ci_low": -0.007444834760501819,
         "ci_high": 0.04834435432327829,
@@ -1511,6 +1544,7 @@
       {
         "feature": "home_tz_east",
         "family": "Travel and time zones",
+        "definition": "Time zones the home team crossed eastward",
         "coef": -0.020161661615470637,
         "ci_low": -0.04776415616012906,
         "ci_high": 0.007440832929187784,
@@ -1525,6 +1559,7 @@
       {
         "feature": "away_streak",
         "family": "Home stands and road trips",
+        "definition": "Consecutive earlier road games for the away team",
         "coef": -0.019974184842269906,
         "ci_low": -0.04768487020022902,
         "ci_high": 0.0077365005156892035,
@@ -1539,6 +1574,7 @@
       {
         "feature": "away_travel",
         "family": "Travel and time zones",
+        "definition": "Away team's travel since its last game, thousand km",
         "coef": -0.019818000006991424,
         "ci_low": -0.04744225530326941,
         "ci_high": 0.007806255289286565,
@@ -1553,6 +1589,7 @@
       {
         "feature": "d_def_ft_rate",
         "family": "Four factors",
+        "definition": "Home minus away season-to-date opponent-allowed free-throw rate",
         "coef": 0.020411665010120112,
         "ci_low": -0.008327572074424087,
         "ci_high": 0.049150902094664314,
@@ -1567,6 +1604,7 @@
       {
         "feature": "home_g6n5",
         "family": "Rest and schedule load",
+        "definition": "Home team's earlier games in the last 5 days (4-in-6 when 3+)",
         "coef": -0.0191815365043519,
         "ci_low": -0.04686480689011933,
         "ci_high": 0.008501733881415528,
@@ -1579,8 +1617,24 @@
         ]
       },
       {
+        "feature": "d_fg3_pts_share",
+        "family": "Shot profile",
+        "definition": "Home minus away season-to-date share of points from threes",
+        "coef": 0.019528546912132017,
+        "ci_low": -0.009234617981297044,
+        "ci_high": 0.04829171180556108,
+        "z": 1.330728106228772,
+        "significant_after_bonferroni": false,
+        "d_logloss": 0.00027691084249838725,
+        "d_logloss_ci": [
+          2.9494334774170617e-05,
+          0.000593381280761382
+        ]
+      },
+      {
         "feature": "rematch_n",
         "family": "Calendar and rematches",
+        "definition": "Earlier meetings of these two teams this season",
         "coef": 0.018601445251412014,
         "ci_low": -0.009156359089732221,
         "ci_high": 0.046359249592556245,
@@ -1595,6 +1649,7 @@
       {
         "feature": "d_close_net",
         "family": "Luck and regression",
+        "definition": "Home minus away net wins in games decided by 5 or fewer",
         "coef": -0.020461660556439245,
         "ci_low": -0.05109064671027234,
         "ci_high": 0.010167325597393848,
@@ -1609,6 +1664,7 @@
       {
         "feature": "d_pf_rate",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date fouls committed per possession",
         "coef": 0.01640961950952274,
         "ci_low": -0.012300408966559827,
         "ci_high": 0.045119647985605305,
@@ -1623,6 +1679,7 @@
       {
         "feature": "d_off_efg",
         "family": "Four factors",
+        "definition": "Home minus away season-to-date own effective FG%",
         "coef": 0.020504559549201835,
         "ci_low": -0.018244713745001,
         "ci_high": 0.05925383284340467,
@@ -1637,6 +1694,7 @@
       {
         "feature": "abs_d_pace",
         "family": "Volatility and matchup shape",
+        "definition": "Absolute pace gap between the teams",
         "coef": 0.014579699088930203,
         "ci_low": -0.013242386052485176,
         "ci_high": 0.04240178423034558,
@@ -1651,6 +1709,7 @@
       {
         "feature": "home_tz_west",
         "family": "Travel and time zones",
+        "definition": "Time zones the home team crossed westward",
         "coef": 0.014412435724468306,
         "ci_low": -0.013469613656718872,
         "ci_high": 0.042294485105655484,
@@ -1665,6 +1724,7 @@
       {
         "feature": "away_tz_east",
         "family": "Travel and time zones",
+        "definition": "Time zones the away team crossed eastward",
         "coef": -0.01325478306032607,
         "ci_low": -0.040744276492166276,
         "ci_high": 0.014234710371514133,
@@ -1679,6 +1739,7 @@
       {
         "feature": "away_tz_west",
         "family": "Travel and time zones",
+        "definition": "Time zones the away team crossed westward",
         "coef": 0.01345272807757284,
         "ci_low": -0.014449113578865363,
         "ci_high": 0.04135456973401104,
@@ -1693,6 +1754,7 @@
       {
         "feature": "season_day",
         "family": "Calendar and rematches",
+        "definition": "Share of the season elapsed (0 to 1)",
         "coef": 0.012524321076853867,
         "ci_low": -0.015236134872312823,
         "ci_high": 0.040284777026020555,
@@ -1707,6 +1769,7 @@
       {
         "feature": "d_alt",
         "family": "Altitude",
+        "definition": "Home arena altitude minus away arena altitude, km",
         "coef": 0.012267142111511064,
         "ci_low": -0.0153644708426832,
         "ci_high": 0.03989875506570533,
@@ -1721,6 +1784,7 @@
       {
         "feature": "d_def_fg3a_rate",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date opponent three-point attempt rate",
         "coef": 0.011664012543829252,
         "ci_low": -0.016373914266095253,
         "ci_high": 0.03970193935375376,
@@ -1733,8 +1797,24 @@
         ]
       },
       {
+        "feature": "d_ts",
+        "family": "Shot profile",
+        "definition": "Home minus away season-to-date true shooting %",
+        "coef": 0.01642072326369796,
+        "ci_low": -0.023157221338572547,
+        "ci_high": 0.055998667865968466,
+        "z": 0.8131957816475803,
+        "significant_after_bonferroni": false,
+        "d_logloss": 2.369243778164676e-05,
+        "d_logloss_ci": [
+          -0.00016068624349503745,
+          0.00022183642243267466
+        ]
+      },
+      {
         "feature": "home_travel",
         "family": "Travel and time zones",
+        "definition": "Home team's travel since its last game, thousand km",
         "coef": -0.010308405444795577,
         "ci_low": -0.03803121025761941,
         "ci_high": 0.017414399368028258,
@@ -1747,8 +1827,24 @@
         ]
       },
       {
+        "feature": "d_reb_share",
+        "family": "Shot profile",
+        "definition": "Home minus away season-to-date share of all rebounds",
+        "coef": 0.010333335302804147,
+        "ci_low": -0.020418755915706722,
+        "ci_high": 0.04108542652131501,
+        "z": 0.658600322481642,
+        "significant_after_bonferroni": false,
+        "d_logloss": -2.0389348799765066e-05,
+        "d_logloss_ci": [
+          -0.00018008306056498818,
+          0.00012340251304791757
+        ]
+      },
+      {
         "feature": "d_off_orb_rate",
         "family": "Four factors",
+        "definition": "Home minus away season-to-date own offensive rebound rate",
         "coef": -0.008415879958441948,
         "ci_low": -0.03616704125135764,
         "ci_high": 0.01933528133447374,
@@ -1763,6 +1859,7 @@
       {
         "feature": "d_drawn_fouls",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date fouls drawn per possession",
         "coef": 0.008198656371589397,
         "ci_low": -0.01995711812415817,
         "ci_high": 0.03635443086733696,
@@ -1777,6 +1874,7 @@
       {
         "feature": "d_fg3_pct",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date three-point %",
         "coef": -0.008641062709076476,
         "ci_low": -0.04053200957390206,
         "ci_high": 0.023249884155749106,
@@ -1791,6 +1889,7 @@
       {
         "feature": "d_luck",
         "family": "Luck and regression",
+        "definition": "Home minus away win % above what points scored and allowed imply (Pythagorean)",
         "coef": -0.006579033544193496,
         "ci_low": -0.036055276097789316,
         "ci_high": 0.02289720900940232,
@@ -1805,6 +1904,7 @@
       {
         "feature": "d_def_efg",
         "family": "Four factors",
+        "definition": "Home minus away season-to-date opponent-allowed effective FG%",
         "coef": 0.008071184675521884,
         "ci_low": -0.028251410253996502,
         "ci_high": 0.04439377960504027,
@@ -1819,6 +1919,7 @@
       {
         "feature": "d_ft_pct",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date free-throw %",
         "coef": -0.005348530287669798,
         "ci_low": -0.03360636938956125,
         "ci_high": 0.02290930881422165,
@@ -1833,6 +1934,7 @@
       {
         "feature": "d_def_tov_rate",
         "family": "Four factors",
+        "definition": "Home minus away season-to-date opponent-allowed turnover rate",
         "coef": 0.003966579417999546,
         "ci_low": -0.02375153264915551,
         "ci_high": 0.0316846914851546,
@@ -1847,6 +1949,7 @@
       {
         "feature": "d_stl_rate",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date steals per opponent possession",
         "coef": 0.0035111922515836374,
         "ci_low": -0.024486764890308974,
         "ci_high": 0.031509149393476245,
@@ -1861,6 +1964,7 @@
       {
         "feature": "is_weekend",
         "family": "Calendar and rematches",
+        "definition": "Played on a Saturday or Sunday",
         "coef": -0.0026466136896748653,
         "ci_low": -0.030310444564738876,
         "ci_high": 0.025017217185389146,
@@ -1875,6 +1979,7 @@
       {
         "feature": "fav_x_vol",
         "family": "Volatility and matchup shape",
+        "definition": "Elo gap times combined volatility",
         "coef": 0.02647267842958153,
         "ci_low": -0.30368632796438955,
         "ci_high": 0.35663168482355256,
@@ -1889,6 +1994,7 @@
       {
         "feature": "vol_sum",
         "family": "Volatility and matchup shape",
+        "definition": "Sum of both teams' game-to-game net-rating volatility",
         "coef": 0.002233310890934628,
         "ci_low": -0.025661196679000818,
         "ci_high": 0.030127818460870072,
@@ -1903,6 +2009,7 @@
       {
         "feature": "d_off_ft_rate",
         "family": "Four factors",
+        "definition": "Home minus away season-to-date own free-throw rate",
         "coef": -0.0017623746448785285,
         "ci_low": -0.030111839308930067,
         "ci_high": 0.026587090019173008,
@@ -1917,6 +2024,7 @@
       {
         "feature": "d_win",
         "family": "Strength",
+        "definition": "Home minus away season-to-date win %",
         "coef": -0.004653613075415242,
         "ci_low": -0.09273474966291041,
         "ci_high": 0.08342752351207992,
@@ -1931,6 +2039,7 @@
       {
         "feature": "d_pace",
         "family": "Pace and style",
+        "definition": "Home minus away season-to-date pace (possessions per game)",
         "coef": -0.0012310482171247936,
         "ci_low": -0.029132824868451885,
         "ci_high": 0.0266707284342023,
@@ -1945,6 +2054,7 @@
       {
         "feature": "d_off_tov_rate",
         "family": "Four factors",
+        "definition": "Home minus away season-to-date own turnover rate",
         "coef": -0.0011957200009950033,
         "ci_low": -0.03059694680214093,
         "ci_high": 0.028205506800150923,
@@ -1967,29 +2077,29 @@
     "families": {
       "overall": {
         "strength_only_logloss": 0.6029237921615334,
-        "full_logistic_logloss": 0.5985717395831055,
-        "full_boosting_logloss": 0.6030138888727221,
-        "full_logistic_accuracy": 0.6777708592777086,
+        "full_logistic_logloss": 0.598991391838847,
+        "full_boosting_logloss": 0.6035212877877918,
+        "full_logistic_accuracy": 0.674346201743462,
         "strength_only_accuracy": 0.6718555417185554,
-        "n_factors": 53
+        "n_factors": 57
       },
       "families": [
         {
           "family": "Strength",
           "n_factors": 3,
           "loss_if_removed": [
-            -0.0001349517248143028,
-            -0.0013985480033684215,
-            0.0011719736383721828
+            -0.000196204563838586,
+            -0.0015655124682292508,
+            0.0011518871651375517
           ]
         },
         {
           "family": "Recent form",
           "n_factors": 4,
           "loss_if_removed": [
-            0.00081525401181817,
-            -0.00010800618046648484,
-            0.001824473385550872
+            0.0008643128626023142,
+            -0.0001343610057431155,
+            0.0019279308146268144
           ],
           "gain_over_strength": [
             0.0008163482990512159,
@@ -2001,9 +2111,9 @@
           "family": "Four factors",
           "n_factors": 8,
           "loss_if_removed": [
-            -1.58479115868532e-05,
-            -0.00100699424612261,
-            0.0011448501500463206
+            -0.00045413339532966723,
+            -0.0014987017207568852,
+            0.0007229251360387338
           ],
           "gain_over_strength": [
             0.00039043965385074787,
@@ -2015,9 +2125,9 @@
           "family": "Pace and style",
           "n_factors": 11,
           "loss_if_removed": [
-            -0.00029353390878620895,
-            -0.001525945785114613,
-            0.0009780198310128854
+            -4.127264603104937e-05,
+            -0.0009843488811759136,
+            0.0008340616244297765
           ],
           "gain_over_strength": [
             2.814475453961075e-05,
@@ -2026,12 +2136,26 @@
           ]
         },
         {
+          "family": "Shot profile",
+          "n_factors": 4,
+          "loss_if_removed": [
+            -0.0004196522557415474,
+            -0.0009826216471214054,
+            0.00016089745245107402
+          ],
+          "gain_over_strength": [
+            -0.0002733522487789199,
+            -0.0007861078832960189,
+            0.00022623018524493965
+          ]
+        },
+        {
           "family": "Rest and schedule load",
           "n_factors": 7,
           "loss_if_removed": [
-            0.0033817369418433505,
-            0.0012449677343964972,
-            0.005625082144024923
+            0.0033441020370802133,
+            0.0012060566514136275,
+            0.005589493220993336
           ],
           "gain_over_strength": [
             0.0031767684299399495,
@@ -2043,9 +2167,9 @@
           "family": "Home stands and road trips",
           "n_factors": 2,
           "loss_if_removed": [
-            -0.00028824208069079814,
-            -0.0008999722781192222,
-            0.0002773555569836039
+            -0.0003795038887148759,
+            -0.0009990126980159838,
+            0.00020699614755944059
           ],
           "gain_over_strength": [
             -0.00020251519949637616,
@@ -2057,9 +2181,9 @@
           "family": "Travel and time zones",
           "n_factors": 6,
           "loss_if_removed": [
-            0.0003411418922665417,
-            -0.00030875074705133247,
-            0.0010061598524757772
+            0.00031665562918259426,
+            -0.00037229177030854803,
+            0.0010014494266619336
           ],
           "gain_over_strength": [
             0.000432621455485014,
@@ -2071,9 +2195,9 @@
           "family": "Altitude",
           "n_factors": 2,
           "loss_if_removed": [
-            6.642574636800389e-05,
-            -0.0008573733357850244,
-            0.0008906507063717041
+            1.967289593796867e-05,
+            -0.0009212223554073978,
+            0.0008548836809145423
           ],
           "gain_over_strength": [
             7.62883672957548e-05,
@@ -2085,9 +2209,9 @@
           "family": "Luck and regression",
           "n_factors": 2,
           "loss_if_removed": [
-            2.828476698936177e-05,
-            -0.000552962037899566,
-            0.0006304408127956199
+            -3.136450554161977e-05,
+            -0.0007674590653546282,
+            0.0006655226831939116
           ],
           "gain_over_strength": [
             0.00010797474466299059,
@@ -2099,9 +2223,9 @@
           "family": "Volatility and matchup shape",
           "n_factors": 4,
           "loss_if_removed": [
-            -0.00010188722623344621,
-            -0.00041836773750492914,
-            0.0002169629999527599
+            -0.00017890147687256436,
+            -0.0004684358999004428,
+            0.0001287464226598043
           ],
           "gain_over_strength": [
             -7.394947525396133e-05,
@@ -2113,18 +2237,18 @@
           "family": "Era regime",
           "n_factors": 1,
           "loss_if_removed": [
-            0.0018948542997737673,
-            0.0008365490178725778,
-            0.003047859956634567
+            0.0018805646178889804,
+            0.0007981386503942083,
+            0.003028523333473765
           ]
         },
         {
           "family": "Calendar and rematches",
           "n_factors": 3,
           "loss_if_removed": [
-            1.2296214194535092e-05,
-            -0.00023000704372297523,
-            0.0002628723697297644
+            -8.904101472074615e-05,
+            -0.000344504033100551,
+            0.00015832478670169952
           ],
           "gain_over_strength": [
             9.939766131059322e-06,
@@ -3059,5 +3183,6224 @@
         }
       ]
     }
+  },
+  "style": {
+    "n_team_seasons": 776,
+    "n_seasons": 26,
+    "n_metrics": 86,
+    "chance_t_ceiling": 3.412170416364331,
+    "tracking_era_from": "2016-17",
+    "atlas": [
+      {
+        "key": "ts",
+        "label": "True shooting %",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Points per shooting possession, including free throws",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.7129295847864339,
+        "ci_low": 0.6781962864347657,
+        "ci_high": 0.7459566609179915,
+        "r_net": 0.7231493635440781,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "efg",
+        "label": "Effective FG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Field goals, with threes weighted 1.5",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.7060322912771497,
+        "ci_low": 0.6760814923566649,
+        "ci_high": 0.7367234457272841,
+        "r_net": 0.71439922541667,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_efg",
+        "label": "Opponent eFG%",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Effective FG% the defence allows",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.6996397366775707,
+        "ci_low": -0.7346281590989049,
+        "ci_high": -0.6624258341244593,
+        "r_net": -0.7195114400428986,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "cs_efg",
+        "label": "Catch-and-shoot eFG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Effective FG% on catch-and-shoot attempts",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.5887662287158583,
+        "ci_low": 0.5238204509788721,
+        "ci_high": 0.6633964054281363,
+        "r_net": 0.587330843219589,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_tov_pts_100",
+        "label": "Opponent points off turnovers per 100",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Points allowed off turnovers per 100 possessions",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.5707968897033222,
+        "ci_low": -0.6237594348787528,
+        "ci_high": -0.5208665182903505,
+        "r_net": -0.5820339356232923,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "pu_efg",
+        "label": "Pull-up eFG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Effective FG% on pull-up attempts",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.561784164213703,
+        "ci_low": 0.5056442019226204,
+        "ci_high": 0.6188749176908281,
+        "r_net": 0.5521810188395556,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "drive_fg",
+        "label": "Drive FG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Field-goal % on drives",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.5576339556460689,
+        "ci_low": 0.5163433873468559,
+        "ci_high": 0.5946929367820447,
+        "r_net": 0.5460018854601372,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "fg3_pct",
+        "label": "3-point %",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Three-point percentage",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.5362007319692309,
+        "ci_low": 0.488025636623322,
+        "ci_high": 0.588297623983337,
+        "r_net": 0.542194345190199,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_fg3_pct",
+        "label": "Opponent 3-point %",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Three-point % the defence allows",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.5218732198503007,
+        "ci_low": -0.5639608713347847,
+        "ci_high": -0.47453131354490113,
+        "r_net": -0.532373417539892,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "ast_to",
+        "label": "Assist-to-turnover",
+        "family": "Ball security",
+        "role": "execution",
+        "definition": "Assists per turnover",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.5177463855361599,
+        "ci_low": 0.47510061905118667,
+        "ci_high": 0.5601054794367742,
+        "r_net": 0.5198924544311218,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "rim_fg",
+        "label": "Rim FG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Field-goal % in the restricted area",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.5102993680046101,
+        "ci_low": 0.48583284839771895,
+        "ci_high": 0.5331338045819344,
+        "r_net": 0.5202238736754388,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "atb3_fg",
+        "label": "Above-the-break three %",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Three-point % above the break",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.4968012755180623,
+        "ci_low": 0.4455482435235651,
+        "ci_high": 0.5488327053192111,
+        "r_net": 0.4963504720194152,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_paint_pts_100",
+        "label": "Opponent paint points per 100",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Points in the paint allowed per 100 possessions",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.432167040419585,
+        "ci_low": -0.49978187488753373,
+        "ci_high": -0.360768900589763,
+        "r_net": -0.4451177565637168,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_rim_fg",
+        "label": "Opponent rim FG%",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Field-goal % allowed at the rim (rim protection)",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.43163549750542435,
+        "ci_low": -0.527955843316357,
+        "ci_high": -0.3253506613798966,
+        "r_net": -0.4504645823834362,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "ast_ratio",
+        "label": "Assist ratio",
+        "family": "Ball movement",
+        "role": "execution",
+        "definition": "Assists per 100 possessions",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.4082067063762588,
+        "ci_low": 0.35628612522769504,
+        "ci_high": 0.45872946654599134,
+        "r_net": 0.4066552140134223,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "reb_pct",
+        "label": "Total rebound %",
+        "family": "Rebounding",
+        "role": "execution",
+        "definition": "Share of all available rebounds",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.4061080699713338,
+        "ci_low": 0.3455659388858527,
+        "ci_high": 0.4654610500787269,
+        "r_net": 0.422743161497839,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "mid_fg",
+        "label": "Mid-range FG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Field-goal % from mid-range",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.4045858089892524,
+        "ci_low": 0.35792047252366715,
+        "ci_high": 0.4605856673575617,
+        "r_net": 0.389079716368228,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "tov_rate",
+        "label": "Turnover %",
+        "family": "Ball security",
+        "role": "execution",
+        "definition": "Turnovers per 100 plays (lower is better)",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.3919779132249697,
+        "ci_low": -0.448126850898888,
+        "ci_high": -0.34008590640646386,
+        "r_net": -0.39027765986647084,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_fb_pts_100",
+        "label": "Opponent fast-break points per 100",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Fast-break points allowed per 100 possessions",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.3761838937878098,
+        "ci_low": -0.43686439918179726,
+        "ci_high": -0.32075870641197685,
+        "r_net": -0.39756809220052136,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "speed_def",
+        "label": "Defensive speed",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Average speed on defence, mph",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.37172833825484336,
+        "ci_low": -0.41445744741604756,
+        "ci_high": -0.33305089688218814,
+        "r_net": -0.36173458719983687,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "ast_pts_100",
+        "label": "Points created by assists per 100",
+        "family": "Ball movement",
+        "role": "execution",
+        "definition": "Points off assisted baskets, per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.37122237601464647,
+        "ci_low": 0.2146664883870156,
+        "ci_high": 0.4854195858399447,
+        "r_net": 0.39086033728699815,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_rim_faced",
+        "label": "Rim attempts faced per 100",
+        "family": "Defence",
+        "role": "style",
+        "definition": "Opponent rim attempts per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.3636705462967528,
+        "ci_low": -0.5064368613788234,
+        "ci_high": -0.2038341123510169,
+        "r_net": -0.36835683165768673,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "paint_fg",
+        "label": "Paint (non-rim) FG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Field-goal % in the paint outside the restricted area",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.3599228333703219,
+        "ci_low": 0.2980525655676272,
+        "ci_high": 0.41725557311213013,
+        "r_net": 0.3556021416276841,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "paint_touch_fg",
+        "label": "Paint-touch FG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Field-goal % after a touch in the paint",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.3492301849627042,
+        "ci_low": 0.2817610171352287,
+        "ci_high": 0.4107562889808769,
+        "r_net": 0.376792394107874,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "corner3_share",
+        "label": "Corner-three share",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of attempts from the corners beyond the arc",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.3464234733159845,
+        "ci_low": 0.2820812096552957,
+        "ci_high": 0.3999475469169464,
+        "r_net": 0.35666973074478037,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "elbow_touch_fg",
+        "label": "Elbow-touch FG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Field-goal % after an elbow touch",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.32759448740377495,
+        "ci_low": 0.26633493281702414,
+        "ci_high": 0.38625468623742054,
+        "r_net": 0.34941482065066476,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "corner3_fg",
+        "label": "Corner three %",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Three-point % from the corners",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.32575573403788705,
+        "ci_low": 0.25981209528832594,
+        "ci_high": 0.39359660148756287,
+        "r_net": 0.3442536942265028,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_oreb",
+        "label": "Opponent offensive rebound %",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Share of the opponent's own misses that the opponent rebounds",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.31940281891866706,
+        "ci_low": -0.37286966093635343,
+        "ci_high": -0.2646224185718562,
+        "r_net": -0.33340757602220034,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "dreb_pct",
+        "label": "Defensive rebound %",
+        "family": "Rebounding",
+        "role": "execution",
+        "definition": "Share of opponent misses recovered",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.319402818918667,
+        "ci_low": 0.26462241857185625,
+        "ci_high": 0.3728696609363534,
+        "r_net": 0.3334075760222003,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "box_outs_100",
+        "label": "Box-outs per 100",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Box-outs, offence and defence",
+        "n": 270,
+        "first_season": "2017-18",
+        "r_win": 0.31579979817619047,
+        "ci_low": 0.22986680779823554,
+        "ci_high": 0.39854328204648093,
+        "r_net": 0.35323930237764234,
+        "chance_ceiling": 0.2076580785660599,
+        "beats_chance": true
+      },
+      {
+        "key": "drive_tov_pct",
+        "label": "Drive turnover %",
+        "family": "Ball security",
+        "role": "execution",
+        "definition": "Share of drives that end in a turnover",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.30146416813057775,
+        "ci_low": -0.374774327554557,
+        "ci_high": -0.22813091572820376,
+        "r_net": -0.30086763688311197,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "post_touch_fg",
+        "label": "Post-up FG%",
+        "family": "Shot making",
+        "role": "execution",
+        "definition": "Field-goal % after a post touch",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.27732754324891873,
+        "ci_low": 0.15734460637454944,
+        "ci_high": 0.36500568356980717,
+        "r_net": 0.27323779572452644,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "drive_fga_share",
+        "label": "Drive attempt share",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of attempts that end a drive",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.27061945208553634,
+        "ci_low": -0.32920836345852783,
+        "ci_high": -0.20190755089085102,
+        "r_net": -0.2551068774144985,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_2nd_pts_100",
+        "label": "Opponent second-chance points per 100",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Second-chance points allowed per 100 possessions",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.2660101031282195,
+        "ci_low": -0.3424090639846731,
+        "ci_high": -0.19103001026193162,
+        "r_net": -0.2802969996798264,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "pts_3_pct",
+        "label": "Three-point share of points",
+        "family": "Where points come from",
+        "role": "execution",
+        "definition": "Share of points from threes",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.26234241081012283,
+        "ci_low": 0.211012149267346,
+        "ci_high": 0.30530368320642015,
+        "r_net": 0.2794622797441413,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "drive_pts_per",
+        "label": "Points per drive",
+        "family": "Attacking the paint",
+        "role": "execution",
+        "definition": "Points the driver scores per drive, shots and free throws",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.26041627034300985,
+        "ci_low": 0.19174039298298062,
+        "ci_high": 0.3314971702642987,
+        "r_net": 0.2368327939658928,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "opp_ft_rate",
+        "label": "Opponent free-throw rate",
+        "family": "Free throws",
+        "role": "execution",
+        "definition": "Free-throw attempts the defence allows per field-goal attempt",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.25870424193659397,
+        "ci_low": -0.3020485990932194,
+        "ci_high": -0.21975354527641044,
+        "r_net": -0.2500870527259319,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "fg3a_rate",
+        "label": "3-point attempt rate",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of field-goal attempts that are threes",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.25212016645796714,
+        "ci_low": 0.19940680551620252,
+        "ci_high": 0.29762928732084254,
+        "r_net": 0.26942023332444953,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "blk_100",
+        "label": "Blocks per 100",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Blocks per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.24881983043449876,
+        "ci_low": 0.17188665094579375,
+        "ci_high": 0.3142765862719567,
+        "r_net": 0.2787732256605097,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "drives_100",
+        "label": "Drives per 100",
+        "family": "Attacking the paint",
+        "role": "style",
+        "definition": "Drives to the basket per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.24416784385674142,
+        "ci_low": -0.31941403162193094,
+        "ci_high": -0.17158409615993198,
+        "r_net": -0.21232033480148543,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "fg3a_100",
+        "label": "3PA per 100 possessions",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Three-point attempts per 100 possessions",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.24326451613433775,
+        "ci_low": 0.18275377844936164,
+        "ci_high": 0.294487693297854,
+        "r_net": 0.2629137143830222,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "miles_100",
+        "label": "Miles run per 100",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Distance covered per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.22738433018575188,
+        "ci_low": -0.32988331057935877,
+        "ci_high": -0.14563815146048317,
+        "r_net": -0.20916043419872832,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "speed_off",
+        "label": "Offensive speed",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Average speed on offence, mph",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.2024247178150846,
+        "ci_low": -0.2811436560285597,
+        "ci_high": -0.11297044090769592,
+        "r_net": -0.17485878724115575,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "paint_touch_tov",
+        "label": "Paint-touch turnover %",
+        "family": "Ball security",
+        "role": "execution",
+        "definition": "Share of paint touches that end in a turnover",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.1972744695978994,
+        "ci_low": -0.3255095800319691,
+        "ci_high": -0.07020380999079805,
+        "r_net": -0.20663124782998782,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": true
+      },
+      {
+        "key": "pts_paint_pct",
+        "label": "Paint share of points",
+        "family": "Where points come from",
+        "role": "execution",
+        "definition": "Share of points scored in the paint",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.18948056767135252,
+        "ci_low": -0.23937503951581585,
+        "ci_high": -0.139367170680159,
+        "r_net": -0.19175769719892782,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "oreb_chance_pct",
+        "label": "Offensive rebound chance %",
+        "family": "Rebounding",
+        "role": "execution",
+        "definition": "Share of offensive rebound chances converted",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.1716699988300986,
+        "ci_low": 0.08525554057281802,
+        "ci_high": 0.277163419284875,
+        "r_net": 0.19157814128821535,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "pu_share",
+        "label": "Pull-up share",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of attempts taken off the dribble",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.1706222430234908,
+        "ci_low": 0.0898414448441802,
+        "ci_high": 0.2726430600112855,
+        "r_net": 0.1578732751206679,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "pts_fb_100",
+        "label": "Fast-break points per 100",
+        "family": "Where points come from",
+        "role": "execution",
+        "definition": "Fast-break points per 100 possessions",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.16882128620826747,
+        "ci_low": 0.12846682090643638,
+        "ci_high": 0.2093474387507746,
+        "r_net": 0.17155144894674568,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "stl_100",
+        "label": "Steals per 100",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Steals per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.16654037887609496,
+        "ci_low": 0.05361018502546862,
+        "ci_high": 0.2721296743952191,
+        "r_net": 0.17603144865616208,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "deflections_100",
+        "label": "Deflections per 100",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Passes and dribbles touched on defence",
+        "n": 315,
+        "first_season": "2015-16",
+        "r_win": 0.15696061543797202,
+        "ci_low": 0.019055331113545106,
+        "ci_high": 0.2678835733147809,
+        "r_net": 0.1634889777986141,
+        "chance_ceiling": 0.19225402301660588,
+        "beats_chance": false
+      },
+      {
+        "key": "atb3_share",
+        "label": "Above-the-break three share",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of attempts from three above the break",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.15287166561020313,
+        "ci_low": 0.09873780424213549,
+        "ci_high": 0.1963646620634778,
+        "r_net": 0.1698782314210296,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "dreb_chance_pct",
+        "label": "Defensive rebound chance %",
+        "family": "Rebounding",
+        "role": "execution",
+        "definition": "Share of defensive rebound chances converted",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.14841621230685675,
+        "ci_low": 0.055196953644245546,
+        "ci_high": 0.23502805954764278,
+        "r_net": 0.13779462900961087,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "ast_pct",
+        "label": "Assist %",
+        "family": "Ball movement",
+        "role": "execution",
+        "definition": "Share of made field goals that were assisted (needs a made shot)",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.14446575984914323,
+        "ci_low": 0.06602739042960908,
+        "ci_high": 0.2144967045580011,
+        "r_net": 0.1412680453595411,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "paint_share",
+        "label": "Paint (non-rim) share",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of attempts in the paint outside the restricted area",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.13064537489564843,
+        "ci_low": -0.1942876288852255,
+        "ci_high": -0.06070172902350244,
+        "r_net": -0.1356539866549181,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": true
+      },
+      {
+        "key": "post_touches_100",
+        "label": "Post touches per 100",
+        "family": "Attacking the paint",
+        "role": "style",
+        "definition": "Post-up touches per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.1297687796737879,
+        "ci_low": 0.028542551766742863,
+        "ci_high": 0.22431441681936987,
+        "r_net": 0.09280132857369261,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "cs_share",
+        "label": "Catch-and-shoot share",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of attempts taken off a pass without dribbling",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.1287269888430928,
+        "ci_low": 0.038781908276197014,
+        "ci_high": 0.22597669335565024,
+        "r_net": 0.14753162791644422,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "ft_rate",
+        "label": "Free-throw rate",
+        "family": "Free throws",
+        "role": "execution",
+        "definition": "Free-throw attempts per field-goal attempt",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.1199115604112288,
+        "ci_low": 0.048058841473594675,
+        "ci_high": 0.1839847846817885,
+        "r_net": 0.12500686461964813,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "time_of_poss",
+        "label": "Time of possession",
+        "family": "Ball movement",
+        "role": "style",
+        "definition": "Minutes per game the team's players hold the ball",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.11369681041187077,
+        "ci_low": -0.17150027587195713,
+        "ci_high": -0.05379422397681582,
+        "r_net": -0.12286578370062204,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "potential_ast_100",
+        "label": "Potential assists per 100",
+        "family": "Ball movement",
+        "role": "style",
+        "definition": "Passes that led directly to a shot, per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.11264348094143621,
+        "ci_low": -0.028410182931929248,
+        "ci_high": 0.21688901544141576,
+        "r_net": 0.1289274116889001,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "rim_share",
+        "label": "Rim attempt share",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of attempts in the restricted area",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.10877670486172492,
+        "ci_low": -0.17957107489373644,
+        "ci_high": -0.04751802896417889,
+        "r_net": -0.10615362980836977,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "pace",
+        "label": "Pace",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Possessions per 48 minutes",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.10829361399346313,
+        "ci_low": -0.1678174664052751,
+        "ci_high": -0.0500337479770428,
+        "r_net": -0.09203302516415222,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "screen_ast_100",
+        "label": "Screen assists per 100",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Screens that led to a made basket",
+        "n": 315,
+        "first_season": "2015-16",
+        "r_win": 0.104510151487458,
+        "ci_low": -0.005636955573529598,
+        "ci_high": 0.2235501636096175,
+        "r_net": 0.09791542874924258,
+        "chance_ceiling": 0.19225402301660588,
+        "beats_chance": false
+      },
+      {
+        "key": "opp_tov",
+        "label": "Opponent turnover %",
+        "family": "Defence",
+        "role": "execution",
+        "definition": "Turnovers the defence forces per 100 plays",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.10116818161199026,
+        "ci_low": 0.04679499864311139,
+        "ci_high": 0.15670297016103685,
+        "r_net": 0.11768258790020773,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "opp_fg3a_rate",
+        "label": "Opponent 3-point attempt rate",
+        "family": "Defence",
+        "role": "style",
+        "definition": "Share of opponent attempts that are threes",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.10009268847199639,
+        "ci_low": -0.1707094740671553,
+        "ci_high": -0.0226774518163852,
+        "r_net": -0.12054556388413047,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "touches_100",
+        "label": "Touches per 100",
+        "family": "Ball movement",
+        "role": "style",
+        "definition": "Times a player held the ball, per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.09711094827027075,
+        "ci_low": -0.2146205695086333,
+        "ci_high": -0.009460627992117018,
+        "r_net": -0.09016196758049601,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "contested_100",
+        "label": "Contested shots per 100",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Opponent shots with a defender in range",
+        "n": 315,
+        "first_season": "2015-16",
+        "r_win": 0.09636185167170068,
+        "ci_low": -0.046098633243397275,
+        "ci_high": 0.20856136245751244,
+        "r_net": 0.13940592432143975,
+        "chance_ceiling": 0.19225402301660588,
+        "beats_chance": false
+      },
+      {
+        "key": "paint_touches_100",
+        "label": "Paint touches per 100",
+        "family": "Attacking the paint",
+        "role": "style",
+        "definition": "Touches inside the paint per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.09536396427392763,
+        "ci_low": -0.010551131267121573,
+        "ci_high": 0.18728226771041137,
+        "r_net": 0.0961207135576597,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "passes_100",
+        "label": "Passes per 100",
+        "family": "Ball movement",
+        "role": "style",
+        "definition": "Passes made per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.0873391150959763,
+        "ci_low": -0.20046977381486267,
+        "ci_high": -0.001351187646330767,
+        "r_net": -0.08301482497263454,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "drive_pass_pct",
+        "label": "Drive pass %",
+        "family": "Attacking the paint",
+        "role": "style",
+        "definition": "Share of drives that end in a pass",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.08664151335081624,
+        "ci_low": 0.00882064121772775,
+        "ci_high": 0.15753934161904368,
+        "r_net": 0.11130176543201371,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "loose_balls_100",
+        "label": "Loose balls recovered per 100",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Loose balls won",
+        "n": 315,
+        "first_season": "2015-16",
+        "r_win": 0.07895444696927705,
+        "ci_low": -0.10816095921485959,
+        "ci_high": 0.23206188221363835,
+        "r_net": 0.11199528807445845,
+        "chance_ceiling": 0.19225402301660588,
+        "beats_chance": false
+      },
+      {
+        "key": "ast_2pm",
+        "label": "Assisted share of twos",
+        "family": "Ball movement",
+        "role": "execution",
+        "definition": "Share of made twos that were assisted",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.07791504573687316,
+        "ci_low": 0.006601439690590967,
+        "ci_high": 0.14622370386182398,
+        "r_net": 0.0662184796458253,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "mid_share",
+        "label": "Mid-range share",
+        "family": "Shot diet",
+        "role": "style",
+        "definition": "Share of attempts from mid-range",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.07687630646886255,
+        "ci_low": -0.14181174413830375,
+        "ci_high": -0.005671565940967559,
+        "r_net": -0.09726049214108846,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "pts_mid_pct",
+        "label": "Mid-range share of points",
+        "family": "Where points come from",
+        "role": "execution",
+        "definition": "Share of points from mid-range twos",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.07218992816074817,
+        "ci_low": -0.14111280581824961,
+        "ci_high": 0.004030588323716041,
+        "r_net": -0.0952502960499225,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "pts_ft_pct",
+        "label": "Free-throw share of points",
+        "family": "Where points come from",
+        "role": "execution",
+        "definition": "Share of points from the line",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.07091530257583516,
+        "ci_low": -0.13728705949964679,
+        "ci_high": -0.01068348273009903,
+        "r_net": -0.06612108130809796,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "pts_per_paint_touch",
+        "label": "Points per paint touch",
+        "family": "Attacking the paint",
+        "role": "execution",
+        "definition": "Points scored per touch inside the paint",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.06637487384396132,
+        "ci_low": -0.018882512007703852,
+        "ci_high": 0.1529759966657756,
+        "r_net": 0.08149340388273468,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "sec_per_touch",
+        "label": "Seconds per touch",
+        "family": "Ball movement",
+        "role": "style",
+        "definition": "Average time a player holds the ball",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": 0.04442613483373646,
+        "ci_low": -0.025555425732316606,
+        "ci_high": 0.11798328835914498,
+        "r_net": 0.028147499052932404,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "pts_fb_pct",
+        "label": "Fast-break share of points",
+        "family": "Where points come from",
+        "role": "execution",
+        "definition": "Share of points scored on the break",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.04419239069430686,
+        "ci_low": -0.008292454039654862,
+        "ci_high": 0.09891889228902656,
+        "r_net": 0.04373889440184249,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "pts_tov_pct",
+        "label": "Turnover share of points",
+        "family": "Where points come from",
+        "role": "execution",
+        "definition": "Share of points scored off turnovers",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.04143219915723217,
+        "ci_low": -0.01529577765356218,
+        "ci_high": 0.10341184520968573,
+        "r_net": 0.0606654256755259,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "pts_2nd_100",
+        "label": "Second-chance points per 100",
+        "family": "Where points come from",
+        "role": "execution",
+        "definition": "Second-chance points per 100 possessions",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.03531827725044563,
+        "ci_low": -0.11599684869619353,
+        "ci_high": 0.040940537124956204,
+        "r_net": -0.012338560606297863,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "drive_pf_pct",
+        "label": "Drive foul %",
+        "family": "Attacking the paint",
+        "role": "style",
+        "definition": "Share of drives that draw a foul",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.02344822262773273,
+        "ci_low": -0.11396332390239672,
+        "ci_high": 0.05902115447930264,
+        "r_net": -0.033072121248820294,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "oreb_pct",
+        "label": "Offensive rebound %",
+        "family": "Rebounding",
+        "role": "execution",
+        "definition": "Share of own misses recovered",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": -0.02252081625977073,
+        "ci_low": -0.08651513805073886,
+        "ci_high": 0.04319250180561913,
+        "r_net": -0.009969698617465427,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      },
+      {
+        "key": "drib_per_touch",
+        "label": "Dribbles per touch",
+        "family": "Ball movement",
+        "role": "style",
+        "definition": "Average dribbles before passing or shooting",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.02201829986805328,
+        "ci_low": -0.08771855970709554,
+        "ci_high": 0.04308413419947806,
+        "r_net": -0.007087505110589437,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "charges_100",
+        "label": "Charges drawn per 100",
+        "family": "Effort and movement",
+        "role": "effort",
+        "definition": "Offensive fouls drawn",
+        "n": 315,
+        "first_season": "2015-16",
+        "r_win": 0.013627801895921507,
+        "ci_low": -0.06272322391400317,
+        "ci_high": 0.07431159999645141,
+        "r_net": 0.02178182158627656,
+        "chance_ceiling": 0.19225402301660588,
+        "beats_chance": false
+      },
+      {
+        "key": "oreb_contest_pct",
+        "label": "Contested offensive rebound %",
+        "family": "Rebounding",
+        "role": "style",
+        "definition": "Share of offensive rebounds that were contested",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.008232116339439252,
+        "ci_low": -0.07993067720272869,
+        "ci_high": 0.06183008744012964,
+        "r_net": -0.0021776927901674178,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "elbow_touches_100",
+        "label": "Elbow touches per 100",
+        "family": "Attacking the paint",
+        "role": "style",
+        "definition": "Touches at the elbow per 100 possessions",
+        "n": 390,
+        "first_season": "2013-14",
+        "r_win": -0.006332221302069444,
+        "ci_low": -0.1039621547315344,
+        "ci_high": 0.09147105073395678,
+        "r_net": -0.04248517209340601,
+        "chance_ceiling": 0.17278196539252122,
+        "beats_chance": false
+      },
+      {
+        "key": "ast_3pm",
+        "label": "Assisted share of threes",
+        "family": "Ball movement",
+        "role": "execution",
+        "definition": "Share of made threes that were assisted",
+        "n": 776,
+        "first_season": "2000-01",
+        "r_win": 0.004084980596621233,
+        "ci_low": -0.06278588951618427,
+        "ci_high": 0.0752157569922352,
+        "r_net": 0.006127347967250196,
+        "chance_ceiling": 0.1224897794511428,
+        "beats_chance": false
+      }
+    ],
+    "blocks_all_seasons": {
+      "n_rows": 776,
+      "n_seasons": 26,
+      "sets": {
+        "Style (choices)": {
+          "n_metrics": 9,
+          "win": {
+            "r2": 0.11804303361406532,
+            "ci": [
+              0.06834449585096643,
+              0.16221764402787986
+            ]
+          },
+          "off": {
+            "r2": 0.08531606553594384,
+            "ci": [
+              -0.01714061942492252,
+              0.15229614318878032
+            ]
+          },
+          "def": {
+            "r2": 0.10983720628853377,
+            "ci": [
+              0.0650959676786569,
+              0.15086171204600538
+            ]
+          }
+        },
+        "Execution (results)": {
+          "n_metrics": 35,
+          "win": {
+            "r2": 0.9208425520086134,
+            "ci": [
+              0.9090146551134218,
+              0.9332795716630726
+            ]
+          },
+          "off": {
+            "r2": 0.9746290853897173,
+            "ci": [
+              0.9655374358500961,
+              0.9821718845632593
+            ]
+          },
+          "def": {
+            "r2": 0.9723311145039671,
+            "ci": [
+              0.966759437523232,
+              0.9766757320292858
+            ]
+          }
+        },
+        "Everything": {
+          "n_metrics": 44,
+          "win": {
+            "r2": 0.9216946093854792,
+            "ci": [
+              0.9106570939254696,
+              0.931836007493145
+            ]
+          },
+          "off": {
+            "r2": 0.9687813074086921,
+            "ci": [
+              0.9474456145430629,
+              0.9831829720875228
+            ]
+          },
+          "def": {
+            "r2": 0.9737933915606961,
+            "ci": [
+              0.9691632668448822,
+              0.9778482848017488
+            ]
+          }
+        }
+      },
+      "beyond_net_rating": {
+        "Everything": {
+          "r2": 0.00998019897211666,
+          "ci": [
+            -0.02001414172387435,
+            0.03161223247619263
+          ]
+        }
+      },
+      "families": [
+        {
+          "family": "Defence",
+          "n_metrics": 9,
+          "alone_r2": {
+            "r2": 0.6199426814122684,
+            "ci": [
+              0.5806647383979235,
+              0.6553590534846286
+            ]
+          },
+          "loss_if_removed": 0.07907568972652834
+        },
+        {
+          "family": "Where points come from",
+          "n_metrics": 8,
+          "alone_r2": {
+            "r2": 0.5257503308132949,
+            "ci": [
+              0.3588616303558564,
+              0.6325421649167937
+            ]
+          },
+          "loss_if_removed": 0.00039661671181412395
+        },
+        {
+          "family": "Shot making",
+          "n_metrics": 8,
+          "alone_r2": {
+            "r2": 0.5149542597229441,
+            "ci": [
+              0.46918137652922287,
+              0.5556857508681065
+            ]
+          },
+          "loss_if_removed": 0.008915329328863741
+        },
+        {
+          "family": "Rebounding",
+          "n_metrics": 3,
+          "alone_r2": {
+            "r2": 0.4400676581078522,
+            "ci": [
+              0.3912770868738446,
+              0.4865465924807332
+            ]
+          },
+          "loss_if_removed": 0.013160275271872468
+        },
+        {
+          "family": "Ball movement",
+          "n_metrics": 4,
+          "alone_r2": {
+            "r2": 0.42619299922754517,
+            "ci": [
+              0.38765545522068173,
+              0.4649284421430941
+            ]
+          },
+          "loss_if_removed": -0.00020390612600995617
+        },
+        {
+          "family": "Ball security",
+          "n_metrics": 2,
+          "alone_r2": {
+            "r2": 0.2654802948550893,
+            "ci": [
+              0.21895556923310758,
+              0.31312510632000295
+            ]
+          },
+          "loss_if_removed": 0.0052917700921408795
+        },
+        {
+          "family": "Shot diet",
+          "n_metrics": 8,
+          "alone_r2": {
+            "r2": 0.11708661345183946,
+            "ci": [
+              0.07487257568468768,
+              0.15657015854957174
+            ]
+          },
+          "loss_if_removed": 0.0008599596794385267
+        },
+        {
+          "family": "Free throws",
+          "n_metrics": 2,
+          "alone_r2": {
+            "r2": 0.0843507461465498,
+            "ci": [
+              0.056785850781376046,
+              0.11261861353541197
+            ]
+          },
+          "loss_if_removed": 0.005748462379307151
+        }
+      ],
+      "net_rating_alone": {
+        "r2": 0.9376155469240295,
+        "ci": [
+          0.9283330724639515,
+          0.9466726251176999
+        ]
+      }
+    },
+    "blocks_tracking_era": {
+      "n_rows": 300,
+      "n_seasons": 10,
+      "sets": {
+        "Style (choices)": {
+          "n_metrics": 26,
+          "win": {
+            "r2": 0.30623158652007476,
+            "ci": [
+              0.20369859072850316,
+              0.4108032180868914
+            ]
+          },
+          "off": {
+            "r2": 0.1665829260928462,
+            "ci": [
+              -0.11740279381810603,
+              0.35524583014503774
+            ]
+          },
+          "def": {
+            "r2": 0.31447960567185385,
+            "ci": [
+              0.24192699958566047,
+              0.3999817324108578
+            ]
+          }
+        },
+        "Execution (results)": {
+          "n_metrics": 51,
+          "win": {
+            "r2": 0.905866168502924,
+            "ci": [
+              0.8892930504976221,
+              0.9228649378914372
+            ]
+          },
+          "off": {
+            "r2": 0.9673885343465591,
+            "ci": [
+              0.9528589333907662,
+              0.980310209293477
+            ]
+          },
+          "def": {
+            "r2": 0.9622031606821587,
+            "ci": [
+              0.9546055422166897,
+              0.9704648545174857
+            ]
+          }
+        },
+        "Effort (hustle, speed)": {
+          "n_metrics": 8,
+          "win": {
+            "r2": 0.2114566779541942,
+            "ci": [
+              0.09443946649210475,
+              0.31280888039016613
+            ]
+          },
+          "off": {
+            "r2": 0.20272425986281595,
+            "ci": [
+              0.11796462203445081,
+              0.2856347052363498
+            ]
+          },
+          "def": {
+            "r2": 0.16595553945188757,
+            "ci": [
+              0.0028481014879483168,
+              0.2940922098597888
+            ]
+          }
+        },
+        "Style + effort": {
+          "n_metrics": 34,
+          "win": {
+            "r2": 0.40019359490462747,
+            "ci": [
+              0.27986083071029366,
+              0.47389565712981174
+            ]
+          },
+          "off": {
+            "r2": 0.1672175592465338,
+            "ci": [
+              -0.20017491439591803,
+              0.4040785120981382
+            ]
+          },
+          "def": {
+            "r2": 0.45923668490217096,
+            "ci": [
+              0.38372558053592104,
+              0.5373772582460108
+            ]
+          }
+        },
+        "Everything": {
+          "n_metrics": 85,
+          "win": {
+            "r2": 0.9042847090063322,
+            "ci": [
+              0.8865299674179327,
+              0.9188243018010139
+            ]
+          },
+          "off": {
+            "r2": 0.9538718295100063,
+            "ci": [
+              0.9191087273515098,
+              0.9755018810118344
+            ]
+          },
+          "def": {
+            "r2": 0.9635585007294825,
+            "ci": [
+              0.9553087764434901,
+              0.9699593229641855
+            ]
+          }
+        }
+      },
+      "beyond_net_rating": {
+        "Style + effort": {
+          "r2": 0.032193924550276476,
+          "ci": [
+            0.010054106201959836,
+            0.054124256052639465
+          ]
+        },
+        "Everything": {
+          "r2": 0.04114990257621365,
+          "ci": [
+            0.006686852192221504,
+            0.07096410832210044
+          ]
+        }
+      },
+      "families": [
+        {
+          "family": "Defence",
+          "n_metrics": 13,
+          "alone_r2": {
+            "r2": 0.6245260437460447,
+            "ci": [
+              0.5225148362507477,
+              0.7046978221744604
+            ]
+          },
+          "loss_if_removed": 0.09676008927010082
+        },
+        {
+          "family": "Shot making",
+          "n_metrics": 14,
+          "alone_r2": {
+            "r2": 0.5348776771946439,
+            "ci": [
+              0.471419002668424,
+              0.6060737891902934
+            ]
+          },
+          "loss_if_removed": 0.01156018559720573
+        },
+        {
+          "family": "Rebounding",
+          "n_metrics": 6,
+          "alone_r2": {
+            "r2": 0.47693105334075214,
+            "ci": [
+              0.39956647475966567,
+              0.5225167050613317
+            ]
+          },
+          "loss_if_removed": 0.010760879296070835
+        },
+        {
+          "family": "Where points come from",
+          "n_metrics": 8,
+          "alone_r2": {
+            "r2": 0.468557104735971,
+            "ci": [
+              0.11945198915839349,
+              0.6802714775922437
+            ]
+          },
+          "loss_if_removed": -0.00015251500881341418
+        },
+        {
+          "family": "Ball movement",
+          "n_metrics": 11,
+          "alone_r2": {
+            "r2": 0.42424069909548456,
+            "ci": [
+              0.15872911489823618,
+              0.588830304071457
+            ]
+          },
+          "loss_if_removed": 0.0025507583895398867
+        },
+        {
+          "family": "Attacking the paint",
+          "n_metrics": 8,
+          "alone_r2": {
+            "r2": 0.39925347410093237,
+            "ci": [
+              0.320038315806256,
+              0.4667427384633874
+            ]
+          },
+          "loss_if_removed": -0.0023013503401018154
+        },
+        {
+          "family": "Ball security",
+          "n_metrics": 4,
+          "alone_r2": {
+            "r2": 0.2304800883881558,
+            "ci": [
+              0.16907273431467967,
+              0.2953206541094714
+            ]
+          },
+          "loss_if_removed": 0.004385005486235549
+        },
+        {
+          "family": "Effort and movement",
+          "n_metrics": 8,
+          "alone_r2": {
+            "r2": 0.2114566779541942,
+            "ci": [
+              0.07832912536411513,
+              0.31422146090445463
+            ]
+          },
+          "loss_if_removed": -0.0009299049785672642
+        },
+        {
+          "family": "Shot diet",
+          "n_metrics": 11,
+          "alone_r2": {
+            "r2": 0.1053573244474234,
+            "ci": [
+              -0.033836188194868395,
+              0.21364094026952501
+            ]
+          },
+          "loss_if_removed": 0.0016809149527163836
+        },
+        {
+          "family": "Free throws",
+          "n_metrics": 2,
+          "alone_r2": {
+            "r2": 0.048401324302595694,
+            "ci": [
+              0.014181296106703037,
+              0.07263387755648296
+            ]
+          },
+          "loss_if_removed": 0.003609941801087202
+        }
+      ],
+      "net_rating_alone": {
+        "r2": 0.9274847573233673,
+        "ci": [
+          0.910844023355281,
+          0.9438532969145917
+        ]
+      }
+    },
+    "dimension": {
+      "n_metrics": 85,
+      "components_for_90pct": 27,
+      "effective_rank": 26.18342567065396
+    },
+    "edge": {
+      "fg3a_rate": {
+        "label": "3-point attempt rate",
+        "per_season": [
+          {
+            "season": "2000-01",
+            "r": 0.33026141844699675
+          },
+          {
+            "season": "2001-02",
+            "r": 0.24256752886439834
+          },
+          {
+            "season": "2002-03",
+            "r": 0.2156131870999225
+          },
+          {
+            "season": "2003-04",
+            "r": 0.0010032946732011136
+          },
+          {
+            "season": "2004-05",
+            "r": 0.3548967713391059
+          },
+          {
+            "season": "2005-06",
+            "r": 0.42318763258117775
+          },
+          {
+            "season": "2006-07",
+            "r": 0.35168490521881723
+          },
+          {
+            "season": "2007-08",
+            "r": 0.3903474586060158
+          },
+          {
+            "season": "2008-09",
+            "r": 0.3360707421103787
+          },
+          {
+            "season": "2009-10",
+            "r": 0.3686399246485031
+          },
+          {
+            "season": "2010-11",
+            "r": 0.3580221691256032
+          },
+          {
+            "season": "2011-12",
+            "r": 0.1505306587662347
+          },
+          {
+            "season": "2012-13",
+            "r": 0.37398578630170054
+          },
+          {
+            "season": "2013-14",
+            "r": 0.31463785995041066
+          },
+          {
+            "season": "2014-15",
+            "r": 0.48072487527307317
+          },
+          {
+            "season": "2015-16",
+            "r": 0.2749797216395832
+          },
+          {
+            "season": "2016-17",
+            "r": 0.2858002961081214
+          },
+          {
+            "season": "2017-18",
+            "r": 0.30049617062654466
+          },
+          {
+            "season": "2018-19",
+            "r": 0.3377587983129554
+          },
+          {
+            "season": "2019-20",
+            "r": 0.2686603148374534
+          },
+          {
+            "season": "2020-21",
+            "r": 0.17799939216974975
+          },
+          {
+            "season": "2021-22",
+            "r": 0.02849213754460186
+          },
+          {
+            "season": "2022-23",
+            "r": 0.2688343047082694
+          },
+          {
+            "season": "2023-24",
+            "r": 0.21944368071615505
+          },
+          {
+            "season": "2024-25",
+            "r": 0.06607970089159823
+          },
+          {
+            "season": "2025-26",
+            "r": 0.07459948573467177
+          }
+        ],
+        "rolling5": [
+          {
+            "season": "2004-05",
+            "r": 0.22973164783304253,
+            "lo": 0.06988858743191856,
+            "hi": 0.3780731943655134
+          },
+          {
+            "season": "2005-06",
+            "r": 0.24938005732038532,
+            "lo": 0.09116449368441089,
+            "hi": 0.3953159072275282
+          },
+          {
+            "season": "2006-07",
+            "r": 0.27145241382157853,
+            "lo": 0.11514894851003127,
+            "hi": 0.4146388313887362
+          },
+          {
+            "season": "2007-08",
+            "r": 0.3062590508582304,
+            "lo": 0.15299057194397173,
+            "hi": 0.4451399527795105
+          },
+          {
+            "season": "2008-09",
+            "r": 0.3712375019710991,
+            "lo": 0.22431921407308092,
+            "hi": 0.5016553536736631
+          },
+          {
+            "season": "2009-10",
+            "r": 0.37398613263297853,
+            "lo": 0.2273482068169767,
+            "hi": 0.504040069369845
+          },
+          {
+            "season": "2010-11",
+            "r": 0.3609530399418637,
+            "lo": 0.21301085656408764,
+            "hi": 0.492714922179928
+          },
+          {
+            "season": "2011-12",
+            "r": 0.3207221906513471,
+            "lo": 0.16915225640505357,
+            "hi": 0.4574723684919227
+          },
+          {
+            "season": "2012-13",
+            "r": 0.3174498561904841,
+            "lo": 0.16561104980643376,
+            "hi": 0.4545867583474114
+          },
+          {
+            "season": "2013-14",
+            "r": 0.31316327975849045,
+            "lo": 0.16097818228255226,
+            "hi": 0.45080240896425655
+          },
+          {
+            "season": "2014-15",
+            "r": 0.3355802698834046,
+            "lo": 0.18528052853660276,
+            "hi": 0.4705383932798188
+          },
+          {
+            "season": "2015-16",
+            "r": 0.3189717803862005,
+            "lo": 0.16725753635103446,
+            "hi": 0.45592917979788256
+          },
+          {
+            "season": "2016-17",
+            "r": 0.34602570785457787,
+            "lo": 0.19666760957275867,
+            "hi": 0.4796886991068773
+          },
+          {
+            "season": "2017-18",
+            "r": 0.3313277847195467,
+            "lo": 0.18065621953944724,
+            "hi": 0.4668048421857899
+          },
+          {
+            "season": "2018-19",
+            "r": 0.3359519723920557,
+            "lo": 0.18568504813318007,
+            "hi": 0.47086450714797257
+          },
+          {
+            "season": "2019-20",
+            "r": 0.2935390603049317,
+            "lo": 0.1398539085876142,
+            "hi": 0.433414009564482
+          },
+          {
+            "season": "2020-21",
+            "r": 0.274142994410965,
+            "lo": 0.11911179450458563,
+            "hi": 0.41612481780278526
+          },
+          {
+            "season": "2021-22",
+            "r": 0.22268136269826108,
+            "lo": 0.06472690970392175,
+            "hi": 0.3697501760083477
+          },
+          {
+            "season": "2022-23",
+            "r": 0.21634898951460607,
+            "lo": 0.05809903971213464,
+            "hi": 0.36399267539386737
+          },
+          {
+            "season": "2023-24",
+            "r": 0.19268596599524596,
+            "lo": 0.033454648675594535,
+            "hi": 0.3423775271398099
+          },
+          {
+            "season": "2024-25",
+            "r": 0.15216984320607485,
+            "lo": -0.008296917584328576,
+            "hi": 0.30499619584685317
+          },
+          {
+            "season": "2025-26",
+            "r": 0.13148986191905934,
+            "lo": -0.029393982220099518,
+            "hi": 0.285732989218308
+          }
+        ]
+      },
+      "rim_share": {
+        "label": "Rim attempt share",
+        "per_season": [
+          {
+            "season": "2000-01",
+            "r": 0.07738475087725409
+          },
+          {
+            "season": "2001-02",
+            "r": 0.10619537031117061
+          },
+          {
+            "season": "2002-03",
+            "r": 0.0761829536222113
+          },
+          {
+            "season": "2003-04",
+            "r": -0.009411948905354732
+          },
+          {
+            "season": "2004-05",
+            "r": -0.19749569289503952
+          },
+          {
+            "season": "2005-06",
+            "r": -0.3814574567325122
+          },
+          {
+            "season": "2006-07",
+            "r": -0.30899629861052075
+          },
+          {
+            "season": "2007-08",
+            "r": 0.014316462997361452
+          },
+          {
+            "season": "2008-09",
+            "r": -0.18988020756378227
+          },
+          {
+            "season": "2009-10",
+            "r": 0.04722963891986518
+          },
+          {
+            "season": "2010-11",
+            "r": -0.04306694475826924
+          },
+          {
+            "season": "2011-12",
+            "r": -0.024856131312049425
+          },
+          {
+            "season": "2012-13",
+            "r": 0.08358238524767968
+          },
+          {
+            "season": "2013-14",
+            "r": -0.20557886272481798
+          },
+          {
+            "season": "2014-15",
+            "r": -0.09821134626530287
+          },
+          {
+            "season": "2015-16",
+            "r": -0.18072482930159375
+          },
+          {
+            "season": "2016-17",
+            "r": -0.013700549365924524
+          },
+          {
+            "season": "2017-18",
+            "r": 0.055024902248796304
+          },
+          {
+            "season": "2018-19",
+            "r": -0.08159889740239071
+          },
+          {
+            "season": "2019-20",
+            "r": -0.08719364646553156
+          },
+          {
+            "season": "2020-21",
+            "r": -0.4402210992395363
+          },
+          {
+            "season": "2021-22",
+            "r": -0.5045276119133788
+          },
+          {
+            "season": "2022-23",
+            "r": -0.22767775445447924
+          },
+          {
+            "season": "2023-24",
+            "r": -0.16399855445691294
+          },
+          {
+            "season": "2024-25",
+            "r": -0.07572531180732979
+          },
+          {
+            "season": "2025-26",
+            "r": 0.03691115977073373
+          }
+        ],
+        "rolling5": [
+          {
+            "season": "2004-05",
+            "r": 0.009145971673986059,
+            "lo": -0.15353346160140274,
+            "hi": 0.17134271200563359
+          },
+          {
+            "season": "2005-06",
+            "r": -0.08403108580281475,
+            "lo": -0.24262652853860656,
+            "hi": 0.07893903595279088
+          },
+          {
+            "season": "2006-07",
+            "r": -0.16690624534022527,
+            "lo": -0.31964502972250547,
+            "hi": -0.005713349535017063
+          },
+          {
+            "season": "2007-08",
+            "r": -0.17773111460051425,
+            "lo": -0.3291276118967736,
+            "hi": -0.017426296301794337
+          },
+          {
+            "season": "2008-09",
+            "r": -0.2127026385608987,
+            "lo": -0.36067222434104235,
+            "hi": -0.05428885263152853
+          },
+          {
+            "season": "2009-10",
+            "r": -0.16375757219791773,
+            "lo": -0.31573566409116294,
+            "hi": -0.0035872986568266985
+          },
+          {
+            "season": "2010-11",
+            "r": -0.09607946980306917,
+            "lo": -0.2524565341038282,
+            "hi": 0.06518873463619246
+          },
+          {
+            "season": "2011-12",
+            "r": -0.039251436343374864,
+            "lo": -0.19826862644266946,
+            "hi": 0.12177904844307844
+          },
+          {
+            "season": "2012-13",
+            "r": -0.025398251893311206,
+            "lo": -0.1849100079631273,
+            "hi": 0.13541737633176465
+          },
+          {
+            "season": "2013-14",
+            "r": -0.02853798292551834,
+            "lo": -0.1879428236942655,
+            "hi": 0.13233167274067226
+          },
+          {
+            "season": "2014-15",
+            "r": -0.05762617996255196,
+            "lo": -0.21589670231768626,
+            "hi": 0.10359498432898678
+          },
+          {
+            "season": "2015-16",
+            "r": -0.08515775687121688,
+            "lo": -0.24211781187888523,
+            "hi": 0.07614588421642915
+          },
+          {
+            "season": "2016-17",
+            "r": -0.0829266404819919,
+            "lo": -0.24000139676952376,
+            "hi": 0.07837945784823053
+          },
+          {
+            "season": "2017-18",
+            "r": -0.08863813708176857,
+            "lo": -0.24541628673044105,
+            "hi": 0.07265843565335355
+          },
+          {
+            "season": "2018-19",
+            "r": -0.06384214401728311,
+            "lo": -0.2218368135500727,
+            "hi": 0.09741903134763562
+          },
+          {
+            "season": "2019-20",
+            "r": -0.061638604057328863,
+            "lo": -0.21973240341434574,
+            "hi": 0.09960980941548465
+          },
+          {
+            "season": "2020-21",
+            "r": -0.11353785804491738,
+            "lo": -0.26890918569842015,
+            "hi": 0.0475925603897907
+          },
+          {
+            "season": "2021-22",
+            "r": -0.2117032705544082,
+            "lo": -0.3597615215112309,
+            "hi": -0.05324538630285991
+          },
+          {
+            "season": "2022-23",
+            "r": -0.2682438018950633,
+            "lo": -0.4108459793854042,
+            "hi": -0.11282993322141656
+          },
+          {
+            "season": "2023-24",
+            "r": -0.2847237333059678,
+            "lo": -0.42556897983949743,
+            "hi": -0.13041006552912165
+          },
+          {
+            "season": "2024-25",
+            "r": -0.28243006637432744,
+            "lo": -0.4235242985830643,
+            "hi": -0.12795744665173964
+          },
+          {
+            "season": "2025-26",
+            "r": -0.1870036145722734,
+            "lo": -0.33716324386278984,
+            "hi": -0.027565327712883024
+          }
+        ]
+      },
+      "mid_share": {
+        "label": "Mid-range share",
+        "per_season": [
+          {
+            "season": "2000-01",
+            "r": -0.17491583285858725
+          },
+          {
+            "season": "2001-02",
+            "r": -0.2790466688609003
+          },
+          {
+            "season": "2002-03",
+            "r": -0.13004660464825143
+          },
+          {
+            "season": "2003-04",
+            "r": -0.039843313714948
+          },
+          {
+            "season": "2004-05",
+            "r": -0.28205647312716753
+          },
+          {
+            "season": "2005-06",
+            "r": -0.15220375668757483
+          },
+          {
+            "season": "2006-07",
+            "r": 0.02146190753598825
+          },
+          {
+            "season": "2007-08",
+            "r": -0.1730937171951001
+          },
+          {
+            "season": "2008-09",
+            "r": -0.15483138997449036
+          },
+          {
+            "season": "2009-10",
+            "r": -0.3920248621485842
+          },
+          {
+            "season": "2010-11",
+            "r": -0.2314236126543293
+          },
+          {
+            "season": "2011-12",
+            "r": -0.15774507412363994
+          },
+          {
+            "season": "2012-13",
+            "r": -0.3497174489225584
+          },
+          {
+            "season": "2013-14",
+            "r": -0.013863396677627845
+          },
+          {
+            "season": "2014-15",
+            "r": -0.335505965973717
+          },
+          {
+            "season": "2015-16",
+            "r": -0.03256444292062207
+          },
+          {
+            "season": "2016-17",
+            "r": -0.07298101668359386
+          },
+          {
+            "season": "2017-18",
+            "r": -0.17703648362539487
+          },
+          {
+            "season": "2018-19",
+            "r": -0.0786411649515919
+          },
+          {
+            "season": "2019-20",
+            "r": -0.012554991001552857
+          },
+          {
+            "season": "2020-21",
+            "r": 0.2623421989976907
+          },
+          {
+            "season": "2021-22",
+            "r": 0.19512132896310685
+          },
+          {
+            "season": "2022-23",
+            "r": 0.024792562531390807
+          },
+          {
+            "season": "2023-24",
+            "r": 0.15176684881304384
+          },
+          {
+            "season": "2024-25",
+            "r": 0.11931568088624511
+          },
+          {
+            "season": "2025-26",
+            "r": -0.07130412169614514
+          }
+        ],
+        "rolling5": [
+          {
+            "season": "2004-05",
+            "r": -0.18187270120693796,
+            "lo": -0.3344427533400095,
+            "hi": -0.020012667599701644
+          },
+          {
+            "season": "2005-06",
+            "r": -0.17719025798599428,
+            "lo": -0.32963054432870925,
+            "hi": -0.01574573668219831
+          },
+          {
+            "season": "2006-07",
+            "r": -0.11696457635740141,
+            "lo": -0.2731563641585638,
+            "hi": 0.04523586334723483
+          },
+          {
+            "season": "2007-08",
+            "r": -0.125719579073484,
+            "lo": -0.28084485663832226,
+            "hi": 0.035807156935066004
+          },
+          {
+            "season": "2008-09",
+            "r": -0.1481446858896689,
+            "lo": -0.3012565756431837,
+            "hi": 0.012414483216302698
+          },
+          {
+            "season": "2009-10",
+            "r": -0.17013836369395227,
+            "lo": -0.32163278245291543,
+            "hi": -0.010150724330655558
+          },
+          {
+            "season": "2010-11",
+            "r": -0.1859823348873032,
+            "lo": -0.3362251116027882,
+            "hi": -0.026508021848676833
+          },
+          {
+            "season": "2011-12",
+            "r": -0.2218237312192288,
+            "lo": -0.3689710636772868,
+            "hi": -0.06382844067286192
+          },
+          {
+            "season": "2012-13",
+            "r": -0.25714847756472053,
+            "lo": -0.40089145874338583,
+            "hi": -0.10104844035570658
+          },
+          {
+            "season": "2013-14",
+            "r": -0.22895487890534802,
+            "lo": -0.37544304711459564,
+            "hi": -0.07130694716012419
+          },
+          {
+            "season": "2014-15",
+            "r": -0.21765109967037463,
+            "lo": -0.3651774981900884,
+            "hi": -0.059460773722065485
+          },
+          {
+            "season": "2015-16",
+            "r": -0.1778792657236331,
+            "lo": -0.3287711705397978,
+            "hi": -0.018131739792994452
+          },
+          {
+            "season": "2016-17",
+            "r": -0.16092645423562382,
+            "lo": -0.31311538317738946,
+            "hi": -0.0006795601809124265
+          },
+          {
+            "season": "2017-18",
+            "r": -0.12639026117619115,
+            "lo": -0.2809635232787936,
+            "hi": 0.03457449547660598
+          },
+          {
+            "season": "2018-19",
+            "r": -0.139345814830984,
+            "lo": -0.2930654460799531,
+            "hi": 0.02139643456207132
+          },
+          {
+            "season": "2019-20",
+            "r": -0.07475561983655109,
+            "lo": -0.2322376782060619,
+            "hi": 0.08654567544753618
+          },
+          {
+            "season": "2020-21",
+            "r": -0.015774291452888552,
+            "lo": -0.17559479812052706,
+            "hi": 0.1448563341600172
+          },
+          {
+            "season": "2021-22",
+            "r": 0.037846177676451584,
+            "lo": -0.12316528898680247,
+            "hi": 0.19691622330137865
+          },
+          {
+            "season": "2022-23",
+            "r": 0.07821198690780874,
+            "lo": -0.08309398327658452,
+            "hi": 0.23552420593482376
+          },
+          {
+            "season": "2023-24",
+            "r": 0.12429358966073592,
+            "lo": -0.03670192730822635,
+            "hi": 0.2790003673961857
+          },
+          {
+            "season": "2024-25",
+            "r": 0.15066772403829548,
+            "lo": -0.009834158644213385,
+            "hi": 0.30360118519150053
+          },
+          {
+            "season": "2025-26",
+            "r": 0.0839384598995283,
+            "lo": -0.07736672469856888,
+            "hi": 0.24096138380368792
+          }
+        ]
+      },
+      "pace": {
+        "label": "Pace",
+        "per_season": [
+          {
+            "season": "2000-01",
+            "r": -0.22329105789817041
+          },
+          {
+            "season": "2001-02",
+            "r": 0.24030460245835933
+          },
+          {
+            "season": "2002-03",
+            "r": -0.025884739588320625
+          },
+          {
+            "season": "2003-04",
+            "r": -0.14883671319810407
+          },
+          {
+            "season": "2004-05",
+            "r": 0.00033201304915206857
+          },
+          {
+            "season": "2005-06",
+            "r": -0.07056003560305713
+          },
+          {
+            "season": "2006-07",
+            "r": -0.035429656583719035
+          },
+          {
+            "season": "2007-08",
+            "r": -0.07743093808481058
+          },
+          {
+            "season": "2008-09",
+            "r": -0.27753020755672486
+          },
+          {
+            "season": "2009-10",
+            "r": -0.24857847879593906
+          },
+          {
+            "season": "2010-11",
+            "r": -0.23072903499086392
+          },
+          {
+            "season": "2011-12",
+            "r": -0.016377796478674725
+          },
+          {
+            "season": "2012-13",
+            "r": 0.030177248074910155
+          },
+          {
+            "season": "2013-14",
+            "r": -0.019531268769221278
+          },
+          {
+            "season": "2014-15",
+            "r": 0.18712136356191156
+          },
+          {
+            "season": "2015-16",
+            "r": -0.0983871682996636
+          },
+          {
+            "season": "2016-17",
+            "r": -0.15127465350749833
+          },
+          {
+            "season": "2017-18",
+            "r": -0.027873617410750628
+          },
+          {
+            "season": "2018-19",
+            "r": 0.10959209267907176
+          },
+          {
+            "season": "2019-20",
+            "r": 0.17028325067726602
+          },
+          {
+            "season": "2020-21",
+            "r": -0.20997995397667757
+          },
+          {
+            "season": "2021-22",
+            "r": -0.26487904778223453
+          },
+          {
+            "season": "2022-23",
+            "r": -0.30274346243241895
+          },
+          {
+            "season": "2023-24",
+            "r": -0.2667111529529009
+          },
+          {
+            "season": "2024-25",
+            "r": -0.04665579800505675
+          },
+          {
+            "season": "2025-26",
+            "r": -0.38097030310614294
+          }
+        ],
+        "rolling5": [
+          {
+            "season": "2004-05",
+            "r": -0.031257321555385485,
+            "lo": -0.19272999559658993,
+            "hi": 0.1318635714462101
+          },
+          {
+            "season": "2005-06",
+            "r": -0.0013940771165377624,
+            "lo": -0.16325344179697432,
+            "hi": 0.16053836601565355
+          },
+          {
+            "season": "2006-07",
+            "r": -0.055653057465777235,
+            "lo": -0.21506861673367098,
+            "hi": 0.10665136716872778
+          },
+          {
+            "season": "2007-08",
+            "r": -0.06583169932495335,
+            "lo": -0.22426055001171807,
+            "hi": 0.09598727086278247
+          },
+          {
+            "season": "2008-09",
+            "r": -0.09212376495583194,
+            "lo": -0.24871610064879834,
+            "hi": 0.0691617710677574
+          },
+          {
+            "season": "2009-10",
+            "r": -0.14190586332485017,
+            "lo": -0.2954510009208598,
+            "hi": 0.018785792267260334
+          },
+          {
+            "season": "2010-11",
+            "r": -0.17393966320241153,
+            "lo": -0.3251403606294978,
+            "hi": -0.014067390096856815
+          },
+          {
+            "season": "2011-12",
+            "r": -0.17012929118140263,
+            "lo": -0.321624405984777,
+            "hi": -0.01014138234337969
+          },
+          {
+            "season": "2012-13",
+            "r": -0.14860765394945846,
+            "lo": -0.3016869414602194,
+            "hi": 0.01194116344824353
+          },
+          {
+            "season": "2013-14",
+            "r": -0.09700786619195778,
+            "lo": -0.2533337300740624,
+            "hi": 0.06425552914677726
+          },
+          {
+            "season": "2014-15",
+            "r": -0.00986789772038761,
+            "lo": -0.1698636833520935,
+            "hi": 0.1506347474971379
+          },
+          {
+            "season": "2015-16",
+            "r": 0.016600475617852484,
+            "lo": -0.1440471773881224,
+            "hi": 0.17639560163219056
+          },
+          {
+            "season": "2016-17",
+            "r": -0.010378895787912245,
+            "lo": -0.170359945000085,
+            "hi": 0.15013525479347067
+          },
+          {
+            "season": "2017-18",
+            "r": -0.021989068885044413,
+            "lo": -0.18161347158229876,
+            "hi": 0.13876436625938451
+          },
+          {
+            "season": "2018-19",
+            "r": 0.0038356034046141967,
+            "lo": -0.15652503466306483,
+            "hi": 0.16399921177022814
+          },
+          {
+            "season": "2019-20",
+            "r": 0.0004679808276850337,
+            "lo": -0.15980842535744688,
+            "hi": 0.16072034713816116
+          },
+          {
+            "season": "2020-21",
+            "r": -0.021850576307717796,
+            "lo": -0.18147947921837992,
+            "hi": 0.1389002547654425
+          },
+          {
+            "season": "2021-22",
+            "r": -0.04457145516266505,
+            "lo": -0.2033830659428426,
+            "hi": 0.1165253311757354
+          },
+          {
+            "season": "2022-23",
+            "r": -0.09954542416699869,
+            "lo": -0.2557300325950953,
+            "hi": 0.06170338679495371
+          },
+          {
+            "season": "2023-24",
+            "r": -0.17480607329339318,
+            "lo": -0.32593924261578733,
+            "hi": -0.014960782060427573
+          },
+          {
+            "season": "2024-25",
+            "r": -0.21819388302985776,
+            "lo": -0.365671249331567,
+            "hi": -0.06002858514293761
+          },
+          {
+            "season": "2025-26",
+            "r": -0.25239195285575095,
+            "lo": -0.3966135724146098,
+            "hi": -0.09601112981001361
+          }
+        ]
+      },
+      "ast_pct": {
+        "label": "Assist %",
+        "per_season": [
+          {
+            "season": "2000-01",
+            "r": 0.07189713756234727
+          },
+          {
+            "season": "2001-02",
+            "r": 0.0038908673171623243
+          },
+          {
+            "season": "2002-03",
+            "r": 0.20147659857026248
+          },
+          {
+            "season": "2003-04",
+            "r": 0.488754787986644
+          },
+          {
+            "season": "2004-05",
+            "r": -0.014919372832748677
+          },
+          {
+            "season": "2005-06",
+            "r": 0.2919418317425868
+          },
+          {
+            "season": "2006-07",
+            "r": 0.29775241048091855
+          },
+          {
+            "season": "2007-08",
+            "r": 0.32784791015394454
+          },
+          {
+            "season": "2008-09",
+            "r": 0.250862401463701
+          },
+          {
+            "season": "2009-10",
+            "r": 0.33614042882995093
+          },
+          {
+            "season": "2010-11",
+            "r": 0.17164133369081172
+          },
+          {
+            "season": "2011-12",
+            "r": 0.02435804171693523
+          },
+          {
+            "season": "2012-13",
+            "r": 0.06395617244074404
+          },
+          {
+            "season": "2013-14",
+            "r": 0.14063798916520567
+          },
+          {
+            "season": "2014-15",
+            "r": 0.3475678086699038
+          },
+          {
+            "season": "2015-16",
+            "r": 0.25819390943222914
+          },
+          {
+            "season": "2016-17",
+            "r": 0.3398424087236032
+          },
+          {
+            "season": "2017-18",
+            "r": 0.04754220140911017
+          },
+          {
+            "season": "2018-19",
+            "r": 0.39724334712820725
+          },
+          {
+            "season": "2019-20",
+            "r": -0.09259126390569224
+          },
+          {
+            "season": "2020-21",
+            "r": -0.12030239201419485
+          },
+          {
+            "season": "2021-22",
+            "r": 0.13737740830843595
+          },
+          {
+            "season": "2022-23",
+            "r": 0.1758354153228106
+          },
+          {
+            "season": "2023-24",
+            "r": -0.1470778056646005
+          },
+          {
+            "season": "2024-25",
+            "r": -0.1554664014037157
+          },
+          {
+            "season": "2025-26",
+            "r": -0.164735754613219
+          }
+        ],
+        "rolling5": [
+          {
+            "season": "2004-05",
+            "r": 0.1490889121005042,
+            "lo": -0.013694071133301946,
+            "hi": 0.30417324737693346
+          },
+          {
+            "season": "2005-06",
+            "r": 0.19347087843294655,
+            "lo": 0.03259563520698931,
+            "hi": 0.34457426402092495
+          },
+          {
+            "season": "2006-07",
+            "r": 0.25175646143157426,
+            "lo": 0.09423764793725357,
+            "hi": 0.396977937680058
+          },
+          {
+            "season": "2007-08",
+            "r": 0.2768629009258639,
+            "lo": 0.12146783475099741,
+            "hi": 0.4190112323228725
+          },
+          {
+            "season": "2008-09",
+            "r": 0.23069703620168044,
+            "lo": 0.07313666298932306,
+            "hi": 0.37702200062265706
+          },
+          {
+            "season": "2009-10",
+            "r": 0.3009089965342203,
+            "lo": 0.1477708250019729,
+            "hi": 0.43995651159597104
+          },
+          {
+            "season": "2010-11",
+            "r": 0.27684889692386533,
+            "lo": 0.1219973817264326,
+            "hi": 0.4185429724962931
+          },
+          {
+            "season": "2011-12",
+            "r": 0.22217002317106863,
+            "lo": 0.06419119106565792,
+            "hi": 0.36928567628917464
+          },
+          {
+            "season": "2012-13",
+            "r": 0.16939167562842858,
+            "lo": 0.00938195131943339,
+            "hi": 0.3209433010558265
+          },
+          {
+            "season": "2013-14",
+            "r": 0.1473467931687295,
+            "lo": -0.013230047551846221,
+            "hi": 0.30051472416321745
+          },
+          {
+            "season": "2014-15",
+            "r": 0.14963226913672004,
+            "lo": -0.010893382562417151,
+            "hi": 0.30263918141984214
+          },
+          {
+            "season": "2015-16",
+            "r": 0.16694278428500356,
+            "lo": 0.0068619553775244166,
+            "hi": 0.3186809008696384
+          },
+          {
+            "season": "2016-17",
+            "r": 0.23003965768633727,
+            "lo": 0.072446120870337,
+            "hi": 0.37642630465494076
+          },
+          {
+            "season": "2017-18",
+            "r": 0.22675686348001042,
+            "lo": 0.06899997508356548,
+            "hi": 0.3734497260300283
+          },
+          {
+            "season": "2018-19",
+            "r": 0.2780779350726107,
+            "lo": 0.12330889890544404,
+            "hi": 0.4196406506570247
+          },
+          {
+            "season": "2019-20",
+            "r": 0.19004612055749148,
+            "lo": 0.03071727556822955,
+            "hi": 0.33995627800559847
+          },
+          {
+            "season": "2020-21",
+            "r": 0.1143468602682067,
+            "lo": -0.04677474161657494,
+            "hi": 0.2696693913704891
+          },
+          {
+            "season": "2021-22",
+            "r": 0.0738538601851732,
+            "lo": -0.0874455789077763,
+            "hi": 0.23137963743703258
+          },
+          {
+            "season": "2022-23",
+            "r": 0.09951250296791331,
+            "lo": -0.06173651071160268,
+            "hi": 0.25569895626745925
+          },
+          {
+            "season": "2023-24",
+            "r": -0.00935172759064828,
+            "lo": -0.16936231639919452,
+            "hi": 0.15113921262892133
+          },
+          {
+            "season": "2024-25",
+            "r": -0.021926755090252943,
+            "lo": -0.1815531833614485,
+            "hi": 0.13882550911909156
+          },
+          {
+            "season": "2025-26",
+            "r": -0.030813427610057776,
+            "lo": -0.1901388859329807,
+            "hi": 0.13009343272892504
+          }
+        ]
+      },
+      "drives_100": {
+        "label": "Drives per 100",
+        "per_season": [
+          {
+            "season": "2013-14",
+            "r": -0.2721679916008455
+          },
+          {
+            "season": "2014-15",
+            "r": -0.042172834750013814
+          },
+          {
+            "season": "2015-16",
+            "r": -0.09012266356360592
+          },
+          {
+            "season": "2016-17",
+            "r": -0.17489612556532216
+          },
+          {
+            "season": "2017-18",
+            "r": -0.04693632930395798
+          },
+          {
+            "season": "2018-19",
+            "r": -0.275727154247226
+          },
+          {
+            "season": "2019-20",
+            "r": -0.4740315998367838
+          },
+          {
+            "season": "2020-21",
+            "r": -0.3598935932445888
+          },
+          {
+            "season": "2021-22",
+            "r": -0.321086336955387
+          },
+          {
+            "season": "2022-23",
+            "r": -0.2425160559311284
+          },
+          {
+            "season": "2023-24",
+            "r": -0.2758557357400435
+          },
+          {
+            "season": "2024-25",
+            "r": -0.10938622882805246
+          },
+          {
+            "season": "2025-26",
+            "r": -0.07537170285235532
+          }
+        ],
+        "rolling5": [
+          {
+            "season": "2017-18",
+            "r": -0.12525918895674906,
+            "lo": -0.27990463818087086,
+            "hi": 0.03572234292374524
+          },
+          {
+            "season": "2018-19",
+            "r": -0.12597102148602524,
+            "lo": -0.2805710841302094,
+            "hi": 0.03500000255707487
+          },
+          {
+            "season": "2019-20",
+            "r": -0.21234277450337927,
+            "lo": -0.3603443203757694,
+            "hi": -0.05391306927061191
+          },
+          {
+            "season": "2020-21",
+            "r": -0.2662969604395758,
+            "lo": -0.4091017651924504,
+            "hi": -0.11075952712166037
+          },
+          {
+            "season": "2021-22",
+            "r": -0.2955350027175888,
+            "lo": -0.4351873214374638,
+            "hi": -0.14199604696413895
+          },
+          {
+            "season": "2022-23",
+            "r": -0.33465094804302287,
+            "lo": -0.46972288973098086,
+            "hi": -0.18426938101709736
+          },
+          {
+            "season": "2023-24",
+            "r": -0.3346766643415864,
+            "lo": -0.4697454595386238,
+            "hi": -0.1842973573233756
+          },
+          {
+            "season": "2024-25",
+            "r": -0.26174759013984006,
+            "lo": -0.40502182076566373,
+            "hi": -0.10592666908768006
+          },
+          {
+            "season": "2025-26",
+            "r": -0.20484321206139341,
+            "lo": -0.3535024720442157,
+            "hi": -0.04609194779615193
+          }
+        ]
+      }
+    },
+    "drives": [
+      {
+        "season": "2013-14",
+        "team": "Atlanta Hawks",
+        "drives_z": 1.027,
+        "drive_fg": 0.415,
+        "net": -0.7,
+        "win": 0.463
+      },
+      {
+        "season": "2013-14",
+        "team": "Boston Celtics",
+        "drives_z": -0.682,
+        "drive_fg": 0.419,
+        "net": -4.6,
+        "win": 0.305
+      },
+      {
+        "season": "2013-14",
+        "team": "Brooklyn Nets",
+        "drives_z": 0.801,
+        "drive_fg": 0.442,
+        "net": -1.3,
+        "win": 0.537
+      },
+      {
+        "season": "2013-14",
+        "team": "Charlotte Bobcats",
+        "drives_z": 0.38,
+        "drive_fg": 0.413,
+        "net": -0.4,
+        "win": 0.524
+      },
+      {
+        "season": "2013-14",
+        "team": "Chicago Bulls",
+        "drives_z": -1.346,
+        "drive_fg": 0.387,
+        "net": 1.9,
+        "win": 0.585
+      },
+      {
+        "season": "2013-14",
+        "team": "Cleveland Cavaliers",
+        "drives_z": 0.897,
+        "drive_fg": 0.447,
+        "net": -3.6,
+        "win": 0.402
+      },
+      {
+        "season": "2013-14",
+        "team": "Dallas Mavericks",
+        "drives_z": -0.259,
+        "drive_fg": 0.444,
+        "net": 2.3,
+        "win": 0.598
+      },
+      {
+        "season": "2013-14",
+        "team": "Denver Nuggets",
+        "drives_z": 0.866,
+        "drive_fg": 0.428,
+        "net": -2.2,
+        "win": 0.439
+      },
+      {
+        "season": "2013-14",
+        "team": "Detroit Pistons",
+        "drives_z": -0.122,
+        "drive_fg": 0.427,
+        "net": -3.7,
+        "win": 0.354
+      },
+      {
+        "season": "2013-14",
+        "team": "Golden State Warriors",
+        "drives_z": -1.403,
+        "drive_fg": 0.428,
+        "net": 4.9,
+        "win": 0.622
+      },
+      {
+        "season": "2013-14",
+        "team": "Houston Rockets",
+        "drives_z": 1.594,
+        "drive_fg": 0.449,
+        "net": 4.6,
+        "win": 0.659
+      },
+      {
+        "season": "2013-14",
+        "team": "Indiana Pacers",
+        "drives_z": -1.11,
+        "drive_fg": 0.463,
+        "net": 4.7,
+        "win": 0.683
+      },
+      {
+        "season": "2013-14",
+        "team": "Los Angeles Clippers",
+        "drives_z": -1.421,
+        "drive_fg": 0.453,
+        "net": 7.3,
+        "win": 0.695
+      },
+      {
+        "season": "2013-14",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.508,
+        "drive_fg": 0.419,
+        "net": -6.0,
+        "win": 0.329
+      },
+      {
+        "season": "2013-14",
+        "team": "Memphis Grizzlies",
+        "drives_z": -0.456,
+        "drive_fg": 0.445,
+        "net": 1.7,
+        "win": 0.61
+      },
+      {
+        "season": "2013-14",
+        "team": "Miami Heat",
+        "drives_z": 1.411,
+        "drive_fg": 0.515,
+        "net": 5.1,
+        "win": 0.659
+      },
+      {
+        "season": "2013-14",
+        "team": "Milwaukee Bucks",
+        "drives_z": 0.155,
+        "drive_fg": 0.4,
+        "net": -8.3,
+        "win": 0.183
+      },
+      {
+        "season": "2013-14",
+        "team": "Minnesota Timberwolves",
+        "drives_z": -0.627,
+        "drive_fg": 0.398,
+        "net": 2.6,
+        "win": 0.488
+      },
+      {
+        "season": "2013-14",
+        "team": "New Orleans Pelicans",
+        "drives_z": 2.02,
+        "drive_fg": 0.425,
+        "net": -3.0,
+        "win": 0.415
+      },
+      {
+        "season": "2013-14",
+        "team": "New York Knicks",
+        "drives_z": -1.047,
+        "drive_fg": 0.442,
+        "net": -1.1,
+        "win": 0.451
+      },
+      {
+        "season": "2013-14",
+        "team": "Oklahoma City Thunder",
+        "drives_z": -0.553,
+        "drive_fg": 0.466,
+        "net": 6.4,
+        "win": 0.72
+      },
+      {
+        "season": "2013-14",
+        "team": "Orlando Magic",
+        "drives_z": -0.086,
+        "drive_fg": 0.419,
+        "net": -5.7,
+        "win": 0.28
+      },
+      {
+        "season": "2013-14",
+        "team": "Philadelphia 76ers",
+        "drives_z": 1.525,
+        "drive_fg": 0.411,
+        "net": -10.0,
+        "win": 0.232
+      },
+      {
+        "season": "2013-14",
+        "team": "Phoenix Suns",
+        "drives_z": 0.384,
+        "drive_fg": 0.457,
+        "net": 2.6,
+        "win": 0.585
+      },
+      {
+        "season": "2013-14",
+        "team": "Portland Trail Blazers",
+        "drives_z": -1.424,
+        "drive_fg": 0.427,
+        "net": 4.2,
+        "win": 0.659
+      },
+      {
+        "season": "2013-14",
+        "team": "Sacramento Kings",
+        "drives_z": -0.157,
+        "drive_fg": 0.434,
+        "net": -2.7,
+        "win": 0.341
+      },
+      {
+        "season": "2013-14",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.382,
+        "drive_fg": 0.487,
+        "net": 8.1,
+        "win": 0.756
+      },
+      {
+        "season": "2013-14",
+        "team": "Toronto Raptors",
+        "drives_z": 1.132,
+        "drive_fg": 0.43,
+        "net": 3.3,
+        "win": 0.585
+      },
+      {
+        "season": "2013-14",
+        "team": "Utah Jazz",
+        "drives_z": 0.097,
+        "drive_fg": 0.415,
+        "net": -7.6,
+        "win": 0.305
+      },
+      {
+        "season": "2013-14",
+        "team": "Washington Wizards",
+        "drives_z": -1.469,
+        "drive_fg": 0.416,
+        "net": 1.3,
+        "win": 0.537
+      },
+      {
+        "season": "2014-15",
+        "team": "Atlanta Hawks",
+        "drives_z": 1.119,
+        "drive_fg": 0.454,
+        "net": 5.9,
+        "win": 0.732
+      },
+      {
+        "season": "2014-15",
+        "team": "Boston Celtics",
+        "drives_z": -0.616,
+        "drive_fg": 0.44,
+        "net": 0.3,
+        "win": 0.488
+      },
+      {
+        "season": "2014-15",
+        "team": "Brooklyn Nets",
+        "drives_z": 0.525,
+        "drive_fg": 0.454,
+        "net": -3.0,
+        "win": 0.463
+      },
+      {
+        "season": "2014-15",
+        "team": "Charlotte Hornets",
+        "drives_z": -0.151,
+        "drive_fg": 0.413,
+        "net": -3.4,
+        "win": 0.402
+      },
+      {
+        "season": "2014-15",
+        "team": "Chicago Bulls",
+        "drives_z": 0.052,
+        "drive_fg": 0.456,
+        "net": 3.0,
+        "win": 0.61
+      },
+      {
+        "season": "2014-15",
+        "team": "Cleveland Cavaliers",
+        "drives_z": 0.04,
+        "drive_fg": 0.44,
+        "net": 4.8,
+        "win": 0.646
+      },
+      {
+        "season": "2014-15",
+        "team": "Dallas Mavericks",
+        "drives_z": 1.055,
+        "drive_fg": 0.451,
+        "net": 3.2,
+        "win": 0.61
+      },
+      {
+        "season": "2014-15",
+        "team": "Denver Nuggets",
+        "drives_z": 0.86,
+        "drive_fg": 0.434,
+        "net": -3.3,
+        "win": 0.366
+      },
+      {
+        "season": "2014-15",
+        "team": "Detroit Pistons",
+        "drives_z": 0.028,
+        "drive_fg": 0.404,
+        "net": -1.1,
+        "win": 0.39
+      },
+      {
+        "season": "2014-15",
+        "team": "Golden State Warriors",
+        "drives_z": -1.481,
+        "drive_fg": 0.45,
+        "net": 9.9,
+        "win": 0.817
+      },
+      {
+        "season": "2014-15",
+        "team": "Houston Rockets",
+        "drives_z": 0.134,
+        "drive_fg": 0.428,
+        "net": 3.4,
+        "win": 0.683
+      },
+      {
+        "season": "2014-15",
+        "team": "Indiana Pacers",
+        "drives_z": -1.085,
+        "drive_fg": 0.418,
+        "net": 0.2,
+        "win": 0.463
+      },
+      {
+        "season": "2014-15",
+        "team": "Los Angeles Clippers",
+        "drives_z": -1.428,
+        "drive_fg": 0.449,
+        "net": 6.9,
+        "win": 0.683
+      },
+      {
+        "season": "2014-15",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.805,
+        "drive_fg": 0.411,
+        "net": -7.1,
+        "win": 0.256
+      },
+      {
+        "season": "2014-15",
+        "team": "Memphis Grizzlies",
+        "drives_z": -0.981,
+        "drive_fg": 0.427,
+        "net": 3.5,
+        "win": 0.671
+      },
+      {
+        "season": "2014-15",
+        "team": "Miami Heat",
+        "drives_z": 0.829,
+        "drive_fg": 0.457,
+        "net": -3.0,
+        "win": 0.451
+      },
+      {
+        "season": "2014-15",
+        "team": "Milwaukee Bucks",
+        "drives_z": 0.835,
+        "drive_fg": 0.436,
+        "net": 0.6,
+        "win": 0.5
+      },
+      {
+        "season": "2014-15",
+        "team": "Minnesota Timberwolves",
+        "drives_z": -1.561,
+        "drive_fg": 0.418,
+        "net": -9.1,
+        "win": 0.195
+      },
+      {
+        "season": "2014-15",
+        "team": "New Orleans Pelicans",
+        "drives_z": 1.431,
+        "drive_fg": 0.444,
+        "net": 0.8,
+        "win": 0.549
+      },
+      {
+        "season": "2014-15",
+        "team": "New York Knicks",
+        "drives_z": -1.741,
+        "drive_fg": 0.421,
+        "net": -10.1,
+        "win": 0.207
+      },
+      {
+        "season": "2014-15",
+        "team": "Oklahoma City Thunder",
+        "drives_z": -0.01,
+        "drive_fg": 0.438,
+        "net": 2.1,
+        "win": 0.549
+      },
+      {
+        "season": "2014-15",
+        "team": "Orlando Magic",
+        "drives_z": 1.205,
+        "drive_fg": 0.412,
+        "net": -5.9,
+        "win": 0.305
+      },
+      {
+        "season": "2014-15",
+        "team": "Philadelphia 76ers",
+        "drives_z": 1.857,
+        "drive_fg": 0.401,
+        "net": -9.0,
+        "win": 0.22
+      },
+      {
+        "season": "2014-15",
+        "team": "Phoenix Suns",
+        "drives_z": 0.379,
+        "drive_fg": 0.446,
+        "net": -1.1,
+        "win": 0.476
+      },
+      {
+        "season": "2014-15",
+        "team": "Portland Trail Blazers",
+        "drives_z": -1.073,
+        "drive_fg": 0.467,
+        "net": 4.3,
+        "win": 0.622
+      },
+      {
+        "season": "2014-15",
+        "team": "Sacramento Kings",
+        "drives_z": -0.182,
+        "drive_fg": 0.443,
+        "net": -3.7,
+        "win": 0.354
+      },
+      {
+        "season": "2014-15",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.958,
+        "drive_fg": 0.472,
+        "net": 6.3,
+        "win": 0.671
+      },
+      {
+        "season": "2014-15",
+        "team": "Toronto Raptors",
+        "drives_z": 0.508,
+        "drive_fg": 0.456,
+        "net": 3.1,
+        "win": 0.598
+      },
+      {
+        "season": "2014-15",
+        "team": "Utah Jazz",
+        "drives_z": 0.796,
+        "drive_fg": 0.383,
+        "net": 0.1,
+        "win": 0.463
+      },
+      {
+        "season": "2014-15",
+        "team": "Washington Wizards",
+        "drives_z": -1.495,
+        "drive_fg": 0.448,
+        "net": 0.6,
+        "win": 0.561
+      },
+      {
+        "season": "2015-16",
+        "team": "Atlanta Hawks",
+        "drives_z": 0.76,
+        "drive_fg": 0.439,
+        "net": 3.9,
+        "win": 0.585
+      },
+      {
+        "season": "2015-16",
+        "team": "Boston Celtics",
+        "drives_z": -0.165,
+        "drive_fg": 0.431,
+        "net": 3.3,
+        "win": 0.585
+      },
+      {
+        "season": "2015-16",
+        "team": "Brooklyn Nets",
+        "drives_z": -0.243,
+        "drive_fg": 0.441,
+        "net": -7.4,
+        "win": 0.256
+      },
+      {
+        "season": "2015-16",
+        "team": "Charlotte Hornets",
+        "drives_z": 0.002,
+        "drive_fg": 0.433,
+        "net": 2.7,
+        "win": 0.585
+      },
+      {
+        "season": "2015-16",
+        "team": "Chicago Bulls",
+        "drives_z": 0.178,
+        "drive_fg": 0.432,
+        "net": -1.4,
+        "win": 0.512
+      },
+      {
+        "season": "2015-16",
+        "team": "Cleveland Cavaliers",
+        "drives_z": -0.237,
+        "drive_fg": 0.442,
+        "net": 6.3,
+        "win": 0.695
+      },
+      {
+        "season": "2015-16",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.337,
+        "drive_fg": 0.463,
+        "net": -0.4,
+        "win": 0.512
+      },
+      {
+        "season": "2015-16",
+        "team": "Denver Nuggets",
+        "drives_z": 0.391,
+        "drive_fg": 0.39,
+        "net": -3.3,
+        "win": 0.402
+      },
+      {
+        "season": "2015-16",
+        "team": "Detroit Pistons",
+        "drives_z": 0.117,
+        "drive_fg": 0.442,
+        "net": 0.3,
+        "win": 0.537
+      },
+      {
+        "season": "2015-16",
+        "team": "Golden State Warriors",
+        "drives_z": -2.009,
+        "drive_fg": 0.486,
+        "net": 10.6,
+        "win": 0.89
+      },
+      {
+        "season": "2015-16",
+        "team": "Houston Rockets",
+        "drives_z": 0.472,
+        "drive_fg": 0.434,
+        "net": 0.0,
+        "win": 0.5
+      },
+      {
+        "season": "2015-16",
+        "team": "Indiana Pacers",
+        "drives_z": -1.317,
+        "drive_fg": 0.427,
+        "net": 1.6,
+        "win": 0.549
+      },
+      {
+        "season": "2015-16",
+        "team": "LA Clippers",
+        "drives_z": -1.001,
+        "drive_fg": 0.462,
+        "net": 4.5,
+        "win": 0.646
+      },
+      {
+        "season": "2015-16",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.813,
+        "drive_fg": 0.429,
+        "net": -9.7,
+        "win": 0.207
+      },
+      {
+        "season": "2015-16",
+        "team": "Memphis Grizzlies",
+        "drives_z": -0.816,
+        "drive_fg": 0.423,
+        "net": -2.4,
+        "win": 0.512
+      },
+      {
+        "season": "2015-16",
+        "team": "Miami Heat",
+        "drives_z": 1.287,
+        "drive_fg": 0.479,
+        "net": 1.7,
+        "win": 0.585
+      },
+      {
+        "season": "2015-16",
+        "team": "Milwaukee Bucks",
+        "drives_z": 0.396,
+        "drive_fg": 0.439,
+        "net": -4.5,
+        "win": 0.402
+      },
+      {
+        "season": "2015-16",
+        "team": "Minnesota Timberwolves",
+        "drives_z": -0.901,
+        "drive_fg": 0.447,
+        "net": -3.5,
+        "win": 0.354
+      },
+      {
+        "season": "2015-16",
+        "team": "New Orleans Pelicans",
+        "drives_z": 0.951,
+        "drive_fg": 0.445,
+        "net": -3.7,
+        "win": 0.366
+      },
+      {
+        "season": "2015-16",
+        "team": "New York Knicks",
+        "drives_z": -2.321,
+        "drive_fg": 0.423,
+        "net": -2.8,
+        "win": 0.39
+      },
+      {
+        "season": "2015-16",
+        "team": "Oklahoma City Thunder",
+        "drives_z": -0.022,
+        "drive_fg": 0.458,
+        "net": 7.4,
+        "win": 0.671
+      },
+      {
+        "season": "2015-16",
+        "team": "Orlando Magic",
+        "drives_z": 0.186,
+        "drive_fg": 0.43,
+        "net": -1.6,
+        "win": 0.427
+      },
+      {
+        "season": "2015-16",
+        "team": "Philadelphia 76ers",
+        "drives_z": 1.944,
+        "drive_fg": 0.42,
+        "net": -10.2,
+        "win": 0.122
+      },
+      {
+        "season": "2015-16",
+        "team": "Phoenix Suns",
+        "drives_z": -0.61,
+        "drive_fg": 0.43,
+        "net": -6.5,
+        "win": 0.28
+      },
+      {
+        "season": "2015-16",
+        "team": "Portland Trail Blazers",
+        "drives_z": -0.033,
+        "drive_fg": 0.435,
+        "net": 0.8,
+        "win": 0.537
+      },
+      {
+        "season": "2015-16",
+        "team": "Sacramento Kings",
+        "drives_z": 0.173,
+        "drive_fg": 0.43,
+        "net": -2.3,
+        "win": 0.402
+      },
+      {
+        "season": "2015-16",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.058,
+        "drive_fg": 0.465,
+        "net": 11.1,
+        "win": 0.817
+      },
+      {
+        "season": "2015-16",
+        "team": "Toronto Raptors",
+        "drives_z": 2.172,
+        "drive_fg": 0.453,
+        "net": 4.4,
+        "win": 0.683
+      },
+      {
+        "season": "2015-16",
+        "team": "Utah Jazz",
+        "drives_z": 1.587,
+        "drive_fg": 0.424,
+        "net": 1.8,
+        "win": 0.488
+      },
+      {
+        "season": "2015-16",
+        "team": "Washington Wizards",
+        "drives_z": -0.523,
+        "drive_fg": 0.448,
+        "net": -0.5,
+        "win": 0.5
+      },
+      {
+        "season": "2016-17",
+        "team": "Atlanta Hawks",
+        "drives_z": 0.269,
+        "drive_fg": 0.438,
+        "net": -0.7,
+        "win": 0.524
+      },
+      {
+        "season": "2016-17",
+        "team": "Boston Celtics",
+        "drives_z": -0.281,
+        "drive_fg": 0.469,
+        "net": 2.6,
+        "win": 0.646
+      },
+      {
+        "season": "2016-17",
+        "team": "Brooklyn Nets",
+        "drives_z": 1.085,
+        "drive_fg": 0.461,
+        "net": -6.5,
+        "win": 0.244
+      },
+      {
+        "season": "2016-17",
+        "team": "Charlotte Hornets",
+        "drives_z": -0.355,
+        "drive_fg": 0.442,
+        "net": 0.0,
+        "win": 0.439
+      },
+      {
+        "season": "2016-17",
+        "team": "Chicago Bulls",
+        "drives_z": 0.563,
+        "drive_fg": 0.444,
+        "net": 0.3,
+        "win": 0.5
+      },
+      {
+        "season": "2016-17",
+        "team": "Cleveland Cavaliers",
+        "drives_z": -0.949,
+        "drive_fg": 0.475,
+        "net": 3.1,
+        "win": 0.622
+      },
+      {
+        "season": "2016-17",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.149,
+        "drive_fg": 0.47,
+        "net": -3.0,
+        "win": 0.402
+      },
+      {
+        "season": "2016-17",
+        "team": "Denver Nuggets",
+        "drives_z": 0.273,
+        "drive_fg": 0.454,
+        "net": 0.4,
+        "win": 0.488
+      },
+      {
+        "season": "2016-17",
+        "team": "Detroit Pistons",
+        "drives_z": -0.334,
+        "drive_fg": 0.458,
+        "net": -1.4,
+        "win": 0.451
+      },
+      {
+        "season": "2016-17",
+        "team": "Golden State Warriors",
+        "drives_z": -2.545,
+        "drive_fg": 0.478,
+        "net": 11.4,
+        "win": 0.817
+      },
+      {
+        "season": "2016-17",
+        "team": "Houston Rockets",
+        "drives_z": 0.577,
+        "drive_fg": 0.459,
+        "net": 5.7,
+        "win": 0.671
+      },
+      {
+        "season": "2016-17",
+        "team": "Indiana Pacers",
+        "drives_z": -0.406,
+        "drive_fg": 0.45,
+        "net": -0.2,
+        "win": 0.512
+      },
+      {
+        "season": "2016-17",
+        "team": "LA Clippers",
+        "drives_z": -1.305,
+        "drive_fg": 0.478,
+        "net": 4.4,
+        "win": 0.622
+      },
+      {
+        "season": "2016-17",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.524,
+        "drive_fg": 0.444,
+        "net": -6.7,
+        "win": 0.317
+      },
+      {
+        "season": "2016-17",
+        "team": "Memphis Grizzlies",
+        "drives_z": -1.187,
+        "drive_fg": 0.432,
+        "net": 0.5,
+        "win": 0.524
+      },
+      {
+        "season": "2016-17",
+        "team": "Miami Heat",
+        "drives_z": 2.266,
+        "drive_fg": 0.44,
+        "net": 1.0,
+        "win": 0.5
+      },
+      {
+        "season": "2016-17",
+        "team": "Milwaukee Bucks",
+        "drives_z": 0.781,
+        "drive_fg": 0.46,
+        "net": -0.2,
+        "win": 0.512
+      },
+      {
+        "season": "2016-17",
+        "team": "Minnesota Timberwolves",
+        "drives_z": -0.7,
+        "drive_fg": 0.45,
+        "net": -0.9,
+        "win": 0.378
+      },
+      {
+        "season": "2016-17",
+        "team": "New Orleans Pelicans",
+        "drives_z": 0.033,
+        "drive_fg": 0.457,
+        "net": -2.1,
+        "win": 0.415
+      },
+      {
+        "season": "2016-17",
+        "team": "New York Knicks",
+        "drives_z": -1.303,
+        "drive_fg": 0.426,
+        "net": -3.6,
+        "win": 0.378
+      },
+      {
+        "season": "2016-17",
+        "team": "Oklahoma City Thunder",
+        "drives_z": -0.387,
+        "drive_fg": 0.432,
+        "net": 0.8,
+        "win": 0.573
+      },
+      {
+        "season": "2016-17",
+        "team": "Orlando Magic",
+        "drives_z": -0.306,
+        "drive_fg": 0.436,
+        "net": -6.5,
+        "win": 0.354
+      },
+      {
+        "season": "2016-17",
+        "team": "Philadelphia 76ers",
+        "drives_z": 1.506,
+        "drive_fg": 0.451,
+        "net": -5.5,
+        "win": 0.341
+      },
+      {
+        "season": "2016-17",
+        "team": "Phoenix Suns",
+        "drives_z": 0.298,
+        "drive_fg": 0.442,
+        "net": -5.2,
+        "win": 0.293
+      },
+      {
+        "season": "2016-17",
+        "team": "Portland Trail Blazers",
+        "drives_z": -0.18,
+        "drive_fg": 0.449,
+        "net": -0.6,
+        "win": 0.5
+      },
+      {
+        "season": "2016-17",
+        "team": "Sacramento Kings",
+        "drives_z": -0.334,
+        "drive_fg": 0.448,
+        "net": -4.2,
+        "win": 0.39
+      },
+      {
+        "season": "2016-17",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.33,
+        "drive_fg": 0.44,
+        "net": 7.4,
+        "win": 0.744
+      },
+      {
+        "season": "2016-17",
+        "team": "Toronto Raptors",
+        "drives_z": 1.69,
+        "drive_fg": 0.488,
+        "net": 4.3,
+        "win": 0.622
+      },
+      {
+        "season": "2016-17",
+        "team": "Utah Jazz",
+        "drives_z": 1.711,
+        "drive_fg": 0.466,
+        "net": 4.3,
+        "win": 0.622
+      },
+      {
+        "season": "2016-17",
+        "team": "Washington Wizards",
+        "drives_z": -0.435,
+        "drive_fg": 0.485,
+        "net": 1.7,
+        "win": 0.598
+      },
+      {
+        "season": "2017-18",
+        "team": "Atlanta Hawks",
+        "drives_z": 1.066,
+        "drive_fg": 0.429,
+        "net": -5.7,
+        "win": 0.293
+      },
+      {
+        "season": "2017-18",
+        "team": "Boston Celtics",
+        "drives_z": -0.507,
+        "drive_fg": 0.459,
+        "net": 3.6,
+        "win": 0.671
+      },
+      {
+        "season": "2017-18",
+        "team": "Brooklyn Nets",
+        "drives_z": 1.277,
+        "drive_fg": 0.456,
+        "net": -3.6,
+        "win": 0.341
+      },
+      {
+        "season": "2017-18",
+        "team": "Charlotte Hornets",
+        "drives_z": -0.767,
+        "drive_fg": 0.46,
+        "net": -0.1,
+        "win": 0.439
+      },
+      {
+        "season": "2017-18",
+        "team": "Chicago Bulls",
+        "drives_z": 0.01,
+        "drive_fg": 0.41,
+        "net": -7.0,
+        "win": 0.329
+      },
+      {
+        "season": "2017-18",
+        "team": "Cleveland Cavaliers",
+        "drives_z": -1.337,
+        "drive_fg": 0.512,
+        "net": 1.0,
+        "win": 0.61
+      },
+      {
+        "season": "2017-18",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.206,
+        "drive_fg": 0.439,
+        "net": -2.9,
+        "win": 0.293
+      },
+      {
+        "season": "2017-18",
+        "team": "Denver Nuggets",
+        "drives_z": 0.05,
+        "drive_fg": 0.471,
+        "net": 1.4,
+        "win": 0.561
+      },
+      {
+        "season": "2017-18",
+        "team": "Detroit Pistons",
+        "drives_z": 0.478,
+        "drive_fg": 0.426,
+        "net": -0.1,
+        "win": 0.476
+      },
+      {
+        "season": "2017-18",
+        "team": "Golden State Warriors",
+        "drives_z": -3.062,
+        "drive_fg": 0.479,
+        "net": 5.9,
+        "win": 0.707
+      },
+      {
+        "season": "2017-18",
+        "team": "Houston Rockets",
+        "drives_z": 0.082,
+        "drive_fg": 0.496,
+        "net": 8.4,
+        "win": 0.793
+      },
+      {
+        "season": "2017-18",
+        "team": "Indiana Pacers",
+        "drives_z": -0.413,
+        "drive_fg": 0.494,
+        "net": 1.3,
+        "win": 0.585
+      },
+      {
+        "season": "2017-18",
+        "team": "LA Clippers",
+        "drives_z": 0.341,
+        "drive_fg": 0.458,
+        "net": 0.2,
+        "win": 0.512
+      },
+      {
+        "season": "2017-18",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.356,
+        "drive_fg": 0.459,
+        "net": -1.3,
+        "win": 0.427
+      },
+      {
+        "season": "2017-18",
+        "team": "Memphis Grizzlies",
+        "drives_z": 0.135,
+        "drive_fg": 0.46,
+        "net": -6.8,
+        "win": 0.268
+      },
+      {
+        "season": "2017-18",
+        "team": "Miami Heat",
+        "drives_z": 1.128,
+        "drive_fg": 0.477,
+        "net": 0.4,
+        "win": 0.537
+      },
+      {
+        "season": "2017-18",
+        "team": "Milwaukee Bucks",
+        "drives_z": 0.534,
+        "drive_fg": 0.5,
+        "net": -0.2,
+        "win": 0.537
+      },
+      {
+        "season": "2017-18",
+        "team": "Minnesota Timberwolves",
+        "drives_z": 0.045,
+        "drive_fg": 0.489,
+        "net": 2.3,
+        "win": 0.573
+      },
+      {
+        "season": "2017-18",
+        "team": "New Orleans Pelicans",
+        "drives_z": -0.112,
+        "drive_fg": 0.509,
+        "net": 1.1,
+        "win": 0.585
+      },
+      {
+        "season": "2017-18",
+        "team": "New York Knicks",
+        "drives_z": -1.247,
+        "drive_fg": 0.444,
+        "net": -3.4,
+        "win": 0.354
+      },
+      {
+        "season": "2017-18",
+        "team": "Oklahoma City Thunder",
+        "drives_z": -0.325,
+        "drive_fg": 0.472,
+        "net": 3.7,
+        "win": 0.585
+      },
+      {
+        "season": "2017-18",
+        "team": "Orlando Magic",
+        "drives_z": 0.948,
+        "drive_fg": 0.45,
+        "net": -4.7,
+        "win": 0.305
+      },
+      {
+        "season": "2017-18",
+        "team": "Philadelphia 76ers",
+        "drives_z": -0.472,
+        "drive_fg": 0.454,
+        "net": 4.6,
+        "win": 0.634
+      },
+      {
+        "season": "2017-18",
+        "team": "Phoenix Suns",
+        "drives_z": -0.169,
+        "drive_fg": 0.424,
+        "net": -9.0,
+        "win": 0.256
+      },
+      {
+        "season": "2017-18",
+        "team": "Portland Trail Blazers",
+        "drives_z": -0.786,
+        "drive_fg": 0.432,
+        "net": 2.7,
+        "win": 0.598
+      },
+      {
+        "season": "2017-18",
+        "team": "Sacramento Kings",
+        "drives_z": -0.664,
+        "drive_fg": 0.418,
+        "net": -7.3,
+        "win": 0.329
+      },
+      {
+        "season": "2017-18",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.744,
+        "drive_fg": 0.46,
+        "net": 3.0,
+        "win": 0.573
+      },
+      {
+        "season": "2017-18",
+        "team": "Toronto Raptors",
+        "drives_z": 1.872,
+        "drive_fg": 0.481,
+        "net": 7.7,
+        "win": 0.72
+      },
+      {
+        "season": "2017-18",
+        "team": "Utah Jazz",
+        "drives_z": 2.095,
+        "drive_fg": 0.452,
+        "net": 4.4,
+        "win": 0.585
+      },
+      {
+        "season": "2017-18",
+        "team": "Washington Wizards",
+        "drives_z": -0.792,
+        "drive_fg": 0.462,
+        "net": 0.4,
+        "win": 0.524
+      },
+      {
+        "season": "2018-19",
+        "team": "Atlanta Hawks",
+        "drives_z": 1.228,
+        "drive_fg": 0.46,
+        "net": -5.5,
+        "win": 0.354
+      },
+      {
+        "season": "2018-19",
+        "team": "Boston Celtics",
+        "drives_z": -0.95,
+        "drive_fg": 0.496,
+        "net": 4.3,
+        "win": 0.598
+      },
+      {
+        "season": "2018-19",
+        "team": "Brooklyn Nets",
+        "drives_z": 1.391,
+        "drive_fg": 0.48,
+        "net": -0.1,
+        "win": 0.512
+      },
+      {
+        "season": "2018-19",
+        "team": "Charlotte Hornets",
+        "drives_z": 1.369,
+        "drive_fg": 0.469,
+        "net": -1.3,
+        "win": 0.476
+      },
+      {
+        "season": "2018-19",
+        "team": "Chicago Bulls",
+        "drives_z": 1.457,
+        "drive_fg": 0.463,
+        "net": -8.3,
+        "win": 0.268
+      },
+      {
+        "season": "2018-19",
+        "team": "Cleveland Cavaliers",
+        "drives_z": 0.506,
+        "drive_fg": 0.451,
+        "net": -10.0,
+        "win": 0.232
+      },
+      {
+        "season": "2018-19",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.574,
+        "drive_fg": 0.482,
+        "net": -1.5,
+        "win": 0.402
+      },
+      {
+        "season": "2018-19",
+        "team": "Denver Nuggets",
+        "drives_z": -0.763,
+        "drive_fg": 0.463,
+        "net": 4.0,
+        "win": 0.659
+      },
+      {
+        "season": "2018-19",
+        "team": "Detroit Pistons",
+        "drives_z": -0.416,
+        "drive_fg": 0.462,
+        "net": -0.3,
+        "win": 0.5
+      },
+      {
+        "season": "2018-19",
+        "team": "Golden State Warriors",
+        "drives_z": -2.95,
+        "drive_fg": 0.496,
+        "net": 6.5,
+        "win": 0.695
+      },
+      {
+        "season": "2018-19",
+        "team": "Houston Rockets",
+        "drives_z": 0.241,
+        "drive_fg": 0.49,
+        "net": 4.8,
+        "win": 0.646
+      },
+      {
+        "season": "2018-19",
+        "team": "Indiana Pacers",
+        "drives_z": -0.606,
+        "drive_fg": 0.457,
+        "net": 3.4,
+        "win": 0.585
+      },
+      {
+        "season": "2018-19",
+        "team": "LA Clippers",
+        "drives_z": 0.343,
+        "drive_fg": 0.466,
+        "net": 1.0,
+        "win": 0.585
+      },
+      {
+        "season": "2018-19",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.745,
+        "drive_fg": 0.473,
+        "net": -1.6,
+        "win": 0.451
+      },
+      {
+        "season": "2018-19",
+        "team": "Memphis Grizzlies",
+        "drives_z": -0.29,
+        "drive_fg": 0.451,
+        "net": -2.4,
+        "win": 0.402
+      },
+      {
+        "season": "2018-19",
+        "team": "Miami Heat",
+        "drives_z": 1.089,
+        "drive_fg": 0.433,
+        "net": -0.4,
+        "win": 0.476
+      },
+      {
+        "season": "2018-19",
+        "team": "Milwaukee Bucks",
+        "drives_z": 0.54,
+        "drive_fg": 0.55,
+        "net": 8.6,
+        "win": 0.732
+      },
+      {
+        "season": "2018-19",
+        "team": "Minnesota Timberwolves",
+        "drives_z": -0.553,
+        "drive_fg": 0.445,
+        "net": -1.6,
+        "win": 0.439
+      },
+      {
+        "season": "2018-19",
+        "team": "New Orleans Pelicans",
+        "drives_z": -0.144,
+        "drive_fg": 0.503,
+        "net": -1.3,
+        "win": 0.402
+      },
+      {
+        "season": "2018-19",
+        "team": "New York Knicks",
+        "drives_z": 0.288,
+        "drive_fg": 0.426,
+        "net": -8.9,
+        "win": 0.207
+      },
+      {
+        "season": "2018-19",
+        "team": "Oklahoma City Thunder",
+        "drives_z": 0.158,
+        "drive_fg": 0.463,
+        "net": 3.4,
+        "win": 0.598
+      },
+      {
+        "season": "2018-19",
+        "team": "Orlando Magic",
+        "drives_z": -0.287,
+        "drive_fg": 0.45,
+        "net": 0.6,
+        "win": 0.512
+      },
+      {
+        "season": "2018-19",
+        "team": "Philadelphia 76ers",
+        "drives_z": -1.262,
+        "drive_fg": 0.503,
+        "net": 2.6,
+        "win": 0.622
+      },
+      {
+        "season": "2018-19",
+        "team": "Phoenix Suns",
+        "drives_z": -0.442,
+        "drive_fg": 0.448,
+        "net": -8.9,
+        "win": 0.232
+      },
+      {
+        "season": "2018-19",
+        "team": "Portland Trail Blazers",
+        "drives_z": -1.198,
+        "drive_fg": 0.481,
+        "net": 4.2,
+        "win": 0.646
+      },
+      {
+        "season": "2018-19",
+        "team": "Sacramento Kings",
+        "drives_z": -1.07,
+        "drive_fg": 0.443,
+        "net": -1.2,
+        "win": 0.476
+      },
+      {
+        "season": "2018-19",
+        "team": "San Antonio Spurs",
+        "drives_z": -0.208,
+        "drive_fg": 0.51,
+        "net": 1.6,
+        "win": 0.585
+      },
+      {
+        "season": "2018-19",
+        "team": "Toronto Raptors",
+        "drives_z": 0.664,
+        "drive_fg": 0.495,
+        "net": 5.8,
+        "win": 0.707
+      },
+      {
+        "season": "2018-19",
+        "team": "Utah Jazz",
+        "drives_z": 1.888,
+        "drive_fg": 0.478,
+        "net": 5.0,
+        "win": 0.61
+      },
+      {
+        "season": "2018-19",
+        "team": "Washington Wizards",
+        "drives_z": 0.149,
+        "drive_fg": 0.496,
+        "net": -2.7,
+        "win": 0.39
+      },
+      {
+        "season": "2019-20",
+        "team": "Atlanta Hawks",
+        "drives_z": 0.703,
+        "drive_fg": 0.459,
+        "net": -7.4,
+        "win": 0.299
+      },
+      {
+        "season": "2019-20",
+        "team": "Boston Celtics",
+        "drives_z": -0.2,
+        "drive_fg": 0.457,
+        "net": 6.3,
+        "win": 0.667
+      },
+      {
+        "season": "2019-20",
+        "team": "Brooklyn Nets",
+        "drives_z": 0.931,
+        "drive_fg": 0.451,
+        "net": -0.5,
+        "win": 0.486
+      },
+      {
+        "season": "2019-20",
+        "team": "Charlotte Hornets",
+        "drives_z": 1.057,
+        "drive_fg": 0.412,
+        "net": -7.0,
+        "win": 0.354
+      },
+      {
+        "season": "2019-20",
+        "team": "Chicago Bulls",
+        "drives_z": 1.732,
+        "drive_fg": 0.438,
+        "net": -3.1,
+        "win": 0.338
+      },
+      {
+        "season": "2019-20",
+        "team": "Cleveland Cavaliers",
+        "drives_z": 1.089,
+        "drive_fg": 0.461,
+        "net": -7.9,
+        "win": 0.292
+      },
+      {
+        "season": "2019-20",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.159,
+        "drive_fg": 0.493,
+        "net": 4.8,
+        "win": 0.573
+      },
+      {
+        "season": "2019-20",
+        "team": "Denver Nuggets",
+        "drives_z": -1.279,
+        "drive_fg": 0.434,
+        "net": 2.2,
+        "win": 0.63
+      },
+      {
+        "season": "2019-20",
+        "team": "Detroit Pistons",
+        "drives_z": 1.363,
+        "drive_fg": 0.472,
+        "net": -3.5,
+        "win": 0.303
+      },
+      {
+        "season": "2019-20",
+        "team": "Golden State Warriors",
+        "drives_z": -0.435,
+        "drive_fg": 0.441,
+        "net": -8.6,
+        "win": 0.231
+      },
+      {
+        "season": "2019-20",
+        "team": "Houston Rockets",
+        "drives_z": 0.035,
+        "drive_fg": 0.523,
+        "net": 2.7,
+        "win": 0.611
+      },
+      {
+        "season": "2019-20",
+        "team": "Indiana Pacers",
+        "drives_z": -0.052,
+        "drive_fg": 0.488,
+        "net": 1.9,
+        "win": 0.616
+      },
+      {
+        "season": "2019-20",
+        "team": "LA Clippers",
+        "drives_z": -0.988,
+        "drive_fg": 0.483,
+        "net": 6.3,
+        "win": 0.681
+      },
+      {
+        "season": "2019-20",
+        "team": "Los Angeles Lakers",
+        "drives_z": -1.614,
+        "drive_fg": 0.496,
+        "net": 5.6,
+        "win": 0.732
+      },
+      {
+        "season": "2019-20",
+        "team": "Memphis Grizzlies",
+        "drives_z": -0.035,
+        "drive_fg": 0.458,
+        "net": -1.0,
+        "win": 0.466
+      },
+      {
+        "season": "2019-20",
+        "team": "Miami Heat",
+        "drives_z": -0.555,
+        "drive_fg": 0.476,
+        "net": 2.7,
+        "win": 0.603
+      },
+      {
+        "season": "2019-20",
+        "team": "Milwaukee Bucks",
+        "drives_z": -1.672,
+        "drive_fg": 0.534,
+        "net": 9.4,
+        "win": 0.767
+      },
+      {
+        "season": "2019-20",
+        "team": "Minnesota Timberwolves",
+        "drives_z": 1.251,
+        "drive_fg": 0.475,
+        "net": -4.0,
+        "win": 0.297
+      },
+      {
+        "season": "2019-20",
+        "team": "New Orleans Pelicans",
+        "drives_z": -0.362,
+        "drive_fg": 0.449,
+        "net": -1.3,
+        "win": 0.417
+      },
+      {
+        "season": "2019-20",
+        "team": "New York Knicks",
+        "drives_z": 0.412,
+        "drive_fg": 0.423,
+        "net": -6.5,
+        "win": 0.318
+      },
+      {
+        "season": "2019-20",
+        "team": "Oklahoma City Thunder",
+        "drives_z": 1.165,
+        "drive_fg": 0.49,
+        "net": 2.1,
+        "win": 0.611
+      },
+      {
+        "season": "2019-20",
+        "team": "Orlando Magic",
+        "drives_z": -0.716,
+        "drive_fg": 0.468,
+        "net": -1.3,
+        "win": 0.452
+      },
+      {
+        "season": "2019-20",
+        "team": "Philadelphia 76ers",
+        "drives_z": -1.114,
+        "drive_fg": 0.482,
+        "net": 2.3,
+        "win": 0.589
+      },
+      {
+        "season": "2019-20",
+        "team": "Phoenix Suns",
+        "drives_z": -0.533,
+        "drive_fg": 0.467,
+        "net": 0.5,
+        "win": 0.466
+      },
+      {
+        "season": "2019-20",
+        "team": "Portland Trail Blazers",
+        "drives_z": -1.842,
+        "drive_fg": 0.485,
+        "net": -1.1,
+        "win": 0.473
+      },
+      {
+        "season": "2019-20",
+        "team": "Sacramento Kings",
+        "drives_z": -0.249,
+        "drive_fg": 0.464,
+        "net": -1.9,
+        "win": 0.431
+      },
+      {
+        "season": "2019-20",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.741,
+        "drive_fg": 0.507,
+        "net": -0.9,
+        "win": 0.451
+      },
+      {
+        "season": "2019-20",
+        "team": "Toronto Raptors",
+        "drives_z": -0.529,
+        "drive_fg": 0.456,
+        "net": 6.1,
+        "win": 0.736
+      },
+      {
+        "season": "2019-20",
+        "team": "Utah Jazz",
+        "drives_z": 1.812,
+        "drive_fg": 0.477,
+        "net": 2.5,
+        "win": 0.611
+      },
+      {
+        "season": "2019-20",
+        "team": "Washington Wizards",
+        "drives_z": -0.276,
+        "drive_fg": 0.468,
+        "net": -4.5,
+        "win": 0.347
+      },
+      {
+        "season": "2020-21",
+        "team": "Atlanta Hawks",
+        "drives_z": 0.039,
+        "drive_fg": 0.455,
+        "net": 2.2,
+        "win": 0.569
+      },
+      {
+        "season": "2020-21",
+        "team": "Boston Celtics",
+        "drives_z": -0.054,
+        "drive_fg": 0.476,
+        "net": 1.2,
+        "win": 0.5
+      },
+      {
+        "season": "2020-21",
+        "team": "Brooklyn Nets",
+        "drives_z": -0.842,
+        "drive_fg": 0.502,
+        "net": 4.2,
+        "win": 0.667
+      },
+      {
+        "season": "2020-21",
+        "team": "Charlotte Hornets",
+        "drives_z": 0.828,
+        "drive_fg": 0.472,
+        "net": -1.9,
+        "win": 0.458
+      },
+      {
+        "season": "2020-21",
+        "team": "Chicago Bulls",
+        "drives_z": -0.915,
+        "drive_fg": 0.474,
+        "net": -1.1,
+        "win": 0.431
+      },
+      {
+        "season": "2020-21",
+        "team": "Cleveland Cavaliers",
+        "drives_z": 0.402,
+        "drive_fg": 0.439,
+        "net": -8.3,
+        "win": 0.306
+      },
+      {
+        "season": "2020-21",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.273,
+        "drive_fg": 0.552,
+        "net": 2.3,
+        "win": 0.583
+      },
+      {
+        "season": "2020-21",
+        "team": "Denver Nuggets",
+        "drives_z": -1.893,
+        "drive_fg": 0.483,
+        "net": 4.8,
+        "win": 0.653
+      },
+      {
+        "season": "2020-21",
+        "team": "Detroit Pistons",
+        "drives_z": 1.052,
+        "drive_fg": 0.45,
+        "net": -4.5,
+        "win": 0.278
+      },
+      {
+        "season": "2020-21",
+        "team": "Golden State Warriors",
+        "drives_z": -1.083,
+        "drive_fg": 0.498,
+        "net": 1.1,
+        "win": 0.542
+      },
+      {
+        "season": "2020-21",
+        "team": "Houston Rockets",
+        "drives_z": -0.14,
+        "drive_fg": 0.485,
+        "net": -7.4,
+        "win": 0.236
+      },
+      {
+        "season": "2020-21",
+        "team": "Indiana Pacers",
+        "drives_z": 1.066,
+        "drive_fg": 0.48,
+        "net": 0.1,
+        "win": 0.472
+      },
+      {
+        "season": "2020-21",
+        "team": "LA Clippers",
+        "drives_z": -0.565,
+        "drive_fg": 0.487,
+        "net": 6.1,
+        "win": 0.653
+      },
+      {
+        "season": "2020-21",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.947,
+        "drive_fg": 0.488,
+        "net": 2.9,
+        "win": 0.583
+      },
+      {
+        "season": "2020-21",
+        "team": "Memphis Grizzlies",
+        "drives_z": 0.792,
+        "drive_fg": 0.462,
+        "net": 1.2,
+        "win": 0.528
+      },
+      {
+        "season": "2020-21",
+        "team": "Miami Heat",
+        "drives_z": -0.451,
+        "drive_fg": 0.477,
+        "net": -0.1,
+        "win": 0.556
+      },
+      {
+        "season": "2020-21",
+        "team": "Milwaukee Bucks",
+        "drives_z": -1.124,
+        "drive_fg": 0.529,
+        "net": 5.8,
+        "win": 0.639
+      },
+      {
+        "season": "2020-21",
+        "team": "Minnesota Timberwolves",
+        "drives_z": -0.301,
+        "drive_fg": 0.459,
+        "net": -5.3,
+        "win": 0.319
+      },
+      {
+        "season": "2020-21",
+        "team": "New Orleans Pelicans",
+        "drives_z": 0.712,
+        "drive_fg": 0.483,
+        "net": -0.3,
+        "win": 0.431
+      },
+      {
+        "season": "2020-21",
+        "team": "New York Knicks",
+        "drives_z": 0.923,
+        "drive_fg": 0.45,
+        "net": 2.4,
+        "win": 0.569
+      },
+      {
+        "season": "2020-21",
+        "team": "Oklahoma City Thunder",
+        "drives_z": 2.237,
+        "drive_fg": 0.457,
+        "net": -10.6,
+        "win": 0.306
+      },
+      {
+        "season": "2020-21",
+        "team": "Orlando Magic",
+        "drives_z": -0.425,
+        "drive_fg": 0.437,
+        "net": -9.3,
+        "win": 0.292
+      },
+      {
+        "season": "2020-21",
+        "team": "Philadelphia 76ers",
+        "drives_z": -0.329,
+        "drive_fg": 0.487,
+        "net": 5.5,
+        "win": 0.681
+      },
+      {
+        "season": "2020-21",
+        "team": "Phoenix Suns",
+        "drives_z": -0.404,
+        "drive_fg": 0.534,
+        "net": 5.9,
+        "win": 0.708
+      },
+      {
+        "season": "2020-21",
+        "team": "Portland Trail Blazers",
+        "drives_z": -2.468,
+        "drive_fg": 0.476,
+        "net": 1.8,
+        "win": 0.583
+      },
+      {
+        "season": "2020-21",
+        "team": "Sacramento Kings",
+        "drives_z": 0.58,
+        "drive_fg": 0.522,
+        "net": -3.8,
+        "win": 0.431
+      },
+      {
+        "season": "2020-21",
+        "team": "San Antonio Spurs",
+        "drives_z": 1.408,
+        "drive_fg": 0.483,
+        "net": -1.5,
+        "win": 0.458
+      },
+      {
+        "season": "2020-21",
+        "team": "Toronto Raptors",
+        "drives_z": 0.791,
+        "drive_fg": 0.464,
+        "net": -0.4,
+        "win": 0.375
+      },
+      {
+        "season": "2020-21",
+        "team": "Utah Jazz",
+        "drives_z": 1.093,
+        "drive_fg": 0.499,
+        "net": 9.0,
+        "win": 0.722
+      },
+      {
+        "season": "2020-21",
+        "team": "Washington Wizards",
+        "drives_z": -0.257,
+        "drive_fg": 0.474,
+        "net": -1.6,
+        "win": 0.472
+      },
+      {
+        "season": "2021-22",
+        "team": "Atlanta Hawks",
+        "drives_z": -0.199,
+        "drive_fg": 0.471,
+        "net": 1.6,
+        "win": 0.524
+      },
+      {
+        "season": "2021-22",
+        "team": "Boston Celtics",
+        "drives_z": 0.196,
+        "drive_fg": 0.491,
+        "net": 7.4,
+        "win": 0.622
+      },
+      {
+        "season": "2021-22",
+        "team": "Brooklyn Nets",
+        "drives_z": -1.288,
+        "drive_fg": 0.497,
+        "net": 0.9,
+        "win": 0.537
+      },
+      {
+        "season": "2021-22",
+        "team": "Charlotte Hornets",
+        "drives_z": 1.391,
+        "drive_fg": 0.473,
+        "net": 0.5,
+        "win": 0.524
+      },
+      {
+        "season": "2021-22",
+        "team": "Chicago Bulls",
+        "drives_z": -0.673,
+        "drive_fg": 0.513,
+        "net": -0.5,
+        "win": 0.561
+      },
+      {
+        "season": "2021-22",
+        "team": "Cleveland Cavaliers",
+        "drives_z": -0.035,
+        "drive_fg": 0.471,
+        "net": 2.1,
+        "win": 0.537
+      },
+      {
+        "season": "2021-22",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.826,
+        "drive_fg": 0.53,
+        "net": 3.5,
+        "win": 0.634
+      },
+      {
+        "season": "2021-22",
+        "team": "Denver Nuggets",
+        "drives_z": -2.423,
+        "drive_fg": 0.506,
+        "net": 2.3,
+        "win": 0.585
+      },
+      {
+        "season": "2021-22",
+        "team": "Detroit Pistons",
+        "drives_z": 0.834,
+        "drive_fg": 0.467,
+        "net": -7.7,
+        "win": 0.28
+      },
+      {
+        "season": "2021-22",
+        "team": "Golden State Warriors",
+        "drives_z": -1.139,
+        "drive_fg": 0.507,
+        "net": 5.5,
+        "win": 0.646
+      },
+      {
+        "season": "2021-22",
+        "team": "Houston Rockets",
+        "drives_z": -0.116,
+        "drive_fg": 0.483,
+        "net": -8.3,
+        "win": 0.244
+      },
+      {
+        "season": "2021-22",
+        "team": "Indiana Pacers",
+        "drives_z": 0.945,
+        "drive_fg": 0.484,
+        "net": -3.6,
+        "win": 0.305
+      },
+      {
+        "season": "2021-22",
+        "team": "LA Clippers",
+        "drives_z": -0.896,
+        "drive_fg": 0.474,
+        "net": 0.0,
+        "win": 0.512
+      },
+      {
+        "season": "2021-22",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.453,
+        "drive_fg": 0.503,
+        "net": -2.9,
+        "win": 0.402
+      },
+      {
+        "season": "2021-22",
+        "team": "Memphis Grizzlies",
+        "drives_z": 0.113,
+        "drive_fg": 0.464,
+        "net": 5.3,
+        "win": 0.683
+      },
+      {
+        "season": "2021-22",
+        "team": "Miami Heat",
+        "drives_z": -0.78,
+        "drive_fg": 0.494,
+        "net": 4.5,
+        "win": 0.646
+      },
+      {
+        "season": "2021-22",
+        "team": "Milwaukee Bucks",
+        "drives_z": -0.573,
+        "drive_fg": 0.516,
+        "net": 3.2,
+        "win": 0.622
+      },
+      {
+        "season": "2021-22",
+        "team": "Minnesota Timberwolves",
+        "drives_z": -0.939,
+        "drive_fg": 0.504,
+        "net": 2.7,
+        "win": 0.561
+      },
+      {
+        "season": "2021-22",
+        "team": "New Orleans Pelicans",
+        "drives_z": -0.46,
+        "drive_fg": 0.472,
+        "net": -0.8,
+        "win": 0.439
+      },
+      {
+        "season": "2021-22",
+        "team": "New York Knicks",
+        "drives_z": 0.501,
+        "drive_fg": 0.443,
+        "net": -0.4,
+        "win": 0.451
+      },
+      {
+        "season": "2021-22",
+        "team": "Oklahoma City Thunder",
+        "drives_z": 2.801,
+        "drive_fg": 0.452,
+        "net": -8.0,
+        "win": 0.293
+      },
+      {
+        "season": "2021-22",
+        "team": "Orlando Magic",
+        "drives_z": 0.234,
+        "drive_fg": 0.452,
+        "net": -8.1,
+        "win": 0.268
+      },
+      {
+        "season": "2021-22",
+        "team": "Philadelphia 76ers",
+        "drives_z": -0.54,
+        "drive_fg": 0.494,
+        "net": 2.8,
+        "win": 0.622
+      },
+      {
+        "season": "2021-22",
+        "team": "Phoenix Suns",
+        "drives_z": -0.622,
+        "drive_fg": 0.485,
+        "net": 7.5,
+        "win": 0.78
+      },
+      {
+        "season": "2021-22",
+        "team": "Portland Trail Blazers",
+        "drives_z": -0.583,
+        "drive_fg": 0.462,
+        "net": -9.1,
+        "win": 0.329
+      },
+      {
+        "season": "2021-22",
+        "team": "Sacramento Kings",
+        "drives_z": 0.922,
+        "drive_fg": 0.477,
+        "net": -5.2,
+        "win": 0.366
+      },
+      {
+        "season": "2021-22",
+        "team": "San Antonio Spurs",
+        "drives_z": 1.154,
+        "drive_fg": 0.476,
+        "net": 0.2,
+        "win": 0.415
+      },
+      {
+        "season": "2021-22",
+        "team": "Toronto Raptors",
+        "drives_z": -0.035,
+        "drive_fg": 0.449,
+        "net": 2.2,
+        "win": 0.585
+      },
+      {
+        "season": "2021-22",
+        "team": "Utah Jazz",
+        "drives_z": 1.322,
+        "drive_fg": 0.513,
+        "net": 6.2,
+        "win": 0.598
+      },
+      {
+        "season": "2021-22",
+        "team": "Washington Wizards",
+        "drives_z": 0.517,
+        "drive_fg": 0.478,
+        "net": -3.4,
+        "win": 0.427
+      },
+      {
+        "season": "2022-23",
+        "team": "Atlanta Hawks",
+        "drives_z": -0.057,
+        "drive_fg": 0.48,
+        "net": 0.1,
+        "win": 0.5
+      },
+      {
+        "season": "2022-23",
+        "team": "Boston Celtics",
+        "drives_z": -0.055,
+        "drive_fg": 0.526,
+        "net": 6.7,
+        "win": 0.695
+      },
+      {
+        "season": "2022-23",
+        "team": "Brooklyn Nets",
+        "drives_z": -0.316,
+        "drive_fg": 0.504,
+        "net": 1.1,
+        "win": 0.549
+      },
+      {
+        "season": "2022-23",
+        "team": "Charlotte Hornets",
+        "drives_z": 0.739,
+        "drive_fg": 0.453,
+        "net": -6.3,
+        "win": 0.329
+      },
+      {
+        "season": "2022-23",
+        "team": "Chicago Bulls",
+        "drives_z": -0.804,
+        "drive_fg": 0.536,
+        "net": 1.3,
+        "win": 0.488
+      },
+      {
+        "season": "2022-23",
+        "team": "Cleveland Cavaliers",
+        "drives_z": 0.516,
+        "drive_fg": 0.499,
+        "net": 5.6,
+        "win": 0.622
+      },
+      {
+        "season": "2022-23",
+        "team": "Dallas Mavericks",
+        "drives_z": -0.245,
+        "drive_fg": 0.547,
+        "net": -0.2,
+        "win": 0.463
+      },
+      {
+        "season": "2022-23",
+        "team": "Denver Nuggets",
+        "drives_z": -2.037,
+        "drive_fg": 0.492,
+        "net": 3.3,
+        "win": 0.646
+      },
+      {
+        "season": "2022-23",
+        "team": "Detroit Pistons",
+        "drives_z": 0.136,
+        "drive_fg": 0.457,
+        "net": -7.9,
+        "win": 0.207
+      },
+      {
+        "season": "2022-23",
+        "team": "Golden State Warriors",
+        "drives_z": -2.191,
+        "drive_fg": 0.505,
+        "net": 1.7,
+        "win": 0.537
+      },
+      {
+        "season": "2022-23",
+        "team": "Houston Rockets",
+        "drives_z": 0.632,
+        "drive_fg": 0.468,
+        "net": -8.1,
+        "win": 0.268
+      },
+      {
+        "season": "2022-23",
+        "team": "Indiana Pacers",
+        "drives_z": 1.495,
+        "drive_fg": 0.488,
+        "net": -3.3,
+        "win": 0.427
+      },
+      {
+        "season": "2022-23",
+        "team": "LA Clippers",
+        "drives_z": -0.299,
+        "drive_fg": 0.506,
+        "net": 0.5,
+        "win": 0.537
+      },
+      {
+        "season": "2022-23",
+        "team": "Los Angeles Lakers",
+        "drives_z": -0.747,
+        "drive_fg": 0.502,
+        "net": 0.7,
+        "win": 0.524
+      },
+      {
+        "season": "2022-23",
+        "team": "Memphis Grizzlies",
+        "drives_z": -0.348,
+        "drive_fg": 0.481,
+        "net": 4.0,
+        "win": 0.622
+      },
+      {
+        "season": "2022-23",
+        "team": "Miami Heat",
+        "drives_z": -0.045,
+        "drive_fg": 0.497,
+        "net": -0.5,
+        "win": 0.537
+      },
+      {
+        "season": "2022-23",
+        "team": "Milwaukee Bucks",
+        "drives_z": -0.985,
+        "drive_fg": 0.526,
+        "net": 3.4,
+        "win": 0.707
+      },
+      {
+        "season": "2022-23",
+        "team": "Minnesota Timberwolves",
+        "drives_z": 0.159,
+        "drive_fg": 0.518,
+        "net": 0.2,
+        "win": 0.512
+      },
+      {
+        "season": "2022-23",
+        "team": "New Orleans Pelicans",
+        "drives_z": 0.089,
+        "drive_fg": 0.492,
+        "net": 1.9,
+        "win": 0.512
+      },
+      {
+        "season": "2022-23",
+        "team": "New York Knicks",
+        "drives_z": 1.693,
+        "drive_fg": 0.498,
+        "net": 2.8,
+        "win": 0.573
+      },
+      {
+        "season": "2022-23",
+        "team": "Oklahoma City Thunder",
+        "drives_z": 2.987,
+        "drive_fg": 0.481,
+        "net": 1.0,
+        "win": 0.488
+      },
+      {
+        "season": "2022-23",
+        "team": "Orlando Magic",
+        "drives_z": 0.282,
+        "drive_fg": 0.496,
+        "net": -2.3,
+        "win": 0.415
+      },
+      {
+        "season": "2022-23",
+        "team": "Philadelphia 76ers",
+        "drives_z": -0.49,
+        "drive_fg": 0.486,
+        "net": 4.4,
+        "win": 0.659
+      },
+      {
+        "season": "2022-23",
+        "team": "Phoenix Suns",
+        "drives_z": -0.797,
+        "drive_fg": 0.467,
+        "net": 2.2,
+        "win": 0.549
+      },
+      {
+        "season": "2022-23",
+        "team": "Portland Trail Blazers",
+        "drives_z": -0.911,
+        "drive_fg": 0.522,
+        "net": -4.0,
+        "win": 0.402
+      },
+      {
+        "season": "2022-23",
+        "team": "Sacramento Kings",
+        "drives_z": 0.337,
+        "drive_fg": 0.54,
+        "net": 2.6,
+        "win": 0.585
+      },
+      {
+        "season": "2022-23",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.574,
+        "drive_fg": 0.46,
+        "net": -9.9,
+        "win": 0.268
+      },
+      {
+        "season": "2022-23",
+        "team": "Toronto Raptors",
+        "drives_z": -0.041,
+        "drive_fg": 0.453,
+        "net": 1.5,
+        "win": 0.5
+      },
+      {
+        "season": "2022-23",
+        "team": "Utah Jazz",
+        "drives_z": 0.964,
+        "drive_fg": 0.508,
+        "net": -0.7,
+        "win": 0.451
+      },
+      {
+        "season": "2022-23",
+        "team": "Washington Wizards",
+        "drives_z": -0.233,
+        "drive_fg": 0.511,
+        "net": -1.2,
+        "win": 0.427
+      },
+      {
+        "season": "2023-24",
+        "team": "Atlanta Hawks",
+        "drives_z": -0.262,
+        "drive_fg": 0.476,
+        "net": -2.0,
+        "win": 0.439
+      },
+      {
+        "season": "2023-24",
+        "team": "Boston Celtics",
+        "drives_z": -1.615,
+        "drive_fg": 0.534,
+        "net": 11.7,
+        "win": 0.78
+      },
+      {
+        "season": "2023-24",
+        "team": "Brooklyn Nets",
+        "drives_z": 1.351,
+        "drive_fg": 0.485,
+        "net": -2.9,
+        "win": 0.39
+      },
+      {
+        "season": "2023-24",
+        "team": "Charlotte Hornets",
+        "drives_z": 1.031,
+        "drive_fg": 0.467,
+        "net": -10.6,
+        "win": 0.256
+      },
+      {
+        "season": "2023-24",
+        "team": "Chicago Bulls",
+        "drives_z": 0.976,
+        "drive_fg": 0.522,
+        "net": -1.7,
+        "win": 0.476
+      },
+      {
+        "season": "2023-24",
+        "team": "Cleveland Cavaliers",
+        "drives_z": 0.179,
+        "drive_fg": 0.474,
+        "net": 2.5,
+        "win": 0.585
+      },
+      {
+        "season": "2023-24",
+        "team": "Dallas Mavericks",
+        "drives_z": -0.763,
+        "drive_fg": 0.533,
+        "net": 2.1,
+        "win": 0.61
+      },
+      {
+        "season": "2023-24",
+        "team": "Denver Nuggets",
+        "drives_z": -1.84,
+        "drive_fg": 0.491,
+        "net": 5.5,
+        "win": 0.695
+      },
+      {
+        "season": "2023-24",
+        "team": "Detroit Pistons",
+        "drives_z": 0.597,
+        "drive_fg": 0.473,
+        "net": -9.0,
+        "win": 0.171
+      },
+      {
+        "season": "2023-24",
+        "team": "Golden State Warriors",
+        "drives_z": -1.812,
+        "drive_fg": 0.489,
+        "net": 2.4,
+        "win": 0.561
+      },
+      {
+        "season": "2023-24",
+        "team": "Houston Rockets",
+        "drives_z": -0.801,
+        "drive_fg": 0.482,
+        "net": 0.9,
+        "win": 0.5
+      },
+      {
+        "season": "2023-24",
+        "team": "Indiana Pacers",
+        "drives_z": 1.155,
+        "drive_fg": 0.529,
+        "net": 2.9,
+        "win": 0.573
+      },
+      {
+        "season": "2023-24",
+        "team": "LA Clippers",
+        "drives_z": -0.473,
+        "drive_fg": 0.495,
+        "net": 3.4,
+        "win": 0.622
+      },
+      {
+        "season": "2023-24",
+        "team": "Los Angeles Lakers",
+        "drives_z": -1.811,
+        "drive_fg": 0.506,
+        "net": 0.6,
+        "win": 0.573
+      },
+      {
+        "season": "2023-24",
+        "team": "Memphis Grizzlies",
+        "drives_z": 0.525,
+        "drive_fg": 0.468,
+        "net": -6.9,
+        "win": 0.329
+      },
+      {
+        "season": "2023-24",
+        "team": "Miami Heat",
+        "drives_z": 0.301,
+        "drive_fg": 0.49,
+        "net": 1.8,
+        "win": 0.561
+      },
+      {
+        "season": "2023-24",
+        "team": "Milwaukee Bucks",
+        "drives_z": -1.16,
+        "drive_fg": 0.54,
+        "net": 2.6,
+        "win": 0.598
+      },
+      {
+        "season": "2023-24",
+        "team": "Minnesota Timberwolves",
+        "drives_z": 0.793,
+        "drive_fg": 0.501,
+        "net": 6.3,
+        "win": 0.683
+      },
+      {
+        "season": "2023-24",
+        "team": "New Orleans Pelicans",
+        "drives_z": 0.252,
+        "drive_fg": 0.499,
+        "net": 4.6,
+        "win": 0.598
+      },
+      {
+        "season": "2023-24",
+        "team": "New York Knicks",
+        "drives_z": 1.066,
+        "drive_fg": 0.48,
+        "net": 4.9,
+        "win": 0.61
+      },
+      {
+        "season": "2023-24",
+        "team": "Oklahoma City Thunder",
+        "drives_z": 2.188,
+        "drive_fg": 0.536,
+        "net": 7.3,
+        "win": 0.695
+      },
+      {
+        "season": "2023-24",
+        "team": "Orlando Magic",
+        "drives_z": 0.14,
+        "drive_fg": 0.489,
+        "net": 2.2,
+        "win": 0.573
+      },
+      {
+        "season": "2023-24",
+        "team": "Philadelphia 76ers",
+        "drives_z": -0.738,
+        "drive_fg": 0.478,
+        "net": 3.1,
+        "win": 0.573
+      },
+      {
+        "season": "2023-24",
+        "team": "Phoenix Suns",
+        "drives_z": -0.609,
+        "drive_fg": 0.527,
+        "net": 3.1,
+        "win": 0.598
+      },
+      {
+        "season": "2023-24",
+        "team": "Portland Trail Blazers",
+        "drives_z": 0.607,
+        "drive_fg": 0.443,
+        "net": -9.0,
+        "win": 0.256
+      },
+      {
+        "season": "2023-24",
+        "team": "Sacramento Kings",
+        "drives_z": 0.293,
+        "drive_fg": 0.508,
+        "net": 1.8,
+        "win": 0.561
+      },
+      {
+        "season": "2023-24",
+        "team": "San Antonio Spurs",
+        "drives_z": -0.352,
+        "drive_fg": 0.485,
+        "net": -6.4,
+        "win": 0.268
+      },
+      {
+        "season": "2023-24",
+        "team": "Toronto Raptors",
+        "drives_z": 0.048,
+        "drive_fg": 0.463,
+        "net": -6.3,
+        "win": 0.305
+      },
+      {
+        "season": "2023-24",
+        "team": "Utah Jazz",
+        "drives_z": 0.723,
+        "drive_fg": 0.474,
+        "net": -5.1,
+        "win": 0.378
+      },
+      {
+        "season": "2023-24",
+        "team": "Washington Wizards",
+        "drives_z": 0.011,
+        "drive_fg": 0.493,
+        "net": -8.7,
+        "win": 0.183
+      },
+      {
+        "season": "2024-25",
+        "team": "Atlanta Hawks",
+        "drives_z": 0.094,
+        "drive_fg": 0.486,
+        "net": -1.1,
+        "win": 0.488
+      },
+      {
+        "season": "2024-25",
+        "team": "Boston Celtics",
+        "drives_z": -2.293,
+        "drive_fg": 0.542,
+        "net": 9.4,
+        "win": 0.744
+      },
+      {
+        "season": "2024-25",
+        "team": "Brooklyn Nets",
+        "drives_z": 1.054,
+        "drive_fg": 0.47,
+        "net": -7.3,
+        "win": 0.317
+      },
+      {
+        "season": "2024-25",
+        "team": "Charlotte Hornets",
+        "drives_z": 0.1,
+        "drive_fg": 0.439,
+        "net": -9.1,
+        "win": 0.232
+      },
+      {
+        "season": "2024-25",
+        "team": "Chicago Bulls",
+        "drives_z": 1.399,
+        "drive_fg": 0.522,
+        "net": -1.6,
+        "win": 0.476
+      },
+      {
+        "season": "2024-25",
+        "team": "Cleveland Cavaliers",
+        "drives_z": 0.466,
+        "drive_fg": 0.513,
+        "net": 9.2,
+        "win": 0.78
+      },
+      {
+        "season": "2024-25",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.476,
+        "drive_fg": 0.497,
+        "net": -1.3,
+        "win": 0.476
+      },
+      {
+        "season": "2024-25",
+        "team": "Denver Nuggets",
+        "drives_z": -1.783,
+        "drive_fg": 0.513,
+        "net": 3.8,
+        "win": 0.61
+      },
+      {
+        "season": "2024-25",
+        "team": "Detroit Pistons",
+        "drives_z": -1.174,
+        "drive_fg": 0.483,
+        "net": 2.1,
+        "win": 0.537
+      },
+      {
+        "season": "2024-25",
+        "team": "Golden State Warriors",
+        "drives_z": -1.091,
+        "drive_fg": 0.463,
+        "net": 3.2,
+        "win": 0.585
+      },
+      {
+        "season": "2024-25",
+        "team": "Houston Rockets",
+        "drives_z": -0.306,
+        "drive_fg": 0.465,
+        "net": 4.6,
+        "win": 0.634
+      },
+      {
+        "season": "2024-25",
+        "team": "Indiana Pacers",
+        "drives_z": 1.1,
+        "drive_fg": 0.522,
+        "net": 2.1,
+        "win": 0.61
+      },
+      {
+        "season": "2024-25",
+        "team": "LA Clippers",
+        "drives_z": -0.938,
+        "drive_fg": 0.495,
+        "net": 4.9,
+        "win": 0.61
+      },
+      {
+        "season": "2024-25",
+        "team": "Los Angeles Lakers",
+        "drives_z": -1.314,
+        "drive_fg": 0.496,
+        "net": 1.2,
+        "win": 0.61
+      },
+      {
+        "season": "2024-25",
+        "team": "Memphis Grizzlies",
+        "drives_z": 1.982,
+        "drive_fg": 0.505,
+        "net": 4.7,
+        "win": 0.585
+      },
+      {
+        "season": "2024-25",
+        "team": "Miami Heat",
+        "drives_z": 0.118,
+        "drive_fg": 0.494,
+        "net": 0.4,
+        "win": 0.451
+      },
+      {
+        "season": "2024-25",
+        "team": "Milwaukee Bucks",
+        "drives_z": -1.36,
+        "drive_fg": 0.523,
+        "net": 2.4,
+        "win": 0.585
+      },
+      {
+        "season": "2024-25",
+        "team": "Minnesota Timberwolves",
+        "drives_z": 0.36,
+        "drive_fg": 0.496,
+        "net": 5.0,
+        "win": 0.598
+      },
+      {
+        "season": "2024-25",
+        "team": "New Orleans Pelicans",
+        "drives_z": 0.59,
+        "drive_fg": 0.466,
+        "net": -9.4,
+        "win": 0.256
+      },
+      {
+        "season": "2024-25",
+        "team": "New York Knicks",
+        "drives_z": 0.286,
+        "drive_fg": 0.511,
+        "net": 4.0,
+        "win": 0.622
+      },
+      {
+        "season": "2024-25",
+        "team": "Oklahoma City Thunder",
+        "drives_z": 1.443,
+        "drive_fg": 0.518,
+        "net": 12.7,
+        "win": 0.829
+      },
+      {
+        "season": "2024-25",
+        "team": "Orlando Magic",
+        "drives_z": -0.391,
+        "drive_fg": 0.478,
+        "net": -0.2,
+        "win": 0.5
+      },
+      {
+        "season": "2024-25",
+        "team": "Philadelphia 76ers",
+        "drives_z": 0.216,
+        "drive_fg": 0.504,
+        "net": -6.3,
+        "win": 0.293
+      },
+      {
+        "season": "2024-25",
+        "team": "Phoenix Suns",
+        "drives_z": 0.232,
+        "drive_fg": 0.51,
+        "net": -3.0,
+        "win": 0.439
+      },
+      {
+        "season": "2024-25",
+        "team": "Portland Trail Blazers",
+        "drives_z": 1.399,
+        "drive_fg": 0.481,
+        "net": -2.7,
+        "win": 0.439
+      },
+      {
+        "season": "2024-25",
+        "team": "Sacramento Kings",
+        "drives_z": 0.076,
+        "drive_fg": 0.515,
+        "net": 0.6,
+        "win": 0.488
+      },
+      {
+        "season": "2024-25",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.144,
+        "drive_fg": 0.503,
+        "net": -2.8,
+        "win": 0.415
+      },
+      {
+        "season": "2024-25",
+        "team": "Toronto Raptors",
+        "drives_z": 0.348,
+        "drive_fg": 0.455,
+        "net": -4.1,
+        "win": 0.366
+      },
+      {
+        "season": "2024-25",
+        "team": "Utah Jazz",
+        "drives_z": -0.562,
+        "drive_fg": 0.478,
+        "net": -9.2,
+        "win": 0.207
+      },
+      {
+        "season": "2024-25",
+        "team": "Washington Wizards",
+        "drives_z": -0.669,
+        "drive_fg": 0.464,
+        "net": -12.2,
+        "win": 0.22
+      },
+      {
+        "season": "2025-26",
+        "team": "Atlanta Hawks",
+        "drives_z": 0.234,
+        "drive_fg": 0.506,
+        "net": 2.2,
+        "win": 0.561
+      },
+      {
+        "season": "2025-26",
+        "team": "Boston Celtics",
+        "drives_z": -0.369,
+        "drive_fg": 0.515,
+        "net": 8.3,
+        "win": 0.683
+      },
+      {
+        "season": "2025-26",
+        "team": "Brooklyn Nets",
+        "drives_z": -0.154,
+        "drive_fg": 0.47,
+        "net": -10.0,
+        "win": 0.244
+      },
+      {
+        "season": "2025-26",
+        "team": "Charlotte Hornets",
+        "drives_z": -0.128,
+        "drive_fg": 0.472,
+        "net": 4.9,
+        "win": 0.537
+      },
+      {
+        "season": "2025-26",
+        "team": "Chicago Bulls",
+        "drives_z": 2.106,
+        "drive_fg": 0.518,
+        "net": -5.3,
+        "win": 0.378
+      },
+      {
+        "season": "2025-26",
+        "team": "Cleveland Cavaliers",
+        "drives_z": -0.413,
+        "drive_fg": 0.536,
+        "net": 4.1,
+        "win": 0.634
+      },
+      {
+        "season": "2025-26",
+        "team": "Dallas Mavericks",
+        "drives_z": 0.461,
+        "drive_fg": 0.502,
+        "net": -5.2,
+        "win": 0.317
+      },
+      {
+        "season": "2025-26",
+        "team": "Denver Nuggets",
+        "drives_z": -2.31,
+        "drive_fg": 0.507,
+        "net": 5.2,
+        "win": 0.659
+      },
+      {
+        "season": "2025-26",
+        "team": "Detroit Pistons",
+        "drives_z": -0.219,
+        "drive_fg": 0.481,
+        "net": 8.4,
+        "win": 0.732
+      },
+      {
+        "season": "2025-26",
+        "team": "Golden State Warriors",
+        "drives_z": -1.135,
+        "drive_fg": 0.502,
+        "net": -0.5,
+        "win": 0.451
+      },
+      {
+        "season": "2025-26",
+        "team": "Houston Rockets",
+        "drives_z": -0.643,
+        "drive_fg": 0.509,
+        "net": 5.4,
+        "win": 0.634
+      },
+      {
+        "season": "2025-26",
+        "team": "Indiana Pacers",
+        "drives_z": 1.411,
+        "drive_fg": 0.495,
+        "net": -7.8,
+        "win": 0.232
+      },
+      {
+        "season": "2025-26",
+        "team": "LA Clippers",
+        "drives_z": -1.234,
+        "drive_fg": 0.495,
+        "net": 1.1,
+        "win": 0.512
+      },
+      {
+        "season": "2025-26",
+        "team": "Los Angeles Lakers",
+        "drives_z": -1.758,
+        "drive_fg": 0.54,
+        "net": 1.5,
+        "win": 0.646
+      },
+      {
+        "season": "2025-26",
+        "team": "Memphis Grizzlies",
+        "drives_z": 0.21,
+        "drive_fg": 0.496,
+        "net": -6.0,
+        "win": 0.305
+      },
+      {
+        "season": "2025-26",
+        "team": "Miami Heat",
+        "drives_z": 1.903,
+        "drive_fg": 0.513,
+        "net": 2.1,
+        "win": 0.524
+      },
+      {
+        "season": "2025-26",
+        "team": "Milwaukee Bucks",
+        "drives_z": -0.488,
+        "drive_fg": 0.516,
+        "net": -6.1,
+        "win": 0.39
+      },
+      {
+        "season": "2025-26",
+        "team": "Minnesota Timberwolves",
+        "drives_z": -0.454,
+        "drive_fg": 0.519,
+        "net": 3.1,
+        "win": 0.598
+      },
+      {
+        "season": "2025-26",
+        "team": "New Orleans Pelicans",
+        "drives_z": 0.447,
+        "drive_fg": 0.479,
+        "net": -4.4,
+        "win": 0.317
+      },
+      {
+        "season": "2025-26",
+        "team": "New York Knicks",
+        "drives_z": 0.456,
+        "drive_fg": 0.505,
+        "net": 6.4,
+        "win": 0.646
+      },
+      {
+        "season": "2025-26",
+        "team": "Oklahoma City Thunder",
+        "drives_z": 1.064,
+        "drive_fg": 0.519,
+        "net": 11.1,
+        "win": 0.78
+      },
+      {
+        "season": "2025-26",
+        "team": "Orlando Magic",
+        "drives_z": 0.36,
+        "drive_fg": 0.49,
+        "net": 0.6,
+        "win": 0.549
+      },
+      {
+        "season": "2025-26",
+        "team": "Philadelphia 76ers",
+        "drives_z": -0.572,
+        "drive_fg": 0.493,
+        "net": -0.1,
+        "win": 0.549
+      },
+      {
+        "season": "2025-26",
+        "team": "Phoenix Suns",
+        "drives_z": -0.289,
+        "drive_fg": 0.496,
+        "net": 1.4,
+        "win": 0.549
+      },
+      {
+        "season": "2025-26",
+        "team": "Portland Trail Blazers",
+        "drives_z": 1.905,
+        "drive_fg": 0.49,
+        "net": -0.4,
+        "win": 0.512
+      },
+      {
+        "season": "2025-26",
+        "team": "Sacramento Kings",
+        "drives_z": 0.08,
+        "drive_fg": 0.473,
+        "net": -9.7,
+        "win": 0.268
+      },
+      {
+        "season": "2025-26",
+        "team": "San Antonio Spurs",
+        "drives_z": 0.437,
+        "drive_fg": 0.523,
+        "net": 8.4,
+        "win": 0.756
+      },
+      {
+        "season": "2025-26",
+        "team": "Toronto Raptors",
+        "drives_z": 0.456,
+        "drive_fg": 0.494,
+        "net": 2.9,
+        "win": 0.561
+      },
+      {
+        "season": "2025-26",
+        "team": "Utah Jazz",
+        "drives_z": -0.458,
+        "drive_fg": 0.493,
+        "net": -8.2,
+        "win": 0.268
+      },
+      {
+        "season": "2025-26",
+        "team": "Washington Wizards",
+        "drives_z": -0.908,
+        "drive_fg": 0.476,
+        "net": -11.8,
+        "win": 0.207
+      }
+    ]
   }
 }

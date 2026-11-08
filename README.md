@@ -10,7 +10,8 @@ Question 2 uses box-score stats from the game itself. Those are consequences of 
 ## Data
 
 - Source: stats.nba.com `LeagueGameLog` endpoint (team rows), via [`nba_api`](https://github.com/swar/nba_api). Fetched 2026-11-07 with `scripts/fetch_data.py`.
-- Seasons: 2000-01 through 2025-26 regular seasons (26 seasons), one CSV per season in `data/raw/` (8.5 MB, committed). The analysis reads only these files; it makes no network calls.
+- Team-season tables (`scripts/fetch_teamseason.py`, `LeagueDashTeamStats`, `LeagueDashTeamShotLocations`, `LeagueDashPtStats`, `LeagueHustleStatsTeam`): advanced, four factors, scoring mix, opponent, shot zones for every season; player tracking (drives, touches, passing, catch-and-shoot, pull-ups, rebounding chances, speed) from 2013-14; hustle from 2016-17. 776 team-seasons, one CSV per season.
+- Seasons: 2000-01 through 2025-26 regular seasons (26 seasons), one CSV per season in `data/raw/` (committed). The analysis reads only these files; it makes no network calls.
 - Size: 31,245 games after dropping neutral-site games. 2011-12 (990 games), 2019-20 and 2020-21 were shortened by lockout and COVID.
 - `load_team_logs` validates the snapshot on every load (no nulls, exactly two rows per game, no duplicates, no negative box-score values) and fails loudly otherwise.
 - Neutral-site games (Paris, Mexico City, NBA Cup semifinals) list both teams as away and are dropped.
@@ -106,9 +107,9 @@ Linear regression of home margin on same-game home-minus-away four factors, trai
 
 Shooting comes first, then turnovers and rebounding, then free throws. That is the same order as the pre-game coefficients, and close to Oliver's 40/25/20/15 weighting.
 
-## Beyond the four factors: a 53-factor screen
+## Beyond the four factors: a 57-factor screen
 
-`nbawin/factors.py` builds every candidate factor from information available at tipoff, and `nbawin/explore.py` screens them. Families: team strength (Elo with cross-season carry-over, season-to-date record), recent form (recency-weighted net rating, last 10 vs season), the four factors, pace and style (threes, assists, steals, blocks, fouls), rest and schedule load (back-to-backs, 3-in-4 and 4-in-6 nights), home stands and road trips, travel distance and time zones, altitude, luck (record vs point differential, close games), volatility, calendar, rematches, and an era control (the league's recent home-win rate). Each factor is added to team strength and scored on the three held-out seasons; the in-sample Wald z uses a Bonferroni threshold across everything screened. Live write-up with charts: https://nba-winning-factors.vercel.app (built from `site/`).
+`nbawin/factors.py` builds every candidate factor from information available at tipoff, and `nbawin/explore.py` screens them. Families: team strength (Elo with cross-season carry-over, season-to-date record), recent form (recency-weighted net rating, last 10 vs season), the four factors, pace and style (threes, assists, steals, blocks, fouls), shot profile (three-point volume and share of points, true shooting, rebound share), rest and schedule load (back-to-backs, 3-in-4 and 4-in-6 nights), home stands and road trips, travel distance and time zones, altitude, luck (record vs point differential, close games), volatility, calendar, rematches, and an era control (the league's recent home-win rate). Each factor is added to team strength and scored on the three held-out seasons; the in-sample Wald z uses a Bonferroni threshold across everything screened. Live write-up with charts: https://nba-winning-factors.vercel.app (built from `site/`).
 
 What came out (full tables in `results/report.md`):
 
@@ -119,10 +120,29 @@ What came out (full tables in `results/report.md`):
 - **Skill vs luck.** Three-point attempt rate is nearly pure identity (split-half 1.00), three-point accuracy is shaky (0.60), and opponents' three-point percentage allowed is mostly noise (0.35 within a season, 0.22 year over year).
 - **Opening weeks are predictable.** Games 1 to 5: Elo 63.6%, this season's record 57.7%, home team 54.0% (239 test games); by games 11 to 20 the record has caught up.
 - **Home court by franchise** (points, controlling for Elo; league average 2.7): Denver +4.0, Utah +3.7, Golden State +3.7 at the top, Brooklyn +1.7 at the bottom, each with about 0.4 of standard error.
-- **All 53 factors together** reach log loss 0.5986 and 67.7% accuracy against 0.6030 and 67.2% for strength alone. Gradient boosting on all of them does not beat the logistic model (0.6038).
+- **All 57 factors together** reach log loss 0.5990 and 67.4% accuracy against 0.6029 and 67.2% for strength alone. Gradient boosting on all of them does not beat the logistic model (0.6035). The four shot-profile factors (three-point volume and share of points, true shooting, rebound share) add nothing out of sample.
+
+## Style or substance? An 86-metric season atlas
+
+`nbawin/style.py` asks a different question from the pre-game models: across finished seasons, do the styles teams choose (shot diet, pace, drives, passing) explain winning, or only the execution that comes with them? Every metric is z-scored within its season so era trends cannot pose as edges; intervals resample whole seasons; a permutation "chance ceiling" (win % shuffled within season, max |t| across all metrics) is the bar for a real signal. Metrics are tagged style (a choice), execution (a result) or effort (hustle, speed); the reasoning is in `docs/decisions.md`. Full tables are in `results/report.md`; every metric with its definition is in `results/factor_atlas.csv`.
+
+- Shot diet alone (zones, three-point rate, pace) explains about 12% of a season's win % across 26 seasons; every style signal tracking can see, about 31% in the tracking era (hustle and speed 21%); results (shooting, turnovers, rebounds, defence), about 91%.
+- Net rating alone explains 93%. All 85 other tracking-era metrics together add about 4% of what is left (95% interval 0.7 to 7.1%). Style is a fingerprint of good teams, not an independent lever.
+- The three-point edge (five-season pooled correlation of three-point rate with net rating) peaked around +0.37 in the late 2000s and has slid to about +0.13; mid-range share went from a mark of weak teams to neutral.
+- Drive volume correlates negatively with winning (-0.24); finishing on drives correlates positively (drive FG% +0.56, points per drive +0.26).
+- The 85 tracking-era metrics carry about 26 independent signals.
+- Points per drive was first filed as style and inflated the style block to 50%; it is a result, and moving it dropped style to 31%. The style/execution split is sensitive to such calls, which is why every label is listed in `results/factor_atlas.csv`.
+
+## Dashboard
+
+`site/index.html` is an interactive dashboard over every team-season (built from `results/dashboard.json` by `uv run python -m nbawin.dashboard`): a playable season timeline, the league's shot diet and pace moving season by season, every team plotted on any of 18 factors (raw or against its own season), franchise trails, a per-season ranking of which factors tracked winning, and a "Why they won" table that splits each team's net rating into points from the eight four-factor rates (weights fitted on all 776 team-seasons, R² 0.975), with a toggle that takes three-point luck out by shrinking 3P% toward the league in proportion to its measured reliability. Captions are written from each season's numbers. Below it, the findings from both parts of the analysis (pre-game forecasting and the season atlas) are laid out as described panels with intervals and data tables, ending in a searchable list of every factor. `site/story.html` redirects there.
 
 ## Limitations
 
+- The factor screen and the factor-family table use one train/test split, so a "no gain" cannot distinguish a real zero from an effect too small for 3,212 games to detect; the memory half-life table is leave-one-season-out (it trains on future seasons) and is not comparable to the walk-forward numbers.
+- "Best model" language is post hoc: the four-factor logistic was highlighted after seeing test results, and the nine paired comparisons in `results/report.md` are not multiplicity-corrected. The same-game four-factor R2 and 95.8% accuracy are close to an accounting identity and describe, not forecast.
+- The home-court table is 30 fixed effects with near-identical standard errors; partial pooling would shrink the extremes. Rest-day edge and the back-to-back flags are collinear, so the sign of the rest-day coefficient alone should not be read.
+- No comparison with betting lines or any market-implied probability.
 - No player-level information: injuries, rest days of stars, trades and lineup changes are invisible. Season-to-date averages lag these.
 - No betting lines. The market spread is the real benchmark for game forecasts and would very likely beat these models.
 - Early-season games (first 10 per team) are excluded, so these results do not cover the opening weeks.
@@ -131,6 +151,7 @@ What came out (full tables in `results/report.md`):
 - Three test seasons are about 3,200 games, so accuracy differences under about 1.5 points cannot be separated from noise. The CIs say so.
 - Bootstrap CIs resample games as independent. Games share teams and dates, so the true uncertainty is somewhat larger.
 - Season-to-date stats reset every October; the previous season is not used as a prior.
+- The season atlas is descriptive: correlations across finished seasons, not causes and not forecasts. Style/execution labels are judgment calls. Tracking rows rest on 13 seasons, hustle on 10.
 
 ## Reproduce
 
@@ -138,8 +159,10 @@ Requires [uv](https://docs.astral.sh/uv/) and Python 3.12 (pinned in `.python-ve
 
 ```bash
 uv sync --locked                 # install pinned dependencies
-uv run pytest                    # 15 tests, about 2.5 min
-uv run python -m nbawin.run      # full analysis, about 2 min; writes results/
+uv run pytest                    # 18 tests, a few minutes
+uv run python -m nbawin.run      # full analysis, about 4 min; writes results/
+uv run python -m nbawin.dashboard  # dashboard data, about 1 min
+python3 scripts/build_site.py      # copy results into site/
 ```
 
 `results/metrics.json` has every number above; `results/report.md` has the main table. All randomness is seeded.
@@ -147,7 +170,8 @@ uv run python -m nbawin.run      # full analysis, about 2 min; writes results/
 To refresh the raw data (needs network; stats.nba.com may rate-limit):
 
 ```bash
-uv run --group fetch python scripts/fetch_data.py
+uv run --group fetch python scripts/fetch_data.py, scripts/fetch_teamseason.py
+uv run --group fetch python scripts/fetch_teamseason.py
 ```
 
 ## Layout
@@ -156,10 +180,12 @@ uv run --group fetch python scripts/fetch_data.py
 data/raw/            game logs, one CSV per season (source of truth)
 nbawin/data.py       load logs, build one row per game
 nbawin/features.py   pre-game features and same-game four factors
-nbawin/factors.py    53-factor candidate table (Elo, form, schedule, travel, altitude, luck, ...)
+nbawin/factors.py    57-factor pre-game candidate table (Elo, form, shot profile, schedule, travel, altitude, luck, ...)
 nbawin/explore.py    factor screen, family value, memory, persistence, home court, trends
 nbawin/teams.py      arena coordinates, altitude, franchise identity
-site/                static story page (index.html, story.js) built from metrics.json
+nbawin/style.py      team-season atlas: 86 metrics, style vs execution, chance ceiling, edges over time
+nbawin/dashboard.py  per-season data for the dashboard
+site/                dashboard (index.html): dash.js drives the timeline, story.js renders the findings panels
 nbawin/metrics.py    ECE, scoring, bootstrap CIs
 nbawin/run.py        models, baselines, figures, report
 scripts/fetch_data.py

@@ -19,7 +19,7 @@ from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-from nbawin import explore
+from nbawin import explore, style
 from nbawin.data import load_team_logs, to_games
 from nbawin.features import FEATURES, pregame_features, same_game_factor_diffs
 from nbawin.metrics import bootstrap_ci, score
@@ -259,6 +259,7 @@ def write_report(summary: dict, table: pd.DataFrame, path: Path) -> None:
     for k, v in d["points_per_1sd"].items():
         lines.append(f"| {k} | {v['coef']:+.2f} [{v['ci'][0]:+.2f}, {v['ci'][1]:+.2f}] |")
     lines += explore.report_lines(summary["explore"])
+    lines += style.report_lines(summary["style"])
     path.write_text("\n".join(lines) + "\n")
 
 
@@ -299,7 +300,9 @@ def main() -> None:
         "home_win_rate_by_season": df.groupby("SEASON")["home_win"].mean().to_dict(),
         "descriptive_same_game_factors": descriptive_factors(games),
         "explore": explore.analyze(games, TEST_SEASONS, SEED, 500),
+        "style": style.analyze(SEED),
     }
+    pd.DataFrame(summary["style"]["atlas"]).to_csv(OUT / "factor_atlas.csv", index=False)
     (OUT / "metrics.json").write_text(json.dumps(summary, indent=2, default=float))
     write_report(summary, table, OUT / "report.md")
     print((OUT / "report.md").read_text())

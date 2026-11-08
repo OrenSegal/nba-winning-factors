@@ -12,7 +12,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-from nbawin.factors import (ALL_FEATURES, EWM_HALFLIVES, FAMILIES, FAMILY_OF, candidate_features, model_rows,
+from nbawin.factors import (ALL_FEATURES, DEFINITIONS, EWM_HALFLIVES, FAMILIES, FAMILY_OF, candidate_features, model_rows,
                             team_games)
 from nbawin.teams import franchise
 
@@ -67,7 +67,7 @@ def screen(train, test, idx):
         coef, lo, hi, z = _wald_last(train, BASE + [c])
         p, _ = _fit(train, test, BASE + [c])
         d, dlo, dhi = _ci(_logloss(test["home_win"].to_numpy(), p) - l0, idx)
-        rows.append({"feature": c, "family": FAMILY_OF[c], "coef": coef, "ci_low": lo, "ci_high": hi, "z": z,
+        rows.append({"feature": c, "family": FAMILY_OF[c], "definition": DEFINITIONS[c], "coef": coef, "ci_low": lo, "ci_high": hi, "z": z,
                      "significant_after_bonferroni": bool(abs(z) > z_crit),
                      "d_logloss": d, "d_logloss_ci": [dlo, dhi]})
     return sorted(rows, key=lambda r: -abs(r["z"])), z_crit

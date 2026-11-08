@@ -138,9 +138,14 @@ def test_run_writes_outputs(tmp_path, monkeypatch):
     monkeypatch.setattr(run, "OUT", tmp_path)
     monkeypatch.setattr(run, "N_BOOT", 20)
     monkeypatch.setattr(run, "WF_MIN_TRAIN", 23)  # walk-forward over the last 3 seasons only, keeps this fast
+    from nbawin import style
+
+    full = style.load()
+    monkeypatch.setattr(style, "load", lambda: full[full["SEASON"] >= "2014-15"])  # 12 seasons keeps the ridge fits quick
     run.main()
     report = (tmp_path / "report.md").read_text()
     assert "## What predicts a win before tipoff" in report and "## Walk-forward across all seasons" in report
+    assert "## What separates winning teams" in report and (tmp_path / "factor_atlas.csv").exists()
     assert (tmp_path / "metrics.json").exists() and (tmp_path / "walk_forward.png").exists()
 
 
@@ -167,3 +172,43 @@ def test_every_franchise_has_an_arena_and_relocations_share_identity(games):
 
     assert set(games["home_team"]) | set(games["away_team"]) <= set(ARENAS)
     assert franchise("SEA") == franchise("OKC") and franchise("NOK") == franchise("CHH") == "NOP" and franchise("CHA") == "CHA"
+
+
+# ---- team-season atlas ------------------------------------------------------
+
+def test_every_game_factor_has_a_definition():
+    from nbawin.factors import ALL_FEATURES, DEFINITIONS
+
+    assert set(ALL_FEATURES) == set(DEFINITIONS)
+
+
+def test_atlas_finds_a_planted_signal_and_ignores_shuffled_labels():
+    from nbawin import style
+
+    meta, X = style.build(style.load())
+    Z = style.zscore(X, meta["SEASON"])
+    assert Z["fg3a_rate"].groupby(meta["SEASON"]).mean().abs().max() < 1e-9  # era trend removed
+    assert X.loc[meta["SEASON"] < "2013-14", "drives_100"].isna().all()  # tracking starts 2013-14
+    planted = Z.assign(planted=style.zscore(meta[["win"]], meta["SEASON"])["win"])
+    style.META["planted"] = dict(label="planted", family="test", role="style", definition="")
+    try:
+        rows, _ = style.atlas(meta, planted, n_boot=50, n_perm=200)
+    finally:
+        del style.META["planted"]
+    top = rows[0]
+    assert top["key"] == "planted" and top["r_win"] == pytest.approx(1.0) and top["beats_chance"]
+    shuffled = meta.assign(win=meta.groupby("SEASON")["win"].transform(lambda s: s.sample(frac=1, random_state=1).to_numpy()))
+    rows, _ = style.atlas(shuffled, Z, n_boot=50, n_perm=200)
+    assert sum(r["beats_chance"] for r in rows) <= 3  # family-wise 5% error: nearly none of ~87 metrics may pass
+
+
+def test_six_factor_decomposition_adds_up_and_luck_is_bounded():
+    from nbawin import dashboard, style
+
+    raw = style.load()
+    six, fit = dashboard.six_factors(raw)
+    net = raw["adv_NET_RATING"] - raw["adv_NET_RATING"].groupby(raw["SEASON"]).transform("mean")
+    parts = six[list(dashboard.FF) + ["resid"]].sum(axis=1)
+    assert np.allclose(parts, net)  # bookkeeping: the residual is defined as the remainder
+    assert fit["r2"] > 0.9 and fit["coef"]["o_shoot"] > 0 and fit["coef"]["d_shoot"] < 0
+    assert six["luck"].abs().max() < 5 and abs(six["luck"].mean()) < 0.2  # a few points per 100 at most, near zero on average

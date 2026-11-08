@@ -15,13 +15,15 @@ EWM_HALFLIVES = (2, 3, 5, 8, 12, 20, 30, 50, 80)  # in games
 FF = [f"{p}_{k}" for p in ("off", "def") for k in ("efg", "tov_rate", "orb_rate", "ft_rate")]
 STYLE = ["pace", "fg3a_rate", "fg3_pct", "def_fg3a_rate", "def_fg3_pct", "ft_pct", "ast_rate",
          "stl_rate", "blk_rate", "pf_rate", "drawn_fouls"]
-RAW_MEANS = ["win", "net_rtg"] + FF + STYLE
+SHOT = ["fg3a", "fg3_pts_share", "ts", "reb_share"]
+RAW_MEANS = ["win", "net_rtg"] + FF + STYLE + SHOT
 
 FAMILIES = {
     "Strength": ["elo_diff", "d_net_rtg", "d_win"],
     "Recent form": ["d_ewm5", "d_ewm8", "d_ewm20", "d_form10"],
     "Four factors": [f"d_{c}" for c in FF],
     "Pace and style": [f"d_{c}" for c in STYLE],
+    "Shot profile": [f"d_{c}" for c in SHOT],
     "Rest and schedule load": ["d_rest", "home_b2b", "away_b2b", "home_g4n3", "away_g4n3", "home_g6n5", "away_g6n5"],
     "Home stands and road trips": ["home_streak", "away_streak"],
     "Travel and time zones": ["home_travel", "away_travel", "home_tz_east", "home_tz_west", "away_tz_east", "away_tz_west"],
@@ -33,6 +35,39 @@ FAMILIES = {
 }
 ALL_FEATURES = [c for cols in FAMILIES.values() for c in cols]
 FAMILY_OF = {c: fam for fam, cols in FAMILIES.items() for c in cols}
+
+_FF_TEXT = {"efg": "effective FG%", "tov_rate": "turnover rate", "orb_rate": "offensive rebound rate", "ft_rate": "free-throw rate"}
+_STYLE_TEXT = {"pace": "pace (possessions per game)", "fg3a_rate": "three-point attempt rate", "fg3_pct": "three-point %",
+               "def_fg3a_rate": "opponent three-point attempt rate", "def_fg3_pct": "opponent three-point % allowed",
+               "ft_pct": "free-throw %", "ast_rate": "assists per made field goal", "stl_rate": "steals per opponent possession",
+               "blk_rate": "blocks per opponent two-point attempt", "pf_rate": "fouls committed per possession",
+               "drawn_fouls": "fouls drawn per possession", "fg3a": "three-point attempts per game",
+               "fg3_pts_share": "share of points from threes", "ts": "true shooting %", "reb_share": "share of all rebounds"}
+_DIFF = "Home minus away season-to-date "
+DEFINITIONS = {
+    "elo_diff": "Home minus away Elo rating (margin-adjusted, carried across seasons)",
+    "d_net_rtg": _DIFF + "net rating (points per 100 possessions)", "d_win": _DIFF + "win %",
+    "d_form10": "Home minus away last-10-game net rating relative to the season average",
+    **{f"d_ewm{h}": f"Home minus away net rating, recency-weighted with a {h}-game half-life" for h in (5, 8, 20)},
+    **{f"d_{p}_{k}": _DIFF + ("own " if p == "off" else "opponent-allowed ") + t for p in ("off", "def") for k, t in _FF_TEXT.items()},
+    **{f"d_{k}": _DIFF + t for k, t in _STYLE_TEXT.items()},
+    "d_rest": "Home minus away days since the last game (capped at 7)",
+    "home_b2b": "Home team played yesterday", "away_b2b": "Away team played yesterday",
+    "home_g4n3": "Home team's earlier games in the last 3 days (3-in-4 when 2+)", "away_g4n3": "Away team's earlier games in the last 3 days",
+    "home_g6n5": "Home team's earlier games in the last 5 days (4-in-6 when 3+)", "away_g6n5": "Away team's earlier games in the last 5 days",
+    "home_streak": "Consecutive earlier home games for the home team", "away_streak": "Consecutive earlier road games for the away team",
+    "home_travel": "Home team's travel since its last game, thousand km", "away_travel": "Away team's travel since its last game, thousand km",
+    "home_tz_east": "Time zones the home team crossed eastward", "home_tz_west": "Time zones the home team crossed westward",
+    "away_tz_east": "Time zones the away team crossed eastward", "away_tz_west": "Time zones the away team crossed westward",
+    "home_alt_km": "Altitude of the arena, km", "d_alt": "Home arena altitude minus away arena altitude, km",
+    "d_luck": "Home minus away win % above what points scored and allowed imply (Pythagorean)",
+    "d_close_net": "Home minus away net wins in games decided by 5 or fewer",
+    "vol_sum": "Sum of both teams' game-to-game net-rating volatility", "fav_x_vol": "Elo gap times combined volatility",
+    "pace_sum_rel": "Combined pace of both teams relative to the league's recent average", "abs_d_pace": "Absolute pace gap between the teams",
+    "league_home_rate": "League-wide home win rate over the previous 1000 games (the era's home-court regime)",
+    "season_day": "Share of the season elapsed (0 to 1)", "is_weekend": "Played on a Saturday or Sunday",
+    "rematch_n": "Earlier meetings of these two teams this season",
+}
 
 
 def team_games(games: pd.DataFrame) -> pd.DataFrame:
@@ -55,6 +90,8 @@ def team_games(games: pd.DataFrame) -> pd.DataFrame:
             "def_fg3a_rate": opp["FG3A"] / opp["FGA"], "def_fg3_pct": opp["FG3M"] / opp["FG3A"],
             "ft_pct": own["FTM"] / own["FTA"], "ast_rate": own["AST"] / own["FGM"],
             "stl_rate": own["STL"] / poss_opp, "blk_rate": own["BLK"] / (opp["FGA"] - opp["FG3A"]),
+            "fg3_pts_share": 3 * own["FG3M"] / own["PTS"], "ts": own["PTS"] / (2 * (own["FGA"] + 0.44 * own["FTA"])),
+            "reb_share": (own["OREB"] + own["DREB"]) / (own["OREB"] + own["DREB"] + opp["OREB"] + opp["DREB"]),
             "pf_rate": own["PF"] / poss, "drawn_fouls": opp["PF"] / poss,
             **{f"off_{k}": v for k, v in ff.items()}, **{f"def_{k}": v for k, v in dff.items()},
         }))
@@ -80,7 +117,9 @@ def elo_pregame(games: pd.DataFrame, k=20.0, carry=0.75, home_adv=100.0) -> pd.D
         mult = (abs(margin) + 3) ** 0.8 / (7.5 + 0.006 * (dr if home_won else -dr))
         delta = k * mult * (home_won - 1 / (1 + 10 ** (-dr / 400)))
         rating[fh], rating[fa] = rh + delta, ra - delta
-    return pd.DataFrame(out, columns=["GAME_ID", "elo_home", "elo_away"]).set_index("GAME_ID")
+    df = pd.DataFrame(out, columns=["GAME_ID", "elo_home", "elo_away"]).set_index("GAME_ID")
+    df.attrs["final"] = rating  # ratings after the last game, by franchise
+    return df
 
 
 def _prior_in_window(s: pd.Series, w: int) -> pd.Series:

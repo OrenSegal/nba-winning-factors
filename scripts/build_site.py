@@ -22,7 +22,7 @@ def clean(x):
     return x
 
 
-for name in ["report.md", "calibration.png", "coefficients.png", "walk_forward.png"]:
+for name in ["report.md", "calibration.png", "coefficients.png", "walk_forward.png", "factor_atlas.csv", "dashboard.json"]:
     shutil.copy(ROOT / "results" / name, ROOT / "site" / name)
 metrics = json.loads((ROOT / "results" / "metrics.json").read_text())
 (ROOT / "site" / "metrics.json").write_text(json.dumps(clean(metrics), allow_nan=False))

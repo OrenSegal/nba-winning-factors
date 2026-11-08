@@ -177,14 +177,14 @@ def team_home_court(cand):
 
 
 def league_trends(tg, cand, rows):
-    """How the game itself changed: pace, threes, rebounding, parity and how often the favourite wins."""
+    """How the game itself changed: pace, threes, rebounding, parity and how often the favorite wins."""
     by = tg.groupby("SEASON")
     t = pd.DataFrame({"pace": by["pace"].mean(), "fg3a_per_game": by["fg3a"].mean(), "fg3a_rate": by["fg3a_rate"].mean(),
                       "ppg": by["pts"].mean(), "efg": by["off_efg"].mean(), "tov_rate": by["off_tov_rate"].mean(),
                       "orb_rate": by["off_orb_rate"].mean(), "ft_rate": by["off_ft_rate"].mean()})
     t["parity_sd_win_pct"] = tg.groupby(["SEASON", "team"])["win"].mean().groupby("SEASON").std()
     t["home_win_rate"] = cand.groupby("SEASON")["home_win"].mean()
-    t["favourite_win_rate"] = rows.assign(fav=(rows["elo_diff"] > 0) == (rows["home_win"] == 1)).groupby("SEASON")["fav"].mean()
+    t["favorite_win_rate"] = rows.assign(fav=(rows["elo_diff"] > 0) == (rows["home_win"] == 1)).groupby("SEASON")["fav"].mean()
     t["avg_abs_margin"] = cand.assign(a=cand["margin"].abs()).groupby("SEASON")["a"].mean()
     return t.reset_index().to_dict("records")
 

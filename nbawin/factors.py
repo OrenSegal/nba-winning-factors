@@ -166,7 +166,7 @@ def team_pregame(tg: pd.DataFrame) -> pd.DataFrame:
     prev = g["venue"].shift(1).fillna(tg["team"])  # a season opener starts from home
     lat = lambda v, i: v.map(lambda a: ARENAS[a][i]).astype(float)
     out["travel"] = haversine_km(lat(prev, 0), lat(prev, 1), lat(tg["venue"], 0), lat(tg["venue"], 1)) / 1000
-    delta = lat(tg["venue"], 3) - lat(prev, 3)  # + = travelled east
+    delta = lat(tg["venue"], 3) - lat(prev, 3)  # + = traveled east
     out["tz_east"], out["tz_west"] = delta.clip(lower=0), (-delta).clip(lower=0)
     return out
 

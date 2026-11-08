@@ -48,7 +48,7 @@
   .kpi:first-child { border-left:0; padding-left:0; }
   .kpi .l { font:600 .72rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--mute); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .kpi .v { font:600 clamp(1.3rem,2.4vw,1.9rem)/1.1 var(--mono); font-variant-numeric:tabular-nums; margin:4px 0 2px; }
-  .kpi .d { font:400 .72rem var(--mono); color:var(--ink2); }
+  .kpi .d { font:400 .76rem var(--mono); color:var(--ink2); }
   .kpi svg { display:block; width:100%; height:26px; margin-top:6px; overflow:visible; }
 
   /* bento */
@@ -75,12 +75,12 @@
   .tok { transition:transform .7s var(--ease), opacity .4s; }
   .tok { cursor:pointer; }
   .tok .hit { fill:transparent; }
-  .tok .dot { fill:var(--ink2); stroke:var(--panel); stroke-width:1.5; transition:fill .3s; }
-  .tok text { font:600 11px var(--mono); fill:var(--ink2); dominant-baseline:central; pointer-events:none; }
-  .tok:hover .dot { fill:var(--ink); }
-  .tok.dim { opacity:.35; }
-  .tok.sel .dot { r:6.5px; stroke:var(--panel); stroke-width:2; }
-  .tok.sel text { fill:var(--ink); font-size:11px; font-weight:600; }
+  .tok .dot { fill:#f4f3ef; stroke:var(--line); stroke-width:1; transition:stroke .3s; }
+  .tok image { pointer-events:none; }
+  .tok:hover .dot { stroke:var(--ink); stroke-width:1.5; }
+  .tok.dim { opacity:.3; }
+  .tok.sel .dot { stroke-width:3; }
+  .tok.sel { filter:drop-shadow(0 1px 4px rgb(0 0 0 / .35)); }
   .ax { font:400 11px var(--mono); fill:var(--mute); }
   .axt { font:600 11px var(--mono); fill:var(--ink2); letter-spacing:.02em; }
   .gl { stroke:var(--line); } .gl0 { stroke:var(--ink2); stroke-dasharray:2 4; }
@@ -89,7 +89,7 @@
   .floor-note { position:absolute; inset:40% 0 auto; text-align:center; color:var(--mute); font:600 .8rem var(--mono); pointer-events:none; }
 
   /* leaderboard */
-  .board { position:relative; }
+  .board { position:relative; overflow:clip; }  /* rows slide in from below; never over the legend */
   .lb { position:absolute; left:0; right:0; height:40px; transition:transform .6s var(--ease), opacity .4s; display:grid; grid-template-columns:1.2rem minmax(0,1fr) 3.4rem; gap:0 8px; align-items:center; }
   .lb .rk { font:600 .72rem var(--mono); color:var(--mute); }
   .lb .nm { font-size:.84rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -151,7 +151,7 @@
   .f .tag { font:600 .72rem var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--mute); margin:0 0 6px; }
   .f h3 { font-weight:800; font-variation-settings:"wdth" 92; font-size:1.25rem; line-height:1.2; margin:0 0 8px; letter-spacing:-.005em; }
   .lede { color:var(--ink2); font-size:.92rem; line-height:1.55; margin:0 0 12px; max-width:72ch; }
-  .fn { color:var(--mute); font:400 .74rem/1.5 var(--mono); margin:10px 0 0; padding-top:8px; border-top:1px dashed var(--line); max-width:110ch; }
+  .fn { color:var(--mute); font:400 .78rem/1.5 var(--mono); margin:10px 0 0; padding-top:8px; border-top:1px dashed var(--line); max-width:110ch; }
   .mini { font:600 .72rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--mute); margin:14px 0 4px; }
   .split { display:grid; grid-template-columns:1fr 1fr; gap:8px 28px; }
   .pairs { list-style:none; margin:0; padding:0; font-size:.86rem; color:var(--ink2); }
@@ -163,7 +163,7 @@
   .t-cap { fill:var(--mute); font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; font-family:var(--mono)!important; }
   .grid-line { stroke:var(--line); stroke-width:1; } .zero { stroke:var(--ink2); stroke-width:1; }
   .legend i.sq { border-radius:2px; } .legend i.ring { background:transparent!important; border:2px solid; }
-  .f details { font-size:.76rem; color:var(--ink2); margin:6px 0 0; }
+  .f details { font-size:.8rem; color:var(--ink2); margin:6px 0 0; }
   .f summary { cursor:pointer; color:var(--mute); font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
   .f table { border-collapse:collapse; font-size:.76rem; display:block; overflow-x:auto; margin-top:6px; }
   .f th, .f td { border-bottom:1px solid var(--line); padding:3px 10px 3px 0; text-align:left; white-space:nowrap; } .f td.n { text-align:right; font-family:var(--mono); }
@@ -175,7 +175,7 @@
   .ctl label { display:inline-flex; gap:6px; align-items:center; min-height:36px; color:var(--ink2); }
   #ex-rows { max-height:640px; overflow-y:auto; border-top:1px solid var(--line); }
   .xr { display:grid; grid-template-columns:minmax(0,1fr) minmax(96px,32%); gap:4px 16px; padding:9px 2px; border-bottom:1px solid var(--line); align-items:center; }
-  .xr .nm { font-weight:700; font-size:.9rem; } .xr .meta { color:var(--mute); font:400 .72rem/1.5 var(--mono); } .xr .df { color:var(--ink2); font-size:.8rem; }
+  .xr .nm { font-weight:700; font-size:.9rem; } .xr .meta { color:var(--mute); font:400 .76rem/1.5 var(--mono); } .xr .df { color:var(--ink2); font-size:.8rem; }
   .role { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:5px; }
   .xr .bar { position:relative; height:22px; } .xr .bar .zero { position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--ink2); }
   .xr .bar .fill { position:absolute; top:6px; height:10px; border-radius:2px; } .xr .bar .ci { position:absolute; top:10px; height:2px; background:var(--ink); opacity:.5; }
@@ -201,11 +201,37 @@
   .six tbody tr.sel td { box-shadow:inset 0 2px 0 var(--ink), inset 0 -2px 0 var(--ink); }
   .six .mv { font-size:11px; } .six .up { color:var(--cool); } .six .dn { color:var(--hot); }
 
+  .six td.tm img, .facts img, #tip img { width:20px; height:20px; vertical-align:-5px; margin-right:6px; object-fit:contain; }
+
+  /* takeaways */
+  .take { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; margin:18px 0 0; border-bottom:1px solid var(--line); }
+  .tk { padding:14px 18px 16px; border-left:1px solid var(--line); display:flex; flex-direction:column; gap:6px; }
+  .tk:first-child { border-left:0; padding-left:0; }
+  .tk .n { font:600 clamp(1.6rem,3vw,2.3rem)/1 var(--mono); font-variant-numeric:tabular-nums; }
+  .tk .n small { font-size:.45em; color:var(--mute); margin-left:4px; }
+  .tk .c { font-weight:700; font-size:.95rem; line-height:1.3; font-variation-settings:"wdth" 92; }
+  .tk .a { font-size:.84rem; color:var(--ink2); margin-top:auto; padding-top:6px; border-top:1px dashed var(--line); }
+  .tk .a b { font:600 .72rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--hot); margin-right:6px; }
+  .tk a { font:600 .74rem var(--mono); color:var(--mute); text-decoration:none; } .tk a:hover { color:var(--ink); }
+
+  /* fact chips: short, scannable captions */
+  .facts { display:flex; flex-wrap:wrap; gap:6px 22px; margin:4px 0 10px; font-size:.86rem; color:var(--ink2); }
+  .facts span { white-space:nowrap; } .facts b { color:var(--ink); font-weight:700; }
+  .facts .k { font:600 .7rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--mute); margin-right:6px; }
+  .how { font-size:.8rem; color:var(--ink2); margin:10px 0 0; } .how summary { cursor:pointer; font:600 .72rem var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--mute); }
+  .how p { margin:6px 0 0; max-width:110ch; }
+
+  /* pipeline */
+  .pipe { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:6px 0 16px; font:600 .78rem var(--mono); }
+  .pipe span { border:1px solid var(--line); border-radius:4px; padding:6px 9px; background:var(--bg); }
+  .pipe i { color:var(--mute); font-style:normal; }
+
   /* methods */
   .methods { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px 28px; margin:10px 0 0; }
   .methods h4 { font:600 .72rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin:0 0 4px; }
   .methods p { margin:0; font-size:.84rem; color:var(--ink2); line-height:1.5; }
-  @media (max-width:980px) { .methods { grid-template-columns:1fr 1fr; } }
+  @media (max-width:980px) { .methods { grid-template-columns:1fr 1fr; } .take { grid-template-columns:1fr 1fr; } .tk:nth-child(3) { border-left:0; padding-left:0; } .tk:nth-child(n+3) { border-top:1px solid var(--line); } }
+  @media (max-width:640px) { .take { grid-template-columns:1fr; } .tk:nth-child(n) { border-left:0; padding-left:0; } .tk:nth-child(n+2) { border-top:1px solid var(--line); } .facts span { white-space:normal; } }
   @media (max-width:640px) { .methods { grid-template-columns:1fr; } .six td.tm .nm { display:none; } .six td.tm small { font:700 .84rem var(--mono); color:var(--ink); } }
   @media (max-width:980px) { .p8, .p4, .p6, .p7, .p5 { grid-column:span 12; } .band { grid-template-columns:1fr; } .kpis { grid-template-columns:repeat(3,1fr); } .kpi:nth-child(4) { border-left:0; padding-left:0; } .kpi:nth-child(n+4) { border-top:1px solid var(--line); } }
   @media (max-width:640px) {
@@ -236,6 +262,11 @@
   </section>
   <p class="intro" id="intro"></p>
 
+  <section aria-labelledby="h-take">
+    <h2 class="sr" id="h-take">The short version</h2>
+    <div class="take" id="take"></div>
+  </section>
+
   <div class="kpis" id="kpis" style="margin-top:18px"></div>
 
   <div class="grid">
@@ -247,7 +278,7 @@
           <select id="team"><option value="">Follow a franchise</option></select>
         </div>
       </div>
-      <p class="sub" id="floor-sub"></p>
+      <div class="facts" id="floor-sub"></div>
       <div class="chips" id="xchips" role="group" aria-label="Horizontal axis"></div>
       <div id="floor" role="img" aria-label="Every team that season, the chosen factor against win percentage"></div>
     </section>
@@ -257,7 +288,7 @@
         <div class="seg" role="group" aria-label="Kind of factor"><button data-role="" aria-pressed="true">All</button><button data-role="style" aria-pressed="false">Style</button><button data-role="execution" aria-pressed="false">Results</button></div>
       </div>
       <p class="sub" id="board-sub">Ten factors most tied to win % this season, out of <span id="n-metrics">86</span>.</p>
-      <div class="board" id="board" style="height:400px"></div>
+      <div class="board" id="lboard" style="height:400px"></div>
       <div class="legend"><span><i style="background:var(--cool)"></i>Style: a choice</span><span><i style="background:var(--hot)"></i>Result</span><span><i style="background:var(--mint)"></i>Effort</span><span><u></u>26-season average</span></div>
     </section>
 
@@ -265,10 +296,11 @@
       <div class="ph"><h2 id="h-six">Why they won</h2>
         <div class="seg" role="group" aria-label="Net rating shown"><button id="l-off" aria-pressed="true">As played</button><button id="l-on" aria-pressed="false">3P luck removed</button></div>
       </div>
-      <p class="sub" id="six-sub"></p>
+      <p class="sub">Net rating split into points per 100 possessions won or lost on each of the four factors, at both ends. Click a row to follow the team.</p>
+      <div class="facts" id="six-sub"></div>
       <div class="six-wrap"><table class="six" id="six"></table></div>
-      <div class="legend"><span><i class="sq" style="background:var(--cool)"></i>Helped, points per 100 possessions</span><span><i class="sq" style="background:var(--hot)"></i>Hurt</span><span class="mono" style="font-size:.72rem">#n = rank that season</span></div>
-      <p class="fn" id="six-fn"></p>
+      <div class="legend"><span><i class="sq" style="background:var(--cool)"></i>Helped</span><span><i class="sq" style="background:var(--hot)"></i>Hurt</span><span class="mono" style="font-size:.72rem">#n = rank that season</span></div>
+      <details class="how"><summary>How this is computed</summary><p id="six-fn"></p></details>
     </section>
 
     <section class="p p12" aria-labelledby="h-pulse">
@@ -414,12 +446,13 @@
     <article class="p p12 f" id="methods">
       <p class="tag">Methods</p>
       <h3>How the numbers were made, and where they could mislead</h3>
+      <div class="pipe" aria-label="Pipeline"><span>stats.nba.com via nba_api</span><i>→</i><span>raw CSV, cached</span><i>→</i><span>pandas features, tested for leakage</span><i>→</i><span>scikit-learn, numpy</span><i>→</i><span>pytest, 18 tests</span><i>→</i><span>static JSON</span><i>→</i><span>this page, Vercel</span></div>
       <div class="methods">
         <div><h4>Data</h4><p>Team game logs and season tables from stats.nba.com, 2000-01 to 2025-26 regular seasons. Shot zones and advanced stats for every season, player tracking from 2013-14, hustle from 2016-17. No player or play-by-play data, so nothing here measures individuals.</p></div>
-        <div><h4>Each season against itself</h4><p>Every season metric is z-scored within its own season before it is compared with winning, so the three-point boom cannot pose as an edge. The six-factor table centres each rate on that season's league average for the same reason.</p></div>
+        <div><h4>Each season against itself</h4><p>Every season metric is z-scored within its own season before it is compared with winning, so the three-point boom cannot pose as an edge. The six-factor table centers each rate on that season's league average for the same reason.</p></div>
         <div><h4>Scored on unseen seasons</h4><p>Pre-game models train on 2000-01 to 2022-23 and are scored on the three seasons after, then walked forward a season at a time. Season-level models leave one whole season out at a time.</p></div>
         <div><h4>Intervals that respect seasons</h4><p>Confidence intervals resample whole seasons, not games, because games in one season share rules, schedules and rosters. Correlations are compared with a chance ceiling from 1,000 shuffles of win % within each season.</p></div>
-        <div><h4>Chosen after looking</h4><p>Some comparisons were picked after the results were in: the four-factor model in the accuracy ladder and the walk-forward gap. Those margins are optimistic and are labelled where they appear. Betting lines are not included and would likely beat every model.</p></div>
+        <div><h4>Chosen after looking</h4><p>Some comparisons were picked after the results were in: the four-factor model in the accuracy ladder and the walk-forward gap. Those margins are optimistic and are labeled where they appear. Betting lines are not included and would likely beat every model.</p></div>
         <div><h4>Reproduce it</h4><p>One command rebuilds every number on this page from the raw tables: <span class="mono">uv run python -m nbawin.run</span>, then <span class="mono">nbawin.dashboard</span>. Eighteen tests, including one that plants a signal and checks the atlas finds it and ignores shuffled labels.</p></div>
       </div>
     </article>
@@ -445,7 +478,7 @@
 </div>
 <div id="tip" hidden></div>
 <noscript><p class="wrap">This dashboard needs JavaScript. <a href="report.html">Read the technical report</a> instead.</p></noscript>
-<script src="story.js"></script>
-<script src="dash.js"></script>
+<script src="story.js?v=6"></script>
+<script src="dash.js?v=6"></script>
 </body>
 </html>

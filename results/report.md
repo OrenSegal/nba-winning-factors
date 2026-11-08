@@ -239,33 +239,33 @@ Split-half reliability (odd vs even games, Spearman-Brown) and year-over-year co
 |---|---|---|---|---|---|
 | True shooting % | Shot making | execution | +0.71 [+0.68, +0.75] | 0.12 | yes |
 | Effective FG% | Shot making | execution | +0.71 [+0.68, +0.74] | 0.12 | yes |
-| Opponent eFG% | Defence | execution | -0.70 [-0.73, -0.66] | 0.12 | yes |
+| Opponent eFG% | Defense | execution | -0.70 [-0.73, -0.66] | 0.12 | yes |
 | Catch-and-shoot eFG% | Shot making | execution | +0.59 [+0.52, +0.66] | 0.17 | yes |
-| Opponent points off turnovers per 100 | Defence | execution | -0.57 [-0.62, -0.52] | 0.12 | yes |
+| Opponent points off turnovers per 100 | Defense | execution | -0.57 [-0.62, -0.52] | 0.12 | yes |
 | Pull-up eFG% | Shot making | execution | +0.56 [+0.51, +0.62] | 0.17 | yes |
 | Drive FG% | Shot making | execution | +0.56 [+0.52, +0.59] | 0.17 | yes |
 | 3-point % | Shot making | execution | +0.54 [+0.49, +0.59] | 0.12 | yes |
-| Opponent 3-point % | Defence | execution | -0.52 [-0.56, -0.47] | 0.12 | yes |
+| Opponent 3-point % | Defense | execution | -0.52 [-0.56, -0.47] | 0.12 | yes |
 | Assist-to-turnover | Ball security | execution | +0.52 [+0.48, +0.56] | 0.12 | yes |
 | Rim FG% | Shot making | execution | +0.51 [+0.49, +0.53] | 0.12 | yes |
 | Above-the-break three % | Shot making | execution | +0.50 [+0.45, +0.55] | 0.12 | yes |
-| Opponent paint points per 100 | Defence | execution | -0.43 [-0.50, -0.36] | 0.12 | yes |
-| Opponent rim FG% | Defence | execution | -0.43 [-0.53, -0.33] | 0.17 | yes |
+| Opponent paint points per 100 | Defense | execution | -0.43 [-0.50, -0.36] | 0.12 | yes |
+| Opponent rim FG% | Defense | execution | -0.43 [-0.53, -0.33] | 0.17 | yes |
 | Assist ratio | Ball movement | execution | +0.41 [+0.36, +0.46] | 0.12 | yes |
 | Total rebound % | Rebounding | execution | +0.41 [+0.35, +0.47] | 0.12 | yes |
 | Mid-range FG% | Shot making | execution | +0.40 [+0.36, +0.46] | 0.12 | yes |
 | Turnover % | Ball security | execution | -0.39 [-0.45, -0.34] | 0.12 | yes |
-| Opponent fast-break points per 100 | Defence | execution | -0.38 [-0.44, -0.32] | 0.12 | yes |
+| Opponent fast-break points per 100 | Defense | execution | -0.38 [-0.44, -0.32] | 0.12 | yes |
 | Defensive speed | Effort and movement | effort | -0.37 [-0.41, -0.33] | 0.17 | yes |
 | Points created by assists per 100 | Ball movement | execution | +0.37 [+0.21, +0.49] | 0.17 | yes |
-| Rim attempts faced per 100 | Defence | style | -0.36 [-0.51, -0.20] | 0.17 | yes |
+| Rim attempts faced per 100 | Defense | style | -0.36 [-0.51, -0.20] | 0.17 | yes |
 | Paint (non-rim) FG% | Shot making | execution | +0.36 [+0.30, +0.42] | 0.12 | yes |
 | Paint-touch FG% | Shot making | execution | +0.35 [+0.28, +0.41] | 0.17 | yes |
 | Corner-three share | Shot diet | style | +0.35 [+0.28, +0.40] | 0.12 | yes |
 
 ### All 26 seasons: cross-validated R-squared by factor block (776 team-seasons, leave one season out)
 
-| Block | Metrics | Win % | Offence | Defence |
+| Block | Metrics | Win % | Offense | Defense |
 |---|---|---|---|---|
 | Style (choices) | 9 | 0.12 [0.07, 0.16] | 0.09 [-0.02, 0.15] | 0.11 [0.07, 0.15] |
 | Execution (results) | 35 | 0.92 [0.91, 0.93] | 0.97 [0.97, 0.98] | 0.97 [0.97, 0.98] |
@@ -275,7 +275,7 @@ Net rating alone explains 0.94 [0.93, 0.95] of win %. Beyond net rating, everyth
 
 | Family | Metrics | Alone | Loss in R-squared if removed |
 |---|---|---|---|
-| Defence | 9 | 0.62 [0.58, 0.66] | +0.079 |
+| Defense | 9 | 0.62 [0.58, 0.66] | +0.079 |
 | Where points come from | 8 | 0.53 [0.36, 0.63] | +0.000 |
 | Shot making | 8 | 0.51 [0.47, 0.56] | +0.009 |
 | Rebounding | 3 | 0.44 [0.39, 0.49] | +0.013 |
@@ -286,7 +286,7 @@ Net rating alone explains 0.94 [0.93, 0.95] of win %. Beyond net rating, everyth
 
 ### Tracking era (2016-17 on): cross-validated R-squared by factor block (300 team-seasons, leave one season out)
 
-| Block | Metrics | Win % | Offence | Defence |
+| Block | Metrics | Win % | Offense | Defense |
 |---|---|---|---|---|
 | Style (choices) | 26 | 0.31 [0.20, 0.41] | 0.17 [-0.12, 0.36] | 0.31 [0.24, 0.40] |
 | Execution (results) | 51 | 0.91 [0.89, 0.92] | 0.97 [0.95, 0.98] | 0.96 [0.95, 0.97] |
@@ -298,7 +298,7 @@ Net rating alone explains 0.93 [0.91, 0.94] of win %. Beyond net rating, everyth
 
 | Family | Metrics | Alone | Loss in R-squared if removed |
 |---|---|---|---|
-| Defence | 13 | 0.62 [0.52, 0.70] | +0.097 |
+| Defense | 13 | 0.62 [0.52, 0.70] | +0.097 |
 | Shot making | 14 | 0.53 [0.47, 0.61] | +0.012 |
 | Rebounding | 6 | 0.48 [0.40, 0.52] | +0.011 |
 | Where points come from | 8 | 0.47 [0.12, 0.68] | -0.000 |

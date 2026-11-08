@@ -2702,7 +2702,7 @@
         "ft_rate": 0.2346747071420142,
         "parity_sd_win_pct": 0.1571569560336996,
         "home_win_rate": 0.5979814970563498,
-        "favourite_win_rate": 0.6345226615236258,
+        "favorite_win_rate": 0.6345226615236258,
         "avg_abs_margin": 10.59798149705635
       },
       {
@@ -2717,7 +2717,7 @@
         "ft_rate": 0.22410200620181692,
         "parity_sd_win_pct": 0.1379335528264458,
         "home_win_rate": 0.5912531539108494,
-        "favourite_win_rate": 0.6382978723404256,
+        "favorite_win_rate": 0.6382978723404256,
         "avg_abs_margin": 10.825063078216989
       },
       {
@@ -2732,7 +2732,7 @@
         "ft_rate": 0.2330207512563004,
         "parity_sd_win_pct": 0.14407360044623935,
         "home_win_rate": 0.6282590412111018,
-        "favourite_win_rate": 0.6483622350674374,
+        "favorite_win_rate": 0.6483622350674374,
         "avg_abs_margin": 10.711522287636669
       },
       {
@@ -2747,7 +2747,7 @@
         "ft_rate": 0.2315333015309144,
         "parity_sd_win_pct": 0.13599455345299336,
         "home_win_rate": 0.6139613120269134,
-        "favourite_win_rate": 0.638030888030888,
+        "favorite_win_rate": 0.638030888030888,
         "avg_abs_margin": 10.349032800672834
       },
       {
@@ -2762,7 +2762,7 @@
         "ft_rate": 0.24961599434047294,
         "parity_sd_win_pct": 0.1547884551095353,
         "home_win_rate": 0.6048780487804878,
-        "favourite_win_rate": 0.6707202993451824,
+        "favorite_win_rate": 0.6707202993451824,
         "avg_abs_margin": 10.316260162601626
       },
       {
@@ -2777,7 +2777,7 @@
         "ft_rate": 0.25256456296908597,
         "parity_sd_win_pct": 0.13625154448305504,
         "home_win_rate": 0.6032520325203252,
-        "favourite_win_rate": 0.6308411214953271,
+        "favorite_win_rate": 0.6308411214953271,
         "avg_abs_margin": 10.373170731707317
       },
       {
@@ -2792,7 +2792,7 @@
         "ft_rate": 0.2503155961631599,
         "parity_sd_win_pct": 0.13224045601067744,
         "home_win_rate": 0.5910569105691057,
-        "favourite_win_rate": 0.6442577030812325,
+        "favorite_win_rate": 0.6442577030812325,
         "avg_abs_margin": 10.615447154471545
       },
       {
@@ -2807,7 +2807,7 @@
         "ft_rate": 0.23456010518409137,
         "parity_sd_win_pct": 0.16861599105066735,
         "home_win_rate": 0.6008130081300813,
-        "favourite_win_rate": 0.6772388059701493,
+        "favorite_win_rate": 0.6772388059701493,
         "avg_abs_margin": 11.504878048780487
       },
       {
@@ -2822,7 +2822,7 @@
         "ft_rate": 0.23881600728247426,
         "parity_sd_win_pct": 0.17207807475849743,
         "home_win_rate": 0.608130081300813,
-        "favourite_win_rate": 0.6675977653631285,
+        "favorite_win_rate": 0.6675977653631285,
         "avg_abs_margin": 10.942276422764227
       },
       {
@@ -2837,7 +2837,7 @@
         "ft_rate": 0.23114526725219892,
         "parity_sd_win_pct": 0.162892227003017,
         "home_win_rate": 0.5943089430894309,
-        "favourite_win_rate": 0.6582633053221288,
+        "favorite_win_rate": 0.6582633053221288,
         "avg_abs_margin": 11.07479674796748
       },
       {
@@ -2852,7 +2852,7 @@
         "ft_rate": 0.23239799663469016,
         "parity_sd_win_pct": 0.16067331506071073,
         "home_win_rate": 0.6040650406504066,
-        "favourite_win_rate": 0.6586046511627907,
+        "favorite_win_rate": 0.6586046511627907,
         "avg_abs_margin": 10.591869918699187
       },
       {
@@ -2867,7 +2867,7 @@
         "ft_rate": 0.21061536832879968,
         "parity_sd_win_pct": 0.1560451342119082,
         "home_win_rate": 0.5858585858585859,
-        "favourite_win_rate": 0.6478365384615384,
+        "favorite_win_rate": 0.6478365384615384,
         "avg_abs_margin": 11.125252525252526
       },
       {
@@ -2882,7 +2882,7 @@
         "ft_rate": 0.20663621147169117,
         "parity_sd_win_pct": 0.15500310618092542,
         "home_win_rate": 0.6113821138211382,
-        "favourite_win_rate": 0.67381174277726,
+        "favorite_win_rate": 0.67381174277726,
         "avg_abs_margin": 10.98130081300813
       },
       {
@@ -2897,7 +2897,7 @@
         "ft_rate": 0.21795955257619987,
         "parity_sd_win_pct": 0.15748177268618793,
         "home_win_rate": 0.5804878048780487,
-        "favourite_win_rate": 0.660148975791434,
+        "favorite_win_rate": 0.660148975791434,
         "avg_abs_margin": 10.934959349593496
       },
       {
@@ -2912,7 +2912,7 @@
         "ft_rate": 0.20799918028717163,
         "parity_sd_win_pct": 0.16408421375211665,
         "home_win_rate": 0.5747967479674797,
-        "favourite_win_rate": 0.6697761194029851,
+        "favorite_win_rate": 0.6697761194029851,
         "avg_abs_margin": 11.111382113821138
       },
       {
@@ -2927,7 +2927,7 @@
         "ft_rate": 0.21206213340420244,
         "parity_sd_win_pct": 0.16931407121948602,
         "home_win_rate": 0.5886178861788618,
-        "favourite_win_rate": 0.679403541472507,
+        "favorite_win_rate": 0.679403541472507,
         "avg_abs_margin": 11.089430894308943
       },
       {
@@ -2942,7 +2942,7 @@
         "ft_rate": 0.21154297015137502,
         "parity_sd_win_pct": 0.13643960743589476,
         "home_win_rate": 0.583739837398374,
-        "favourite_win_rate": 0.6219739292364991,
+        "favorite_win_rate": 0.6219739292364991,
         "avg_abs_margin": 11.322764227642276
       },
       {
@@ -2957,7 +2957,7 @@
         "ft_rate": 0.195653741262721,
         "parity_sd_win_pct": 0.14904979142866903,
         "home_win_rate": 0.5788617886178862,
-        "favourite_win_rate": 0.6409302325581395,
+        "favorite_win_rate": 0.6409302325581395,
         "avg_abs_margin": 11.128455284552846
       },
       {
@@ -2972,7 +2972,7 @@
         "ft_rate": 0.20068207429053894,
         "parity_sd_win_pct": 0.14669147937362614,
         "home_win_rate": 0.5926829268292683,
-        "favourite_win_rate": 0.6461824953445066,
+        "favorite_win_rate": 0.6461824953445066,
         "avg_abs_margin": 11.739024390243902
       },
       {
@@ -2987,7 +2987,7 @@
         "ft_rate": 0.2034973023986824,
         "parity_sd_win_pct": 0.15447392773465335,
         "home_win_rate": 0.5514636449480642,
-        "favourite_win_rate": 0.6467991169977925,
+        "favorite_win_rate": 0.6467991169977925,
         "avg_abs_margin": 11.41265344664778
       },
       {
@@ -3002,7 +3002,7 @@
         "ft_rate": 0.19402372170682677,
         "parity_sd_win_pct": 0.13908032783418375,
         "home_win_rate": 0.5435185185185185,
-        "favourite_win_rate": 0.6525974025974026,
+        "favorite_win_rate": 0.6525974025974026,
         "avg_abs_margin": 12.184259259259258
       },
       {
@@ -3017,7 +3017,7 @@
         "ft_rate": 0.19462728075420013,
         "parity_sd_win_pct": 0.1410597180570685,
         "home_win_rate": 0.5439024390243903,
-        "favourite_win_rate": 0.6402609506057781,
+        "favorite_win_rate": 0.6402609506057781,
         "avg_abs_margin": 12.373170731707317
       },
       {
@@ -3032,7 +3032,7 @@
         "ft_rate": 0.21088075188528718,
         "parity_sd_win_pct": 0.12224523011165712,
         "home_win_rate": 0.5804878048780487,
-        "favourite_win_rate": 0.5983224603914259,
+        "favorite_win_rate": 0.5983224603914259,
         "avg_abs_margin": 11.18130081300813
       },
       {
@@ -3047,7 +3047,7 @@
         "ft_rate": 0.19406054405647982,
         "parity_sd_win_pct": 0.16355203041119246,
         "home_win_rate": 0.5430894308943089,
-        "favourite_win_rate": 0.6415270018621974,
+        "favorite_win_rate": 0.6415270018621974,
         "avg_abs_margin": 12.583739837398374
       },
       {
@@ -3062,7 +3062,7 @@
         "ft_rate": 0.19203119632213753,
         "parity_sd_win_pct": 0.16285991036434366,
         "home_win_rate": 0.5444897959183673,
-        "favourite_win_rate": 0.6594948550046773,
+        "favorite_win_rate": 0.6594948550046773,
         "avg_abs_margin": 12.70938775510204
       },
       {
@@ -3077,7 +3077,7 @@
         "ft_rate": 0.20882938229031928,
         "parity_sd_win_pct": 0.16908964956425365,
         "home_win_rate": 0.5542857142857143,
-        "favourite_win_rate": 0.6913002806361085,
+        "favorite_win_rate": 0.6913002806361085,
         "avg_abs_margin": 13.28734693877551
       }
     ],
@@ -3224,9 +3224,9 @@
       {
         "key": "opp_efg",
         "label": "Opponent eFG%",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
-        "definition": "Effective FG% the defence allows",
+        "definition": "Effective FG% the defense allows",
         "n": 776,
         "first_season": "2000-01",
         "r_win": -0.6996397366775707,
@@ -3254,7 +3254,7 @@
       {
         "key": "opp_tov_pts_100",
         "label": "Opponent points off turnovers per 100",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
         "definition": "Points allowed off turnovers per 100 possessions",
         "n": 776,
@@ -3314,9 +3314,9 @@
       {
         "key": "opp_fg3_pct",
         "label": "Opponent 3-point %",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
-        "definition": "Three-point % the defence allows",
+        "definition": "Three-point % the defense allows",
         "n": 776,
         "first_season": "2000-01",
         "r_win": -0.5218732198503007,
@@ -3374,7 +3374,7 @@
       {
         "key": "opp_paint_pts_100",
         "label": "Opponent paint points per 100",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
         "definition": "Points in the paint allowed per 100 possessions",
         "n": 776,
@@ -3389,7 +3389,7 @@
       {
         "key": "opp_rim_fg",
         "label": "Opponent rim FG%",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
         "definition": "Field-goal % allowed at the rim (rim protection)",
         "n": 390,
@@ -3464,7 +3464,7 @@
       {
         "key": "opp_fb_pts_100",
         "label": "Opponent fast-break points per 100",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
         "definition": "Fast-break points allowed per 100 possessions",
         "n": 776,
@@ -3481,7 +3481,7 @@
         "label": "Defensive speed",
         "family": "Effort and movement",
         "role": "effort",
-        "definition": "Average speed on defence, mph",
+        "definition": "Average speed on defense, mph",
         "n": 390,
         "first_season": "2013-14",
         "r_win": -0.37172833825484336,
@@ -3509,7 +3509,7 @@
       {
         "key": "opp_rim_faced",
         "label": "Rim attempts faced per 100",
-        "family": "Defence",
+        "family": "Defense",
         "role": "style",
         "definition": "Opponent rim attempts per 100 possessions",
         "n": 390,
@@ -3599,7 +3599,7 @@
       {
         "key": "opp_oreb",
         "label": "Opponent offensive rebound %",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
         "definition": "Share of the opponent's own misses that the opponent rebounds",
         "n": 776,
@@ -3631,7 +3631,7 @@
         "label": "Box-outs per 100",
         "family": "Effort and movement",
         "role": "effort",
-        "definition": "Box-outs, offence and defence",
+        "definition": "Box-outs, offense and defense",
         "n": 270,
         "first_season": "2017-18",
         "r_win": 0.31579979817619047,
@@ -3689,7 +3689,7 @@
       {
         "key": "opp_2nd_pts_100",
         "label": "Opponent second-chance points per 100",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
         "definition": "Second-chance points allowed per 100 possessions",
         "n": 776,
@@ -3736,7 +3736,7 @@
         "label": "Opponent free-throw rate",
         "family": "Free throws",
         "role": "execution",
-        "definition": "Free-throw attempts the defence allows per field-goal attempt",
+        "definition": "Free-throw attempts the defense allows per field-goal attempt",
         "n": 776,
         "first_season": "2000-01",
         "r_win": -0.25870424193659397,
@@ -3764,7 +3764,7 @@
       {
         "key": "blk_100",
         "label": "Blocks per 100",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
         "definition": "Blocks per 100 possessions",
         "n": 390,
@@ -3826,7 +3826,7 @@
         "label": "Offensive speed",
         "family": "Effort and movement",
         "role": "effort",
-        "definition": "Average speed on offence, mph",
+        "definition": "Average speed on offense, mph",
         "n": 390,
         "first_season": "2013-14",
         "r_win": -0.2024247178150846,
@@ -3914,7 +3914,7 @@
       {
         "key": "stl_100",
         "label": "Steals per 100",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
         "definition": "Steals per 100 possessions",
         "n": 390,
@@ -3931,7 +3931,7 @@
         "label": "Deflections per 100",
         "family": "Effort and movement",
         "role": "effort",
-        "definition": "Passes and dribbles touched on defence",
+        "definition": "Passes and dribbles touched on defense",
         "n": 315,
         "first_season": "2015-16",
         "r_win": 0.15696061543797202,
@@ -4124,9 +4124,9 @@
       {
         "key": "opp_tov",
         "label": "Opponent turnover %",
-        "family": "Defence",
+        "family": "Defense",
         "role": "execution",
-        "definition": "Turnovers the defence forces per 100 plays",
+        "definition": "Turnovers the defense forces per 100 plays",
         "n": 776,
         "first_season": "2000-01",
         "r_win": 0.10116818161199026,
@@ -4139,7 +4139,7 @@
       {
         "key": "opp_fg3a_rate",
         "label": "Opponent 3-point attempt rate",
-        "family": "Defence",
+        "family": "Defense",
         "role": "style",
         "definition": "Share of opponent attempts that are threes",
         "n": 776,
@@ -4570,7 +4570,7 @@
       },
       "families": [
         {
-          "family": "Defence",
+          "family": "Defense",
           "n_metrics": 9,
           "alone_r2": {
             "r2": 0.6199426814122684,
@@ -4817,7 +4817,7 @@
       },
       "families": [
         {
-          "family": "Defence",
+          "family": "Defense",
           "n_metrics": 13,
           "alone_r2": {
             "r2": 0.6245260437460447,

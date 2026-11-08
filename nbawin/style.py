@@ -1,5 +1,5 @@
 """Team-season factor atlas: ~110 descriptive metrics (shot diet, shot making, drives, passing, rebounding,
-defence, hustle) tested against winning.
+defense, hustle) tested against winning.
 
 Question: is winning explained by style (how a team chooses to play) or by execution (how well the shots go
 in and the ball stays safe)? Every metric is z-scored within its season, so league-wide trends (the three-point
@@ -79,20 +79,20 @@ SPECS = [
     ("dreb_chance_pct", "Defensive rebound chance %", "Rebounding", "execution", "Share of defensive rebound chances converted", P("reb_DREB_CHANCE_PCT")),
     ("oreb_contest_pct", "Contested offensive rebound %", "Rebounding", "style", "Share of offensive rebounds that were contested", P("reb_OREB_CONTEST_PCT")),
     ("ft_rate", "Free-throw rate", "Free throws", "execution", "Free-throw attempts per field-goal attempt", P("ff_FTA_RATE")),
-    ("opp_ft_rate", "Opponent free-throw rate", "Free throws", "execution", "Free-throw attempts the defence allows per field-goal attempt", P("ff_OPP_FTA_RATE")),
-    ("opp_efg", "Opponent eFG%", "Defence", "execution", "Effective FG% the defence allows", P("ff_OPP_EFG_PCT")),
-    ("opp_tov", "Opponent turnover %", "Defence", "execution", "Turnovers the defence forces per 100 plays", P("ff_OPP_TOV_PCT")),
-    ("opp_oreb", "Opponent offensive rebound %", "Defence", "execution", "Share of the opponent's own misses that the opponent rebounds", P("ff_OPP_OREB_PCT")),
-    ("opp_fg3a_rate", "Opponent 3-point attempt rate", "Defence", "style", "Share of opponent attempts that are threes", OPP("opp_OPP_FG3A")),
-    ("opp_fg3_pct", "Opponent 3-point %", "Defence", "execution", "Three-point % the defence allows", P("opp_OPP_FG3_PCT")),
-    ("opp_rim_faced", "Rim attempts faced per 100", "Defence", "style", "Opponent rim attempts per 100 possessions", R100("def_DEF_RIM_FGA")),
-    ("opp_rim_fg", "Opponent rim FG%", "Defence", "execution", "Field-goal % allowed at the rim (rim protection)", P("def_DEF_RIM_FG_PCT")),
-    ("stl_100", "Steals per 100", "Defence", "execution", "Steals per 100 possessions", R100("def_STL")),
-    ("blk_100", "Blocks per 100", "Defence", "execution", "Blocks per 100 possessions", R100("def_BLK")),
-    ("opp_paint_pts_100", "Opponent paint points per 100", "Defence", "execution", "Points in the paint allowed per 100 possessions", R100("misc_OPP_PTS_PAINT")),
-    ("opp_fb_pts_100", "Opponent fast-break points per 100", "Defence", "execution", "Fast-break points allowed per 100 possessions", R100("misc_OPP_PTS_FB")),
-    ("opp_tov_pts_100", "Opponent points off turnovers per 100", "Defence", "execution", "Points allowed off turnovers per 100 possessions", R100("misc_OPP_PTS_OFF_TOV")),
-    ("opp_2nd_pts_100", "Opponent second-chance points per 100", "Defence", "execution", "Second-chance points allowed per 100 possessions", R100("misc_OPP_PTS_2ND_CHANCE")),
+    ("opp_ft_rate", "Opponent free-throw rate", "Free throws", "execution", "Free-throw attempts the defense allows per field-goal attempt", P("ff_OPP_FTA_RATE")),
+    ("opp_efg", "Opponent eFG%", "Defense", "execution", "Effective FG% the defense allows", P("ff_OPP_EFG_PCT")),
+    ("opp_tov", "Opponent turnover %", "Defense", "execution", "Turnovers the defense forces per 100 plays", P("ff_OPP_TOV_PCT")),
+    ("opp_oreb", "Opponent offensive rebound %", "Defense", "execution", "Share of the opponent's own misses that the opponent rebounds", P("ff_OPP_OREB_PCT")),
+    ("opp_fg3a_rate", "Opponent 3-point attempt rate", "Defense", "style", "Share of opponent attempts that are threes", OPP("opp_OPP_FG3A")),
+    ("opp_fg3_pct", "Opponent 3-point %", "Defense", "execution", "Three-point % the defense allows", P("opp_OPP_FG3_PCT")),
+    ("opp_rim_faced", "Rim attempts faced per 100", "Defense", "style", "Opponent rim attempts per 100 possessions", R100("def_DEF_RIM_FGA")),
+    ("opp_rim_fg", "Opponent rim FG%", "Defense", "execution", "Field-goal % allowed at the rim (rim protection)", P("def_DEF_RIM_FG_PCT")),
+    ("stl_100", "Steals per 100", "Defense", "execution", "Steals per 100 possessions", R100("def_STL")),
+    ("blk_100", "Blocks per 100", "Defense", "execution", "Blocks per 100 possessions", R100("def_BLK")),
+    ("opp_paint_pts_100", "Opponent paint points per 100", "Defense", "execution", "Points in the paint allowed per 100 possessions", R100("misc_OPP_PTS_PAINT")),
+    ("opp_fb_pts_100", "Opponent fast-break points per 100", "Defense", "execution", "Fast-break points allowed per 100 possessions", R100("misc_OPP_PTS_FB")),
+    ("opp_tov_pts_100", "Opponent points off turnovers per 100", "Defense", "execution", "Points allowed off turnovers per 100 possessions", R100("misc_OPP_PTS_OFF_TOV")),
+    ("opp_2nd_pts_100", "Opponent second-chance points per 100", "Defense", "execution", "Second-chance points allowed per 100 possessions", R100("misc_OPP_PTS_2ND_CHANCE")),
     ("pts_fb_pct", "Fast-break share of points", "Where points come from", "execution", "Share of points scored on the break", P("score_PCT_PTS_FB")),
     ("pts_tov_pct", "Turnover share of points", "Where points come from", "execution", "Share of points scored off turnovers", P("score_PCT_PTS_OFF_TOV")),
     ("pts_paint_pct", "Paint share of points", "Where points come from", "execution", "Share of points scored in the paint", P("score_PCT_PTS_PAINT")),
@@ -101,15 +101,15 @@ SPECS = [
     ("pts_mid_pct", "Mid-range share of points", "Where points come from", "execution", "Share of points from mid-range twos", P("score_PCT_PTS_2PT_MR")),
     ("pts_2nd_100", "Second-chance points per 100", "Where points come from", "execution", "Second-chance points per 100 possessions", R100("misc_PTS_2ND_CHANCE")),
     ("pts_fb_100", "Fast-break points per 100", "Where points come from", "execution", "Fast-break points per 100 possessions", R100("misc_PTS_FB")),
-    ("speed_off", "Offensive speed", "Effort and movement", "effort", "Average speed on offence, mph", P("speed_AVG_SPEED_OFF")),
-    ("speed_def", "Defensive speed", "Effort and movement", "effort", "Average speed on defence, mph", P("speed_AVG_SPEED_DEF")),
+    ("speed_off", "Offensive speed", "Effort and movement", "effort", "Average speed on offense, mph", P("speed_AVG_SPEED_OFF")),
+    ("speed_def", "Defensive speed", "Effort and movement", "effort", "Average speed on defense, mph", P("speed_AVG_SPEED_DEF")),
     ("miles_100", "Miles run per 100", "Effort and movement", "effort", "Distance covered per 100 possessions", R100("speed_DIST_MILES")),
-    ("deflections_100", "Deflections per 100", "Effort and movement", "effort", "Passes and dribbles touched on defence", R100("hus_DEFLECTIONS")),
+    ("deflections_100", "Deflections per 100", "Effort and movement", "effort", "Passes and dribbles touched on defense", R100("hus_DEFLECTIONS")),
     ("contested_100", "Contested shots per 100", "Effort and movement", "effort", "Opponent shots with a defender in range", R100("hus_CONTESTED_SHOTS")),
     ("charges_100", "Charges drawn per 100", "Effort and movement", "effort", "Offensive fouls drawn", R100("hus_CHARGES_DRAWN")),
     ("screen_ast_100", "Screen assists per 100", "Effort and movement", "effort", "Screens that led to a made basket", R100("hus_SCREEN_ASSISTS")),
     ("loose_balls_100", "Loose balls recovered per 100", "Effort and movement", "effort", "Loose balls won", R100("hus_LOOSE_BALLS_RECOVERED")),
-    ("box_outs_100", "Box-outs per 100", "Effort and movement", "effort", "Box-outs, offence and defence", R100("hus_BOX_OUTS")),
+    ("box_outs_100", "Box-outs per 100", "Effort and movement", "effort", "Box-outs, offense and defense", R100("hus_BOX_OUTS")),
 ]
 META = {k: dict(label=l, family=f, role=r, definition=d) for k, l, f, r, d, _ in SPECS}
 assert len(META) == len(SPECS), "duplicate metric key"
@@ -208,7 +208,7 @@ def _r2(sse, sst, rng, n_boot=500):
 
 
 def blocks(meta, Z, keys, seed=0):
-    """Which kind of factor explains winning? Cross-validated R^2 of win %, offence and defence from each block."""
+    """Which kind of factor explains winning? Cross-validated R^2 of win %, offense and defense from each block."""
     rng = np.random.default_rng(seed)
     seasons = meta["SEASON"].to_numpy()
     Y = zscore(meta[list(TARGETS)], meta["SEASON"])
@@ -302,7 +302,7 @@ def report_lines(st: dict) -> list[str]:
     for key, title in (("blocks_all_seasons", "All 26 seasons"), ("blocks_tracking_era", f"Tracking era ({st['tracking_era_from']} on)")):
         b = st[key]
         lines += ["", f"### {title}: cross-validated R-squared by factor block ({b['n_rows']} team-seasons, leave one season out)", "",
-                  "| Block | Metrics | Win % | Offence | Defence |", "|---|---|---|---|---|"]
+                  "| Block | Metrics | Win % | Offense | Defense |", "|---|---|---|---|---|"]
         lines += [f"| {n} | {s['n_metrics']} | {pct(s['win'])} | {pct(s['off'])} | {pct(s['def'])} |" for n, s in b["sets"].items()]
         lines += ["", f"Net rating alone explains {pct(b['net_rating_alone'])} of win %. Beyond net rating, everything else explains "
                   f"{pct(b['beyond_net_rating']['Everything'])} of what is left.", "",

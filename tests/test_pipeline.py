@@ -142,3 +142,28 @@ def test_run_writes_outputs(tmp_path, monkeypatch):
     report = (tmp_path / "report.md").read_text()
     assert "## What predicts a win before tipoff" in report and "## Walk-forward across all seasons" in report
     assert (tmp_path / "metrics.json").exists() and (tmp_path / "walk_forward.png").exists()
+
+
+# ---- wide factor table ------------------------------------------------------
+
+def test_candidate_factors_ignore_own_and_future_games(games):
+    """Same leakage perturbation as above, applied to every factor in the wide table (Elo, form, league state, ...)."""
+    from nbawin.factors import ALL_FEATURES, candidate_features, model_rows
+
+    base = model_rows(candidate_features(games)).set_index("GAME_ID")
+    target = base.index[len(base) // 2]
+    cutoff = games.loc[games["GAME_ID"] == target, "GAME_DATE"].iloc[0]
+    tampered = games.copy()
+    later = tampered["GAME_DATE"] >= cutoff
+    stat_cols = [c for c in games if c.startswith(("home_", "away_")) and c not in ("home_team", "away_team", "home_win")]
+    tampered.loc[later, stat_cols] = np.random.default_rng(2).integers(1, 150, size=(later.sum(), len(stat_cols)))
+    tampered.loc[later, "home_win"] = 1 - tampered.loc[later, "home_win"]
+    cand = candidate_features(tampered).set_index("GAME_ID")
+    pd.testing.assert_series_equal(base.loc[target, ALL_FEATURES].astype(float), cand.loc[target, ALL_FEATURES].astype(float))
+
+
+def test_every_franchise_has_an_arena_and_relocations_share_identity(games):
+    from nbawin.teams import ARENAS, franchise
+
+    assert set(games["home_team"]) | set(games["away_team"]) <= set(ARENAS)
+    assert franchise("SEA") == franchise("OKC") and franchise("NOK") == franchise("CHH") == "NOP" and franchise("CHA") == "CHA"

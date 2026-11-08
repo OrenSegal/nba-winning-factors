@@ -1243,5 +1243,1821 @@
         "1sd": 0.10960144195437833
       }
     }
+  },
+  "explore": {
+    "n_games": 27182,
+    "n_train": 23970,
+    "n_test": 3212,
+    "n_factors_screened": 50,
+    "bonferroni_z": 3.2905267314919247,
+    "base": [
+      "elo_diff",
+      "d_net_rtg",
+      "league_home_rate"
+    ],
+    "screen": [
+      {
+        "feature": "away_b2b",
+        "family": "Rest and schedule load",
+        "coef": 0.11855585028391112,
+        "ci_low": 0.09050727849714786,
+        "ci_high": 0.1466044220706744,
+        "z": 8.284538276067448,
+        "significant_after_bonferroni": true,
+        "d_logloss": -0.0009419894004438167,
+        "d_logloss_ci": [
+          -0.002705148141991481,
+          0.0008200140455034189
+        ]
+      },
+      {
+        "feature": "d_rest",
+        "family": "Rest and schedule load",
+        "coef": 0.08764486308590794,
+        "ci_low": 0.05971261084558017,
+        "ci_high": 0.11557711532623571,
+        "z": 6.1500207777861515,
+        "significant_after_bonferroni": true,
+        "d_logloss": -0.001762664281208712,
+        "d_logloss_ci": [
+          -0.002947932353329806,
+          -0.0006796877410130568
+        ]
+      },
+      {
+        "feature": "away_g4n3",
+        "family": "Rest and schedule load",
+        "coef": 0.06171930274059285,
+        "ci_low": 0.03398098193018158,
+        "ci_high": 0.08945762355100412,
+        "z": 4.361108741887407,
+        "significant_after_bonferroni": true,
+        "d_logloss": -0.00029784851613324885,
+        "d_logloss_ci": [
+          -0.0012632423374000818,
+          0.0006252733399995678
+        ]
+      },
+      {
+        "feature": "d_def_fg3_pct",
+        "family": "Pace and style",
+        "coef": 0.06316837670125934,
+        "ci_low": 0.03276464170023642,
+        "ci_high": 0.09357211170228226,
+        "z": 4.07219765368639,
+        "significant_after_bonferroni": true,
+        "d_logloss": -0.0005342552116426526,
+        "d_logloss_ci": [
+          -0.0012100408425375448,
+          0.00010928266906566824
+        ]
+      },
+      {
+        "feature": "home_b2b",
+        "family": "Rest and schedule load",
+        "coef": -0.05566850650980917,
+        "ci_low": -0.08314146156686034,
+        "ci_high": -0.028195551452758004,
+        "z": -3.9715521148942403,
+        "significant_after_bonferroni": true,
+        "d_logloss": -0.001560246538610573,
+        "d_logloss_ci": [
+          -0.002560496263487238,
+          -0.0006269539878821038
+        ]
+      },
+      {
+        "feature": "away_g6n5",
+        "family": "Rest and schedule load",
+        "coef": 0.051744077482491574,
+        "ci_low": 0.024098116557406218,
+        "ci_high": 0.07939003840757693,
+        "z": 3.6684704916029376,
+        "significant_after_bonferroni": true,
+        "d_logloss": -0.0005224026579505094,
+        "d_logloss_ci": [
+          -0.0013540683913941568,
+          0.0003331249519568302
+        ]
+      },
+      {
+        "feature": "home_alt_km",
+        "family": "Altitude",
+        "coef": 0.05056319790276892,
+        "ci_low": 0.02226956582593733,
+        "ci_high": 0.0788568299796005,
+        "z": 3.50269161697974,
+        "significant_after_bonferroni": true,
+        "d_logloss": -2.398900787811697e-05,
+        "d_logloss_ci": [
+          -0.0008014643730836667,
+          0.0008901033603400075
+        ]
+      },
+      {
+        "feature": "d_ewm5",
+        "family": "Recent form",
+        "coef": 0.09654073299579782,
+        "ci_low": 0.03991871776185102,
+        "ci_high": 0.15316274822974463,
+        "z": 3.3418068200144186,
+        "significant_after_bonferroni": true,
+        "d_logloss": -0.0007604082895724378,
+        "d_logloss_ci": [
+          -0.0015557721175945033,
+          7.925685938281036e-05
+        ]
+      },
+      {
+        "feature": "d_ewm8",
+        "family": "Recent form",
+        "coef": 0.12387289152150992,
+        "ci_low": 0.04897169710766923,
+        "ci_high": 0.19877408593535062,
+        "z": 3.24148191870883,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.000650336166149446,
+        "d_logloss_ci": [
+          -0.001393739744272065,
+          0.00018839274927494632
+        ]
+      },
+      {
+        "feature": "d_form10",
+        "family": "Recent form",
+        "coef": 0.041485242415620814,
+        "ci_low": 0.01276911023314702,
+        "ci_high": 0.07020137459809461,
+        "z": 2.8315469025540656,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.0005704823903848094,
+        "d_logloss_ci": [
+          -0.0013247900023575694,
+          0.00015930241504011786
+        ]
+      },
+      {
+        "feature": "d_ewm20",
+        "family": "Recent form",
+        "coef": 0.2173583550195436,
+        "ci_low": 0.062339827889801275,
+        "ci_high": 0.3723768821492859,
+        "z": 2.7482029646801327,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.0003423602903792851,
+        "d_logloss_ci": [
+          -0.0010051067663110027,
+          0.00032141164034326866
+        ]
+      },
+      {
+        "feature": "d_def_orb_rate",
+        "family": "Four factors",
+        "coef": -0.03721006251988083,
+        "ci_low": -0.0660490748261767,
+        "ci_high": -0.008371050213584967,
+        "z": -2.528925809398981,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.00010655451864541115,
+        "d_logloss_ci": [
+          -0.000661095848094075,
+          0.000352690743799233
+        ]
+      },
+      {
+        "feature": "d_ast_rate",
+        "family": "Pace and style",
+        "coef": 0.034770965948123206,
+        "ci_low": 0.00631029795135701,
+        "ci_high": 0.0632316339448894,
+        "z": 2.3945711065553716,
+        "significant_after_bonferroni": false,
+        "d_logloss": 0.0005971499818083006,
+        "d_logloss_ci": [
+          -2.1860379625599528e-05,
+          0.0011188170127230993
+        ]
+      },
+      {
+        "feature": "d_blk_rate",
+        "family": "Pace and style",
+        "coef": 0.02907345034250123,
+        "ci_low": 0.0006870321097865936,
+        "ci_high": 0.057459868575215865,
+        "z": 2.007437578215832,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.00019385928273464538,
+        "d_logloss_ci": [
+          -0.0006958876370136493,
+          0.0002762741613838223
+        ]
+      },
+      {
+        "feature": "home_streak",
+        "family": "Home stands and road trips",
+        "coef": 0.02605182500047386,
+        "ci_low": -0.0018678902528898658,
+        "ci_high": 0.05397154025383759,
+        "z": 1.8288716964897034,
+        "significant_after_bonferroni": false,
+        "d_logloss": 0.00010284951339390926,
+        "d_logloss_ci": [
+          -0.000355832866509515,
+          0.0005396590601310347
+        ]
+      },
+      {
+        "feature": "d_fg3a_rate",
+        "family": "Pace and style",
+        "coef": 0.025902053520777527,
+        "ci_low": -0.0028143399001410822,
+        "ci_high": 0.05461844694169614,
+        "z": 1.767910898718281,
+        "significant_after_bonferroni": false,
+        "d_logloss": 0.00022657276584450974,
+        "d_logloss_ci": [
+          -0.00010745450238005691,
+          0.0005952453206279568
+        ]
+      },
+      {
+        "feature": "home_g4n3",
+        "family": "Rest and schedule load",
+        "coef": -0.023497165292207,
+        "ci_low": -0.05114677537306621,
+        "ci_high": 0.004152444788652211,
+        "z": -1.6656453323588634,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.00025738364484773416,
+        "d_logloss_ci": [
+          -0.0006246697697628545,
+          7.981942124213125e-05
+        ]
+      },
+      {
+        "feature": "pace_sum_rel",
+        "family": "Volatility and matchup shape",
+        "coef": 0.020449759781388237,
+        "ci_low": -0.007444834760501819,
+        "ci_high": 0.04834435432327829,
+        "z": 1.4368923380954488,
+        "significant_after_bonferroni": false,
+        "d_logloss": 4.232600921323578e-05,
+        "d_logloss_ci": [
+          -0.00021761898660476806,
+          0.0003256638399694588
+        ]
+      },
+      {
+        "feature": "home_tz_east",
+        "family": "Travel and time zones",
+        "coef": -0.020161661615470637,
+        "ci_low": -0.04776415616012906,
+        "ci_high": 0.007440832929187784,
+        "z": -1.43164077806039,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.00032292259310165233,
+        "d_logloss_ci": [
+          -0.0006071097036058978,
+          -6.533964725440248e-05
+        ]
+      },
+      {
+        "feature": "away_streak",
+        "family": "Home stands and road trips",
+        "coef": -0.019974184842269906,
+        "ci_low": -0.04768487020022902,
+        "ci_high": 0.0077365005156892035,
+        "z": -1.4127908344787459,
+        "significant_after_bonferroni": false,
+        "d_logloss": 7.752143563704226e-05,
+        "d_logloss_ci": [
+          -0.0002367542719561581,
+          0.0003943563129867618
+        ]
+      },
+      {
+        "feature": "away_travel",
+        "family": "Travel and time zones",
+        "coef": -0.019818000006991424,
+        "ci_low": -0.04744225530326941,
+        "ci_high": 0.007806255289286565,
+        "z": -1.4061294900839125,
+        "significant_after_bonferroni": false,
+        "d_logloss": -5.9286691718627074e-05,
+        "d_logloss_ci": [
+          -0.0004103930303903106,
+          0.00022568907934566703
+        ]
+      },
+      {
+        "feature": "d_def_ft_rate",
+        "family": "Four factors",
+        "coef": 0.020411665010120112,
+        "ci_low": -0.008327572074424087,
+        "ci_high": 0.049150902094664314,
+        "z": 1.3920642118002111,
+        "significant_after_bonferroni": false,
+        "d_logloss": 1.0587701398619514e-05,
+        "d_logloss_ci": [
+          -0.00025918228101701624,
+          0.0002416000772210188
+        ]
+      },
+      {
+        "feature": "home_g6n5",
+        "family": "Rest and schedule load",
+        "coef": -0.0191815365043519,
+        "ci_low": -0.04686480689011933,
+        "ci_high": 0.008501733881415528,
+        "z": -1.3580697303689433,
+        "significant_after_bonferroni": false,
+        "d_logloss": -4.440518484617736e-05,
+        "d_logloss_ci": [
+          -0.00036157289641073264,
+          0.00022589835576977224
+        ]
+      },
+      {
+        "feature": "rematch_n",
+        "family": "Calendar and rematches",
+        "coef": 0.018601445251412014,
+        "ci_low": -0.009156359089732221,
+        "ci_high": 0.046359249592556245,
+        "z": 1.3134624138381918,
+        "significant_after_bonferroni": false,
+        "d_logloss": 1.9927235324244552e-06,
+        "d_logloss_ci": [
+          -0.00028277011484684894,
+          0.00030091578786993115
+        ]
+      },
+      {
+        "feature": "d_close_net",
+        "family": "Luck and regression",
+        "coef": -0.020461660556439245,
+        "ci_low": -0.05109064671027234,
+        "ci_high": 0.010167325597393848,
+        "z": -1.3093758470879704,
+        "significant_after_bonferroni": false,
+        "d_logloss": -5.150136654149205e-05,
+        "d_logloss_ci": [
+          -0.0003058890456139239,
+          0.0002197468723655893
+        ]
+      },
+      {
+        "feature": "d_pf_rate",
+        "family": "Pace and style",
+        "coef": 0.01640961950952274,
+        "ci_low": -0.012300408966559827,
+        "ci_high": 0.045119647985605305,
+        "z": 1.1202654941794448,
+        "significant_after_bonferroni": false,
+        "d_logloss": 5.0925697156880474e-05,
+        "d_logloss_ci": [
+          -0.00018024814404924268,
+          0.00028555983617275995
+        ]
+      },
+      {
+        "feature": "d_off_efg",
+        "family": "Four factors",
+        "coef": 0.020504559549201835,
+        "ci_low": -0.018244713745001,
+        "ci_high": 0.05925383284340467,
+        "z": 1.0371533012065066,
+        "significant_after_bonferroni": false,
+        "d_logloss": 6.600384671436096e-05,
+        "d_logloss_ci": [
+          -0.00015621755883154807,
+          0.00032160999311319817
+        ]
+      },
+      {
+        "feature": "abs_d_pace",
+        "family": "Volatility and matchup shape",
+        "coef": 0.014579699088930203,
+        "ci_low": -0.013242386052485176,
+        "ci_high": 0.04240178423034558,
+        "z": 1.0271052679572619,
+        "significant_after_bonferroni": false,
+        "d_logloss": 1.672751004793132e-05,
+        "d_logloss_ci": [
+          -0.00015739471100292656,
+          0.0001937255802085023
+        ]
+      },
+      {
+        "feature": "home_tz_west",
+        "family": "Travel and time zones",
+        "coef": 0.014412435724468306,
+        "ci_low": -0.013469613656718872,
+        "ci_high": 0.042294485105655484,
+        "z": 1.0131383684808288,
+        "significant_after_bonferroni": false,
+        "d_logloss": 8.844832258637041e-05,
+        "d_logloss_ci": [
+          -0.00015591814244857817,
+          0.00030470944755362937
+        ]
+      },
+      {
+        "feature": "away_tz_east",
+        "family": "Travel and time zones",
+        "coef": -0.01325478306032607,
+        "ci_low": -0.040744276492166276,
+        "ci_high": 0.014234710371514133,
+        "z": -0.9450656070711007,
+        "significant_after_bonferroni": false,
+        "d_logloss": -1.4237947779135045e-05,
+        "d_logloss_ci": [
+          -0.00021371024503508002,
+          0.0001931697257604951
+        ]
+      },
+      {
+        "feature": "away_tz_west",
+        "family": "Travel and time zones",
+        "coef": 0.01345272807757284,
+        "ci_low": -0.014449113578865363,
+        "ci_high": 0.04135456973401104,
+        "z": 0.9450038229271737,
+        "significant_after_bonferroni": false,
+        "d_logloss": -2.271355152690931e-05,
+        "d_logloss_ci": [
+          -0.0002351529904547142,
+          0.00020326586976954802
+        ]
+      },
+      {
+        "feature": "season_day",
+        "family": "Calendar and rematches",
+        "coef": 0.012524321076853867,
+        "ci_low": -0.015236134872312823,
+        "ci_high": 0.040284777026020555,
+        "z": 0.8842675118731416,
+        "significant_after_bonferroni": false,
+        "d_logloss": 0.0001500971895610575,
+        "d_logloss_ci": [
+          -4.919561196887656e-05,
+          0.00031812039093109286
+        ]
+      },
+      {
+        "feature": "d_alt",
+        "family": "Altitude",
+        "coef": 0.012267142111511064,
+        "ci_low": -0.0153644708426832,
+        "ci_high": 0.03989875506570533,
+        "z": 0.8701482095315777,
+        "significant_after_bonferroni": false,
+        "d_logloss": 8.679121536475968e-06,
+        "d_logloss_ci": [
+          -0.00018562402686262485,
+          0.00021721731497316543
+        ]
+      },
+      {
+        "feature": "d_def_fg3a_rate",
+        "family": "Pace and style",
+        "coef": 0.011664012543829252,
+        "ci_low": -0.016373914266095253,
+        "ci_high": 0.03970193935375376,
+        "z": 0.8153764271120475,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.00010095447056278845,
+        "d_logloss_ci": [
+          -0.0002774104256267138,
+          0.00011048447434556042
+        ]
+      },
+      {
+        "feature": "home_travel",
+        "family": "Travel and time zones",
+        "coef": -0.010308405444795577,
+        "ci_low": -0.03803121025761941,
+        "ci_high": 0.017414399368028258,
+        "z": -0.7288034096194075,
+        "significant_after_bonferroni": false,
+        "d_logloss": -0.00015822786722142045,
+        "d_logloss_ci": [
+          -0.0003125211493690448,
+          -6.1834365078018526e-06
+        ]
+      },
+      {
+        "feature": "d_off_orb_rate",
+        "family": "Four factors",
+        "coef": -0.008415879958441948,
+        "ci_low": -0.03616704125135764,
+        "ci_high": 0.01933528133447374,
+        "z": -0.5943940343410815,
+        "significant_after_bonferroni": false,
+        "d_logloss": -2.463481085899006e-05,
+        "d_logloss_ci": [
+          -0.00017458031747507195,
+          0.00014072263494964023
+        ]
+      },
+      {
+        "feature": "d_drawn_fouls",
+        "family": "Pace and style",
+        "coef": 0.008198656371589397,
+        "ci_low": -0.01995711812415817,
+        "ci_high": 0.03635443086733696,
+        "z": 0.5707307568734155,
+        "significant_after_bonferroni": false,
+        "d_logloss": -8.262388702886972e-05,
+        "d_logloss_ci": [
+          -0.00019043203104360877,
+          1.2543222052007292e-05
+        ]
+      },
+      {
+        "feature": "d_fg3_pct",
+        "family": "Pace and style",
+        "coef": -0.008641062709076476,
+        "ci_low": -0.04053200957390206,
+        "ci_high": 0.023249884155749106,
+        "z": -0.5310749468047355,
+        "significant_after_bonferroni": false,
+        "d_logloss": -8.26093329329423e-05,
+        "d_logloss_ci": [
+          -0.00017621518378851147,
+          1.5452335146940756e-06
+        ]
+      },
+      {
+        "feature": "d_luck",
+        "family": "Luck and regression",
+        "coef": -0.006579033544193496,
+        "ci_low": -0.036055276097789316,
+        "ci_high": 0.02289720900940232,
+        "z": -0.4374677580825578,
+        "significant_after_bonferroni": false,
+        "d_logloss": -8.578733363307222e-06,
+        "d_logloss_ci": [
+          -9.583758609367228e-05,
+          8.527411852208857e-05
+        ]
+      },
+      {
+        "feature": "d_def_efg",
+        "family": "Four factors",
+        "coef": 0.008071184675521884,
+        "ci_low": -0.028251410253996502,
+        "ci_high": 0.04439377960504027,
+        "z": 0.4355284085489938,
+        "significant_after_bonferroni": false,
+        "d_logloss": -1.2251278558454786e-05,
+        "d_logloss_ci": [
+          -9.146004146658373e-05,
+          6.669125238572613e-05
+        ]
+      },
+      {
+        "feature": "d_ft_pct",
+        "family": "Pace and style",
+        "coef": -0.005348530287669798,
+        "ci_low": -0.03360636938956125,
+        "ci_high": 0.02290930881422165,
+        "z": -0.37098092766517,
+        "significant_after_bonferroni": false,
+        "d_logloss": -1.2722206917078335e-05,
+        "d_logloss_ci": [
+          -8.097758968746721e-05,
+          6.218656758193882e-05
+        ]
+      },
+      {
+        "feature": "d_def_tov_rate",
+        "family": "Four factors",
+        "coef": 0.003966579417999546,
+        "ci_low": -0.02375153264915551,
+        "ci_high": 0.0316846914851546,
+        "z": 0.280484314387761,
+        "significant_after_bonferroni": false,
+        "d_logloss": -2.6056987632684168e-05,
+        "d_logloss_ci": [
+          -8.867891086234332e-05,
+          3.2607308875235726e-05
+        ]
+      },
+      {
+        "feature": "d_stl_rate",
+        "family": "Pace and style",
+        "coef": 0.0035111922515836374,
+        "ci_low": -0.024486764890308974,
+        "ci_high": 0.031509149393476245,
+        "z": 0.24580139108816149,
+        "significant_after_bonferroni": false,
+        "d_logloss": -5.142674355386969e-06,
+        "d_logloss_ci": [
+          -5.2813436852259435e-05,
+          4.141957288312297e-05
+        ]
+      },
+      {
+        "feature": "is_weekend",
+        "family": "Calendar and rematches",
+        "coef": -0.0026466136896748653,
+        "ci_low": -0.030310444564738876,
+        "ci_high": 0.025017217185389146,
+        "z": -0.18751426204093047,
+        "significant_after_bonferroni": false,
+        "d_logloss": -2.545772484545999e-05,
+        "d_logloss_ci": [
+          -6.835481465728329e-05,
+          1.5282072485548373e-05
+        ]
+      },
+      {
+        "feature": "fav_x_vol",
+        "family": "Volatility and matchup shape",
+        "coef": 0.02647267842958153,
+        "ci_low": -0.30368632796438955,
+        "ci_high": 0.35663168482355256,
+        "z": 0.15715594218885218,
+        "significant_after_bonferroni": false,
+        "d_logloss": -1.4366555455023046e-05,
+        "d_logloss_ci": [
+          -9.190682488740706e-05,
+          5.4284880580052856e-05
+        ]
+      },
+      {
+        "feature": "vol_sum",
+        "family": "Volatility and matchup shape",
+        "coef": 0.002233310890934628,
+        "ci_low": -0.025661196679000818,
+        "ci_high": 0.030127818460870072,
+        "z": 0.1569229833241326,
+        "significant_after_bonferroni": false,
+        "d_logloss": 9.337433838263427e-06,
+        "d_logloss_ci": [
+          -2.8910152472178942e-05,
+          4.738963534682547e-05
+        ]
+      },
+      {
+        "feature": "d_off_ft_rate",
+        "family": "Four factors",
+        "coef": -0.0017623746448785285,
+        "ci_low": -0.030111839308930067,
+        "ci_high": 0.026587090019173008,
+        "z": -0.1218454861457075,
+        "significant_after_bonferroni": false,
+        "d_logloss": 6.146116735081061e-06,
+        "d_logloss_ci": [
+          -1.7720632261051396e-05,
+          2.736214298179997e-05
+        ]
+      },
+      {
+        "feature": "d_win",
+        "family": "Strength",
+        "coef": -0.004653613075415242,
+        "ci_low": -0.09273474966291041,
+        "ci_high": 0.08342752351207992,
+        "z": -0.1035531781399468,
+        "significant_after_bonferroni": false,
+        "d_logloss": -8.810362409652278e-06,
+        "d_logloss_ci": [
+          -2.8396441257839228e-05,
+          1.0769131907444572e-05
+        ]
+      },
+      {
+        "feature": "d_pace",
+        "family": "Pace and style",
+        "coef": -0.0012310482171247936,
+        "ci_low": -0.029132824868451885,
+        "ci_high": 0.0266707284342023,
+        "z": -0.08647673356849958,
+        "significant_after_bonferroni": false,
+        "d_logloss": -4.874919293522749e-06,
+        "d_logloss_ci": [
+          -1.9950646425486023e-05,
+          1.0658003233324473e-05
+        ]
+      },
+      {
+        "feature": "d_off_tov_rate",
+        "family": "Four factors",
+        "coef": -0.0011957200009950033,
+        "ci_low": -0.03059694680214093,
+        "ci_high": 0.028205506800150923,
+        "z": -0.07971134054375116,
+        "significant_after_bonferroni": false,
+        "d_logloss": -5.114750724404392e-06,
+        "d_logloss_ci": [
+          -2.0219292684621423e-05,
+          1.1880656791159577e-05
+        ]
+      }
+    ],
+    "era_confound": {
+      "factor": "pace_sum",
+      "z_without_era_control": -3.7856153074521544,
+      "z_with_era_control": -2.4397256525005937,
+      "coef_without": -0.053408026466452506,
+      "coef_with": -0.04208411899785302
+    },
+    "families": {
+      "overall": {
+        "strength_only_logloss": 0.6029237921615334,
+        "full_logistic_logloss": 0.5985717395831055,
+        "full_boosting_logloss": 0.6030138888727221,
+        "full_logistic_accuracy": 0.6777708592777086,
+        "strength_only_accuracy": 0.6718555417185554,
+        "n_factors": 53
+      },
+      "families": [
+        {
+          "family": "Strength",
+          "n_factors": 3,
+          "loss_if_removed": [
+            -0.0001349517248143028,
+            -0.0013985480033684215,
+            0.0011719736383721828
+          ]
+        },
+        {
+          "family": "Recent form",
+          "n_factors": 4,
+          "loss_if_removed": [
+            0.00081525401181817,
+            -0.00010800618046648484,
+            0.001824473385550872
+          ],
+          "gain_over_strength": [
+            0.0008163482990512159,
+            -2.594187479710096e-05,
+            0.0016588733854952186
+          ]
+        },
+        {
+          "family": "Four factors",
+          "n_factors": 8,
+          "loss_if_removed": [
+            -1.58479115868532e-05,
+            -0.00100699424612261,
+            0.0011448501500463206
+          ],
+          "gain_over_strength": [
+            0.00039043965385074787,
+            -0.0004949580613201111,
+            0.0015060444065116995
+          ]
+        },
+        {
+          "family": "Pace and style",
+          "n_factors": 11,
+          "loss_if_removed": [
+            -0.00029353390878620895,
+            -0.001525945785114613,
+            0.0009780198310128854
+          ],
+          "gain_over_strength": [
+            2.814475453961075e-05,
+            -0.0010723826814432343,
+            0.0010984774128013216
+          ]
+        },
+        {
+          "family": "Rest and schedule load",
+          "n_factors": 7,
+          "loss_if_removed": [
+            0.0033817369418433505,
+            0.0012449677343964972,
+            0.005625082144024923
+          ],
+          "gain_over_strength": [
+            0.0031767684299399495,
+            0.0010153709434653655,
+            0.005472437783126892
+          ]
+        },
+        {
+          "family": "Home stands and road trips",
+          "n_factors": 2,
+          "loss_if_removed": [
+            -0.00028824208069079814,
+            -0.0008999722781192222,
+            0.0002773555569836039
+          ],
+          "gain_over_strength": [
+            -0.00020251519949637616,
+            -0.0007660712660756124,
+            0.00035374350070127255
+          ]
+        },
+        {
+          "family": "Travel and time zones",
+          "n_factors": 6,
+          "loss_if_removed": [
+            0.0003411418922665417,
+            -0.00030875074705133247,
+            0.0010061598524757772
+          ],
+          "gain_over_strength": [
+            0.000432621455485014,
+            -0.00027663489299914126,
+            0.0011692870361258143
+          ]
+        },
+        {
+          "family": "Altitude",
+          "n_factors": 2,
+          "loss_if_removed": [
+            6.642574636800389e-05,
+            -0.0008573733357850244,
+            0.0008906507063717041
+          ],
+          "gain_over_strength": [
+            7.62883672957548e-05,
+            -0.0009398394777499184,
+            0.0009363332664237832
+          ]
+        },
+        {
+          "family": "Luck and regression",
+          "n_factors": 2,
+          "loss_if_removed": [
+            2.828476698936177e-05,
+            -0.000552962037899566,
+            0.0006304408127956199
+          ],
+          "gain_over_strength": [
+            0.00010797474466299059,
+            -0.0002140821058712982,
+            0.0004116984399366381
+          ]
+        },
+        {
+          "family": "Volatility and matchup shape",
+          "n_factors": 4,
+          "loss_if_removed": [
+            -0.00010188722623344621,
+            -0.00041836773750492914,
+            0.0002169629999527599
+          ],
+          "gain_over_strength": [
+            -7.394947525396133e-05,
+            -0.0003849614529125701,
+            0.000254946716020491
+          ]
+        },
+        {
+          "family": "Era regime",
+          "n_factors": 1,
+          "loss_if_removed": [
+            0.0018948542997737673,
+            0.0008365490178725778,
+            0.003047859956634567
+          ]
+        },
+        {
+          "family": "Calendar and rematches",
+          "n_factors": 3,
+          "loss_if_removed": [
+            1.2296214194535092e-05,
+            -0.00023000704372297523,
+            0.0002628723697297644
+          ],
+          "gain_over_strength": [
+            9.939766131059322e-06,
+            -0.00027312517953535277,
+            0.000303480897794069
+          ]
+        }
+      ]
+    },
+    "memory": [
+      {
+        "signal": "d_ewm2",
+        "halflife_games": 2,
+        "logloss": 0.6392720348016705,
+        "se": 0.0029475331015418114
+      },
+      {
+        "signal": "d_ewm3",
+        "halflife_games": 3,
+        "logloss": 0.6305004106732881,
+        "se": 0.0032283445496413088
+      },
+      {
+        "signal": "d_ewm5",
+        "halflife_games": 5,
+        "logloss": 0.6207191460363203,
+        "se": 0.0035058909172965506
+      },
+      {
+        "signal": "d_ewm8",
+        "halflife_games": 8,
+        "logloss": 0.6143628173577617,
+        "se": 0.0036869271600224397
+      },
+      {
+        "signal": "d_ewm12",
+        "halflife_games": 12,
+        "logloss": 0.6112537654750009,
+        "se": 0.0038053250376232756
+      },
+      {
+        "signal": "d_ewm20",
+        "halflife_games": 20,
+        "logloss": 0.6097434835308033,
+        "se": 0.003910308818691757
+      },
+      {
+        "signal": "d_ewm30",
+        "halflife_games": 30,
+        "logloss": 0.6095760571173168,
+        "se": 0.003963808267630705
+      },
+      {
+        "signal": "d_ewm50",
+        "halflife_games": 50,
+        "logloss": 0.6098079649475383,
+        "se": 0.004006298399174093
+      },
+      {
+        "signal": "d_ewm80",
+        "halflife_games": 80,
+        "logloss": 0.6100933899633987,
+        "se": 0.004030108780631318
+      },
+      {
+        "signal": "d_net_rtg",
+        "halflife_games": null,
+        "logloss": 0.6108142501788518,
+        "se": 0.00406998116670153
+      },
+      {
+        "signal": "elo_diff",
+        "halflife_games": null,
+        "logloss": 0.6073787200690137,
+        "se": 0.0038243878196579833
+      }
+    ],
+    "persistence": [
+      {
+        "stat": "fg3a_rate",
+        "label": "Three-point attempt rate",
+        "split_half": 0.9954227035147766,
+        "year_over_year": 0.9189223799517466
+      },
+      {
+        "stat": "def_fg3a_rate",
+        "label": "Opponent three-point attempt rate",
+        "split_half": 0.9918203368854022,
+        "year_over_year": 0.9644221803776594
+      },
+      {
+        "stat": "pace",
+        "label": "Pace",
+        "split_half": 0.9794037832625122,
+        "year_over_year": 0.8561748594123125
+      },
+      {
+        "stat": "pf_rate",
+        "label": "Foul rate",
+        "split_half": 0.9556384827252198,
+        "year_over_year": 0.7944238506928887
+      },
+      {
+        "stat": "off_efg",
+        "label": "Offensive eFG%",
+        "split_half": 0.9491525311300452,
+        "year_over_year": 0.826995016921845
+      },
+      {
+        "stat": "def_efg",
+        "label": "Opponent eFG% allowed",
+        "split_half": 0.9463543926008159,
+        "year_over_year": 0.8389184736461293
+      },
+      {
+        "stat": "off_orb_rate",
+        "label": "Offensive rebound rate",
+        "split_half": 0.937495143524626,
+        "year_over_year": 0.7084065044188462
+      },
+      {
+        "stat": "ast_rate",
+        "label": "Assist rate",
+        "split_half": 0.9356327364857607,
+        "year_over_year": 0.6698189968048193
+      },
+      {
+        "stat": "def_tov_rate",
+        "label": "Opponent turnovers forced",
+        "split_half": 0.9151655371955327,
+        "year_over_year": 0.6051861978386937
+      },
+      {
+        "stat": "net_rtg",
+        "label": "Net rating",
+        "split_half": 0.912871152723962,
+        "year_over_year": 0.5933802828428734
+      },
+      {
+        "stat": "off_ft_rate",
+        "label": "Free-throw rate",
+        "split_half": 0.9080158793688747,
+        "year_over_year": 0.6565079835496712
+      },
+      {
+        "stat": "def_orb_rate",
+        "label": "Opponent offensive rebounds allowed",
+        "split_half": 0.9059061845490602,
+        "year_over_year": 0.760644126332821
+      },
+      {
+        "stat": "def_ft_rate",
+        "label": "Opponent free-throw rate allowed",
+        "split_half": 0.9045733972116289,
+        "year_over_year": 0.6854481974790779
+      },
+      {
+        "stat": "blk_rate",
+        "label": "Block rate",
+        "split_half": 0.9021204134699693,
+        "year_over_year": 0.6335911446567165
+      },
+      {
+        "stat": "off_tov_rate",
+        "label": "Turnover rate",
+        "split_half": 0.9019482171924937,
+        "year_over_year": 0.64747768606184
+      },
+      {
+        "stat": "win",
+        "label": "Win %",
+        "split_half": 0.8832510378712646,
+        "year_over_year": 0.5961628231029488
+      },
+      {
+        "stat": "stl_rate",
+        "label": "Steal rate",
+        "split_half": 0.8728324935082105,
+        "year_over_year": 0.4895436318162228
+      },
+      {
+        "stat": "ft_pct",
+        "label": "Free-throw %",
+        "split_half": 0.8707952906152059,
+        "year_over_year": 0.5537380756763767
+      },
+      {
+        "stat": "fg3_pct",
+        "label": "Three-point %",
+        "split_half": 0.5963997610716388,
+        "year_over_year": 0.39923241826038824
+      },
+      {
+        "stat": "def_fg3_pct",
+        "label": "Opponent three-point % allowed",
+        "split_half": 0.35278681586845984,
+        "year_over_year": 0.2153192199190049
+      }
+    ],
+    "early_season": [
+      {
+        "bucket": "games 1-5",
+        "n_games": 239,
+        "acc_home": 0.5397489539748954,
+        "acc_elo": 0.6359832635983264,
+        "acc_record": 0.5774058577405857,
+        "ll_elo": 0.6453421987554406,
+        "ll_record": 0.7580784208336722
+      },
+      {
+        "bucket": "6-10",
+        "n_games": 229,
+        "acc_home": 0.6157205240174672,
+        "acc_elo": 0.6637554585152838,
+        "acc_record": 0.6855895196506551,
+        "ll_elo": 0.5914904027012643,
+        "ll_record": 0.5973988550072475
+      },
+      {
+        "bucket": "11-20",
+        "n_games": 460,
+        "acc_home": 0.5760869565217391,
+        "acc_elo": 0.6695652173913044,
+        "acc_record": 0.6760869565217391,
+        "ll_elo": 0.6068583006074395,
+        "ll_record": 0.5927581277255569
+      },
+      {
+        "bucket": "21-40",
+        "n_games": 909,
+        "acc_home": 0.5500550055005501,
+        "acc_elo": 0.6435643564356436,
+        "acc_record": 0.6402640264026402,
+        "ll_elo": 0.6276723882922012,
+        "ll_record": 0.6285282833426058
+      },
+      {
+        "bucket": "41-60",
+        "n_games": 892,
+        "acc_home": 0.5112107623318386,
+        "acc_elo": 0.6468609865470852,
+        "acc_record": 0.6401345291479821,
+        "ll_elo": 0.6274706269470185,
+        "ll_record": 0.6306390105700347
+      },
+      {
+        "bucket": "61+",
+        "n_games": 951,
+        "acc_home": 0.5499474237644585,
+        "acc_elo": 0.7097791798107256,
+        "acc_record": 0.7150368033648791,
+        "ll_elo": 0.5713639211952495,
+        "ll_record": 0.5861608008883255
+      }
+    ],
+    "home_court": {
+      "league_avg_points": 2.6827172618602297,
+      "teams": [
+        {
+          "team": "DEN",
+          "hca": 3.9593838929012954,
+          "se": 0.39600116362657817,
+          "n_games": 1008
+        },
+        {
+          "team": "UTA",
+          "hca": 3.7117787050265525,
+          "se": 0.39609808243379724,
+          "n_games": 1006
+        },
+        {
+          "team": "GSW",
+          "hca": 3.671077291505705,
+          "se": 0.3964188568366746,
+          "n_games": 1005
+        },
+        {
+          "team": "OKC",
+          "hca": 3.375250822620844,
+          "se": 0.396040004196641,
+          "n_games": 1008
+        },
+        {
+          "team": "IND",
+          "hca": 3.3216557352191147,
+          "se": 0.39608388864293037,
+          "n_games": 1006
+        },
+        {
+          "team": "SAS",
+          "hca": 3.133067613993957,
+          "se": 0.399451102019879,
+          "n_games": 1003
+        },
+        {
+          "team": "LAC",
+          "hca": 2.9562015326632514,
+          "se": 0.39587217912543515,
+          "n_games": 1007
+        },
+        {
+          "team": "HOU",
+          "hca": 2.882487152942346,
+          "se": 0.39617376679622496,
+          "n_games": 1007
+        },
+        {
+          "team": "LAL",
+          "hca": 2.877609514842126,
+          "se": 0.39601703127865917,
+          "n_games": 1007
+        },
+        {
+          "team": "POR",
+          "hca": 2.8389777826117415,
+          "se": 0.39584077077767693,
+          "n_games": 1007
+        },
+        {
+          "team": "CLE",
+          "hca": 2.7874654920622293,
+          "se": 0.3958157112848108,
+          "n_games": 1007
+        },
+        {
+          "team": "BOS",
+          "hca": 2.7771542034891468,
+          "se": 0.3974593957786923,
+          "n_games": 1007
+        },
+        {
+          "team": "PHX",
+          "hca": 2.670775075811219,
+          "se": 0.3952659890573547,
+          "n_games": 1010
+        },
+        {
+          "team": "ATL",
+          "hca": 2.658200821957025,
+          "se": 0.39672940750747704,
+          "n_games": 1004
+        },
+        {
+          "team": "MIL",
+          "hca": 2.654413369835269,
+          "se": 0.3958179802360097,
+          "n_games": 1007
+        },
+        {
+          "team": "DAL",
+          "hca": 2.626903638153977,
+          "se": 0.39671229339410136,
+          "n_games": 1008
+        },
+        {
+          "team": "MEM",
+          "hca": 2.5524461573527266,
+          "se": 0.39587595542050413,
+          "n_games": 1007
+        },
+        {
+          "team": "TOR",
+          "hca": 2.518249695564334,
+          "se": 0.39582057602439563,
+          "n_games": 1007
+        },
+        {
+          "team": "ORL",
+          "hca": 2.4686423793516132,
+          "se": 0.39649974834755003,
+          "n_games": 1005
+        },
+        {
+          "team": "DET",
+          "hca": 2.4625503565903086,
+          "se": 0.3968676472247786,
+          "n_games": 1002
+        },
+        {
+          "team": "SAC",
+          "hca": 2.450266776460943,
+          "se": 0.3966022913538172,
+          "n_games": 1006
+        },
+        {
+          "team": "MIN",
+          "hca": 2.424463100727877,
+          "se": 0.39697102259147876,
+          "n_games": 1003
+        },
+        {
+          "team": "MIA",
+          "hca": 2.378554996437898,
+          "se": 0.39626303454643835,
+          "n_games": 1007
+        },
+        {
+          "team": "NOP",
+          "hca": 2.360320722148189,
+          "se": 0.39628674083919246,
+          "n_games": 1006
+        },
+        {
+          "team": "WAS",
+          "hca": 2.1924218327748615,
+          "se": 0.397350571844011,
+          "n_games": 1006
+        },
+        {
+          "team": "NYK",
+          "hca": 2.0988986638410925,
+          "se": 0.3971546247917827,
+          "n_games": 1003
+        },
+        {
+          "team": "CHA",
+          "hca": 2.0289571304803715,
+          "se": 0.42518687189152304,
+          "n_games": 879
+        },
+        {
+          "team": "PHI",
+          "hca": 1.9869471770405547,
+          "se": 0.39616080367125583,
+          "n_games": 1006
+        },
+        {
+          "team": "CHI",
+          "hca": 1.896435373723129,
+          "se": 0.39635468785622385,
+          "n_games": 1005
+        },
+        {
+          "team": "BKN",
+          "hca": 1.6721782891814747,
+          "se": 0.3964566846383749,
+          "n_games": 1007
+        }
+      ]
+    },
+    "trends": [
+      {
+        "SEASON": "2000-01",
+        "pace": 94.59641715727503,
+        "fg3a_per_game": 13.707737594617326,
+        "fg3a_rate": 0.17060388891247408,
+        "ppg": 94.8103448275862,
+        "efg": 0.4744097045641382,
+        "tov_rate": 0.15886510637417936,
+        "orb_rate": 0.2799989750152092,
+        "ft_rate": 0.2346747071420142,
+        "parity_sd_win_pct": 0.1571569560336996,
+        "home_win_rate": 0.5979814970563498,
+        "favourite_win_rate": 0.6345226615236258,
+        "avg_abs_margin": 10.59798149705635
+      },
+      {
+        "SEASON": "2001-02",
+        "pace": 93.97897392767031,
+        "fg3a_per_game": 14.74936921783011,
+        "fg3a_rate": 0.18146526097032656,
+        "ppg": 95.47645079899075,
+        "efg": 0.4783519743189178,
+        "tov_rate": 0.1537303144856973,
+        "orb_rate": 0.286241724194942,
+        "ft_rate": 0.22410200620181692,
+        "parity_sd_win_pct": 0.1379335528264458,
+        "home_win_rate": 0.5912531539108494,
+        "favourite_win_rate": 0.6382978723404256,
+        "avg_abs_margin": 10.825063078216989
+      },
+      {
+        "SEASON": "2002-03",
+        "pace": 94.40215306980656,
+        "fg3a_per_game": 14.681244743481917,
+        "fg3a_rate": 0.18177724630878292,
+        "ppg": 95.080740117746,
+        "efg": 0.474873632990571,
+        "tov_rate": 0.15779999631212813,
+        "orb_rate": 0.28247181470796556,
+        "ft_rate": 0.2330207512563004,
+        "parity_sd_win_pct": 0.14407360044623935,
+        "home_win_rate": 0.6282590412111018,
+        "favourite_win_rate": 0.6483622350674374,
+        "avg_abs_margin": 10.711522287636669
+      },
+      {
+        "SEASON": "2003-04",
+        "pace": 93.29275021026072,
+        "fg3a_per_game": 14.925147182506308,
+        "fg3a_rate": 0.18692271066215418,
+        "ppg": 93.39655172413794,
+        "efg": 0.471883240750636,
+        "tov_rate": 0.15979798872243992,
+        "orb_rate": 0.2837684096592312,
+        "ft_rate": 0.2315333015309144,
+        "parity_sd_win_pct": 0.13599455345299336,
+        "home_win_rate": 0.6139613120269134,
+        "favourite_win_rate": 0.638030888030888,
+        "avg_abs_margin": 10.349032800672834
+      },
+      {
+        "SEASON": "2004-05",
+        "pace": 94.29300813008129,
+        "fg3a_per_game": 15.751219512195123,
+        "fg3a_rate": 0.19590447724392765,
+        "ppg": 97.19878048780488,
+        "efg": 0.4834863212935012,
+        "tov_rate": 0.15360673251427925,
+        "orb_rate": 0.2847246879667838,
+        "ft_rate": 0.24961599434047294,
+        "parity_sd_win_pct": 0.1547884551095353,
+        "home_win_rate": 0.6048780487804878,
+        "favourite_win_rate": 0.6707202993451824,
+        "avg_abs_margin": 10.316260162601626
+      },
+      {
+        "SEASON": "2005-06",
+        "pace": 93.80121951219512,
+        "fg3a_per_game": 15.980894308943089,
+        "fg3a_rate": 0.20194756618811913,
+        "ppg": 97.00853658536586,
+        "efg": 0.4911204079186465,
+        "tov_rate": 0.1534528170115388,
+        "orb_rate": 0.27087977848888667,
+        "ft_rate": 0.25256456296908597,
+        "parity_sd_win_pct": 0.13625154448305504,
+        "home_win_rate": 0.6032520325203252,
+        "favourite_win_rate": 0.6308411214953271,
+        "avg_abs_margin": 10.373170731707317
+      },
+      {
+        "SEASON": "2006-07",
+        "pace": 95.19128455284553,
+        "fg3a_per_game": 16.939837398373985,
+        "fg3a_rate": 0.21210288177009334,
+        "ppg": 98.73943089430894,
+        "efg": 0.4973457350867802,
+        "tov_rate": 0.15872607217984844,
+        "orb_rate": 0.2686807758800714,
+        "ft_rate": 0.2503155961631599,
+        "parity_sd_win_pct": 0.13224045601067744,
+        "home_win_rate": 0.5910569105691057,
+        "favourite_win_rate": 0.6442577030812325,
+        "avg_abs_margin": 10.615447154471545
+      },
+      {
+        "SEASON": "2007-08",
+        "pace": 95.39378861788617,
+        "fg3a_per_game": 18.10731707317073,
+        "fg3a_rate": 0.2223530257228686,
+        "ppg": 99.92317073170732,
+        "efg": 0.49827777839677767,
+        "tov_rate": 0.14765186391619237,
+        "orb_rate": 0.2643239482554331,
+        "ft_rate": 0.23456010518409137,
+        "parity_sd_win_pct": 0.16861599105066735,
+        "home_win_rate": 0.6008130081300813,
+        "favourite_win_rate": 0.6772388059701493,
+        "avg_abs_margin": 11.504878048780487
+      },
+      {
+        "SEASON": "2008-09",
+        "pace": 94.79429268292682,
+        "fg3a_per_game": 18.12317073170732,
+        "fg3a_rate": 0.22446333175602917,
+        "ppg": 99.95081300813008,
+        "efg": 0.5008477022748574,
+        "tov_rate": 0.14772995687885757,
+        "orb_rate": 0.26576245609368676,
+        "ft_rate": 0.23881600728247426,
+        "parity_sd_win_pct": 0.17207807475849743,
+        "home_win_rate": 0.608130081300813,
+        "favourite_win_rate": 0.6675977653631285,
+        "avg_abs_margin": 10.942276422764227
+      },
+      {
+        "SEASON": "2009-10",
+        "pace": 95.7649918699187,
+        "fg3a_per_game": 18.139024390243904,
+        "fg3a_rate": 0.22231004803181292,
+        "ppg": 100.44715447154472,
+        "efg": 0.5021205825136688,
+        "tov_rate": 0.14824522138540194,
+        "orb_rate": 0.2602241670659884,
+        "ft_rate": 0.23114526725219892,
+        "parity_sd_win_pct": 0.162892227003017,
+        "home_win_rate": 0.5943089430894309,
+        "favourite_win_rate": 0.6582633053221288,
+        "avg_abs_margin": 11.07479674796748
+      },
+      {
+        "SEASON": "2010-11",
+        "pace": 95.27775609756098,
+        "fg3a_per_game": 18.01341463414634,
+        "fg3a_rate": 0.22213475826130766,
+        "ppg": 99.55040650406504,
+        "efg": 0.49964753318124233,
+        "tov_rate": 0.14944604650062598,
+        "orb_rate": 0.26141395205032847,
+        "ft_rate": 0.23239799663469016,
+        "parity_sd_win_pct": 0.16067331506071073,
+        "home_win_rate": 0.6040650406504066,
+        "favourite_win_rate": 0.6586046511627907,
+        "avg_abs_margin": 10.591869918699187
+      },
+      {
+        "SEASON": "2011-12",
+        "pace": 94.51549494949495,
+        "fg3a_per_game": 18.38131313131313,
+        "fg3a_rate": 0.2263043593222389,
+        "ppg": 96.25959595959596,
+        "efg": 0.48840278399592796,
+        "tov_rate": 0.15395467730666187,
+        "orb_rate": 0.26740083996263203,
+        "ft_rate": 0.21061536832879968,
+        "parity_sd_win_pct": 0.1560451342119082,
+        "home_win_rate": 0.5858585858585859,
+        "favourite_win_rate": 0.6478365384615384,
+        "avg_abs_margin": 11.125252525252526
+      },
+      {
+        "SEASON": "2012-13",
+        "pace": 95.08720325203251,
+        "fg3a_per_game": 19.945934959349593,
+        "fg3a_rate": 0.2439282418494784,
+        "ppg": 98.05813008130082,
+        "efg": 0.4978717570898285,
+        "tov_rate": 0.15272000787861892,
+        "orb_rate": 0.26276032452164,
+        "ft_rate": 0.20663621147169117,
+        "parity_sd_win_pct": 0.15500310618092542,
+        "home_win_rate": 0.6113821138211382,
+        "favourite_win_rate": 0.67381174277726,
+        "avg_abs_margin": 10.98130081300813
+      },
+      {
+        "SEASON": "2013-14",
+        "pace": 97.11087804878049,
+        "fg3a_per_game": 21.534146341463416,
+        "fg3a_rate": 0.26002900852553773,
+        "ppg": 101.0089430894309,
+        "efg": 0.5026619385030617,
+        "tov_rate": 0.15060182385530543,
+        "orb_rate": 0.253063212865533,
+        "ft_rate": 0.21795955257619987,
+        "parity_sd_win_pct": 0.15748177268618793,
+        "home_win_rate": 0.5804878048780487,
+        "favourite_win_rate": 0.660148975791434,
+        "avg_abs_margin": 10.934959349593496
+      },
+      {
+        "SEASON": "2014-15",
+        "pace": 97.08460162601625,
+        "fg3a_per_game": 22.413414634146342,
+        "fg3a_rate": 0.26848277641993656,
+        "ppg": 100.01422764227642,
+        "efg": 0.49720749990747437,
+        "tov_rate": 0.14756207949679476,
+        "orb_rate": 0.24917233326650695,
+        "ft_rate": 0.20799918028717163,
+        "parity_sd_win_pct": 0.16408421375211665,
+        "home_win_rate": 0.5747967479674797,
+        "favourite_win_rate": 0.6697761194029851,
+        "avg_abs_margin": 11.111382113821138
+      },
+      {
+        "SEASON": "2015-16",
+        "pace": 98.81884552845528,
+        "fg3a_per_game": 24.08170731707317,
+        "fg3a_rate": 0.2851002209713397,
+        "ppg": 102.67154471544715,
+        "efg": 0.5038461639652047,
+        "tov_rate": 0.1452514891518539,
+        "orb_rate": 0.23589777606405926,
+        "ft_rate": 0.21206213340420244,
+        "parity_sd_win_pct": 0.16931407121948602,
+        "home_win_rate": 0.5886178861788618,
+        "favourite_win_rate": 0.679403541472507,
+        "avg_abs_margin": 11.089430894308943
+      },
+      {
+        "SEASON": "2016-17",
+        "pace": 99.39601626016261,
+        "fg3a_per_game": 27.00040650406504,
+        "fg3a_rate": 0.3167783453135067,
+        "ppg": 105.59065040650407,
+        "efg": 0.5150598688388287,
+        "tov_rate": 0.14011235310475043,
+        "orb_rate": 0.23098316406562128,
+        "ft_rate": 0.21154297015137502,
+        "parity_sd_win_pct": 0.13643960743589476,
+        "home_win_rate": 0.583739837398374,
+        "favourite_win_rate": 0.6219739292364991,
+        "avg_abs_margin": 11.322764227642276
+      },
+      {
+        "SEASON": "2017-18",
+        "pace": 100.14796747967479,
+        "fg3a_per_game": 28.99959349593496,
+        "fg3a_rate": 0.3378691736665766,
+        "ppg": 106.33333333333333,
+        "efg": 0.5223834433430036,
+        "tov_rate": 0.14228258493777146,
+        "orb_rate": 0.22140645360053027,
+        "ft_rate": 0.195653741262721,
+        "parity_sd_win_pct": 0.14904979142866903,
+        "home_win_rate": 0.5788617886178862,
+        "favourite_win_rate": 0.6409302325581395,
+        "avg_abs_margin": 11.128455284552846
+      },
+      {
+        "SEASON": "2018-19",
+        "pace": 103.09817886178861,
+        "fg3a_per_game": 32.00894308943089,
+        "fg3a_rate": 0.3591769580520619,
+        "ppg": 111.20853658536585,
+        "efg": 0.5252882065426084,
+        "tov_rate": 0.13639818289504954,
+        "orb_rate": 0.22729160338761184,
+        "ft_rate": 0.20068207429053894,
+        "parity_sd_win_pct": 0.14669147937362614,
+        "home_win_rate": 0.5926829268292683,
+        "favourite_win_rate": 0.6461824953445066,
+        "avg_abs_margin": 11.739024390243902
+      },
+      {
+        "SEASON": "2019-20",
+        "pace": 103.45274787535412,
+        "fg3a_per_game": 34.11331444759207,
+        "fg3a_rate": 0.384487415291783,
+        "ppg": 111.7979225684608,
+        "efg": 0.5301868575221139,
+        "tov_rate": 0.14034061200263276,
+        "orb_rate": 0.22342453484320993,
+        "ft_rate": 0.2034973023986824,
+        "parity_sd_win_pct": 0.15447392773465335,
+        "home_win_rate": 0.5514636449480642,
+        "favourite_win_rate": 0.6467991169977925,
+        "avg_abs_margin": 11.41265344664778
+      },
+      {
+        "SEASON": "2020-21",
+        "pace": 102.02564814814815,
+        "fg3a_per_game": 34.63981481481481,
+        "fg3a_rate": 0.3927860970273551,
+        "ppg": 112.0912037037037,
+        "efg": 0.5390284202707869,
+        "tov_rate": 0.13535497871934354,
+        "orb_rate": 0.2203319207247313,
+        "ft_rate": 0.19402372170682677,
+        "parity_sd_win_pct": 0.13908032783418375,
+        "home_win_rate": 0.5435185185185185,
+        "favourite_win_rate": 0.6525974025974026,
+        "avg_abs_margin": 12.184259259259258
+      },
+      {
+        "SEASON": "2021-22",
+        "pace": 101.14619512195122,
+        "fg3a_per_game": 35.176829268292686,
+        "fg3a_rate": 0.40017529564135607,
+        "ppg": 110.61585365853658,
+        "efg": 0.5328410025506127,
+        "tov_rate": 0.13583727258107536,
+        "orb_rate": 0.23051940553217048,
+        "ft_rate": 0.19462728075420013,
+        "parity_sd_win_pct": 0.1410597180570685,
+        "home_win_rate": 0.5439024390243903,
+        "favourite_win_rate": 0.6402609506057781,
+        "avg_abs_margin": 12.373170731707317
+      },
+      {
+        "SEASON": "2022-23",
+        "pace": 102.31367479674797,
+        "fg3a_per_game": 34.21341463414634,
+        "fg3a_rate": 0.38830749570471607,
+        "ppg": 114.68577235772358,
+        "efg": 0.5468997718799755,
+        "tov_rate": 0.13753116765024023,
+        "orb_rate": 0.2376790412412003,
+        "ft_rate": 0.21088075188528718,
+        "parity_sd_win_pct": 0.12224523011165712,
+        "home_win_rate": 0.5804878048780487,
+        "favourite_win_rate": 0.5983224603914259,
+        "avg_abs_margin": 11.18130081300813
+      },
+      {
+        "SEASON": "2023-24",
+        "pace": 101.51105691056911,
+        "fg3a_per_game": 35.103658536585364,
+        "fg3a_rate": 0.39518082573643104,
+        "ppg": 114.21138211382114,
+        "efg": 0.5476382794582823,
+        "tov_rate": 0.1339029810378973,
+        "orb_rate": 0.24077110022908713,
+        "ft_rate": 0.19406054405647982,
+        "parity_sd_win_pct": 0.16355203041119246,
+        "home_win_rate": 0.5430894308943089,
+        "favourite_win_rate": 0.6415270018621974,
+        "avg_abs_margin": 12.583739837398374
+      },
+      {
+        "SEASON": "2024-25",
+        "pace": 101.94550204081634,
+        "fg3a_per_game": 37.5865306122449,
+        "fg3a_rate": 0.4214008381857413,
+        "ppg": 113.8330612244898,
+        "efg": 0.5443704537333454,
+        "tov_rate": 0.1400997042795382,
+        "orb_rate": 0.250297055460509,
+        "ft_rate": 0.19203119632213753,
+        "parity_sd_win_pct": 0.16285991036434366,
+        "home_win_rate": 0.5444897959183673,
+        "favourite_win_rate": 0.6594948550046773,
+        "avg_abs_margin": 12.70938775510204
+      },
+      {
+        "SEASON": "2025-26",
+        "pace": 102.5474775510204,
+        "fg3a_per_game": 36.98612244897959,
+        "fg3a_rate": 0.41554144426278916,
+        "ppg": 115.60285714285715,
+        "efg": 0.5467165730967436,
+        "tov_rate": 0.1412741065297151,
+        "orb_rate": 0.2582943170140468,
+        "ft_rate": 0.20882938229031928,
+        "parity_sd_win_pct": 0.16908964956425365,
+        "home_win_rate": 0.5542857142857143,
+        "favourite_win_rate": 0.6913002806361085,
+        "avg_abs_margin": 13.28734693877551
+      }
+    ],
+    "calendar": {
+      "weekday": [
+        {
+          "label": "Friday",
+          "mean_resid": -0.00795210989081582,
+          "se": 0.006321542640431172,
+          "n": 5180
+        },
+        {
+          "label": "Monday",
+          "mean_resid": -0.006115563870107629,
+          "se": 0.007758561942129565,
+          "n": 3522
+        },
+        {
+          "label": "Saturday",
+          "mean_resid": -0.004051856372703572,
+          "se": 0.007338304275177939,
+          "n": 3925
+        },
+        {
+          "label": "Sunday",
+          "mean_resid": -0.012517874097328532,
+          "se": 0.007749263359187765,
+          "n": 3528
+        },
+        {
+          "label": "Thursday",
+          "mean_resid": 0.00021129681416647272,
+          "se": 0.01003833858826423,
+          "n": 2126
+        },
+        {
+          "label": "Tuesday",
+          "mean_resid": -0.0011480014678942393,
+          "se": 0.007686485648438773,
+          "n": 3495
+        },
+        {
+          "label": "Wednesday",
+          "mean_resid": -0.0029804180616687316,
+          "se": 0.006223456052908839,
+          "n": 5406
+        }
+      ],
+      "month": [
+        {
+          "label": "April",
+          "mean_resid": -0.012753710425067531,
+          "se": 0.008232652815634674,
+          "n": 3083
+        },
+        {
+          "label": "August",
+          "mean_resid": -0.033961131101394815,
+          "se": 0.056954861247905546,
+          "n": 80
+        },
+        {
+          "label": "December",
+          "mean_resid": -0.010966025583915353,
+          "se": 0.0064408359970648,
+          "n": 5229
+        },
+        {
+          "label": "February",
+          "mean_resid": -0.014723959858222925,
+          "se": 0.006775408558208574,
+          "n": 4581
+        },
+        {
+          "label": "January",
+          "mean_resid": -0.004007531442883291,
+          "se": 0.00612995845280465,
+          "n": 5700
+        },
+        {
+          "label": "July",
+          "mean_resid": -0.0950445535792268,
+          "se": 0.1807891941579491,
+          "n": 8
+        },
+        {
+          "label": "March",
+          "mean_resid": 0.006921655993816519,
+          "se": 0.005839954676659625,
+          "n": 5856
+        },
+        {
+          "label": "May",
+          "mean_resid": 0.00078115333985678,
+          "se": 0.03731559893908083,
+          "n": 135
+        },
+        {
+          "label": "November",
+          "mean_resid": 0.002916442494769137,
+          "se": 0.009115763935618897,
+          "n": 2510
+        }
+      ]
+    }
   }
 }

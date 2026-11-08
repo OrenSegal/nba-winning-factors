@@ -94,3 +94,138 @@ Same-game four-factor differences against final margin. These are outcomes, not 
 | d_tov_rate | -5.93 [-5.98, -5.89] |
 | d_orb_rate | +5.34 [+5.30, +5.38] |
 | d_ft_rate | +2.85 [+2.81, +2.89] |
+
+## Beyond the four factors: a wide factor screen
+
+50 candidate factors, each added to team strength (Elo, season-to-date net rating) and the current home-court regime. Train 23970 games, test 3212. 'z' is the in-sample Wald statistic (Bonferroni threshold 3.29); 'test log-loss change' is out of sample (negative = better), with a paired bootstrap CI.
+
+| Factor | Family | Effect per 1 SD (log-odds) | z | Test log-loss change [95% CI] |
+|---|---|---|---|---|
+| away_b2b | Rest and schedule load | +0.119 | +8.3* | -0.0009 [-0.0027, +0.0008] |
+| d_rest | Rest and schedule load | +0.088 | +6.2* | -0.0018 [-0.0029, -0.0007] |
+| away_g4n3 | Rest and schedule load | +0.062 | +4.4* | -0.0003 [-0.0013, +0.0006] |
+| d_def_fg3_pct | Pace and style | +0.063 | +4.1* | -0.0005 [-0.0012, +0.0001] |
+| home_b2b | Rest and schedule load | -0.056 | -4.0* | -0.0016 [-0.0026, -0.0006] |
+| away_g6n5 | Rest and schedule load | +0.052 | +3.7* | -0.0005 [-0.0014, +0.0003] |
+| home_alt_km | Altitude | +0.051 | +3.5* | -0.0000 [-0.0008, +0.0009] |
+| d_ewm5 | Recent form | +0.097 | +3.3* | -0.0008 [-0.0016, +0.0001] |
+| d_ewm8 | Recent form | +0.124 | +3.2 | -0.0007 [-0.0014, +0.0002] |
+| d_form10 | Recent form | +0.041 | +2.8 | -0.0006 [-0.0013, +0.0002] |
+| d_ewm20 | Recent form | +0.217 | +2.7 | -0.0003 [-0.0010, +0.0003] |
+| d_def_orb_rate | Four factors | -0.037 | -2.5 | -0.0001 [-0.0007, +0.0004] |
+| d_ast_rate | Pace and style | +0.035 | +2.4 | +0.0006 [-0.0000, +0.0011] |
+| d_blk_rate | Pace and style | +0.029 | +2.0 | -0.0002 [-0.0007, +0.0003] |
+
+Era confound: raw league pace looks predictive (z -3.8) but shrinks to z -2.4 once the home-court regime is controlled, because pace rose while home advantage fell. The model uses era-relative pace instead.
+
+### Factor families
+
+Gain over strength-only (log loss, positive = family helps) and loss when removed from the full model:
+
+| Family | Factors | Gain over strength [95% CI] | Loss if removed [95% CI] |
+|---|---|---|---|
+| Strength | 3 | baseline | -0.0001 [-0.0014, +0.0012] |
+| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | +0.0008 [-0.0001, +0.0018] |
+| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | -0.0000 [-0.0010, +0.0011] |
+| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | -0.0003 [-0.0015, +0.0010] |
+| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | +0.0034 [+0.0012, +0.0056] |
+| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | -0.0003 [-0.0009, +0.0003] |
+| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | +0.0003 [-0.0003, +0.0010] |
+| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | +0.0001 [-0.0009, +0.0009] |
+| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | +0.0000 [-0.0006, +0.0006] |
+| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | -0.0001 [-0.0004, +0.0002] |
+| Era regime | 1 | baseline | +0.0019 [+0.0008, +0.0030] |
+| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | +0.0000 [-0.0002, +0.0003] |
+
+All 53 factors in a logistic model: log loss 0.5986, accuracy 0.678 (strength only 0.6029, 0.672; gradient boosting 0.6030).
+
+### How long is a team's memory?
+
+Leave-one-season-out log loss of one rating signal (lower is better):
+
+| Signal | Log loss | SE |
+|---|---|---|
+| EWMA half-life 2 games | 0.6393 | 0.0029 |
+| EWMA half-life 3 games | 0.6305 | 0.0032 |
+| EWMA half-life 5 games | 0.6207 | 0.0035 |
+| EWMA half-life 8 games | 0.6144 | 0.0037 |
+| EWMA half-life 12 games | 0.6113 | 0.0038 |
+| EWMA half-life 20 games | 0.6097 | 0.0039 |
+| EWMA half-life 30 games | 0.6096 | 0.0040 |
+| EWMA half-life 50 games | 0.6098 | 0.0040 |
+| EWMA half-life 80 games | 0.6101 | 0.0040 |
+| Season-to-date net rating | 0.6108 | 0.0041 |
+| Elo (carries over across seasons) | 0.6074 | 0.0038 |
+
+### Skill or luck? Persistence of team stats
+
+Split-half reliability (odd vs even games, Spearman-Brown) and year-over-year correlation:
+
+| Stat | Split-half | Year over year |
+|---|---|---|
+| Three-point attempt rate | 1.00 | 0.92 |
+| Opponent three-point attempt rate | 0.99 | 0.96 |
+| Pace | 0.98 | 0.86 |
+| Foul rate | 0.96 | 0.79 |
+| Offensive eFG% | 0.95 | 0.83 |
+| Opponent eFG% allowed | 0.95 | 0.84 |
+| Offensive rebound rate | 0.94 | 0.71 |
+| Assist rate | 0.94 | 0.67 |
+| Opponent turnovers forced | 0.92 | 0.61 |
+| Net rating | 0.91 | 0.59 |
+| Free-throw rate | 0.91 | 0.66 |
+| Opponent offensive rebounds allowed | 0.91 | 0.76 |
+| Opponent free-throw rate allowed | 0.90 | 0.69 |
+| Block rate | 0.90 | 0.63 |
+| Turnover rate | 0.90 | 0.65 |
+| Win % | 0.88 | 0.60 |
+| Steal rate | 0.87 | 0.49 |
+| Free-throw % | 0.87 | 0.55 |
+| Three-point % | 0.60 | 0.40 |
+| Opponent three-point % allowed | 0.35 | 0.22 |
+
+### Opening weeks: Elo vs this season's record
+
+| Games played | Test games | Home | Elo | Record |
+|---|---|---|---|---|
+| games 1-5 | 239 | 0.540 | 0.636 | 0.577 |
+| 6-10 | 229 | 0.616 | 0.664 | 0.686 |
+| 11-20 | 460 | 0.576 | 0.670 | 0.676 |
+| 21-40 | 909 | 0.550 | 0.644 | 0.640 |
+| 41-60 | 892 | 0.511 | 0.647 | 0.640 |
+| 61+ | 951 | 0.550 | 0.710 | 0.715 |
+
+### Home-court value by franchise (league average 2.7 points, controlling for Elo)
+
+| Franchise | Points | SE |
+|---|---|---|
+| DEN | 3.96 | 0.40 |
+| UTA | 3.71 | 0.40 |
+| GSW | 3.67 | 0.40 |
+| OKC | 3.38 | 0.40 |
+| IND | 3.32 | 0.40 |
+| SAS | 3.13 | 0.40 |
+| LAC | 2.96 | 0.40 |
+| HOU | 2.88 | 0.40 |
+| LAL | 2.88 | 0.40 |
+| POR | 2.84 | 0.40 |
+| CLE | 2.79 | 0.40 |
+| BOS | 2.78 | 0.40 |
+| PHX | 2.67 | 0.40 |
+| ATL | 2.66 | 0.40 |
+| MIL | 2.65 | 0.40 |
+| DAL | 2.63 | 0.40 |
+| MEM | 2.55 | 0.40 |
+| TOR | 2.52 | 0.40 |
+| ORL | 2.47 | 0.40 |
+| DET | 2.46 | 0.40 |
+| SAC | 2.45 | 0.40 |
+| MIN | 2.42 | 0.40 |
+| MIA | 2.38 | 0.40 |
+| NOP | 2.36 | 0.40 |
+| WAS | 2.19 | 0.40 |
+| NYK | 2.10 | 0.40 |
+| CHA | 2.03 | 0.43 |
+| PHI | 1.99 | 0.40 |
+| CHI | 1.90 | 0.40 |
+| BKN | 1.67 | 0.40 |

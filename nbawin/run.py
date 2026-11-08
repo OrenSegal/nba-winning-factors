@@ -175,7 +175,7 @@ def plot_walk_forward(wf: pd.DataFrame, path: Path) -> None:
 def plot_calibration(test: pd.DataFrame, preds: dict, path: Path) -> None:
     y = test["home_win"]
     fig, ax = plt.subplots(figsize=(5.5, 5))
-    ax.plot([0, 1], [0, 1], ls="--", c="grey", lw=1, label="perfect calibration")
+    ax.plot([0, 1], [0, 1], ls="--", c="gray", lw=1, label="perfect calibration")
     for name in ["Logistic regression (all features)", "Gradient boosting (all features)",
                  "Simple model: logistic on win% difference only"]:
         frac, mean_p = calibration_curve(y, preds[name][0], n_bins=10, strategy="quantile")
@@ -193,7 +193,7 @@ def plot_coefficients(coefs: pd.DataFrame, path: Path) -> None:
     c = coefs.sort_values("coef")
     fig, ax = plt.subplots(figsize=(7.5, 4.5))
     ax.errorbar(c["coef"], c["feature"], xerr=[c["coef"] - c["ci_low"], c["ci_high"] - c["coef"]], fmt="o", capsize=3)
-    ax.axvline(0, c="grey", lw=1)
+    ax.axvline(0, c="gray", lw=1)
     ax.set(xlabel="log-odds of home win per 1 SD (95% bootstrap CI)",
            title="Pre-game factors: logistic coefficients\n(home minus away, season-to-date, train seasons)")
     fig.tight_layout()

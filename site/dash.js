@@ -20,8 +20,9 @@ const ERAS = [["2004-05", "Hand-check ban"], ["2011-12", "Lockout, 66 games"], [
 const ROLE_C = { style: "var(--cool)", execution: "var(--hot)", effort: "var(--mint)" };
 const SHORT = { fg3a_rate: "3PA share", fg3_pct: "3P%", corner3_share: "Corner 3s", rim_share: "Rim shots", mid_share: "Mid-range", pace: "Pace", efg: "eFG%",
   opp_efg: "Opp. eFG%", tov_rate: "Turnovers", oreb_pct: "Off. rebounds", ft_rate: "FT rate", ast_pct: "Assist %", drives_100: "Drives", drive_fg: "Drive FG%",
-  cs_share: "Catch & shoot", opp_rim_fg: "Rim defence", deflections_100: "Deflections", speed_def: "Defensive speed" };
+  cs_share: "Catch & shoot", opp_rim_fg: "Rim defense", deflections_100: "Deflections", speed_def: "Defensive speed" };
 const PCT_KEYS = new Set(["fg3a_rate", "fg3_pct", "corner3_share", "rim_share", "mid_share", "efg", "opp_efg", "oreb_pct", "ft_rate", "ast_pct", "drive_fg", "cs_share", "opp_rim_fg", "tov_rate"]);
+const logo = (a) => `<img src="logos/${fr(a)}.svg" alt="" loading="lazy" decoding="async">`;
 const fmtF = (k, v) => v == null ? "n/a" : PCT_KEYS.has(k) ? pct(v > 1 ? v / 100 : v, 1) : v.toFixed(1);
 
 const tip = $("#tip");
@@ -40,16 +41,33 @@ Promise.all([fetch("dashboard.json").then((r) => r.json()), fetch("metrics.json"
 
 function start(D, M) {
   const S = D.seasons, F = D.factors, by = D.by_season, last = S.length - 1;
+  // current franchise names and abbreviations throughout: no Seattle, no New Jersey
+  { const cur = {}; S.forEach((s) => by[s].teams.forEach((t) => { cur[fr(t.t)] = t.n; })); S.forEach((s) => by[s].teams.forEach((t) => { t.t = fr(t.t); t.n = cur[t.t]; })); }
   const st = { i: 0, x: "fg3a_rate", mode: "raw", team: "", role: "", timer: null };
   const pretty = (s) => s.replace("-", "–");
 
   /* ---------- static copy ---------- */
   $("#n-metrics").textContent = Object.keys(F).length;
-  $("#intro").textContent = `${S.length} seasons, every team, one timeline. Press play to watch the three-point era arrive, then see what actually separated the winners each year. Drag the timeline, swap the factor on the floor, follow a franchise.`;
+  $("#intro").textContent = `${S.length} seasons, every team, one timeline. Press play or drag the timeline at the bottom.`;
+
+  /* ---------- the short version: four findings, each with what to do about it ---------- */
+  {
+    const X = M.explore, ov = X.families.overall, byM = Object.fromEntries(M.results.map((r) => [r.model, r]));
+    const rec = byM["Baseline: better season-to-date record wins"];
+    const fams = X.families.families.filter((f) => f.family !== "Strength" && f.family !== "Era regime" && f.gain_over_strength[1] > 0).map((f) => f.family.toLowerCase());
+    const pd3 = X.persistence.find((p) => p.stat === "def_fg3_pct"), BA = M.style.blocks_all_seasons, BT = M.style.blocks_tracking_era;
+    const cards = [
+      [pct(ov.full_logistic_accuracy, 1), "", `Best pre-game call on unseen seasons. "Better record wins" already gets ${pct(rec.accuracy, 1)}.`, "Do", `Start forecasts from team strength; the other ${ov.n_factors} factors add about ${((ov.full_logistic_accuracy - rec.accuracy) * 100).toFixed(1)} points.`, "#pregame"],
+      [String(fams.length), `of ${X.families.families.length - 2} families`, `Pre-game factor groups that beat team strength on unseen seasons: ${fams.join(", ") || "none"}.`, "Do", "Adjust for rest and schedule; ignore altitude, travel and streaks.", "#pregame"],
+      [pd3.split_half.toFixed(2), "reliability", "Opponent 3P% barely repeats within a season, so it is mostly luck.", "Do", "Judge a defense by the threes it concedes, not by how many go in.", "#why"],
+      [`${(BA.sets["Style (choices)"].win.r2 * 100).toFixed(0)}%`, "vs " + (BT.sets["Execution (results)"].win.r2 * 100).toFixed(0) + "%", "Share of win % explained by shot diet, against execution (making shots, keeping the ball).", "Do", "Spend on shot-making and ball security before a shot-chart overhaul.", "#season-level"],
+    ];
+    $("#take").innerHTML = cards.map(([n, u, c, ak, a, href]) => `<div class="tk"><div class="n">${n}${u ? `<small>${u}</small>` : ""}</div><div class="c">${c}</div><div class="a"><b>${ak}</b>${a}</div><a href="${href}">Evidence ↓</a></div>`).join("");
+  }
 
   /* ---------- KPI strip ---------- */
   const KPI = [["fg3a_rate", "Shots from three", (v) => pct(v, 1), 100, "pts"], ["pace", "Pace", (v) => v.toFixed(1), 1, ""], ["efg", "Effective FG%", (v) => pct(v, 1), 100, "pts"],
-    ["home_win", "Home teams win", (v) => pct(v, 1), 100, "pts"], ["favourite_win", "Favourite wins", (v) => pct(v, 1), 100, "pts"], ["parity_sd", "Spread of win %", (v) => pct(v, 1), 100, "pts"]];
+    ["home_win", "Home teams win", (v) => pct(v, 1), 100, "pts"], ["favorite_win", "Favorite wins", (v) => pct(v, 1), 100, "pts"], ["parity_sd", "Spread of win %", (v) => pct(v, 1), 100, "pts"]];
   $("#kpis").innerHTML = KPI.map(([k, l]) => `<div class="kpi"><div class="l">${l}</div><div class="v" id="kv-${k}"></div><div class="d" id="kd-${k}"></div><svg id="ks-${k}" aria-hidden="true"></svg></div>`).join("");
   const spark = (svg, vals, h, pad = 3) => {
     const w = svg.clientWidth || 160, lo = Math.min(...vals), hi = Math.max(...vals), sx = lin(0, vals.length - 1, 0, w), sy = lin(lo, hi, h - pad, pad);
@@ -98,8 +116,12 @@ function start(D, M) {
     const trailG = el("g", {}, svg), toks = {};
     franchises.forEach((f) => {
       const g = el("g", { class: "tok", style: "opacity:0" }, svg);
-      el("circle", { r: 9, class: "hit" }, g); el("circle", { r: 4.5, class: "dot" }, g); txt(g, 8, 0.5, f);
-      hover(g, () => { const t = g._t; return t ? `<b>${t.n}</b> ${pretty(S[st.i])}<br>Win % ${pct(t.w, 1)} · net rating ${sgn(t.net, 1)}<br>${F[st.x].label}: ${fmtF(st.x, t.f[st.x])}` : ""; });
+      // logo on a light disc, so dark logos stay legible on the dark theme
+      el("circle", { r: 13, class: "hit" }, g); el("circle", { r: small ? 9.5 : 11.5, class: "dot" }, g);
+      const ls = small ? 15 : 19; el("image", { href: `logos/${f}.svg`, x: -ls / 2, y: -ls / 2, width: ls, height: ls }, g);
+      el("title", {}, g).textContent = latestName[f];
+      g.addEventListener("pointerenter", () => { if (st.team !== f) g.parentNode.insertBefore(g, toks[st.team] || null); });  // raise on hover, under the followed team
+      hover(g, () => { const t = g._t; return t ? `${logo(t.t)}<b>${t.n}</b> ${pretty(S[st.i])}<br>Win % ${pct(t.w, 1)} · net rating ${sgn(t.net, 1)}<br>${F[st.x].label}: ${fmtF(st.x, t.f[st.x])}` : ""; });
       g.addEventListener("click", () => { st.team = st.team === f ? "" : f; $("#team").value = st.team; buildFloor(); });
       toks[f] = g;
     });
@@ -121,7 +143,7 @@ function start(D, M) {
   }
   function updateFloor(instant) {
     if (!floor) return;
-    const s = S[st.i], { sx, sy, toks, fit, rlab, note, lo, hi, w, m } = floor, seen = new Set(), xs = [], ys = [], placed = [];
+    const s = S[st.i], { sx, sy, toks, fit, rlab, note, lo, hi } = floor, seen = new Set(), xs = [], ys = [];
     by[s].teams.forEach((t) => {
       const f = fr(t.t), g = toks[f], x = xval(s, t); if (!g) return; seen.add(f); g._t = t;
       if (x == null) { g.style.opacity = 0; g._p = null; return; }
@@ -129,20 +151,10 @@ function start(D, M) {
       if (instant) g.style.transition = "none";
       g.style.transform = `translate(${g._p[0]}px,${g._p[1]}px)`;
       g.style.opacity = ""; g.classList.toggle("dim", !!st.team && st.team !== f); g.classList.toggle("sel", st.team === f);
-      g.querySelector(".dot").style.fill = st.team === f ? TEAM_COLOR[f] || "var(--ink)" : "";
+      g.querySelector(".dot").style.stroke = st.team === f ? TEAM_COLOR[f] || "var(--ink)" : "";
       if (instant) { g.getBoundingClientRect(); g.style.transition = ""; }
     });
     Object.entries(toks).forEach(([f, g]) => { if (!seen.has(f)) { g.style.opacity = 0; g._t = null; g._p = null; } });
-    // labels: the followed team first, then the teams furthest from .500; skip any label that would overlap one already placed
-    const order = Object.entries(toks).filter(([, g]) => g._p).sort(([fa, a], [fb, b]) => (fb === st.team) - (fa === st.team) || Math.abs(b._t.w - 0.5) - Math.abs(a._t.w - 0.5));
-    order.forEach(([f, g]) => {
-      const [x, y] = g._p, lw = 27, right = x + 8 + lw < w - 2, bx = right ? x + 7 : x - 7 - lw, box = [bx, y - 6, lw, 12];
-      const hit = placed.some((q) => box[0] < q[0] + q[2] && q[0] < box[0] + box[2] && box[1] < q[1] + q[3] && q[1] < box[1] + box[3]);
-      const show = f === st.team || !hit;
-      const label = g.querySelector("text"); label.style.visibility = show ? "" : "hidden";
-      label.setAttribute("x", right ? 8 : -8); label.setAttribute("text-anchor", right ? "start" : "end");
-      if (show) placed.push(box);
-    });
     if (toks[st.team]) toks[st.team].parentNode.appendChild(toks[st.team]);
     const first = Object.keys(by).find((k) => by[k].teams.some((t) => t.f[st.x] != null));
     note.textContent = xs.length < 5 ? `${F[st.x].label} is not recorded before ${first}.` : "";
@@ -164,14 +176,18 @@ function start(D, M) {
     const sorted = ts.map((t) => t.f[st.x]).sort((a, b) => a - b), rank = (v) => sorted.filter((u) => u > v).length + 1, ordinal = (k) => k + (k % 100 >= 11 && k % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][k % 10] || "th");
     const strength = r == null ? "" : Math.abs(r) < 0.15 ? "barely related to" : Math.abs(r) < 0.35 ? "loosely tied to" : "clearly tied to";
     const team = st.team && ts.find((t) => fr(t.t) === st.team);
-    $("#floor-sub").innerHTML = `In ${pretty(s)}, ${lc(lab)} was ${strength} winning (r ${r == null ? "n/a" : sgn(r)}). ${best.n} had the best record, ${pct(best.w, 0)}, and was ${ordinal(rank(best.f[st.x]))}-highest of ${ts.length} on this measure; ${worst.n} won ${pct(worst.w, 0)} and was ${ordinal(rank(worst.f[st.x]))}-highest. Over all ${S.length} seasons, each team measured against its own year, the correlation is ${sgn(pooled.r_win)}${pooled.beats_chance ? "" : ", within what chance produces"}.` +
-      (team ? ` ${team.n}: ${pct(team.w, 0)} wins, ${lc(lab)} ${fmtF(st.x, team.f[st.x])}. The faded line is the franchise's path through every season.` : " Pick a franchise to trace its path.");
+    const f = (k, v) => `<span><span class="k">${k}</span>${v}</span>`;
+    $("#floor-sub").innerHTML = f(pretty(s), `<b>r ${r == null ? "n/a" : sgn(r)}</b>, ${strength} winning`) +
+      f("Best", `${logo(best.t)}${best.n} ${pct(best.w, 0)}, ${ordinal(rank(best.f[st.x]))} of ${ts.length}`) +
+      f("Worst", `${logo(worst.t)}${worst.n} ${pct(worst.w, 0)}, ${ordinal(rank(worst.f[st.x]))}`) +
+      f("All seasons", `<b>r ${sgn(pooled.r_win)}</b>${pooled.beats_chance ? "" : ", within chance"}`) +
+      (team ? f("Following", `${logo(team.t)}${team.n} ${pct(team.w, 0)}, ${fmtF(st.x, team.f[st.x])}`) : "");
   }
 
   /* ---------- leaderboard ---------- */
-  const board = $("#board"), rows = {};
+  const board = $("#lboard"), rows = {};
   Object.entries(F).forEach(([k, f]) => {
-    const d = document.createElement("div"); d.className = "lb"; d.style.opacity = 0; d.style.transform = "translateY(420px)";
+    const d = document.createElement("div"); d.className = "lb"; d.style.opacity = 0; d.style.transform = "translateY(400px)";
     d.innerHTML = `<span class="rk"></span><span class="nm" title="${f.definition}"><i style="background:${ROLE_C[f.role]}"></i>${f.label}</span><span class="rv"></span><span class="bar"><s></s><b style="background:${ROLE_C[f.role]}"></b><u style="left:${50 + f.r_win * 50}%"></u></span>`;
     board.appendChild(d); rows[k] = d;
   });
@@ -180,14 +196,14 @@ function start(D, M) {
     const r = by[S[st.i]].r, keys = Object.keys(r).filter((k) => F[k] && r[k] != null && (!st.role || (st.role === "style" ? F[k].role !== "execution" : F[k].role === "execution")));
     keys.sort((a, b) => Math.abs(r[b]) - Math.abs(r[a])); const top = new Set(keys.slice(0, 10));
     const all = Object.keys(r).filter((k) => F[k] && r[k] != null).sort((a, b) => Math.abs(r[b]) - Math.abs(r[a])), fs = all.findIndex((k) => F[k].role !== "execution");
-    $("#board-sub").textContent = `The ${Math.min(10, keys.length)} of ${all.length} metrics recorded in ${pretty(S[st.i])} that tracked win % most closely. ${fs < 0 ? "" : fs < 10 ? `The highest style or effort factor, ${lc(F[all[fs]].label)}, ranks ${fs + 1}.` : `No style or effort factor makes the top ten; the highest, ${lc(F[all[fs]].label)}, ranks ${fs + 1}.`} The tick on each bar is that factor's 26-season figure.`;
+    $("#board-sub").textContent = `Top ${Math.min(10, keys.length)} of ${all.length} by correlation with win %. ${fs < 0 ? "" : `Highest style factor: #${fs + 1}, ${lc(F[all[fs]].label)}.`}`;
     Object.entries(rows).forEach(([k, d]) => {
       const i = keys.indexOf(k);
       if (top.has(k)) {
         d.style.transform = `translateY(${i * 40}px)`; d.style.opacity = 1; d.removeAttribute("aria-hidden");
         d.querySelector(".rk").textContent = i + 1; d.querySelector(".rv").textContent = sgn(r[k]);
         const b = d.querySelector(".bar b"), v = r[k]; b.style.left = `${v < 0 ? 50 + v * 50 : 50}%`; b.style.width = `${Math.abs(v) * 50}%`;
-      } else { d.style.opacity = 0; d.style.transform = "translateY(420px)"; d.setAttribute("aria-hidden", "true"); }
+      } else { d.style.opacity = 0; d.style.transform = "translateY(400px)"; d.setAttribute("aria-hidden", "true"); }
     });
   }
 
@@ -196,10 +212,10 @@ function start(D, M) {
   const SIXC = [["o_shoot", "Shooting"], ["o_tov", "Turnovers"], ["o_reb", "Rebounds"], ["o_ft", "Free throws"],
     ["d_shoot", "Shooting"], ["d_tov", "Turnovers"], ["d_reb", "Rebounds"], ["d_ft", "Free throws"], ["resid", "Other"], ["luck", "3P luck"]];
   const SIXL = { o_shoot: "shooting", o_tov: "ball security", o_reb: "offensive rebounding", o_ft: "getting to the line",
-    d_shoot: "shooting defence", d_tov: "forcing turnovers", d_reb: "defensive rebounding", d_ft: "keeping opponents off the line" };
+    d_shoot: "shooting defense", d_tov: "forcing turnovers", d_reb: "defensive rebounding", d_ft: "keeping opponents off the line" };
   st.sixSort = "net"; st.luck = false;
   const sixT = $("#six");
-  const head = `<thead><tr><th colspan="4"></th><th class="grp sep" colspan="4">Offence</th><th class="grp sep" colspan="4">Defence</th><th class="sep" colspan="2"></th></tr><tr>` +
+  const head = `<thead><tr><th colspan="4"></th><th class="grp sep" colspan="4">Offense</th><th class="grp sep" colspan="4">Defense</th><th class="sep" colspan="2"></th></tr><tr>` +
     `<th>#</th><th class="tm">Team</th>` + [["w", "Win %"], ["net", "Net"]].concat(SIXC).map(([k, l], j) => `<th data-k="${k}" class="${[0, 2, 6, 10].includes(j) ? "sep" : ""}"><button>${l}</button></th>`).join("") + `</tr></thead><tbody></tbody>`;
   sixT.innerHTML = head;
   sixT.querySelectorAll("th[data-k]").forEach((th) => th.querySelector("button").addEventListener("click", () => { st.sixSort = th.dataset.k; updateSix(); }));
@@ -226,7 +242,7 @@ function start(D, M) {
     sixT.tBodies[0].innerHTML = rows.map((r, i) => {
       const mv = played.get(r) - rank.net.get(r), mvs = L && mv ? `<span class="mv ${mv > 0 ? "up" : "dn"}" title="${mv > 0 ? "Up" : "Down"} ${Math.abs(mv)} from as played">${mv > 0 ? "▲" : "▼"}${Math.abs(mv)}</span> ` : "";
       const cell = (k, j) => `<td class="${[0, 4, 8].includes(j) ? "sep" : ""}" style="${tint(r.v[k], k === "luck" || k === "resid" ? 2.5 : 4)}">${Math.abs(r.v[k]) < 0.05 ? "0.0" : sgn(r.v[k], 1)}<small>#${rank[k].get(r)}</small></td>`;
-      return `<tr data-f="${r.f}" tabindex="0" class="${st.team === r.f ? "sel" : ""}"><td class="rk">${i + 1}</td><td class="tm"><span class="nm">${r.t.n}</span><small>${r.t.t}</small></td>` +
+      return `<tr data-f="${r.f}" tabindex="0" class="${st.team === r.f ? "sel" : ""}"><td class="rk">${i + 1}</td><td class="tm">${logo(r.t.t)}<span class="nm">${r.t.n}</span><small>${r.t.t}</small></td>` +
         `<td class="sep">${pct(r.v.w, 1)}<small>#${rank.w.get(r)}</small></td><td class="big">${sgn(r.v.net, 1)}<small>${mvs}#${rank.net.get(r)}</small></td>` +
         SIXC.map(([k], j) => cell(k, j)).join("") + `</tr>`;
     }).join("");
@@ -236,10 +252,11 @@ function start(D, M) {
     const neutral = new Map([...rows].sort((a, b) => (b.t.net - b.v.luck) - (a.t.net - a.v.luck)).map((r, j) => [r, j + 1]));
     const mover = rows.reduce((a, b) => (Math.abs(played.get(b) - neutral.get(b)) > Math.abs(played.get(a) - neutral.get(a)) ? b : a));
     const d = played.get(mover) - neutral.get(mover), fol = st.team && rows.find((r) => r.f === st.team);
-    $("#six-sub").innerHTML = `Each team's net rating, split into what it gained or lost on each of the four factors at both ends. In ${pretty(s)}, ${best.t.n} led at ${sgn(best.t.net, 1)} per 100 possessions, the largest piece being ${SIXL[drv]} (${sgn(best.v[drv], 1)}). ` +
-      `Luckiest from three: ${lk.t.n} (${sgn(lk.v.luck, 1)}); unluckiest: ${ul.t.n} (${sgn(ul.v.luck, 1)}). ` +
-      (d ? `With that luck taken out, ${mover.t.n} moves ${d > 0 ? "up" : "down"} the most, from ${ord(played.get(mover))} to ${ord(neutral.get(mover))}.` : "Taking that luck out changes no team's place.") +
-      (fol ? ` ${fol.t.n}: biggest strength ${SIXL[Object.keys(SIXL).reduce((a, k) => (fol.v[k] > fol.v[a] ? k : a))]}, biggest weakness ${SIXL[Object.keys(SIXL).reduce((a, k) => (fol.v[k] < fol.v[a] ? k : a))]}.` : " Click a row to follow that team on the floor.");
+    const f = (k, v) => `<span><span class="k">${k}</span>${v}</span>`;
+    $("#six-sub").innerHTML = f("Best", `${logo(best.t.t)}<b>${best.t.n} ${sgn(best.t.net, 1)}</b>, mostly ${SIXL[drv]}`) +
+      f("Luckiest from 3", `${logo(lk.t.t)}${lk.t.n} ${sgn(lk.v.luck, 1)}`) + f("Unluckiest", `${logo(ul.t.t)}${ul.t.n} ${sgn(ul.v.luck, 1)}`) +
+      f("Luck out", d ? `${logo(mover.t.t)}${mover.t.n} ${ord(played.get(mover))} → ${ord(neutral.get(mover))}` : "no team moves") +
+      (fol ? f("Following", `${logo(fol.t.t)}${fol.t.n}: best at ${SIXL[Object.keys(SIXL).reduce((a, k) => (fol.v[k] > fol.v[a] ? k : a))]}, worst at ${SIXL[Object.keys(SIXL).reduce((a, k) => (fol.v[k] < fol.v[a] ? k : a))]}`) : "");
   }
   $("#six-fn").textContent = `Weights fitted by least squares on all ${SF.n} team-seasons, each rate measured against its own season's league average. The eight factors explain ${pct(SF.r2, 1)} of net rating; "Other" is the remainder. ` +
     `3P luck pulls each team's own and allowed three-point % toward the league by how little of it repeats within a season (reliability ${SF.rel_off.toFixed(2)} for a team's own shooting, ${SF.rel_def.toFixed(2)} for what it allows), then counts the gap in points. ` +

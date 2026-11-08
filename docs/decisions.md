@@ -24,7 +24,7 @@ Short records of the choices that shaped the project. Each lists what was chosen
 
 **Home-court by franchise as fixed effects (OLS on margin with Elo).** Rejected: a hierarchical model with partial pooling (PyMC), which would shrink noisy extremes but adds a dependency for a descriptive table.
 
-**Memory half-life by leave-one-season-out.** A single-signal two-parameter model trains stably on other seasons, but it uses future seasons, so it is not comparable to the walk-forward numbers and is labelled as such.
+**Memory half-life by leave-one-season-out.** A single-signal two-parameter model trains stably on other seasons, but it uses future seasons, so it is not comparable to the walk-forward numbers and is labeled as such.
 
 **Early-season games excluded from the main models (first 10 games per team).** Season-to-date averages are too noisy there. They are scored separately with Elo.
 
@@ -42,12 +42,12 @@ Short records of the choices that shaped the project. Each lists what was chosen
 
 **A chance ceiling instead of 87 p-values.** Win % is shuffled inside each season 1,000 times and the largest |t| across all metrics is recorded. The 95th percentile, converted to a correlation for each metric's own sample size, is the bar a metric has to clear. It controls the family-wise error without assuming independence between metrics (they are heavily correlated). Rejected: Bonferroni across 87 metrics, which is too strict when metrics are about 26 independent ideas.
 
-**Role labels (style, execution, effort) are judgment calls.** Style is a choice made before the shot (where, how fast, how often to drive or pass). Execution is the result (shooting %, turnovers, rebounds, what the defence allows, and anything that counts points). Assists need a made shot, so they are execution. Points-per-100 counts (fast break, second chance, assist points) are execution because they are outcomes. A first pass classified assists and point shares as style and made style look like it explained 83% of offence; the leak was found by dropping one family at a time. Points per drive was a second, smaller leak (style 50% before, 31% after). The split is a gradient, and the page says so.
+**Role labels (style, execution, effort) are judgment calls.** Style is a choice made before the shot (where, how fast, how often to drive or pass). Execution is the result (shooting %, turnovers, rebounds, what the defense allows, and anything that counts points). Assists need a made shot, so they are execution. Points-per-100 counts (fast break, second chance, assist points) are execution because they are outcomes. A first pass classified assists and point shares as style and made style look like it explained 83% of offense; the leak was found by dropping one family at a time. Points per drive was a second, smaller leak (style 50% before, 31% after). The split is a gradient, and the page says so.
 
 **Ridge with leave-one-season-out, not a tuned model.** Metrics outnumber the usable rows in the tracking era (86 against 300), so unpenalised least squares overfits. The ridge penalty is picked by internal cross-validation inside each training fold; the held-out season never informs it.
 
 **The "beyond net rating" test is the headline.** Execution explaining 91% of wins is nearly true by construction. The informative number is what remains after net rating: about 4% of the leftover (interval 0.7 to 7.1%), small but not zero.
 
-**Rolling five-season windows for the edge chart.** One season has 30 teams, so a single-season correlation has a standard error near 0.18. Five pooled seasons bring it to about 0.08. The Fisher interval treats teams as independent and is labelled optimistic.
+**Rolling five-season windows for the edge chart.** One season has 30 teams, so a single-season correlation has a standard error near 0.18. Five pooled seasons bring it to about 0.08. The Fisher interval treats teams as independent and is labeled optimistic.
 
-**Drives read as correlation only.** The negative link between drive volume and wins is not evidence that driving hurts; weaker offences may drive more because they have fewer alternatives. Season data cannot separate those, and the page says so.
+**Drives read as correlation only.** The negative link between drive volume and wins is not evidence that driving hurts; weaker offenses may drive more because they have fewer alternatives. Season data cannot separate those, and the page says so.

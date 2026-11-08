@@ -18,7 +18,7 @@ OUT = Path(__file__).resolve().parent.parent / "results" / "dashboard.json"
 SCATTER = ["fg3a_rate", "fg3_pct", "corner3_share", "rim_share", "mid_share", "pace", "efg", "opp_efg", "tov_rate",
            "oreb_pct", "ft_rate", "ast_pct", "drives_100", "drive_fg", "cs_share", "opp_rim_fg", "deflections_100", "speed_def"]
 r4 = lambda v: None if v is None or not np.isfinite(v) else round(float(v), 4)
-# Eight four-factor rates, offence then defence; each regression weight turns a team's gap to its season's league into net-rating points
+# Eight four-factor rates, offense then defense; each regression weight turns a team's gap to its season's league into net-rating points
 FF = {"o_shoot": "ff_EFG_PCT", "o_tov": "ff_TM_TOV_PCT", "o_reb": "ff_OREB_PCT", "o_ft": "ff_FTA_RATE",
       "d_shoot": "ff_OPP_EFG_PCT", "d_tov": "ff_OPP_TOV_PCT", "d_reb": "ff_OPP_OREB_PCT", "d_ft": "ff_OPP_FTA_RATE"}
 METRICS = Path(__file__).resolve().parent.parent / "results" / "metrics.json"
@@ -77,7 +77,7 @@ def main() -> dict:
         by_season[s] = {
             "kpi": {"fg3a_rate": r4(x["fg3a_rate"].mean()), "pace": r4(x["pace"].mean()), "efg": r4(x["efg"].mean()),
                     "rim_share": r4(x["rim_share"].mean()), "mid_share": r4(x["mid_share"].mean()), "home_win": r4(home.get(s)),
-                    "favourite_win": r4(fav.get(s)), "parity_sd": r4(m["win"].std()), "games": int((games["SEASON"] == s).sum())},
+                    "favorite_win": r4(fav.get(s)), "parity_sd": r4(m["win"].std()), "games": int((games["SEASON"] == s).sum())},
             "r": {k: r4(v) for k, v in r.items() if z[k].notna().all()},
             "teams": [{"t": a, "n": n, "w": r4(wp), "net": r4(nt), "f": {k: r4(x.at[i, k]) for k in SCATTER},
                        "six": [r4(six.at[i, k]) for k in SIX]}

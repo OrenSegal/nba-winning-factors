@@ -24,8 +24,9 @@ from nbawin.features import FEATURES, pregame_features, same_game_factor_diffs
 from nbawin.metrics import bootstrap_ci, score
 
 OUT = Path(__file__).resolve().parent.parent / "results"
-TEST_SEASONS = ["2023-24", "2024-25"]
+TEST_SEASONS = ["2023-24", "2024-25", "2025-26"]
 FACTOR_FEATURES = [f for f in FEATURES if f not in ("d_win", "d_net_rtg")]
+WF_MIN_TRAIN = 5  # walk-forward needs this many earlier seasons before its first test season
 SEED = 0
 N_BOOT = 1000
 
@@ -144,6 +145,32 @@ def descriptive_factors(games: pd.DataFrame) -> dict:
     }
 
 
+def walk_forward(df: pd.DataFrame) -> pd.DataFrame:
+    """Expanding-window backtest: for each season, train on all earlier seasons, score that season."""
+    rows = []
+    for season in sorted(df["SEASON"].unique())[WF_MIN_TRAIN:]:
+        train, test = df[df["SEASON"] < season], df[df["SEASON"] == season]
+        y = test["home_win"].to_numpy()
+        for name, (p, y_hat) in predictions(train, test, fit_models(train)).items():
+            row = {"season": season, "model": name, "accuracy": float((y_hat == y).mean())}
+            if p is not None:
+                row["log_loss"] = score(y, p)["log_loss"]
+            rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def plot_walk_forward(wf: pd.DataFrame, path: Path) -> None:
+    fig, ax = plt.subplots(figsize=(8, 4.5))
+    for name, g in wf.groupby("model"):
+        ax.plot(g["season"], g["accuracy"], marker="o", ms=3, label=name)
+    ax.set(ylabel="accuracy", title="Walk-forward accuracy by season (trained on all earlier seasons)")
+    ax.tick_params(axis="x", rotation=60, labelsize=7)
+    ax.legend(fontsize=6)
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+
 def plot_calibration(test: pd.DataFrame, preds: dict, path: Path) -> None:
     y = test["home_win"]
     fig, ax = plt.subplots(figsize=(5.5, 5))
@@ -167,7 +194,7 @@ def plot_coefficients(coefs: pd.DataFrame, path: Path) -> None:
     ax.errorbar(c["coef"], c["feature"], xerr=[c["coef"] - c["ci_low"], c["ci_high"] - c["coef"]], fmt="o", capsize=3)
     ax.axvline(0, c="grey", lw=1)
     ax.set(xlabel="log-odds of home win per 1 SD (95% bootstrap CI)",
-           title="Pre-game factors: logistic coefficients\n(home minus away, season-to-date, train 2015-16 to 2022-23)")
+           title="Pre-game factors: logistic coefficients\n(home minus away, season-to-date, train seasons)")
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)
@@ -178,16 +205,18 @@ def fmt_ci(ci) -> str:
 
 
 def write_report(summary: dict, table: pd.DataFrame, path: Path) -> None:
+    season_cols = [f"accuracy_{s}" for s in TEST_SEASONS]
     lines = [f"Train: {summary['train_games']} games ({summary['train_seasons']}). "
              f"Test: {summary['test_games']} games ({', '.join(TEST_SEASONS)}).", "",
-             "| Model | Accuracy [95% CI] | Log loss [95% CI] | Brier | ECE | Acc 2023-24 | Acc 2024-25 |",
-             "|---|---|---|---|---|---|---|"]
+             "## Forecasting: pre-game features only", "",
+             "| Model | Accuracy [95% CI] | Log loss [95% CI] | Brier | ECE | " + " | ".join(f"Acc {s}" for s in TEST_SEASONS) + " |",
+             "|---|---|---|---|---|" + "---|" * len(TEST_SEASONS)]
     for r in table.to_dict("records"):
         ll = f"{r['log_loss']:.4f} {fmt_ci(r['log_loss_ci'])}" if isinstance(r.get("log_loss_ci"), list) else "n/a"
         brier = f"{r['brier']:.4f}" if pd.notna(r.get("brier")) else "n/a"
         ece = f"{r['ece']:.3f}" if pd.notna(r.get("ece")) else "n/a"
         lines.append(f"| {r['model']} | {r['accuracy']:.3f} {fmt_ci(r['accuracy_ci'])} | {ll} | {brier} | {ece} | "
-                     f"{r['accuracy_2023-24']:.3f} | {r['accuracy_2024-25']:.3f} |")
+                     + " | ".join(f"{r[c]:.3f}" for c in season_cols) + " |")
     lines += ["", "Paired bootstrap over test games, model minus baseline (positive accuracy delta and negative log-loss delta = model better):", ""]
     for model, deltas in summary["deltas"].items():
         for base, d in deltas.items():
@@ -195,6 +224,39 @@ def write_report(summary: dict, table: pd.DataFrame, path: Path) -> None:
             if "log_loss_delta" in d:
                 s += f", log loss {d['log_loss_delta']:+.4f} {fmt_ci(d['log_loss_delta_ci'])}"
             lines.append(s)
+    lines += ["", "![Calibration on held-out seasons](calibration.png)", "",
+              "## What predicts a win before tipoff", "",
+              "Standardized logistic coefficients, home minus away, season-to-date. Positive = raises home win odds.", "",
+              "| Feature | Log-odds per 1 SD [95% CI] |", "|---|---|"]
+    for c in summary["factor_coefficients"]:
+        lines.append(f"| {c['feature']} | {c['coef']:+.3f} [{c['ci_low']:+.3f}, {c['ci_high']:+.3f}] |")
+    lines += ["", "![Pre-game factor coefficients](coefficients.png)", "",
+              "Permutation importance on test games (increase in log loss when the feature is shuffled):", ""]
+    for model, rows in summary["permutation_importance_test_neg_log_loss"].items():
+        top = ", ".join(f"{r['feature']} ({r['mean']:.4f})" for r in rows[:5])
+        lines.append(f"- {model}: {top}")
+    wf = pd.DataFrame(summary["walk_forward"])
+    acc = wf.pivot(index="season", columns="model", values="accuracy")
+    ll = wf.pivot(index="season", columns="model", values="log_loss").drop(columns=[c for c in acc if c.startswith("Baseline")])
+    lines += ["", "## Walk-forward across all seasons", "",
+              f"Each season is scored by models trained only on earlier seasons (first test season after {WF_MIN_TRAIN} seasons of history).",
+              "Mean over seasons: " + "; ".join(f"{m} acc {acc[m].mean():.3f}" for m in acc) + ".",
+              "Mean log loss: " + "; ".join(f"{m} {ll[m].mean():.4f}" for m in ll) + ".", "",
+              "![Walk-forward accuracy](walk_forward.png)", "",
+              "| Season | " + " | ".join(acc.columns) + " |", "|---|" + "---|" * len(acc.columns)]
+    for season, r in acc.iterrows():
+        lines.append(f"| {season} | " + " | ".join(f"{v:.3f}" for v in r) + " |")
+    hw = summary["home_win_rate_by_season"]
+    lines += ["", "Home win rate by season (the home-court edge shrank after 2018-19, so older training data miscalibrates recent seasons): "
+              + ", ".join(f"{k} {v:.3f}" for k, v in hw.items()) + "."]
+    d = summary["descriptive_same_game_factors"]
+    lines += ["", "## What explains a win after the fact", "",
+              "Same-game four-factor differences against final margin. These are outcomes, not predictors: "
+              f"test R2 on margin is {d['test_r2_margin']:.3f} and they call {d['test_accuracy_win_from_same_game_factors']:.1%} "
+              "of winners, which is why the forecasting table above is the honest measure of what is knowable in advance.", "",
+              "| Factor | Points of margin per 1 SD [95% CI] |", "|---|---|"]
+    for k, v in d["points_per_1sd"].items():
+        lines.append(f"| {k} | {v['coef']:+.2f} [{v['ci'][0]:+.2f}, {v['ci'][1]:+.2f}] |")
     path.write_text("\n".join(lines) + "\n")
 
 
@@ -209,13 +271,15 @@ def main() -> None:
     preds = predictions(train, test, models)
     table = results_table(test, preds)
     deltas = {m: paired_deltas(test, preds, m) for m in
-              ["Logistic regression (all features)", "Gradient boosting (all features)"]}
+              ["Logistic regression (all features)", "Logistic regression (four factors + rest only)", "Gradient boosting (all features)"]}
     coefs = coefficient_cis(train, FACTOR_FEATURES)
     perm = {name: perm_importance(test, models[name][0], models[name][1]).to_dict("records")
             for name in ["Logistic regression (all features)", "Gradient boosting (all features)"]}
 
     plot_calibration(test, preds, OUT / "calibration.png")
     plot_coefficients(coefs, OUT / "coefficients.png")
+    wf = walk_forward(df)
+    plot_walk_forward(wf, OUT / "walk_forward.png")
 
     summary = {
         "games_total": len(games),
@@ -229,6 +293,8 @@ def main() -> None:
         "deltas": deltas,
         "factor_coefficients": coefs.to_dict("records"),
         "permutation_importance_test_neg_log_loss": perm,
+        "walk_forward": wf.to_dict("records"),
+        "home_win_rate_by_season": df.groupby("SEASON")["home_win"].mean().to_dict(),
         "descriptive_same_game_factors": descriptive_factors(games),
     }
     (OUT / "metrics.json").write_text(json.dumps(summary, indent=2, default=float))

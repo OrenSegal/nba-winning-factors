@@ -21,6 +21,22 @@ def load_team_logs(raw_dir: Path = RAW_DIR) -> pd.DataFrame:
         raise FileNotFoundError(f"no gamelog_*.csv in {raw_dir}")
     logs = pd.concat(frames, ignore_index=True)
     logs["GAME_DATE"] = pd.to_datetime(logs["GAME_DATE"])
+    return validate_logs(logs)
+
+
+def validate_logs(logs: pd.DataFrame) -> pd.DataFrame:
+    """Fail loudly on a bad snapshot instead of letting it skew results silently."""
+    problems = []
+    if logs[["GAME_ID", "GAME_DATE", "MATCHUP", "TEAM_ABBREVIATION"] + STATS].isna().any().any():
+        problems.append("nulls in key or box-score columns")
+    if logs.duplicated(["GAME_ID", "TEAM_ABBREVIATION"]).any():
+        problems.append("duplicate team rows within a game")
+    if (logs.groupby("GAME_ID").size() != 2).any():
+        problems.append("games without exactly two team rows")
+    if (logs[STATS] < 0).any().any():
+        problems.append("negative box-score values")
+    if problems:
+        raise ValueError("invalid game logs: " + "; ".join(problems))
     return logs
 
 

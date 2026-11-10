@@ -18,6 +18,8 @@ from sklearn.inspection import permutation_importance
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeClassifier, export_text
+from xgboost import XGBClassifier
 
 from nbawin import explore, style
 from nbawin.data import load_team_logs, to_games
@@ -50,6 +52,16 @@ def fit_models(train: pd.DataFrame) -> dict:
             HistGradientBoostingClassifier(
                 learning_rate=0.05, max_iter=300, max_depth=3, min_samples_leaf=50, random_state=SEED
             ),
+            FEATURES,
+        ),
+        # same fixed settings as the sklearn booster, so the comparison is the library, not tuning
+        "XGBoost (all features)": (
+            XGBClassifier(n_estimators=300, max_depth=3, learning_rate=0.05, min_child_weight=50,
+                          random_state=SEED, n_jobs=1),
+            FEATURES,
+        ),
+        "Decision tree (all features, depth 4)": (
+            DecisionTreeClassifier(max_depth=4, min_samples_leaf=200, random_state=SEED),
             FEATURES,
         ),
         "Simple model: logistic on win% difference only": (lr(), ["d_win"]),
@@ -177,6 +189,7 @@ def plot_calibration(test: pd.DataFrame, preds: dict, path: Path) -> None:
     fig, ax = plt.subplots(figsize=(5.5, 5))
     ax.plot([0, 1], [0, 1], ls="--", c="gray", lw=1, label="perfect calibration")
     for name in ["Logistic regression (all features)", "Gradient boosting (all features)",
+                 "XGBoost (all features)", "Decision tree (all features, depth 4)",
                  "Simple model: logistic on win% difference only"]:
         frac, mean_p = calibration_curve(y, preds[name][0], n_bins=10, strategy="quantile")
         ax.plot(mean_p, frac, marker="o", ms=4, label=name)
@@ -236,7 +249,9 @@ def write_report(summary: dict, table: pd.DataFrame, path: Path) -> None:
     for model, rows in summary["permutation_importance_test_neg_log_loss"].items():
         top = ", ".join(f"{r['feature']} ({r['mean']:.4f})" for r in rows[:5])
         lines.append(f"- {model}: {top}")
-    wf = pd.DataFrame(summary["walk_forward"])
+    lines += ["", "Depth-4 decision tree, the whole model (class = predicted home win):", "", "```",
+              summary["decision_tree_rules"].rstrip(), "```"]
+    wf =pd.DataFrame(summary["walk_forward"])
     acc = wf.pivot(index="season", columns="model", values="accuracy")
     ll = wf.pivot(index="season", columns="model", values="log_loss").drop(columns=[c for c in acc if c.startswith("Baseline")])
     lines += ["", "## Walk-forward across all seasons", "",
@@ -274,10 +289,12 @@ def main() -> None:
     preds = predictions(train, test, models)
     table = results_table(test, preds)
     deltas = {m: paired_deltas(test, preds, m) for m in
-              ["Logistic regression (all features)", "Logistic regression (four factors + rest only)", "Gradient boosting (all features)"]}
+              ["Logistic regression (all features)", "Logistic regression (four factors + rest only)",
+               "Gradient boosting (all features)", "XGBoost (all features)", "Decision tree (all features, depth 4)"]}
     coefs = coefficient_cis(train, FACTOR_FEATURES)
     perm = {name: perm_importance(test, models[name][0], models[name][1]).to_dict("records")
-            for name in ["Logistic regression (all features)", "Gradient boosting (all features)"]}
+            for name in ["Logistic regression (all features)", "Gradient boosting (all features)", "XGBoost (all features)"]}
+    tree, tree_cols = models["Decision tree (all features, depth 4)"]
 
     plot_calibration(test, preds, OUT / "calibration.png")
     plot_coefficients(coefs, OUT / "coefficients.png")
@@ -296,6 +313,7 @@ def main() -> None:
         "deltas": deltas,
         "factor_coefficients": coefs.to_dict("records"),
         "permutation_importance_test_neg_log_loss": perm,
+        "decision_tree_rules": export_text(tree, feature_names=tree_cols, decimals=3, show_weights=False),
         "walk_forward": wf.to_dict("records"),
         "home_win_rate_by_season": df.groupby("SEASON")["home_win"].mean().to_dict(),
         "descriptive_same_game_factors": descriptive_factors(games),

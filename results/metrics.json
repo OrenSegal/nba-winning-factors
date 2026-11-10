@@ -95,6 +95,42 @@
       "accuracy_2025-26": 0.6800748362956034
     },
     {
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6612702366127023,
+      "log_loss": 0.610327959060669,
+      "brier": 0.210878387093544,
+      "ece": 0.04093429421632554,
+      "accuracy_ci": [
+        0.6469489414694894,
+        0.6768368617683687
+      ],
+      "log_loss_ci": [
+        0.59554433375597,
+        0.624216365814209
+      ],
+      "accuracy_2023-24": 0.6536312849162011,
+      "accuracy_2024-25": 0.6520112254443405,
+      "accuracy_2025-26": 0.6782039289055192
+    },
+    {
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6665628891656289,
+      "log_loss": 0.6145044735589746,
+      "brier": 0.2125473220699961,
+      "ece": 0.045041728530167066,
+      "accuracy_ci": [
+        0.6509962640099627,
+        0.6830635118306351
+      ],
+      "log_loss_ci": [
+        0.5992179697789455,
+        0.629771278461054
+      ],
+      "accuracy_2023-24": 0.6480446927374302,
+      "accuracy_2024-25": 0.6613657623947614,
+      "accuracy_2025-26": 0.6903648269410664
+    },
+    {
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6590909090909091,
       "log_loss": 0.6154162790727314,
@@ -210,6 +246,72 @@
         "log_loss_delta_ci": [
           -0.009461332755708471,
           -0.001568314386553152
+        ]
+      }
+    },
+    "XGBoost (all features)": {
+      "Baseline: home team wins": {
+        "accuracy_delta": 0.11830635118306354,
+        "accuracy_delta_ci": [
+          0.09838107098381066,
+          0.13885429638854296
+        ],
+        "log_loss_delta": -0.08361529212628327,
+        "log_loss_delta_ci": [
+          -0.09703645465848591,
+          -0.06995032662047358
+        ]
+      },
+      "Baseline: better season-to-date record wins": {
+        "accuracy_delta": 0.0037359900373599153,
+        "accuracy_delta_ci": [
+          -0.010273972602739656,
+          0.01743462017434616
+        ]
+      },
+      "Simple model: logistic on win% difference only": {
+        "accuracy_delta": 0.002179327521793284,
+        "accuracy_delta_ci": [
+          -0.007783312577833157,
+          0.012141967621419617
+        ],
+        "log_loss_delta": -0.005088320012062497,
+        "log_loss_delta_ci": [
+          -0.010027497617459519,
+          -0.0002270745908333466
+        ]
+      }
+    },
+    "Decision tree (all features, depth 4)": {
+      "Baseline: home team wins": {
+        "accuracy_delta": 0.12359900373599009,
+        "accuracy_delta_ci": [
+          0.10179794520547941,
+          0.1429016189290162
+        ],
+        "log_loss_delta": -0.07943877762797757,
+        "log_loss_delta_ci": [
+          -0.09307718874364408,
+          -0.06523015700550926
+        ]
+      },
+      "Baseline: better season-to-date record wins": {
+        "accuracy_delta": 0.009028642590286462,
+        "accuracy_delta_ci": [
+          -0.003743773349937748,
+          0.02180105853051066
+        ]
+      },
+      "Simple model: logistic on win% difference only": {
+        "accuracy_delta": 0.007471980074719831,
+        "accuracy_delta_ci": [
+          -0.001564445828144464,
+          0.01619707347447079
+        ],
+        "log_loss_delta": -0.0009118055137568026,
+        "log_loss_delta_ci": [
+          -0.006179905945896416,
+          0.004023091538084463
         ]
       }
     }
@@ -416,8 +518,76 @@
         "mean": -0.00022199283025395867,
         "std": 0.0003093842867045392
       }
+    ],
+    "XGBoost (all features)": [
+      {
+        "feature": "d_net_rtg",
+        "mean": 0.06287841796875,
+        "std": 0.004346823235798191
+      },
+      {
+        "feature": "d_win",
+        "mean": 0.015830427408218384,
+        "std": 0.002280554784457485
+      },
+      {
+        "feature": "home_b2b",
+        "mean": 0.00199629267056783,
+        "std": 0.0006204112937936078
+      },
+      {
+        "feature": "d_def_orb_rate",
+        "mean": 0.0014105916023254394,
+        "std": 0.0006270943707295221
+      },
+      {
+        "feature": "away_b2b",
+        "mean": 0.0010128796100616455,
+        "std": 0.0007642375393386484
+      },
+      {
+        "feature": "d_off_efg",
+        "mean": 0.0009372135003407797,
+        "std": 0.0007907409115229169
+      },
+      {
+        "feature": "d_def_efg",
+        "mean": 0.0008421043554941813,
+        "std": 0.0003918423516028073
+      },
+      {
+        "feature": "d_def_tov_rate",
+        "mean": 0.00026765267054239906,
+        "std": 0.0006800956959310444
+      },
+      {
+        "feature": "d_off_orb_rate",
+        "mean": 0.00023392240206400553,
+        "std": 0.0004398611879298388
+      },
+      {
+        "feature": "d_def_ft_rate",
+        "mean": 0.0002331972122192383,
+        "std": 0.00041526340438477043
+      },
+      {
+        "feature": "d_rest",
+        "mean": 0.00023196736971537273,
+        "std": 0.00022246087796112457
+      },
+      {
+        "feature": "d_off_tov_rate",
+        "mean": -0.00015674630800882977,
+        "std": 0.0005402044038785286
+      },
+      {
+        "feature": "d_off_ft_rate",
+        "mean": -0.00021087328592936199,
+        "std": 0.0003071698894074417
+      }
     ]
   },
+  "decision_tree_rules": "|--- d_net_rtg <= -0.840\n|   |--- d_net_rtg <= -6.030\n|   |   |--- d_net_rtg <= -9.162\n|   |   |   |--- d_win <= -0.238\n|   |   |   |   |--- class: 0\n|   |   |   |--- d_win >  -0.238\n|   |   |   |   |--- class: 0\n|   |   |--- d_net_rtg >  -9.162\n|   |   |   |--- d_off_efg <= -0.002\n|   |   |   |   |--- class: 0\n|   |   |   |--- d_off_efg >  -0.002\n|   |   |   |   |--- class: 0\n|   |--- d_net_rtg >  -6.030\n|   |   |--- d_win <= -0.089\n|   |   |   |--- d_def_orb_rate <= -0.036\n|   |   |   |   |--- class: 1\n|   |   |   |--- d_def_orb_rate >  -0.036\n|   |   |   |   |--- class: 0\n|   |   |--- d_win >  -0.089\n|   |   |   |--- d_off_efg <= -0.025\n|   |   |   |   |--- class: 0\n|   |   |   |--- d_off_efg >  -0.025\n|   |   |   |   |--- class: 1\n|--- d_net_rtg >  -0.840\n|   |--- d_net_rtg <= 5.652\n|   |   |--- d_net_rtg <= 2.115\n|   |   |   |--- away_b2b <= 0.500\n|   |   |   |   |--- class: 1\n|   |   |   |--- away_b2b >  0.500\n|   |   |   |   |--- class: 1\n|   |   |--- d_net_rtg >  2.115\n|   |   |   |--- d_win <= 0.084\n|   |   |   |   |--- class: 1\n|   |   |   |--- d_win >  0.084\n|   |   |   |   |--- class: 1\n|   |--- d_net_rtg >  5.652\n|   |   |--- d_net_rtg <= 11.408\n|   |   |   |--- d_net_rtg <= 6.707\n|   |   |   |   |--- class: 1\n|   |   |   |--- d_net_rtg >  6.707\n|   |   |   |   |--- class: 1\n|   |   |--- d_net_rtg >  11.408\n|   |   |   |--- d_net_rtg <= 16.174\n|   |   |   |   |--- class: 1\n|   |   |   |--- d_net_rtg >  16.174\n|   |   |   |   |--- class: 1\n",
   "walk_forward": [
     {
       "season": "2005-06",
@@ -448,6 +618,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.6523364485981309,
       "log_loss": 0.6247307820994612
+    },
+    {
+      "season": "2005-06",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6542056074766355,
+      "log_loss": 0.6246856451034546
+    },
+    {
+      "season": "2005-06",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6439252336448598,
+      "log_loss": 0.6343319533635429
     },
     {
       "season": "2005-06",
@@ -487,6 +669,18 @@
     },
     {
       "season": "2006-07",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6414565826330533,
+      "log_loss": 0.6423196196556091
+    },
+    {
+      "season": "2006-07",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6265172735760971,
+      "log_loss": 0.6399521452735485
+    },
+    {
+      "season": "2006-07",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.646125116713352,
       "log_loss": 0.6366553577570846
@@ -520,6 +714,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.6940298507462687,
       "log_loss": 0.5853996337518008
+    },
+    {
+      "season": "2007-08",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6819029850746269,
+      "log_loss": 0.5863107442855835
+    },
+    {
+      "season": "2007-08",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6781716417910447,
+      "log_loss": 0.5984023463727091
     },
     {
       "season": "2007-08",
@@ -559,6 +765,18 @@
     },
     {
       "season": "2008-09",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.7057728119180633,
+      "log_loss": 0.5708727240562439
+    },
+    {
+      "season": "2008-09",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.702048417132216,
+      "log_loss": 0.5666234585375824
+    },
+    {
+      "season": "2008-09",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.7104283054003724,
       "log_loss": 0.5691982910693346
@@ -592,6 +810,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.676937441643324,
       "log_loss": 0.6022766527613718
+    },
+    {
+      "season": "2009-10",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.676937441643324,
+      "log_loss": 0.5973255634307861
+    },
+    {
+      "season": "2009-10",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.680672268907563,
+      "log_loss": 0.6048523262893005
     },
     {
       "season": "2009-10",
@@ -631,6 +861,18 @@
     },
     {
       "season": "2010-11",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6911627906976744,
+      "log_loss": 0.5868596434593201
+    },
+    {
+      "season": "2010-11",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6781395348837209,
+      "log_loss": 0.5881783910708174
+    },
+    {
+      "season": "2010-11",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.693953488372093,
       "log_loss": 0.5874556950514368
@@ -664,6 +906,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.6430288461538461,
       "log_loss": 0.6235922498593929
+    },
+    {
+      "season": "2011-12",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6394230769230769,
+      "log_loss": 0.6248897910118103
+    },
+    {
+      "season": "2011-12",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6478365384615384,
+      "log_loss": 0.6348280516683267
     },
     {
       "season": "2011-12",
@@ -703,6 +957,18 @@
     },
     {
       "season": "2012-13",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6719478098788444,
+      "log_loss": 0.5924674272537231
+    },
+    {
+      "season": "2012-13",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6691519105312209,
+      "log_loss": 0.5963174054593305
+    },
+    {
+      "season": "2012-13",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6663560111835974,
       "log_loss": 0.6001062977118554
@@ -736,6 +1002,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.6517690875232774,
       "log_loss": 0.6131384362041933
+    },
+    {
+      "season": "2013-14",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6461824953445066,
+      "log_loss": 0.6160584688186646
+    },
+    {
+      "season": "2013-14",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6508379888268156,
+      "log_loss": 0.618532529819773
     },
     {
       "season": "2013-14",
@@ -775,6 +1053,18 @@
     },
     {
       "season": "2014-15",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6744402985074627,
+      "log_loss": 0.5994470119476318
+    },
+    {
+      "season": "2014-15",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6828358208955224,
+      "log_loss": 0.5942828143018032
+    },
+    {
+      "season": "2014-15",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6800373134328358,
       "log_loss": 0.5957789668649467
@@ -808,6 +1098,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.6905871388630009,
       "log_loss": 0.5822708803675348
+    },
+    {
+      "season": "2015-16",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6943150046598322,
+      "log_loss": 0.5839884877204895
+    },
+    {
+      "season": "2015-16",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.7045666356011183,
+      "log_loss": 0.5838265775652746
     },
     {
       "season": "2015-16",
@@ -847,6 +1149,18 @@
     },
     {
       "season": "2016-17",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6405959031657356,
+      "log_loss": 0.6338897943496704
+    },
+    {
+      "season": "2016-17",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6359404096834265,
+      "log_loss": 0.6384935005975053
+    },
+    {
+      "season": "2016-17",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6350093109869647,
       "log_loss": 0.6376846009712891
@@ -880,6 +1194,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.6688372093023256,
       "log_loss": 0.6112998706338985
+    },
+    {
+      "season": "2017-18",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6809302325581396,
+      "log_loss": 0.6110522150993347
+    },
+    {
+      "season": "2017-18",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6734883720930233,
+      "log_loss": 0.613991093137716
     },
     {
       "season": "2017-18",
@@ -919,6 +1245,18 @@
     },
     {
       "season": "2018-19",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6452513966480447,
+      "log_loss": 0.6200001239776611
+    },
+    {
+      "season": "2018-19",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6527001862197392,
+      "log_loss": 0.6244599395030346
+    },
+    {
+      "season": "2018-19",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6461824953445066,
       "log_loss": 0.6241448227227004
@@ -952,6 +1290,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.652317880794702,
       "log_loss": 0.6295580686744505
+    },
+    {
+      "season": "2019-20",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6512141280353201,
+      "log_loss": 0.6300680637359619
+    },
+    {
+      "season": "2019-20",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6534216335540839,
+      "log_loss": 0.6362376655925812
     },
     {
       "season": "2019-20",
@@ -991,6 +1341,18 @@
     },
     {
       "season": "2020-21",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6341991341991342,
+      "log_loss": 0.6367319822311401
+    },
+    {
+      "season": "2020-21",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6417748917748918,
+      "log_loss": 0.634555177103017
+    },
+    {
+      "season": "2020-21",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6201298701298701,
       "log_loss": 0.6434091352050679
@@ -1024,6 +1386,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.6328052190121156,
       "log_loss": 0.6429301971479675
+    },
+    {
+      "season": "2021-22",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6430568499534017,
+      "log_loss": 0.6420320272445679
+    },
+    {
+      "season": "2021-22",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6244175209692451,
+      "log_loss": 0.6494848950959512
     },
     {
       "season": "2021-22",
@@ -1063,6 +1437,18 @@
     },
     {
       "season": "2022-23",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6328052190121156,
+      "log_loss": 0.6510867476463318
+    },
+    {
+      "season": "2022-23",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6262814538676608,
+      "log_loss": 0.6467541234811359
+    },
+    {
+      "season": "2022-23",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6188257222739981,
       "log_loss": 0.6535892684739297
@@ -1096,6 +1482,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.654562383612663,
       "log_loss": 0.6132052171084451
+    },
+    {
+      "season": "2023-24",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6536312849162011,
+      "log_loss": 0.6115883588790894
+    },
+    {
+      "season": "2023-24",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6480446927374302,
+      "log_loss": 0.6169188950022063
     },
     {
       "season": "2023-24",
@@ -1135,6 +1533,18 @@
     },
     {
       "season": "2024-25",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6510757717492984,
+      "log_loss": 0.6155449748039246
+    },
+    {
+      "season": "2024-25",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.6604303086997194,
+      "log_loss": 0.6219141234402928
+    },
+    {
+      "season": "2024-25",
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6492048643592142,
       "log_loss": 0.619813537214343
@@ -1168,6 +1578,18 @@
       "model": "Gradient boosting (all features)",
       "accuracy": 0.6791393826005613,
       "log_loss": 0.5991561347960885
+    },
+    {
+      "season": "2025-26",
+      "model": "XGBoost (all features)",
+      "accuracy": 0.6753975678203928,
+      "log_loss": 0.6020395755767822
+    },
+    {
+      "season": "2025-26",
+      "model": "Decision tree (all features, depth 4)",
+      "accuracy": 0.686623012160898,
+      "log_loss": 0.6006368141363728
     },
     {
       "season": "2025-26",

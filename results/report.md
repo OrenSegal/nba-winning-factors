@@ -12,24 +12,36 @@ Train: 23970 games (2000-01 to 2022-23). Test: 3212 games (2023-24, 2024-25, 202
 | XGBoost (all features) | 0.661 [0.647, 0.677] | 0.6103 [0.596, 0.624] | 0.2109 | 0.041 | 0.654 | 0.652 | 0.678 |
 | Decision tree (all features, depth 4) | 0.667 [0.651, 0.683] | 0.6145 [0.599, 0.630] | 0.2125 | 0.045 | 0.648 | 0.661 | 0.690 |
 | Simple model: logistic on win% difference only | 0.659 [0.643, 0.674] | 0.6154 [0.602, 0.629] | 0.2138 | 0.047 | 0.654 | 0.650 | 0.674 |
+| Simple model: logistic on Elo difference only | 0.668 [0.652, 0.684] | 0.6082 [0.594, 0.622] | 0.2104 | 0.045 | 0.655 | 0.665 | 0.684 |
+| Simple model: team strength only (Elo, net rating, win%, era) | 0.672 [0.657, 0.688] | 0.6029 [0.589, 0.617] | 0.2081 | 0.027 | 0.659 | 0.664 | 0.692 |
 
 Paired bootstrap over test games, model minus baseline (positive accuracy delta and negative log-loss delta = model better):
 
 - Logistic regression (all features) vs Baseline: home team wins: accuracy +0.121 [0.101, 0.140], log loss -0.0886 [-0.101, -0.075]
 - Logistic regression (all features) vs Baseline: better season-to-date record wins: accuracy +0.007 [-0.007, 0.021]
 - Logistic regression (all features) vs Simple model: logistic on win% difference only: accuracy +0.005 [-0.003, 0.015], log loss -0.0101 [-0.014, -0.006]
+- Logistic regression (all features) vs Simple model: logistic on Elo difference only: accuracy -0.003 [-0.014, 0.007], log loss -0.0029 [-0.008, 0.003]
+- Logistic regression (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.007 [-0.017, 0.002], log loss +0.0024 [-0.002, 0.007]
 - Logistic regression (four factors + rest only) vs Baseline: home team wins: accuracy +0.129 [0.109, 0.149], log loss -0.0885 [-0.101, -0.076]
 - Logistic regression (four factors + rest only) vs Baseline: better season-to-date record wins: accuracy +0.015 [0.000, 0.029]
 - Logistic regression (four factors + rest only) vs Simple model: logistic on win% difference only: accuracy +0.013 [0.003, 0.023], log loss -0.0100 [-0.015, -0.005]
+- Logistic regression (four factors + rest only) vs Simple model: logistic on Elo difference only: accuracy +0.004 [-0.007, 0.015], log loss -0.0027 [-0.008, 0.003]
+- Logistic regression (four factors + rest only) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy +0.000 [-0.009, 0.010], log loss +0.0025 [-0.002, 0.007]
 - Gradient boosting (all features) vs Baseline: home team wins: accuracy +0.120 [0.100, 0.140], log loss -0.0841 [-0.097, -0.071]
 - Gradient boosting (all features) vs Baseline: better season-to-date record wins: accuracy +0.006 [-0.008, 0.019]
 - Gradient boosting (all features) vs Simple model: logistic on win% difference only: accuracy +0.004 [-0.005, 0.013], log loss -0.0056 [-0.009, -0.002]
+- Gradient boosting (all features) vs Simple model: logistic on Elo difference only: accuracy -0.005 [-0.016, 0.006], log loss +0.0017 [-0.004, 0.007]
+- Gradient boosting (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.009 [-0.018, 0.001], log loss +0.0069 [0.002, 0.012]
 - XGBoost (all features) vs Baseline: home team wins: accuracy +0.118 [0.098, 0.139], log loss -0.0836 [-0.097, -0.070]
 - XGBoost (all features) vs Baseline: better season-to-date record wins: accuracy +0.004 [-0.010, 0.017]
 - XGBoost (all features) vs Simple model: logistic on win% difference only: accuracy +0.002 [-0.008, 0.012], log loss -0.0051 [-0.010, -0.000]
+- XGBoost (all features) vs Simple model: logistic on Elo difference only: accuracy -0.007 [-0.018, 0.005], log loss +0.0022 [-0.004, 0.008]
+- XGBoost (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.011 [-0.021, -0.001], log loss +0.0074 [0.002, 0.012]
 - Decision tree (all features, depth 4) vs Baseline: home team wins: accuracy +0.124 [0.102, 0.143], log loss -0.0794 [-0.093, -0.065]
 - Decision tree (all features, depth 4) vs Baseline: better season-to-date record wins: accuracy +0.009 [-0.004, 0.022]
 - Decision tree (all features, depth 4) vs Simple model: logistic on win% difference only: accuracy +0.007 [-0.002, 0.016], log loss -0.0009 [-0.006, 0.004]
+- Decision tree (all features, depth 4) vs Simple model: logistic on Elo difference only: accuracy -0.001 [-0.012, 0.009], log loss +0.0063 [0.000, 0.013]
+- Decision tree (all features, depth 4) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.005 [-0.016, 0.004], log loss +0.0116 [0.007, 0.016]
 
 ![Calibration on held-out seasons](calibration.png)
 
@@ -113,34 +125,34 @@ Depth-4 decision tree, the whole model (class = predicted home win):
 ## Walk-forward across all seasons
 
 Each season is scored by models trained only on earlier seasons (first test season after 5 seasons of history).
-Mean over seasons: Baseline: better season-to-date record wins acc 0.647; Baseline: home team wins acc 0.579; Decision tree (all features, depth 4) acc 0.660; Gradient boosting (all features) acc 0.663; Logistic regression (all features) acc 0.664; Logistic regression (four factors + rest only) acc 0.664; Simple model: logistic on win% difference only acc 0.659; XGBoost (all features) acc 0.661.
-Mean log loss: Decision tree (all features, depth 4) 0.6164; Gradient boosting (all features) 0.6123; Logistic regression (all features) 0.6087; Logistic regression (four factors + rest only) 0.6096; Simple model: logistic on win% difference only 0.6152; XGBoost (all features) 0.6133.
+Mean over seasons: Baseline: better season-to-date record wins acc 0.647; Baseline: home team wins acc 0.579; Decision tree (all features, depth 4) acc 0.660; Gradient boosting (all features) acc 0.663; Logistic regression (all features) acc 0.664; Logistic regression (four factors + rest only) acc 0.664; Simple model: logistic on Elo difference only acc 0.667; Simple model: logistic on win% difference only acc 0.659; Simple model: team strength only (Elo, net rating, win%, era) acc 0.671; XGBoost (all features) acc 0.661.
+Mean log loss: Decision tree (all features, depth 4) 0.6164; Gradient boosting (all features) 0.6123; Logistic regression (all features) 0.6087; Logistic regression (four factors + rest only) 0.6096; Simple model: logistic on Elo difference only 0.6076; Simple model: logistic on win% difference only 0.6152; Simple model: team strength only (Elo, net rating, win%, era) 0.6061; XGBoost (all features) 0.6133.
 
 ![Walk-forward accuracy](walk_forward.png)
 
-| Season | Baseline: better season-to-date record wins | Baseline: home team wins | Decision tree (all features, depth 4) | Gradient boosting (all features) | Logistic regression (all features) | Logistic regression (four factors + rest only) | Simple model: logistic on win% difference only | XGBoost (all features) |
-|---|---|---|---|---|---|---|---|---|
-| 2005-06 | 0.632 | 0.600 | 0.644 | 0.652 | 0.658 | 0.654 | 0.654 | 0.654 |
-| 2006-07 | 0.620 | 0.588 | 0.627 | 0.641 | 0.651 | 0.648 | 0.646 | 0.641 |
-| 2007-08 | 0.660 | 0.603 | 0.678 | 0.694 | 0.688 | 0.688 | 0.677 | 0.682 |
-| 2008-09 | 0.669 | 0.615 | 0.702 | 0.704 | 0.711 | 0.716 | 0.710 | 0.706 |
-| 2009-10 | 0.645 | 0.597 | 0.681 | 0.677 | 0.686 | 0.687 | 0.682 | 0.677 |
-| 2010-11 | 0.663 | 0.612 | 0.678 | 0.699 | 0.703 | 0.704 | 0.694 | 0.691 |
-| 2011-12 | 0.638 | 0.576 | 0.648 | 0.643 | 0.649 | 0.650 | 0.649 | 0.639 |
-| 2012-13 | 0.660 | 0.613 | 0.669 | 0.682 | 0.672 | 0.662 | 0.666 | 0.672 |
-| 2013-14 | 0.671 | 0.571 | 0.651 | 0.652 | 0.659 | 0.663 | 0.652 | 0.646 |
-| 2014-15 | 0.684 | 0.576 | 0.683 | 0.684 | 0.682 | 0.677 | 0.680 | 0.674 |
-| 2015-16 | 0.669 | 0.594 | 0.705 | 0.691 | 0.689 | 0.684 | 0.688 | 0.694 |
-| 2016-17 | 0.606 | 0.584 | 0.636 | 0.640 | 0.633 | 0.631 | 0.635 | 0.641 |
-| 2017-18 | 0.656 | 0.583 | 0.673 | 0.669 | 0.664 | 0.661 | 0.662 | 0.681 |
-| 2018-19 | 0.635 | 0.590 | 0.653 | 0.651 | 0.656 | 0.652 | 0.646 | 0.645 |
-| 2019-20 | 0.646 | 0.550 | 0.653 | 0.652 | 0.652 | 0.648 | 0.642 | 0.651 |
-| 2020-21 | 0.642 | 0.554 | 0.642 | 0.635 | 0.629 | 0.634 | 0.620 | 0.634 |
-| 2021-22 | 0.620 | 0.542 | 0.624 | 0.633 | 0.637 | 0.640 | 0.626 | 0.643 |
-| 2022-23 | 0.598 | 0.576 | 0.626 | 0.636 | 0.633 | 0.628 | 0.619 | 0.633 |
-| 2023-24 | 0.641 | 0.537 | 0.648 | 0.655 | 0.651 | 0.661 | 0.654 | 0.654 |
-| 2024-25 | 0.656 | 0.543 | 0.660 | 0.647 | 0.659 | 0.666 | 0.649 | 0.651 |
-| 2025-26 | 0.676 | 0.549 | 0.687 | 0.679 | 0.690 | 0.692 | 0.676 | 0.675 |
+| Season | Baseline: better season-to-date record wins | Baseline: home team wins | Decision tree (all features, depth 4) | Gradient boosting (all features) | Logistic regression (all features) | Logistic regression (four factors + rest only) | Simple model: logistic on Elo difference only | Simple model: logistic on win% difference only | Simple model: team strength only (Elo, net rating, win%, era) | XGBoost (all features) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2005-06 | 0.632 | 0.600 | 0.644 | 0.652 | 0.658 | 0.654 | 0.659 | 0.654 | 0.664 | 0.654 |
+| 2006-07 | 0.620 | 0.588 | 0.627 | 0.641 | 0.651 | 0.648 | 0.654 | 0.646 | 0.651 | 0.641 |
+| 2007-08 | 0.660 | 0.603 | 0.678 | 0.694 | 0.688 | 0.688 | 0.697 | 0.677 | 0.698 | 0.682 |
+| 2008-09 | 0.669 | 0.615 | 0.702 | 0.704 | 0.711 | 0.716 | 0.698 | 0.710 | 0.709 | 0.706 |
+| 2009-10 | 0.645 | 0.597 | 0.681 | 0.677 | 0.686 | 0.687 | 0.691 | 0.682 | 0.692 | 0.677 |
+| 2010-11 | 0.663 | 0.612 | 0.678 | 0.699 | 0.703 | 0.704 | 0.690 | 0.694 | 0.699 | 0.691 |
+| 2011-12 | 0.638 | 0.576 | 0.648 | 0.643 | 0.649 | 0.650 | 0.662 | 0.649 | 0.662 | 0.639 |
+| 2012-13 | 0.660 | 0.613 | 0.669 | 0.682 | 0.672 | 0.662 | 0.686 | 0.666 | 0.683 | 0.672 |
+| 2013-14 | 0.671 | 0.571 | 0.651 | 0.652 | 0.659 | 0.663 | 0.668 | 0.652 | 0.671 | 0.646 |
+| 2014-15 | 0.684 | 0.576 | 0.683 | 0.684 | 0.682 | 0.677 | 0.675 | 0.680 | 0.692 | 0.674 |
+| 2015-16 | 0.669 | 0.594 | 0.705 | 0.691 | 0.689 | 0.684 | 0.707 | 0.688 | 0.703 | 0.694 |
+| 2016-17 | 0.606 | 0.584 | 0.636 | 0.640 | 0.633 | 0.631 | 0.641 | 0.635 | 0.654 | 0.641 |
+| 2017-18 | 0.656 | 0.583 | 0.673 | 0.669 | 0.664 | 0.661 | 0.669 | 0.662 | 0.667 | 0.681 |
+| 2018-19 | 0.635 | 0.590 | 0.653 | 0.651 | 0.656 | 0.652 | 0.647 | 0.646 | 0.645 | 0.645 |
+| 2019-20 | 0.646 | 0.550 | 0.653 | 0.652 | 0.652 | 0.648 | 0.655 | 0.642 | 0.658 | 0.651 |
+| 2020-21 | 0.642 | 0.554 | 0.642 | 0.635 | 0.629 | 0.634 | 0.629 | 0.620 | 0.639 | 0.634 |
+| 2021-22 | 0.620 | 0.542 | 0.624 | 0.633 | 0.637 | 0.640 | 0.641 | 0.626 | 0.645 | 0.643 |
+| 2022-23 | 0.598 | 0.576 | 0.626 | 0.636 | 0.633 | 0.628 | 0.631 | 0.619 | 0.637 | 0.633 |
+| 2023-24 | 0.641 | 0.537 | 0.648 | 0.655 | 0.651 | 0.661 | 0.655 | 0.654 | 0.659 | 0.654 |
+| 2024-25 | 0.656 | 0.543 | 0.660 | 0.647 | 0.659 | 0.666 | 0.666 | 0.649 | 0.663 | 0.651 |
+| 2025-26 | 0.676 | 0.549 | 0.687 | 0.679 | 0.690 | 0.692 | 0.683 | 0.676 | 0.695 | 0.675 |
 
 Home win rate by season (the home-court edge shrank after 2018-19, so older training data miscalibrates recent seasons): 2000-01 0.597, 2001-02 0.588, 2002-03 0.624, 2003-04 0.615, 2004-05 0.606, 2005-06 0.600, 2006-07 0.588, 2007-08 0.603, 2008-09 0.615, 2009-10 0.597, 2010-11 0.612, 2011-12 0.576, 2012-13 0.613, 2013-14 0.571, 2014-15 0.576, 2015-16 0.594, 2016-17 0.584, 2017-18 0.583, 2018-19 0.590, 2019-20 0.550, 2020-21 0.554, 2021-22 0.542, 2022-23 0.576, 2023-24 0.537, 2024-25 0.543, 2025-26 0.549.
 

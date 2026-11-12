@@ -23,12 +23,16 @@ from xgboost import XGBClassifier
 
 from nbawin import explore, style
 from nbawin.data import load_team_logs, to_games
+from nbawin.factors import candidate_features
 from nbawin.features import FEATURES, pregame_features, same_game_factor_diffs
 from nbawin.metrics import bootstrap_ci, score
 
 OUT = Path(__file__).resolve().parent.parent / "results"
 TEST_SEASONS = ["2023-24", "2024-25", "2025-26"]
 FACTOR_FEATURES = [f for f in FEATURES if f not in ("d_win", "d_net_rtg")]
+ELO_ONLY = "Simple model: logistic on Elo difference only"
+STRENGTH_ONLY = "Simple model: team strength only (Elo, net rating, win%, era)"
+STRENGTH_FEATURES = ["elo_diff", "d_net_rtg", "d_win", "league_home_rate"]
 WF_MIN_TRAIN = 5  # walk-forward needs this many earlier seasons before its first test season
 SEED = 0
 N_BOOT = 1000
@@ -41,6 +45,12 @@ def split(df: pd.DataFrame):
 
 def lr():
     return make_pipeline(StandardScaler(), LogisticRegression(C=1.0, max_iter=1000))
+
+
+def with_strength(df: pd.DataFrame, games: pd.DataFrame) -> pd.DataFrame:
+    """Add pre-game Elo difference and the league's recent home-win rate (nbawin.factors) to the feature rows."""
+    extra = candidate_features(games)[["GAME_ID", "elo_diff", "league_home_rate"]]
+    return df.merge(extra, on="GAME_ID", validate="one_to_one")
 
 
 def fit_models(train: pd.DataFrame) -> dict:
@@ -65,6 +75,9 @@ def fit_models(train: pd.DataFrame) -> dict:
             FEATURES,
         ),
         "Simple model: logistic on win% difference only": (lr(), ["d_win"]),
+        # the strongest cheap references: a rating that remembers last season, alone and with this season's record
+        ELO_ONLY: (lr(), ["elo_diff"]),
+        STRENGTH_ONLY: (lr(), STRENGTH_FEATURES),
     }
     for model, cols in models.values():
         model.fit(train[cols], y)
@@ -107,7 +120,7 @@ def paired_deltas(test: pd.DataFrame, preds: dict, model: str) -> dict:
     p, y_hat = preds[model]
     out = {}
     for base in ["Baseline: home team wins", "Baseline: better season-to-date record wins",
-                 "Simple model: logistic on win% difference only"]:
+                 "Simple model: logistic on win% difference only", ELO_ONLY, STRENGTH_ONLY]:
         bp, by = preds[base]
         d_acc = lambda i: (y_hat[i] == y[i]).mean() - (by[i] == y[i]).mean()
         entry = {"accuracy_delta": float(d_acc(np.arange(len(y)))), "accuracy_delta_ci": bootstrap_ci(y, d_acc, N_BOOT, SEED)}
@@ -281,7 +294,7 @@ def write_report(summary: dict, table: pd.DataFrame, path: Path) -> None:
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     games = to_games(load_team_logs())
-    df = pregame_features(games)
+    df = with_strength(pregame_features(games), games)
     train, test = split(df)
     assert train["GAME_DATE"].max() < test["GAME_DATE"].min(), "time split violated"
 

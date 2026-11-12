@@ -12,6 +12,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from scipy import stats
 from sklearn.calibration import calibration_curve
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.inspection import permutation_importance
@@ -32,6 +33,7 @@ TEST_SEASONS = ["2023-24", "2024-25", "2025-26"]
 FACTOR_FEATURES = [f for f in FEATURES if f not in ("d_win", "d_net_rtg")]
 ELO_ONLY = "Simple model: logistic on Elo difference only"
 STRENGTH_ONLY = "Simple model: team strength only (Elo, net rating, win%, era)"
+LR_ALL, RECORD_RULE = "Logistic regression (all features)", "Baseline: better season-to-date record wins"
 STRENGTH_FEATURES = ["elo_diff", "d_net_rtg", "d_win", "league_home_rate"]
 WF_MIN_TRAIN = 5  # walk-forward needs this many earlier seasons before its first test season
 SEED = 0
@@ -185,6 +187,17 @@ def walk_forward(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def season_deltas(wf: pd.DataFrame, a: str, b: str, col: str = "accuracy") -> dict:
+    """Per-season a minus b over the walk-forward seasons: mean, t interval and an exact sign test (ties dropped)."""
+    p = wf.pivot(index="season", columns="model", values=col)
+    d = (p[a] - p[b]).to_numpy()
+    lo, hi = stats.ttest_1samp(d, 0).confidence_interval(0.95)
+    above, below = int((d > 0).sum()), int((d < 0).sum())
+    sign_p = float(stats.binomtest(above, above + below, 0.5).pvalue) if above + below else 1.0
+    return {"a": a, "b": b, "metric": col, "seasons": len(d), "mean": float(d.mean()), "ci": [float(lo), float(hi)],
+            "a_higher": above, "b_higher": below, "sign_test_p": sign_p}
+
+
 def plot_walk_forward(wf: pd.DataFrame, path: Path) -> None:
     fig, ax = plt.subplots(figsize=(8, 4.5))
     for name, g in wf.groupby("model"):
@@ -235,6 +248,14 @@ def write_report(summary: dict, table: pd.DataFrame, path: Path) -> None:
     season_cols = [f"accuracy_{s}" for s in TEST_SEASONS]
     lines = [f"Train: {summary['train_games']} games ({summary['train_seasons']}). "
              f"Test: {summary['test_games']} games ({', '.join(TEST_SEASONS)}).", "",
+             "## Primary comparison", "",
+             "Named before the others: walk-forward accuracy of the all-features logistic against the record rule, one difference "
+             "per season. Every other comparison in this report is secondary and uncorrected unless it says otherwise.", ""]
+    for d in summary["season_comparisons"]:
+        unit = "accuracy" if d["metric"] == "accuracy" else "log loss"
+        lines.append(f"- {d['a']} minus {d['b']}, {unit}: mean {d['mean']:+.4f}, 95% t interval [{d['ci'][0]:+.4f}, {d['ci'][1]:+.4f}] over "
+                     f"{d['seasons']} seasons; higher in {d['a_higher']}, lower in {d['b_higher']}; sign test p {d['sign_test_p']:.4f}")
+    lines += ["", "The first line is the primary comparison; the two against team strength are reported for context.", "",
              "## Forecasting: pre-game features only", "",
              "| Model | Accuracy [95% CI] | Log loss [95% CI] | Brier | ECE | " + " | ".join(f"Acc {s}" for s in TEST_SEASONS) + " |",
              "|---|---|---|---|---|" + "---|" * len(TEST_SEASONS)]
@@ -328,6 +349,8 @@ def main() -> None:
         "permutation_importance_test_neg_log_loss": perm,
         "decision_tree_rules": export_text(tree, feature_names=tree_cols, decimals=3, show_weights=False),
         "walk_forward": wf.to_dict("records"),
+        "season_comparisons": [season_deltas(wf, LR_ALL, RECORD_RULE), season_deltas(wf, LR_ALL, STRENGTH_ONLY),
+                               season_deltas(wf, LR_ALL, STRENGTH_ONLY, "log_loss")],
         "home_win_rate_by_season": df.groupby("SEASON")["home_win"].mean().to_dict(),
         "descriptive_same_game_factors": descriptive_factors(games),
         "explore": explore.analyze(games, TEST_SEASONS, SEED, 500),

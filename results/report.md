@@ -1,5 +1,15 @@
 Train: 23970 games (2000-01 to 2022-23). Test: 3212 games (2023-24, 2024-25, 2025-26).
 
+## Primary comparison
+
+Named before the others: walk-forward accuracy of the all-features logistic against the record rule, one difference per season. Every other comparison in this report is secondary and uncorrected unless it says otherwise.
+
+- Logistic regression (all features) minus Baseline: better season-to-date record wins, accuracy: mean +0.0175, 95% t interval [+0.0102, +0.0248] over 21 seasons; higher in 18, lower in 3; sign test p 0.0015
+- Logistic regression (all features) minus Simple model: team strength only (Elo, net rating, win%, era), accuracy: mean -0.0062, 95% t interval [-0.0094, -0.0030] over 21 seasons; higher in 3, lower in 17; sign test p 0.0026
+- Logistic regression (all features) minus Simple model: team strength only (Elo, net rating, win%, era), log loss: mean +0.0026, 95% t interval [+0.0010, +0.0043] over 21 seasons; higher in 15, lower in 6; sign test p 0.0784
+
+The first line is the primary comparison; the two against team strength are reported for context.
+
 ## Forecasting: pre-game features only
 
 | Model | Accuracy [95% CI] | Log loss [95% CI] | Brier | ECE | Acc 2023-24 | Acc 2024-25 | Acc 2025-26 |
@@ -192,23 +202,23 @@ Era confound: raw league pace looks predictive (z -3.8) but shrinks to z -2.4 on
 
 ### Factor families
 
-Gain over strength-only (log loss, positive = family helps) and loss when removed from the full model:
+Gain over strength-only (log loss, positive = family helps) and loss when removed from the full model. The adjusted p-value uses a standard error clustered by game date and Holm's correction across the families tested:
 
-| Family | Factors | Gain over strength [95% CI] | Loss if removed [95% CI] |
-|---|---|---|---|
-| Strength | 3 | baseline | -0.0002 [-0.0016, +0.0012] |
-| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | +0.0009 [-0.0001, +0.0019] |
-| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | -0.0005 [-0.0015, +0.0007] |
-| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | -0.0000 [-0.0010, +0.0008] |
-| Shot profile | 4 | -0.0003 [-0.0008, +0.0002] | -0.0004 [-0.0010, +0.0002] |
-| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | +0.0033 [+0.0012, +0.0056] |
-| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | -0.0004 [-0.0010, +0.0002] |
-| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | +0.0003 [-0.0004, +0.0010] |
-| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | +0.0000 [-0.0009, +0.0009] |
-| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | -0.0000 [-0.0008, +0.0007] |
-| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | -0.0002 [-0.0005, +0.0001] |
-| Era regime | 1 | baseline | +0.0019 [+0.0008, +0.0030] |
-| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | -0.0001 [-0.0003, +0.0002] |
+| Family | Factors | Gain over strength [95% CI] | Holm-adjusted p for the gain | Loss if removed [95% CI] |
+|---|---|---|---|---|
+| Strength | 3 | baseline |  | -0.0002 [-0.0016, +0.0012] |
+| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | 0.602 | +0.0009 [-0.0001, +0.0019] |
+| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | 1.000 | -0.0005 [-0.0015, +0.0007] |
+| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | 1.000 | -0.0000 [-0.0010, +0.0008] |
+| Shot profile | 4 | -0.0003 [-0.0008, +0.0002] | 1.000 | -0.0004 [-0.0010, +0.0002] |
+| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | 0.048 | +0.0033 [+0.0012, +0.0056] |
+| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | 1.000 | -0.0004 [-0.0010, +0.0002] |
+| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | 1.000 | +0.0003 [-0.0004, +0.0010] |
+| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | 1.000 | +0.0000 [-0.0009, +0.0009] |
+| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | 1.000 | -0.0000 [-0.0008, +0.0007] |
+| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | 1.000 | -0.0002 [-0.0005, +0.0001] |
+| Era regime | 1 | baseline |  | +0.0019 [+0.0008, +0.0030] |
+| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | 1.000 | -0.0001 [-0.0003, +0.0002] |
 
 All 57 factors in a logistic model: log loss 0.5990, accuracy 0.674 (strength only 0.6029, 0.672; gradient boosting 0.6035).
 

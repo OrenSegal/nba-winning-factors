@@ -1,47 +1,57 @@
 Train: 23970 games (2000-01 to 2022-23). Test: 3212 games (2023-24, 2024-25, 2025-26).
 
+## Primary comparison
+
+Named before the others: walk-forward accuracy of the all-features logistic against the record rule, one difference per season. Every other comparison in this report is secondary and uncorrected unless it says otherwise.
+
+- Logistic regression (all features) minus Baseline: better season-to-date record wins, accuracy: mean +0.0175, 95% t interval [+0.0102, +0.0248] over 21 seasons; higher in 18, lower in 3; sign test p 0.0015
+- Logistic regression (all features) minus Simple model: team strength only (Elo, net rating, win%, era), accuracy: mean -0.0062, 95% t interval [-0.0094, -0.0030] over 21 seasons; higher in 3, lower in 17; sign test p 0.0026
+- Logistic regression (all features) minus Simple model: team strength only (Elo, net rating, win%, era), log loss: mean +0.0026, 95% t interval [+0.0010, +0.0043] over 21 seasons; higher in 15, lower in 6; sign test p 0.0784
+
+The first line is the primary comparison; the two against team strength are reported for context.
+
 ## Forecasting: pre-game features only
 
 | Model | Accuracy [95% CI] | Log loss [95% CI] | Brier | ECE | Acc 2023-24 | Acc 2024-25 | Acc 2025-26 |
 |---|---|---|---|---|---|---|---|
-| Baseline: home team wins | 0.543 [0.526, 0.560] | 0.6939 [0.688, 0.700] | 0.2503 | 0.047 | 0.537 | 0.543 | 0.549 |
-| Baseline: better season-to-date record wins | 0.658 [0.640, 0.674] | n/a | n/a | n/a | 0.641 | 0.656 | 0.676 |
-| Logistic regression (all features) | 0.664 [0.650, 0.679] | 0.6053 [0.591, 0.619] | 0.2090 | 0.036 | 0.651 | 0.659 | 0.683 |
-| Logistic regression (four factors + rest only) | 0.672 [0.657, 0.687] | 0.6054 [0.591, 0.619] | 0.2089 | 0.038 | 0.661 | 0.665 | 0.690 |
-| Gradient boosting (all features) | 0.663 [0.648, 0.679] | 0.6098 [0.595, 0.624] | 0.2108 | 0.040 | 0.655 | 0.655 | 0.680 |
-| XGBoost (all features) | 0.661 [0.647, 0.677] | 0.6103 [0.596, 0.624] | 0.2109 | 0.041 | 0.654 | 0.652 | 0.678 |
-| Decision tree (all features, depth 4) | 0.667 [0.651, 0.683] | 0.6145 [0.599, 0.630] | 0.2125 | 0.045 | 0.648 | 0.661 | 0.690 |
-| Simple model: logistic on win% difference only | 0.659 [0.643, 0.674] | 0.6154 [0.602, 0.629] | 0.2138 | 0.047 | 0.654 | 0.650 | 0.674 |
-| Simple model: logistic on Elo difference only | 0.668 [0.652, 0.684] | 0.6082 [0.594, 0.622] | 0.2104 | 0.045 | 0.655 | 0.665 | 0.684 |
-| Simple model: team strength only (Elo, net rating, win%, era) | 0.672 [0.657, 0.688] | 0.6029 [0.589, 0.617] | 0.2081 | 0.027 | 0.659 | 0.664 | 0.692 |
+| Baseline: home team wins | 0.543 [0.526, 0.557] | 0.6939 [0.689, 0.700] | 0.2503 | 0.047 | 0.537 | 0.543 | 0.549 |
+| Baseline: better season-to-date record wins | 0.658 [0.640, 0.673] | n/a | n/a | n/a | 0.641 | 0.656 | 0.676 |
+| Logistic regression (all features) | 0.664 [0.648, 0.682] | 0.6053 [0.591, 0.620] | 0.2090 | 0.036 | 0.651 | 0.659 | 0.683 |
+| Logistic regression (four factors + rest only) | 0.672 [0.655, 0.689] | 0.6054 [0.591, 0.620] | 0.2089 | 0.038 | 0.661 | 0.665 | 0.690 |
+| Gradient boosting (all features) | 0.663 [0.646, 0.681] | 0.6098 [0.595, 0.624] | 0.2108 | 0.040 | 0.655 | 0.655 | 0.680 |
+| XGBoost (all features) | 0.661 [0.644, 0.679] | 0.6103 [0.595, 0.626] | 0.2109 | 0.041 | 0.654 | 0.652 | 0.678 |
+| Decision tree (all features, depth 4) | 0.667 [0.651, 0.683] | 0.6145 [0.599, 0.629] | 0.2125 | 0.045 | 0.648 | 0.661 | 0.690 |
+| Simple model: logistic on win% difference only | 0.659 [0.641, 0.675] | 0.6154 [0.602, 0.629] | 0.2138 | 0.047 | 0.654 | 0.650 | 0.674 |
+| Simple model: logistic on Elo difference only | 0.668 [0.652, 0.685] | 0.6082 [0.595, 0.622] | 0.2104 | 0.045 | 0.655 | 0.665 | 0.684 |
+| Simple model: team strength only (Elo, net rating, win%, era) | 0.672 [0.656, 0.688] | 0.6029 [0.590, 0.617] | 0.2081 | 0.027 | 0.659 | 0.664 | 0.692 |
 
-Paired bootstrap over test games, model minus baseline (positive accuracy delta and negative log-loss delta = model better):
+Paired bootstrap over test dates (all games on a date are resampled together), model minus baseline (positive accuracy delta and negative log-loss delta = model better):
 
-- Logistic regression (all features) vs Baseline: home team wins: accuracy +0.121 [0.101, 0.140], log loss -0.0886 [-0.101, -0.075]
-- Logistic regression (all features) vs Baseline: better season-to-date record wins: accuracy +0.007 [-0.007, 0.021]
+- Logistic regression (all features) vs Baseline: home team wins: accuracy +0.121 [0.102, 0.142], log loss -0.0886 [-0.102, -0.074]
+- Logistic regression (all features) vs Baseline: better season-to-date record wins: accuracy +0.007 [-0.007, 0.020]
 - Logistic regression (all features) vs Simple model: logistic on win% difference only: accuracy +0.005 [-0.003, 0.015], log loss -0.0101 [-0.014, -0.006]
-- Logistic regression (all features) vs Simple model: logistic on Elo difference only: accuracy -0.003 [-0.014, 0.007], log loss -0.0029 [-0.008, 0.003]
-- Logistic regression (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.007 [-0.017, 0.002], log loss +0.0024 [-0.002, 0.007]
-- Logistic regression (four factors + rest only) vs Baseline: home team wins: accuracy +0.129 [0.109, 0.149], log loss -0.0885 [-0.101, -0.076]
-- Logistic regression (four factors + rest only) vs Baseline: better season-to-date record wins: accuracy +0.015 [0.000, 0.029]
-- Logistic regression (four factors + rest only) vs Simple model: logistic on win% difference only: accuracy +0.013 [0.003, 0.023], log loss -0.0100 [-0.015, -0.005]
-- Logistic regression (four factors + rest only) vs Simple model: logistic on Elo difference only: accuracy +0.004 [-0.007, 0.015], log loss -0.0027 [-0.008, 0.003]
-- Logistic regression (four factors + rest only) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy +0.000 [-0.009, 0.010], log loss +0.0025 [-0.002, 0.007]
-- Gradient boosting (all features) vs Baseline: home team wins: accuracy +0.120 [0.100, 0.140], log loss -0.0841 [-0.097, -0.071]
-- Gradient boosting (all features) vs Baseline: better season-to-date record wins: accuracy +0.006 [-0.008, 0.019]
-- Gradient boosting (all features) vs Simple model: logistic on win% difference only: accuracy +0.004 [-0.005, 0.013], log loss -0.0056 [-0.009, -0.002]
-- Gradient boosting (all features) vs Simple model: logistic on Elo difference only: accuracy -0.005 [-0.016, 0.006], log loss +0.0017 [-0.004, 0.007]
-- Gradient boosting (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.009 [-0.018, 0.001], log loss +0.0069 [0.002, 0.012]
-- XGBoost (all features) vs Baseline: home team wins: accuracy +0.118 [0.098, 0.139], log loss -0.0836 [-0.097, -0.070]
-- XGBoost (all features) vs Baseline: better season-to-date record wins: accuracy +0.004 [-0.010, 0.017]
+- Logistic regression (all features) vs Simple model: logistic on Elo difference only: accuracy -0.003 [-0.014, 0.006], log loss -0.0029 [-0.008, 0.003]
+- Logistic regression (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.007 [-0.017, 0.002], log loss +0.0024 [-0.002, 0.006]
+- Logistic regression (four factors + rest only) vs Baseline: home team wins: accuracy +0.129 [0.110, 0.149], log loss -0.0885 [-0.102, -0.074]
+- Logistic regression (four factors + rest only) vs Baseline: better season-to-date record wins: accuracy +0.015 [0.001, 0.029]
+- Logistic regression (four factors + rest only) vs Simple model: logistic on win% difference only: accuracy +0.013 [0.003, 0.023], log loss -0.0100 [-0.014, -0.006]
+- Logistic regression (four factors + rest only) vs Simple model: logistic on Elo difference only: accuracy +0.004 [-0.006, 0.015], log loss -0.0027 [-0.008, 0.003]
+- Logistic regression (four factors + rest only) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy +0.000 [-0.010, 0.009], log loss +0.0025 [-0.002, 0.007]
+- Gradient boosting (all features) vs Baseline: home team wins: accuracy +0.120 [0.100, 0.141], log loss -0.0841 [-0.098, -0.069]
+- Gradient boosting (all features) vs Baseline: better season-to-date record wins: accuracy +0.006 [-0.007, 0.018]
+- Gradient boosting (all features) vs Simple model: logistic on win% difference only: accuracy +0.004 [-0.005, 0.013], log loss -0.0056 [-0.010, -0.002]
+- Gradient boosting (all features) vs Simple model: logistic on Elo difference only: accuracy -0.005 [-0.015, 0.006], log loss +0.0017 [-0.004, 0.007]
+- Gradient boosting (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.009 [-0.017, 0.001], log loss +0.0069 [0.003, 0.011]
+- XGBoost (all features) vs Baseline: home team wins: accuracy +0.118 [0.097, 0.139], log loss -0.0836 [-0.098, -0.068]
+- XGBoost (all features) vs Baseline: better season-to-date record wins: accuracy +0.004 [-0.010, 0.018]
 - XGBoost (all features) vs Simple model: logistic on win% difference only: accuracy +0.002 [-0.008, 0.012], log loss -0.0051 [-0.010, -0.000]
-- XGBoost (all features) vs Simple model: logistic on Elo difference only: accuracy -0.007 [-0.018, 0.005], log loss +0.0022 [-0.004, 0.008]
-- XGBoost (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.011 [-0.021, -0.001], log loss +0.0074 [0.002, 0.012]
-- Decision tree (all features, depth 4) vs Baseline: home team wins: accuracy +0.124 [0.102, 0.143], log loss -0.0794 [-0.093, -0.065]
-- Decision tree (all features, depth 4) vs Baseline: better season-to-date record wins: accuracy +0.009 [-0.004, 0.022]
-- Decision tree (all features, depth 4) vs Simple model: logistic on win% difference only: accuracy +0.007 [-0.002, 0.016], log loss -0.0009 [-0.006, 0.004]
-- Decision tree (all features, depth 4) vs Simple model: logistic on Elo difference only: accuracy -0.001 [-0.012, 0.009], log loss +0.0063 [0.000, 0.013]
-- Decision tree (all features, depth 4) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.005 [-0.016, 0.004], log loss +0.0116 [0.007, 0.016]
+- XGBoost (all features) vs Simple model: logistic on Elo difference only: accuracy -0.007 [-0.018, 0.005], log loss +0.0022 [-0.004, 0.009]
+- XGBoost (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.011 [-0.020, 0.000], log loss +0.0074 [0.002, 0.013]
+- Decision tree (all features, depth 4) vs Baseline: home team wins: accuracy +0.124 [0.104, 0.144], log loss -0.0794 [-0.094, -0.065]
+- Decision tree (all features, depth 4) vs Baseline: better season-to-date record wins: accuracy +0.009 [-0.005, 0.022]
+- Decision tree (all features, depth 4) vs Simple model: logistic on win% difference only: accuracy +0.007 [-0.001, 0.017], log loss -0.0009 [-0.006, 0.004]
+- Decision tree (all features, depth 4) vs Simple model: logistic on Elo difference only: accuracy -0.001 [-0.012, 0.010], log loss +0.0063 [0.000, 0.012]
+- Decision tree (all features, depth 4) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.005 [-0.015, 0.005], log loss +0.0116 [0.007, 0.016]
 
 ![Calibration on held-out seasons](calibration.png)
 
@@ -192,23 +202,23 @@ Era confound: raw league pace looks predictive (z -3.8) but shrinks to z -2.4 on
 
 ### Factor families
 
-Gain over strength-only (log loss, positive = family helps) and loss when removed from the full model:
+Gain over strength-only (log loss, positive = family helps) and loss when removed from the full model. The adjusted p-value uses a standard error clustered by game date and Holm's correction across the families tested:
 
-| Family | Factors | Gain over strength [95% CI] | Loss if removed [95% CI] |
-|---|---|---|---|
-| Strength | 3 | baseline | -0.0002 [-0.0016, +0.0012] |
-| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | +0.0009 [-0.0001, +0.0019] |
-| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | -0.0005 [-0.0015, +0.0007] |
-| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | -0.0000 [-0.0010, +0.0008] |
-| Shot profile | 4 | -0.0003 [-0.0008, +0.0002] | -0.0004 [-0.0010, +0.0002] |
-| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | +0.0033 [+0.0012, +0.0056] |
-| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | -0.0004 [-0.0010, +0.0002] |
-| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | +0.0003 [-0.0004, +0.0010] |
-| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | +0.0000 [-0.0009, +0.0009] |
-| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | -0.0000 [-0.0008, +0.0007] |
-| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | -0.0002 [-0.0005, +0.0001] |
-| Era regime | 1 | baseline | +0.0019 [+0.0008, +0.0030] |
-| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | -0.0001 [-0.0003, +0.0002] |
+| Family | Factors | Gain over strength [95% CI] | Holm-adjusted p for the gain | Loss if removed [95% CI] |
+|---|---|---|---|---|
+| Strength | 3 | baseline |  | -0.0002 [-0.0016, +0.0012] |
+| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | 0.602 | +0.0009 [-0.0001, +0.0019] |
+| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | 1.000 | -0.0005 [-0.0015, +0.0007] |
+| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | 1.000 | -0.0000 [-0.0010, +0.0008] |
+| Shot profile | 4 | -0.0003 [-0.0008, +0.0002] | 1.000 | -0.0004 [-0.0010, +0.0002] |
+| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | 0.048 | +0.0033 [+0.0012, +0.0056] |
+| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | 1.000 | -0.0004 [-0.0010, +0.0002] |
+| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | 1.000 | +0.0003 [-0.0004, +0.0010] |
+| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | 1.000 | +0.0000 [-0.0009, +0.0009] |
+| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | 1.000 | -0.0000 [-0.0008, +0.0007] |
+| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | 1.000 | -0.0002 [-0.0005, +0.0001] |
+| Era regime | 1 | baseline |  | +0.0019 [+0.0008, +0.0030] |
+| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | 1.000 | -0.0001 [-0.0003, +0.0002] |
 
 All 57 factors in a logistic model: log loss 0.5990, accuracy 0.674 (strength only 0.6029, 0.672; gradient boosting 0.6035).
 
@@ -257,9 +267,9 @@ Split-half reliability (odd vs even games, Spearman-Brown) and year-over-year co
 | Three-point % | 0.60 | 0.40 |
 | Opponent three-point % allowed | 0.35 | 0.22 |
 
-### Opening weeks: Elo vs this season's record
+### Opening weeks: Elo vs this season's net rating
 
-| Games played | Test games | Home | Elo | Record |
+| Games played | Test games | Home | Elo | Net rating |
 |---|---|---|---|---|
 | games 1-5 | 239 | 0.540 | 0.636 | 0.577 |
 | 6-10 | 229 | 0.616 | 0.664 | 0.686 |

@@ -216,3 +216,26 @@ def test_six_factor_decomposition_adds_up_and_luck_is_bounded():
     assert np.allclose(parts, net)  # bookkeeping: the residual is defined as the remainder
     assert fit["r2"] > 0.9 and fit["coef"]["o_shoot"] > 0 and fit["coef"]["d_shoot"] < 0
     assert six["luck"].abs().max() < 5 and abs(six["luck"].mean()) < 0.2  # a few points per 100 at most, near zero on average
+
+
+def test_season_deltas_and_holm_hand_computed():
+    from nbawin import explore, run
+
+    wf = pd.DataFrame({"season": ["a", "b", "c", "d"] * 2, "model": ["m"] * 4 + ["base"] * 4,
+                       "accuracy": [0.70, 0.66, 0.65, 0.60, 0.60, 0.60, 0.65, 0.61]})
+    d = run.season_deltas(wf, "m", "base")
+    assert (d["a_higher"], d["b_higher"], d["seasons"]) == (2, 1, 4)  # one tie is dropped from the sign test
+    assert d["mean"] == pytest.approx(0.0375) and d["sign_test_p"] == pytest.approx(1.0)
+    assert d["ci"][0] < 0 < d["ci"][1]
+    assert explore._holm([0.01, 0.04, 0.03]) == pytest.approx([0.03, 0.06, 0.06])
+
+
+def test_bootstrap_ci_resamples_whole_groups():
+    # 50 dates of 20 games; every game on a date has the same outcome, so the 1000 rows carry 50 independent draws
+    rng = np.random.default_rng(0)
+    y = np.repeat(rng.integers(0, 2, 50), 20).astype(float)
+    dates = np.repeat(np.arange(50), 20)
+    iid = bootstrap_ci(y, lambda i: y[i].mean(), n=500)
+    by_date = bootstrap_ci(y, lambda i: y[i].mean(), n=500, groups=dates)
+    assert by_date[0] < y.mean() < by_date[1]
+    assert (by_date[1] - by_date[0]) > 3 * (iid[1] - iid[0])  # sqrt(20) = 4.5 times wider in expectation

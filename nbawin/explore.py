@@ -45,6 +45,23 @@ def _ci(delta, idx):
     return float(delta.mean()), float(np.quantile(boots, 0.025)), float(np.quantile(boots, 0.975))
 
 
+def _clustered_p(delta, groups):
+    """Two-sided normal p-value for mean(delta) with a standard error clustered on `groups` (game dates)."""
+    sums = pd.Series(delta).groupby(np.asarray(groups)).sum().to_numpy()
+    g = len(sums)
+    se = np.sqrt(g / (g - 1) * ((sums - sums.mean()) ** 2).sum()) / len(delta)
+    return float(2 * (1 - NormalDist().cdf(abs(delta.mean() / se))))
+
+
+def _holm(ps):
+    """Holm step-down adjusted p-values, in the input order."""
+    adj, running = [0.0] * len(ps), 0.0
+    for rank, j in enumerate(np.argsort(ps)):
+        running = max(running, min(1.0, (len(ps) - rank) * ps[j]))
+        adj[j] = running
+    return adj
+
+
 def _wald_last(train, cols):
     """Coefficient, 95% CI and z for the last column of an (almost) unpenalized standardized logistic fit."""
     p, m = _fit(train, train, cols, C=1e6)
@@ -104,7 +121,11 @@ def families(train, test, idx):
         if fam not in ("Strength", "Era regime"):
             p_add, _ = _fit(train, test, strength + cols)
             row["gain_over_strength"] = _ci(l_str - _logloss(y, p_add), idx)  # > 0 means it helps
+            row["gain_p"] = _clustered_p(l_str - _logloss(y, p_add), test["GAME_DATE"])
         out["families"].append(row)
+    tested = [r for r in out["families"] if "gain_p" in r]
+    for r, p in zip(tested, _holm([r["gain_p"] for r in tested])):
+        r["gain_p_holm"] = p  # corrected across the families tested against strength
     return out
 
 
@@ -232,11 +253,13 @@ def report_lines(ex: dict) -> list[str]:
     e = ex["era_confound"]
     lines += ["", f"Era confound: raw league pace looks predictive (z {e['z_without_era_control']:+.1f}) but shrinks to z {e['z_with_era_control']:+.1f} once the "
               "home-court regime is controlled, because pace rose while home advantage fell. The model uses era-relative pace instead.", "",
-              "### Factor families", "", "Gain over strength-only (log loss, positive = family helps) and loss when removed from the full model:", "",
-              "| Family | Factors | Gain over strength [95% CI] | Loss if removed [95% CI] |", "|---|---|---|---|"]
+              "### Factor families", "", "Gain over strength-only (log loss, positive = family helps) and loss when removed from the full model. The adjusted p-value "
+              "uses a standard error clustered by game date and Holm's correction across the families tested:", "",
+              "| Family | Factors | Gain over strength [95% CI] | Holm-adjusted p for the gain | Loss if removed [95% CI] |", "|---|---|---|---|---|"]
     for r in ex["families"]["families"]:
         gain = ci(r["gain_over_strength"]) if "gain_over_strength" in r else "baseline"
-        lines.append(f"| {r['family']} | {r['n_factors']} | {gain} | {ci(r['loss_if_removed'])} |")
+        holm = f"{r['gain_p_holm']:.3f}" if "gain_p_holm" in r else ""
+        lines.append(f"| {r['family']} | {r['n_factors']} | {gain} | {holm} | {ci(r['loss_if_removed'])} |")
     o = ex["families"]["overall"]
     lines += ["", f"All {o['n_factors']} factors in a logistic model: log loss {o['full_logistic_logloss']:.4f}, accuracy {o['full_logistic_accuracy']:.3f} "
               f"(strength only {o['strength_only_logloss']:.4f}, {o['strength_only_accuracy']:.3f}; gradient boosting {o['full_boosting_logloss']:.4f}).",
@@ -248,7 +271,7 @@ def report_lines(ex: dict) -> list[str]:
     lines += ["", "### Skill or luck? Persistence of team stats", "", "Split-half reliability (odd vs even games, Spearman-Brown) and year-over-year correlation:", "",
               "| Stat | Split-half | Year over year |", "|---|---|---|"]
     lines += [f"| {p['label']} | {p['split_half']:.2f} | {p['year_over_year']:.2f} |" for p in ex["persistence"]]
-    lines += ["", "### Opening weeks: Elo vs this season's record", "", "| Games played | Test games | Home | Elo | Record |", "|---|---|---|---|---|"]
+    lines += ["", "### Opening weeks: Elo vs this season's net rating", "", "| Games played | Test games | Home | Elo | Net rating |", "|---|---|---|---|---|"]
     lines += [f"| {r['bucket']} | {r['n_games']} | {r['acc_home']:.3f} | {r['acc_elo']:.3f} | {r['acc_record']:.3f} |" for r in ex["early_season"]]
     hc = ex["home_court"]
     lines += ["", f"### Home-court value by franchise (league average {hc['league_avg_points']:.1f} points, controlling for Elo)", "",

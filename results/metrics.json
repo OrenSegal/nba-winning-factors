@@ -14,12 +14,12 @@
       "brier": 0.25034965710141294,
       "ece": 0.04685672366506277,
       "accuracy_ci": [
-        0.5264632627646326,
-        0.5604062889165629
+        0.5256834537680926,
+        0.5572836087088755
       ],
       "log_loss_ci": [
-        0.6876077544923542,
-        0.6999366706392269
+        0.6887419863743838,
+        0.700219915853896
       ],
       "accuracy_2023-24": 0.537243947858473,
       "accuracy_2024-25": 0.5425631431244153,
@@ -32,8 +32,8 @@
       "brier": NaN,
       "ece": NaN,
       "accuracy_ci": [
-        0.6400996264009963,
-        0.674346201743462
+        0.6396834788029925,
+        0.6731694999493464
       ],
       "log_loss_ci": NaN,
       "accuracy_2023-24": 0.6405959031657356,
@@ -47,12 +47,12 @@
       "brier": 0.20901558587682192,
       "ece": 0.03643898757415323,
       "accuracy_ci": [
-        0.6497509339975094,
-        0.6793275217932753
+        0.6482904007751193,
+        0.6821316614420063
       ],
       "log_loss_ci": [
-        0.5908381361270941,
-        0.6192897993106304
+        0.5907224428795993,
+        0.6199377798167808
       ],
       "accuracy_2023-24": 0.6508379888268156,
       "accuracy_2024-25": 0.6594948550046773,
@@ -65,12 +65,12 @@
       "brier": 0.2089176326075243,
       "ece": 0.03800106129570665,
       "accuracy_ci": [
-        0.6569115815691158,
-        0.6874299501867994
+        0.6554942245149609,
+        0.6889106210822714
       ],
       "log_loss_ci": [
-        0.5913124886566443,
-        0.6191106019055813
+        0.590912830455041,
+        0.6197354424383053
       ],
       "accuracy_2023-24": 0.6610800744878957,
       "accuracy_2024-25": 0.6651075771749299,
@@ -83,12 +83,12 @@
       "brier": 0.21078864777746445,
       "ece": 0.03984782679037268,
       "accuracy_ci": [
-        0.648186488169365,
-        0.6790161892901619
+        0.6461154342118663,
+        0.680820081767627
       ],
       "log_loss_ci": [
-        0.5952932791930452,
-        0.6237012299363155
+        0.5954264974750147,
+        0.6240730374203022
       ],
       "accuracy_2023-24": 0.654562383612663,
       "accuracy_2024-25": 0.6548175865294668,
@@ -101,12 +101,12 @@
       "brier": 0.210878387093544,
       "ece": 0.04093429421632554,
       "accuracy_ci": [
-        0.6469489414694894,
-        0.6768368617683687
+        0.6444093358468355,
+        0.6785555420953159
       ],
       "log_loss_ci": [
-        0.59554433375597,
-        0.624216365814209
+        0.595290084183216,
+        0.625808498263359
       ],
       "accuracy_2023-24": 0.6536312849162011,
       "accuracy_2024-25": 0.6520112254443405,
@@ -119,12 +119,12 @@
       "brier": 0.2125473220699961,
       "ece": 0.045041728530167066,
       "accuracy_ci": [
-        0.6509962640099627,
-        0.6830635118306351
+        0.6505053892902191,
+        0.6834133451532612
       ],
       "log_loss_ci": [
-        0.5992179697789455,
-        0.629771278461054
+        0.5990038100617983,
+        0.6294714724669885
       ],
       "accuracy_2023-24": 0.6480446927374302,
       "accuracy_2024-25": 0.6613657623947614,
@@ -137,16 +137,52 @@
       "brier": 0.21381793517325107,
       "ece": 0.04749416851196986,
       "accuracy_ci": [
-        0.6432129514321295,
-        0.6743539850560398
+        0.6412813718338539,
+        0.6750696085738932
       ],
       "log_loss_ci": [
-        0.6017143503322631,
-        0.6286432683311671
+        0.6022222321317291,
+        0.6288491360738644
       ],
       "accuracy_2023-24": 0.6536312849162011,
       "accuracy_2024-25": 0.6501403180542563,
       "accuracy_2025-26": 0.6735266604303087
+    },
+    {
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6678082191780822,
+      "log_loss": 0.6081731017409261,
+      "brier": 0.21038818381945062,
+      "ece": 0.045215213575683706,
+      "accuracy_ci": [
+        0.6516701407548935,
+        0.6851135728170467
+      ],
+      "log_loss_ci": [
+        0.5948228242220859,
+        0.6224743499570096
+      ],
+      "accuracy_2023-24": 0.654562383612663,
+      "accuracy_2024-25": 0.6651075771749299,
+      "accuracy_2025-26": 0.6838166510757717
+    },
+    {
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6718555417185554,
+      "log_loss": 0.6029237921615334,
+      "brier": 0.20811736757204477,
+      "ece": 0.026576292446264086,
+      "accuracy_ci": [
+        0.6557585042741834,
+        0.688283575100342
+      ],
+      "log_loss_ci": [
+        0.5896627703676867,
+        0.617325551702316
+      ],
+      "accuracy_2023-24": 0.659217877094972,
+      "accuracy_2024-25": 0.6641721234798877,
+      "accuracy_2025-26": 0.6922357343311506
     }
   ],
   "deltas": {
@@ -154,32 +190,56 @@
       "Baseline: home team wins": {
         "accuracy_delta": 0.1214196762141968,
         "accuracy_delta_ci": [
-          0.10087173100871738,
-          0.1404109589041096
+          0.101786029959233,
+          0.14202260083763593
         ],
         "log_loss_delta": -0.08863668545612902,
         "log_loss_delta_ci": [
-          -0.10116007650508867,
-          -0.07549323107648255
+          -0.10243853504355746,
+          -0.07384387216611263
         ]
       },
       "Baseline: better season-to-date record wins": {
         "accuracy_delta": 0.006849315068493178,
         "accuracy_delta_ci": [
-          -0.007168430884184337,
-          0.020547945205479427
+          -0.006524154208745053,
+          0.020465642864649383
         ]
       },
       "Simple model: logistic on win% difference only": {
         "accuracy_delta": 0.005292652552926547,
         "accuracy_delta_ci": [
-          -0.003424657534246589,
-          0.014943960149439554
+          -0.0034910106818856366,
+          0.01452059303606655
         ],
         "log_loss_delta": -0.010109713341908244,
         "log_loss_delta_ci": [
-          -0.013770036442763806,
-          -0.0060748761892343
+          -0.013885539556864928,
+          -0.006303055846613371
+        ]
+      },
+      "Simple model: logistic on Elo difference only": {
+        "accuracy_delta": -0.003424657534246589,
+        "accuracy_delta_ci": [
+          -0.013643961947499608,
+          0.006228545863231261
+        ],
+        "log_loss_delta": -0.0028665360101028936,
+        "log_loss_delta_ci": [
+          -0.008498317252131437,
+          0.002729092511759775
+        ]
+      },
+      "Simple model: team strength only (Elo, net rating, win%, era)": {
+        "accuracy_delta": -0.007471980074719831,
+        "accuracy_delta_ci": [
+          -0.016682354990772773,
+          0.001585681925842766
+        ],
+        "log_loss_delta": 0.002382773569289842,
+        "log_loss_delta_ci": [
+          -0.0017883787751738212,
+          0.0064495195408600095
         ]
       }
     },
@@ -187,32 +247,56 @@
       "Baseline: home team wins": {
         "accuracy_delta": 0.12920298879202996,
         "accuracy_delta_ci": [
-          0.10926992528019924,
-          0.1488169364881693
+          0.10950243068843238,
+          0.1485453930788616
         ],
         "log_loss_delta": -0.08851062735451032,
         "log_loss_delta_ci": [
-          -0.10055278430852711,
-          -0.0759885501166877
+          -0.10210926659584073,
+          -0.07369433644924134
         ]
       },
       "Baseline: better season-to-date record wins": {
         "accuracy_delta": 0.014632627646326335,
         "accuracy_delta_ci": [
-          0.0,
-          0.028969489414694884
+          0.0006322732712811697,
+          0.028691883536891977
         ]
       },
       "Simple model: logistic on win% difference only": {
         "accuracy_delta": 0.013075965130759704,
         "accuracy_delta_ci": [
-          0.0031133250311332628,
-          0.023038605230386037
+          0.0032106390289999786,
+          0.022669693874407176
         ],
         "log_loss_delta": -0.009983655240289546,
         "log_loss_delta_ci": [
-          -0.014536628821667095,
-          -0.005157910635071961
+          -0.01435111715600514,
+          -0.005556949372510831
+        ]
+      },
+      "Simple model: logistic on Elo difference only": {
+        "accuracy_delta": 0.004358655043586568,
+        "accuracy_delta_ci": [
+          -0.005835280867402195,
+          0.014604241572483695
+        ],
+        "log_loss_delta": -0.0027404779084841957,
+        "log_loss_delta_ci": [
+          -0.008449364015100186,
+          0.002966260453165525
+        ]
+      },
+      "Simple model: team strength only (Elo, net rating, win%, era)": {
+        "accuracy_delta": 0.0003113325031133263,
+        "accuracy_delta_ci": [
+          -0.009719291500551189,
+          0.009363661748228927
+        ],
+        "log_loss_delta": 0.00250883167090854,
+        "log_loss_delta_ci": [
+          -0.0020223725268971315,
+          0.006961322141277922
         ]
       }
     },
@@ -220,32 +304,56 @@
       "Baseline: home team wins": {
         "accuracy_delta": 0.1201743462017435,
         "accuracy_delta_ci": [
-          0.09961861768368624,
-          0.1404109589041096
+          0.09975169440007717,
+          0.14070806772862568
         ],
         "log_loss_delta": -0.084118297032869,
         "log_loss_delta_ci": [
-          -0.09681691964144092,
-          -0.0713338623265742
+          -0.09800537568193232,
+          -0.06943945637366043
         ]
       },
       "Baseline: better season-to-date record wins": {
         "accuracy_delta": 0.005603985056039873,
         "accuracy_delta_ci": [
-          -0.00841376089663764,
-          0.0186877334993774
+          -0.007433645124860039,
+          0.01813121470752269
         ]
       },
       "Simple model: logistic on win% difference only": {
         "accuracy_delta": 0.004047322540473242,
         "accuracy_delta_ci": [
-          -0.005292652552926547,
-          0.013395080946450855
+          -0.005399363306223417,
+          0.013466321165629763
         ],
         "log_loss_delta": -0.005591324918648222,
         "log_loss_delta_ci": [
-          -0.009461332755708471,
-          -0.001568314386553152
+          -0.00968162947050617,
+          -0.0019515207494227916
+        ]
+      },
+      "Simple model: logistic on Elo difference only": {
+        "accuracy_delta": -0.004669987546699894,
+        "accuracy_delta_ci": [
+          -0.015369987812889143,
+          0.006414319335408336
+        ],
+        "log_loss_delta": 0.0016518524131571288,
+        "log_loss_delta_ci": [
+          -0.004094250478201294,
+          0.007317507104494854
+        ]
+      },
+      "Simple model: team strength only (Elo, net rating, win%, era)": {
+        "accuracy_delta": -0.008717310087173136,
+        "accuracy_delta_ci": [
+          -0.017391661312201052,
+          0.0006138903136969074
+        ],
+        "log_loss_delta": 0.006901161992549865,
+        "log_loss_delta_ci": [
+          0.0025484023971408753,
+          0.011347884186965118
         ]
       }
     },
@@ -253,32 +361,56 @@
       "Baseline: home team wins": {
         "accuracy_delta": 0.11830635118306354,
         "accuracy_delta_ci": [
-          0.09838107098381066,
-          0.13885429638854296
+          0.09727533457019163,
+          0.13881715733283476
         ],
         "log_loss_delta": -0.08361529212628327,
         "log_loss_delta_ci": [
-          -0.09703645465848591,
-          -0.06995032662047358
+          -0.09801868317688416,
+          -0.06835476344044761
         ]
       },
       "Baseline: better season-to-date record wins": {
         "accuracy_delta": 0.0037359900373599153,
         "accuracy_delta_ci": [
-          -0.010273972602739656,
-          0.01743462017434616
+          -0.009854385128694045,
+          0.017836691672995078
         ]
       },
       "Simple model: logistic on win% difference only": {
         "accuracy_delta": 0.002179327521793284,
         "accuracy_delta_ci": [
-          -0.007783312577833157,
-          0.012141967621419617
+          -0.00822173697182881,
+          0.01230038507771436
         ],
         "log_loss_delta": -0.005088320012062497,
         "log_loss_delta_ci": [
-          -0.010027497617459519,
-          -0.0002270745908333466
+          -0.010054578176439554,
+          -0.0002981435232269357
+        ]
+      },
+      "Simple model: logistic on Elo difference only": {
+        "accuracy_delta": -0.006537982565379852,
+        "accuracy_delta_ci": [
+          -0.01765694874762027,
+          0.004686150345340949
+        ],
+        "log_loss_delta": 0.0021548573197428533,
+        "log_loss_delta_ci": [
+          -0.003804057512213804,
+          0.00862160291927799
+        ]
+      },
+      "Simple model: team strength only (Elo, net rating, win%, era)": {
+        "accuracy_delta": -0.010585305105853093,
+        "accuracy_delta_ci": [
+          -0.02048784217199972,
+          0.0
+        ],
+        "log_loss_delta": 0.007404166899135589,
+        "log_loss_delta_ci": [
+          0.0024741818850980172,
+          0.012887412450294069
         ]
       }
     },
@@ -286,32 +418,56 @@
       "Baseline: home team wins": {
         "accuracy_delta": 0.12359900373599009,
         "accuracy_delta_ci": [
-          0.10179794520547941,
-          0.1429016189290162
+          0.104468576168406,
+          0.14422552428992227
         ],
         "log_loss_delta": -0.07943877762797757,
         "log_loss_delta_ci": [
-          -0.09307718874364408,
-          -0.06523015700550926
+          -0.09356988189588504,
+          -0.064881392566943
         ]
       },
       "Baseline: better season-to-date record wins": {
         "accuracy_delta": 0.009028642590286462,
         "accuracy_delta_ci": [
-          -0.003743773349937748,
-          0.02180105853051066
+          -0.00461067535005899,
+          0.02191163459882957
         ]
       },
       "Simple model: logistic on win% difference only": {
         "accuracy_delta": 0.007471980074719831,
         "accuracy_delta_ci": [
-          -0.001564445828144464,
-          0.01619707347447079
+          -0.0009234681029299058,
+          0.01663191172458062
         ],
         "log_loss_delta": -0.0009118055137568026,
         "log_loss_delta_ci": [
-          -0.006179905945896416,
-          0.004023091538084463
+          -0.006051668971776739,
+          0.003885959735233983
+        ]
+      },
+      "Simple model: logistic on Elo difference only": {
+        "accuracy_delta": -0.001245330012453305,
+        "accuracy_delta_ci": [
+          -0.01186769870763732,
+          0.009878413092400196
+        ],
+        "log_loss_delta": 0.006331371818048548,
+        "log_loss_delta_ci": [
+          4.6972617717389064e-05,
+          0.012434264493301069
+        ]
+      },
+      "Simple model: team strength only (Elo, net rating, win%, era)": {
+        "accuracy_delta": -0.005292652552926547,
+        "accuracy_delta_ci": [
+          -0.014524287136865922,
+          0.004978297780336755
+        ],
+        "log_loss_delta": 0.011580681397441284,
+        "log_loss_delta_ci": [
+          0.006622190411645632,
+          0.01621909145572019
         ]
       }
     }
@@ -638,6 +794,18 @@
       "log_loss": 0.6255975344341669
     },
     {
+      "season": "2005-06",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6588785046728972,
+      "log_loss": 0.6207456572410792
+    },
+    {
+      "season": "2005-06",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6635514018691588,
+      "log_loss": 0.618783233918936
+    },
+    {
       "season": "2006-07",
       "model": "Baseline: home team wins",
       "accuracy": 0.5882352941176471,
@@ -684,6 +852,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.646125116713352,
       "log_loss": 0.6366553577570846
+    },
+    {
+      "season": "2006-07",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6535947712418301,
+      "log_loss": 0.6256041317929937
+    },
+    {
+      "season": "2006-07",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6507936507936508,
+      "log_loss": 0.6282355973184857
     },
     {
       "season": "2007-08",
@@ -734,6 +914,18 @@
       "log_loss": 0.5895630150336836
     },
     {
+      "season": "2007-08",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6968283582089553,
+      "log_loss": 0.5811240261404665
+    },
+    {
+      "season": "2007-08",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6977611940298507,
+      "log_loss": 0.5785801503984999
+    },
+    {
       "season": "2008-09",
       "model": "Baseline: home team wins",
       "accuracy": 0.6154562383612663,
@@ -780,6 +972,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.7104283054003724,
       "log_loss": 0.5691982910693346
+    },
+    {
+      "season": "2008-09",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6983240223463687,
+      "log_loss": 0.5702852689570049
+    },
+    {
+      "season": "2008-09",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.7085661080074488,
+      "log_loss": 0.5658815330302679
     },
     {
       "season": "2009-10",
@@ -830,6 +1034,18 @@
       "log_loss": 0.5987897383211436
     },
     {
+      "season": "2009-10",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6909430438842203,
+      "log_loss": 0.5864801973900402
+    },
+    {
+      "season": "2009-10",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6918767507002801,
+      "log_loss": 0.586795559356839
+    },
+    {
       "season": "2010-11",
       "model": "Baseline: home team wins",
       "accuracy": 0.6120930232558139,
@@ -876,6 +1092,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.693953488372093,
       "log_loss": 0.5874556950514368
+    },
+    {
+      "season": "2010-11",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6902325581395349,
+      "log_loss": 0.5825987305740031
+    },
+    {
+      "season": "2010-11",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6986046511627907,
+      "log_loss": 0.5770506726592961
     },
     {
       "season": "2011-12",
@@ -926,6 +1154,18 @@
       "log_loss": 0.6202489003972756
     },
     {
+      "season": "2011-12",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6622596153846154,
+      "log_loss": 0.6104866304773089
+    },
+    {
+      "season": "2011-12",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6622596153846154,
+      "log_loss": 0.6135206749922039
+    },
+    {
       "season": "2012-13",
       "model": "Baseline: home team wins",
       "accuracy": 0.6132339235787512,
@@ -972,6 +1212,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6663560111835974,
       "log_loss": 0.6001062977118554
+    },
+    {
+      "season": "2012-13",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6859273066169618,
+      "log_loss": 0.5849645681333244
+    },
+    {
+      "season": "2012-13",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6831314072693383,
+      "log_loss": 0.5849696141402723
     },
     {
       "season": "2013-14",
@@ -1022,6 +1274,18 @@
       "log_loss": 0.6121445183487805
     },
     {
+      "season": "2013-14",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6675977653631285,
+      "log_loss": 0.603315087634239
+    },
+    {
+      "season": "2013-14",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6713221601489758,
+      "log_loss": 0.6032615062704748
+    },
+    {
       "season": "2014-15",
       "model": "Baseline: home team wins",
       "accuracy": 0.5755597014925373,
@@ -1068,6 +1332,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6800373134328358,
       "log_loss": 0.5957789668649467
+    },
+    {
+      "season": "2014-15",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6753731343283582,
+      "log_loss": 0.5959291813240035
+    },
+    {
+      "season": "2014-15",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6921641791044776,
+      "log_loss": 0.592212704896117
     },
     {
       "season": "2015-16",
@@ -1118,6 +1394,18 @@
       "log_loss": 0.5862894988567747
     },
     {
+      "season": "2015-16",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.7073625349487418,
+      "log_loss": 0.5766031444910938
+    },
+    {
+      "season": "2015-16",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.7027027027027027,
+      "log_loss": 0.5757159198855062
+    },
+    {
       "season": "2016-17",
       "model": "Baseline: home team wins",
       "accuracy": 0.5837988826815642,
@@ -1164,6 +1452,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6350093109869647,
       "log_loss": 0.6376846009712891
+    },
+    {
+      "season": "2016-17",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6405959031657356,
+      "log_loss": 0.629598493139899
+    },
+    {
+      "season": "2016-17",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6536312849162011,
+      "log_loss": 0.6309577174434808
     },
     {
       "season": "2017-18",
@@ -1214,6 +1514,18 @@
       "log_loss": 0.6172536111536777
     },
     {
+      "season": "2017-18",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6688372093023256,
+      "log_loss": 0.6049910453245901
+    },
+    {
+      "season": "2017-18",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6669767441860465,
+      "log_loss": 0.6068603727693278
+    },
+    {
       "season": "2018-19",
       "model": "Baseline: home team wins",
       "accuracy": 0.590316573556797,
@@ -1260,6 +1572,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6461824953445066,
       "log_loss": 0.6241448227227004
+    },
+    {
+      "season": "2018-19",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6471135940409684,
+      "log_loss": 0.6146936339224901
+    },
+    {
+      "season": "2018-19",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6452513966480447,
+      "log_loss": 0.6151257880405829
     },
     {
       "season": "2019-20",
@@ -1310,6 +1634,18 @@
       "log_loss": 0.6256153426288166
     },
     {
+      "season": "2019-20",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6545253863134658,
+      "log_loss": 0.6265466070635902
+    },
+    {
+      "season": "2019-20",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6578366445916115,
+      "log_loss": 0.6247847808046816
+    },
+    {
       "season": "2020-21",
       "model": "Baseline: home team wins",
       "accuracy": 0.5541125541125541,
@@ -1356,6 +1692,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6201298701298701,
       "log_loss": 0.6434091352050679
+    },
+    {
+      "season": "2020-21",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6287878787878788,
+      "log_loss": 0.6366526263733997
+    },
+    {
+      "season": "2020-21",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6385281385281385,
+      "log_loss": 0.633727222730386
     },
     {
       "season": "2021-22",
@@ -1406,6 +1754,18 @@
       "log_loss": 0.6508260873967078
     },
     {
+      "season": "2021-22",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.641192917054986,
+      "log_loss": 0.6375108274815848
+    },
+    {
+      "season": "2021-22",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6449207828518173,
+      "log_loss": 0.6361421943322915
+    },
+    {
       "season": "2022-23",
       "model": "Baseline: home team wins",
       "accuracy": 0.575955265610438,
@@ -1452,6 +1812,18 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.6188257222739981,
       "log_loss": 0.6535892684739297
+    },
+    {
+      "season": "2022-23",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6309412861136999,
+      "log_loss": 0.6483336847496881
+    },
+    {
+      "season": "2022-23",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6365330848089469,
+      "log_loss": 0.6473973749762981
     },
     {
       "season": "2023-24",
@@ -1502,6 +1874,18 @@
       "log_loss": 0.6151329366411419
     },
     {
+      "season": "2023-24",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.654562383612663,
+      "log_loss": 0.6115274021075796
+    },
+    {
+      "season": "2023-24",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.659217877094972,
+      "log_loss": 0.6079488357924397
+    },
+    {
       "season": "2024-25",
       "model": "Baseline: home team wins",
       "accuracy": 0.5425631431244153,
@@ -1550,6 +1934,18 @@
       "log_loss": 0.619813537214343
     },
     {
+      "season": "2024-25",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.666043030869972,
+      "log_loss": 0.6132491562268161
+    },
+    {
+      "season": "2024-25",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6632366697848456,
+      "log_loss": 0.606968805467449
+    },
+    {
       "season": "2025-26",
       "model": "Baseline: home team wins",
       "accuracy": 0.54911131898971,
@@ -1596,6 +1992,62 @@
       "model": "Simple model: logistic on win% difference only",
       "accuracy": 0.676333021515435,
       "log_loss": 0.6100677895591023
+    },
+    {
+      "season": "2025-26",
+      "model": "Simple model: logistic on Elo difference only",
+      "accuracy": 0.6828811973807296,
+      "log_loss": 0.5985788545951952
+    },
+    {
+      "season": "2025-26",
+      "model": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "accuracy": 0.6950420954162769,
+      "log_loss": 0.5925666199027688
+    }
+  ],
+  "season_comparisons": [
+    {
+      "a": "Logistic regression (all features)",
+      "b": "Baseline: better season-to-date record wins",
+      "metric": "accuracy",
+      "seasons": 21,
+      "mean": 0.01748156824780766,
+      "ci": [
+        0.010192358390387369,
+        0.02477077810522795
+      ],
+      "a_higher": 18,
+      "b_higher": 3,
+      "sign_test_p": 0.0014896392822265625
+    },
+    {
+      "a": "Logistic regression (all features)",
+      "b": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "metric": "accuracy",
+      "seasons": 21,
+      "mean": -0.006196164515737858,
+      "ci": [
+        -0.009401269620023578,
+        -0.0029910594114521383
+      ],
+      "a_higher": 3,
+      "b_higher": 17,
+      "sign_test_p": 0.0025768280029296875
+    },
+    {
+      "a": "Logistic regression (all features)",
+      "b": "Simple model: team strength only (Elo, net rating, win%, era)",
+      "metric": "log_loss",
+      "seasons": 21,
+      "mean": 0.0026307110478858884,
+      "ci": [
+        0.0009561508768925558,
+        0.0043052712188792214
+      ],
+      "a_higher": 15,
+      "b_higher": 6,
+      "sign_test_p": 0.0783538818359375
     }
   ],
   "home_win_rate_by_season": {
@@ -1633,34 +2085,34 @@
     "test_accuracy_win_from_same_game_factors": 0.9584239130434783,
     "points_per_1sd": {
       "d_efg": {
-        "coef": 12.307790020615842,
+        "coef": 12.307790020615835,
         "ci": [
-          12.262972233456832,
-          12.356145539561677
+          12.26297223345684,
+          12.356145539561673
         ],
         "1sd": 0.08963398226511711
       },
       "d_tov_rate": {
-        "coef": -5.933465820821838,
+        "coef": -5.933465820821841,
         "ci": [
           -5.976283343489734,
-          -5.889896435006693
+          -5.889896435006691
         ],
         "1sd": 0.05181129728040374
       },
       "d_orb_rate": {
-        "coef": 5.340466986196508,
+        "coef": 5.340466986196505,
         "ci": [
           5.298042867924705,
-          5.381671241940676
+          5.381671241940672
         ],
         "1sd": 0.10621271513400947
       },
       "d_ft_rate": {
-        "coef": 2.8523906408417554,
+        "coef": 2.852390640841755,
         "ci": [
-          2.811679237134966,
-          2.8942122207190555
+          2.811679237134967,
+          2.8942122207190506
         ],
         "1sd": 0.10960144195437833
       }
@@ -2527,7 +2979,9 @@
             0.0008163482990512159,
             -2.594187479710096e-05,
             0.0016588733854952186
-          ]
+          ],
+          "gain_p": 0.060243357983248425,
+          "gain_p_holm": 0.6024335798324842
         },
         {
           "family": "Four factors",
@@ -2541,7 +2995,9 @@
             0.00039043965385074787,
             -0.0004949580613201111,
             0.0015060444065116995
-          ]
+          ],
+          "gain_p": 0.43755338740997196,
+          "gain_p_holm": 1.0
         },
         {
           "family": "Pace and style",
@@ -2555,7 +3011,9 @@
             2.814475453961075e-05,
             -0.0010723826814432343,
             0.0010984774128013216
-          ]
+          ],
+          "gain_p": 0.961979166658987,
+          "gain_p_holm": 1.0
         },
         {
           "family": "Shot profile",
@@ -2569,7 +3027,9 @@
             -0.0002733522487789199,
             -0.0007861078832960189,
             0.00022623018524493965
-          ]
+          ],
+          "gain_p": 0.3381374550114744,
+          "gain_p_holm": 1.0
         },
         {
           "family": "Rest and schedule load",
@@ -2583,7 +3043,9 @@
             0.0031767684299399495,
             0.0010153709434653655,
             0.005472437783126892
-          ]
+          ],
+          "gain_p": 0.0043794804341006355,
+          "gain_p_holm": 0.04817428477510699
         },
         {
           "family": "Home stands and road trips",
@@ -2597,7 +3059,9 @@
             -0.00020251519949637616,
             -0.0007660712660756124,
             0.00035374350070127255
-          ]
+          ],
+          "gain_p": 0.49119227334686566,
+          "gain_p_holm": 1.0
         },
         {
           "family": "Travel and time zones",
@@ -2611,7 +3075,9 @@
             0.000432621455485014,
             -0.00027663489299914126,
             0.0011692870361258143
-          ]
+          ],
+          "gain_p": 0.2174685838593271,
+          "gain_p_holm": 1.0
         },
         {
           "family": "Altitude",
@@ -2625,7 +3091,9 @@
             7.62883672957548e-05,
             -0.0009398394777499184,
             0.0009363332664237832
-          ]
+          ],
+          "gain_p": 0.8722385444564602,
+          "gain_p_holm": 1.0
         },
         {
           "family": "Luck and regression",
@@ -2639,7 +3107,9 @@
             0.00010797474466299059,
             -0.0002140821058712982,
             0.0004116984399366381
-          ]
+          ],
+          "gain_p": 0.5233812178603736,
+          "gain_p_holm": 1.0
         },
         {
           "family": "Volatility and matchup shape",
@@ -2653,7 +3123,9 @@
             -7.394947525396133e-05,
             -0.0003849614529125701,
             0.000254946716020491
-          ]
+          ],
+          "gain_p": 0.6661276528959488,
+          "gain_p_holm": 1.0
         },
         {
           "family": "Era regime",
@@ -2676,7 +3148,9 @@
             9.939766131059322e-06,
             -0.00027312517953535277,
             0.000303480897794069
-          ]
+          ],
+          "gain_p": 0.9431379527129622,
+          "gain_p_holm": 1.0
         }
       ]
     },
@@ -2927,96 +3401,96 @@
       }
     ],
     "home_court": {
-      "league_avg_points": 2.6827172618602297,
+      "league_avg_points": 2.68271726186023,
       "teams": [
         {
           "team": "DEN",
-          "hca": 3.9593838929012954,
-          "se": 0.39600116362657817,
+          "hca": 3.9593838929012968,
+          "se": 0.3960011636265782,
           "n_games": 1008
         },
         {
           "team": "UTA",
-          "hca": 3.7117787050265525,
+          "hca": 3.7117787050265703,
           "se": 0.39609808243379724,
           "n_games": 1006
         },
         {
           "team": "GSW",
-          "hca": 3.671077291505705,
-          "se": 0.3964188568366746,
+          "hca": 3.6710772915057017,
+          "se": 0.39641885683667466,
           "n_games": 1005
         },
         {
           "team": "OKC",
-          "hca": 3.375250822620844,
-          "se": 0.396040004196641,
+          "hca": 3.3752508226208433,
+          "se": 0.39604000419664104,
           "n_games": 1008
         },
         {
           "team": "IND",
-          "hca": 3.3216557352191147,
-          "se": 0.39608388864293037,
+          "hca": 3.321655735219118,
+          "se": 0.3960838886429304,
           "n_games": 1006
         },
         {
           "team": "SAS",
-          "hca": 3.133067613993957,
+          "hca": 3.133067613993962,
           "se": 0.399451102019879,
           "n_games": 1003
         },
         {
           "team": "LAC",
-          "hca": 2.9562015326632514,
+          "hca": 2.956201532663258,
           "se": 0.39587217912543515,
           "n_games": 1007
         },
         {
           "team": "HOU",
-          "hca": 2.882487152942346,
-          "se": 0.39617376679622496,
+          "hca": 2.8824871529423413,
+          "se": 0.396173766796225,
           "n_games": 1007
         },
         {
           "team": "LAL",
-          "hca": 2.877609514842126,
+          "hca": 2.8776095148421317,
           "se": 0.39601703127865917,
           "n_games": 1007
         },
         {
           "team": "POR",
-          "hca": 2.8389777826117415,
-          "se": 0.39584077077767693,
+          "hca": 2.8389777826117464,
+          "se": 0.395840770777677,
           "n_games": 1007
         },
         {
           "team": "CLE",
-          "hca": 2.7874654920622293,
-          "se": 0.3958157112848108,
+          "hca": 2.787465492062219,
+          "se": 0.39581571128481086,
           "n_games": 1007
         },
         {
           "team": "BOS",
-          "hca": 2.7771542034891468,
-          "se": 0.3974593957786923,
+          "hca": 2.7771542034891357,
+          "se": 0.3974593957786924,
           "n_games": 1007
         },
         {
           "team": "PHX",
-          "hca": 2.670775075811219,
-          "se": 0.3952659890573547,
+          "hca": 2.6707750758112154,
+          "se": 0.39526598905735477,
           "n_games": 1010
         },
         {
           "team": "ATL",
-          "hca": 2.658200821957025,
-          "se": 0.39672940750747704,
+          "hca": 2.6582008219570294,
+          "se": 0.3967294075074771,
           "n_games": 1004
         },
         {
           "team": "MIL",
-          "hca": 2.654413369835269,
-          "se": 0.3958179802360097,
+          "hca": 2.6544133698352734,
+          "se": 0.3958179802360098,
           "n_games": 1007
         },
         {
@@ -3027,86 +3501,86 @@
         },
         {
           "team": "MEM",
-          "hca": 2.5524461573527266,
-          "se": 0.39587595542050413,
+          "hca": 2.5524461573527257,
+          "se": 0.39587595542050424,
           "n_games": 1007
         },
         {
           "team": "TOR",
-          "hca": 2.518249695564334,
+          "hca": 2.5182496955643368,
           "se": 0.39582057602439563,
           "n_games": 1007
         },
         {
           "team": "ORL",
-          "hca": 2.4686423793516132,
-          "se": 0.39649974834755003,
+          "hca": 2.468642379351578,
+          "se": 0.3964997483475501,
           "n_games": 1005
         },
         {
           "team": "DET",
-          "hca": 2.4625503565903086,
+          "hca": 2.462550356590304,
           "se": 0.3968676472247786,
           "n_games": 1002
         },
         {
           "team": "SAC",
-          "hca": 2.450266776460943,
-          "se": 0.3966022913538172,
+          "hca": 2.450266776460937,
+          "se": 0.39660229135381725,
           "n_games": 1006
         },
         {
           "team": "MIN",
-          "hca": 2.424463100727877,
+          "hca": 2.42446310072788,
           "se": 0.39697102259147876,
           "n_games": 1003
         },
         {
           "team": "MIA",
-          "hca": 2.378554996437898,
-          "se": 0.39626303454643835,
+          "hca": 2.3785549964379022,
+          "se": 0.3962630345464384,
           "n_games": 1007
         },
         {
           "team": "NOP",
-          "hca": 2.360320722148189,
-          "se": 0.39628674083919246,
+          "hca": 2.3603207221481632,
+          "se": 0.3962867408391925,
           "n_games": 1006
         },
         {
           "team": "WAS",
-          "hca": 2.1924218327748615,
-          "se": 0.397350571844011,
+          "hca": 2.1924218327748703,
+          "se": 0.3973505718440111,
           "n_games": 1006
         },
         {
           "team": "NYK",
-          "hca": 2.0988986638410925,
-          "se": 0.3971546247917827,
+          "hca": 2.098898663841093,
+          "se": 0.39715462479178276,
           "n_games": 1003
         },
         {
           "team": "CHA",
-          "hca": 2.0289571304803715,
-          "se": 0.42518687189152304,
+          "hca": 2.0289571304803724,
+          "se": 0.42518687189152315,
           "n_games": 879
         },
         {
           "team": "PHI",
-          "hca": 1.9869471770405547,
+          "hca": 1.9869471770405729,
           "se": 0.39616080367125583,
           "n_games": 1006
         },
         {
           "team": "CHI",
-          "hca": 1.896435373723129,
-          "se": 0.39635468785622385,
+          "hca": 1.8964353737231667,
+          "se": 0.3963546878562239,
           "n_games": 1005
         },
         {
           "team": "BKN",
-          "hca": 1.6721782891814747,
-          "se": 0.3964566846383749,
+          "hca": 1.6721782891814716,
+          "se": 0.39645668463837497,
           "n_games": 1007
         }
       ]
@@ -4913,77 +5387,77 @@
           "win": {
             "r2": 0.11804303361406532,
             "ci": [
-              0.06834449585096643,
-              0.16221764402787986
+              0.06834449585096648,
+              0.1622176440278798
             ]
           },
           "off": {
-            "r2": 0.08531606553594384,
+            "r2": 0.08531606553594429,
             "ci": [
-              -0.01714061942492252,
-              0.15229614318878032
+              -0.017140619424920966,
+              0.15229614318878026
             ]
           },
           "def": {
             "r2": 0.10983720628853377,
             "ci": [
               0.0650959676786569,
-              0.15086171204600538
+              0.15086171204600532
             ]
           }
         },
         "Execution (results)": {
           "n_metrics": 35,
           "win": {
-            "r2": 0.9208425520086134,
+            "r2": 0.9208425520086129,
             "ci": [
-              0.9090146551134218,
-              0.9332795716630726
+              0.9090146551134213,
+              0.9332795716630713
             ]
           },
           "off": {
-            "r2": 0.9746290853897173,
+            "r2": 0.9746290853897206,
             "ci": [
-              0.9655374358500961,
-              0.9821718845632593
+              0.9655374358501027,
+              0.982171884563262
             ]
           },
           "def": {
-            "r2": 0.9723311145039671,
+            "r2": 0.9723311145039665,
             "ci": [
-              0.966759437523232,
-              0.9766757320292858
+              0.9667594375232312,
+              0.976675732029285
             ]
           }
         },
         "Everything": {
           "n_metrics": 44,
           "win": {
-            "r2": 0.9216946093854792,
+            "r2": 0.9216946093854793,
             "ci": [
-              0.9106570939254696,
-              0.931836007493145
+              0.9106570939254698,
+              0.9318360074931445
             ]
           },
           "off": {
-            "r2": 0.9687813074086921,
+            "r2": 0.9687813074086876,
             "ci": [
-              0.9474456145430629,
-              0.9831829720875228
+              0.947445614543051,
+              0.983182972087523
             ]
           },
           "def": {
-            "r2": 0.9737933915606961,
+            "r2": 0.9737933915606954,
             "ci": [
-              0.9691632668448822,
-              0.9778482848017488
+              0.9691632668448813,
+              0.9778482848017485
             ]
           }
         }
       },
       "beyond_net_rating": {
         "Everything": {
-          "r2": 0.00998019897211666,
+          "r2": 0.009980198972116883,
           "ci": [
             -0.02001414172387435,
             0.03161223247619263
@@ -4995,49 +5469,49 @@
           "family": "Defense",
           "n_metrics": 9,
           "alone_r2": {
-            "r2": 0.6199426814122684,
+            "r2": 0.6199426814122686,
             "ci": [
-              0.5806647383979235,
-              0.6553590534846286
+              0.5806647383979237,
+              0.6553590534846288
             ]
           },
-          "loss_if_removed": 0.07907568972652834
+          "loss_if_removed": 0.07907568972652645
         },
         {
           "family": "Where points come from",
           "n_metrics": 8,
           "alone_r2": {
-            "r2": 0.5257503308132949,
+            "r2": 0.5257503308132897,
             "ci": [
-              0.3588616303558564,
-              0.6325421649167937
+              0.3588616303558475,
+              0.6325421649167909
             ]
           },
-          "loss_if_removed": 0.00039661671181412395
+          "loss_if_removed": 0.00039661671181367986
         },
         {
           "family": "Shot making",
           "n_metrics": 8,
           "alone_r2": {
-            "r2": 0.5149542597229441,
+            "r2": 0.5149542597229442,
             "ci": [
               0.46918137652922287,
-              0.5556857508681065
+              0.5556857508681068
             ]
           },
-          "loss_if_removed": 0.008915329328863741
+          "loss_if_removed": 0.008915329328857191
         },
         {
           "family": "Rebounding",
           "n_metrics": 3,
           "alone_r2": {
-            "r2": 0.4400676581078522,
+            "r2": 0.4400676581078521,
             "ci": [
-              0.3912770868738446,
-              0.4865465924807332
+              0.3912770868738445,
+              0.48654659248073295
             ]
           },
-          "loss_if_removed": 0.013160275271872468
+          "loss_if_removed": 0.013160275271874022
         },
         {
           "family": "Ball movement",
@@ -5049,7 +5523,7 @@
               0.4649284421430941
             ]
           },
-          "loss_if_removed": -0.00020390612600995617
+          "loss_if_removed": -0.000203906126009179
         },
         {
           "family": "Ball security",
@@ -5061,7 +5535,7 @@
               0.31312510632000295
             ]
           },
-          "loss_if_removed": 0.0052917700921408795
+          "loss_if_removed": 0.0052917700921412125
         },
         {
           "family": "Shot diet",
@@ -5069,11 +5543,11 @@
           "alone_r2": {
             "r2": 0.11708661345183946,
             "ci": [
-              0.07487257568468768,
+              0.07487257568468772,
               0.15657015854957174
             ]
           },
-          "loss_if_removed": 0.0008599596794385267
+          "loss_if_removed": 0.0008599596794384157
         },
         {
           "family": "Free throws",
@@ -5085,7 +5559,7 @@
               0.11261861353541197
             ]
           },
-          "loss_if_removed": 0.005748462379307151
+          "loss_if_removed": 0.005748462379307373
         }
       ],
       "net_rating_alone": {
@@ -5103,72 +5577,72 @@
         "Style (choices)": {
           "n_metrics": 26,
           "win": {
-            "r2": 0.30623158652007476,
+            "r2": 0.30623158652007243,
             "ci": [
-              0.20369859072850316,
-              0.4108032180868914
+              0.20369859072849772,
+              0.4108032180868916
             ]
           },
           "off": {
-            "r2": 0.1665829260928462,
+            "r2": 0.16658292609284786,
             "ci": [
-              -0.11740279381810603,
-              0.35524583014503774
+              -0.1174027938181008,
+              0.3552458301450375
             ]
           },
           "def": {
-            "r2": 0.31447960567185385,
+            "r2": 0.3144796056718536,
             "ci": [
-              0.24192699958566047,
-              0.3999817324108578
+              0.24192699958566014,
+              0.3999817324108575
             ]
           }
         },
         "Execution (results)": {
           "n_metrics": 51,
           "win": {
-            "r2": 0.905866168502924,
+            "r2": 0.9058661685029228,
             "ci": [
-              0.8892930504976221,
-              0.9228649378914372
+              0.8892930504976214,
+              0.9228649378914364
             ]
           },
           "off": {
-            "r2": 0.9673885343465591,
+            "r2": 0.9673885343465619,
             "ci": [
-              0.9528589333907662,
-              0.980310209293477
+              0.9528589333907788,
+              0.9803102092934766
             ]
           },
           "def": {
-            "r2": 0.9622031606821587,
+            "r2": 0.9622031606821578,
             "ci": [
-              0.9546055422166897,
-              0.9704648545174857
+              0.9546055422166875,
+              0.9704648545174865
             ]
           }
         },
         "Effort (hustle, speed)": {
           "n_metrics": 8,
           "win": {
-            "r2": 0.2114566779541942,
+            "r2": 0.21145667795419432,
             "ci": [
-              0.09443946649210475,
+              0.0944394664921049,
               0.31280888039016613
             ]
           },
           "off": {
             "r2": 0.20272425986281595,
             "ci": [
-              0.11796462203445081,
+              0.11796462203445075,
               0.2856347052363498
             ]
           },
           "def": {
-            "r2": 0.16595553945188757,
+            "r2": 0.16595553945188746,
             "ci": [
-              0.0028481014879483168,
-              0.2940922098597888
+              0.0028481014879482,
+              0.29409220985978873
             ]
           }
         },
@@ -5177,55 +5651,55 @@
           "win": {
             "r2": 0.40019359490462747,
             "ci": [
-              0.27986083071029366,
-              0.47389565712981174
+              0.2798608307102933,
+              0.4738956571298119
             ]
           },
           "off": {
-            "r2": 0.1672175592465338,
+            "r2": 0.1672175592465336,
             "ci": [
-              -0.20017491439591803,
-              0.4040785120981382
+              -0.2001749143959188,
+              0.40407851209813855
             ]
           },
           "def": {
-            "r2": 0.45923668490217096,
+            "r2": 0.4592366849021705,
             "ci": [
-              0.38372558053592104,
-              0.5373772582460108
+              0.3837255805359207,
+              0.5373772582460106
             ]
           }
         },
         "Everything": {
           "n_metrics": 85,
           "win": {
-            "r2": 0.9042847090063322,
+            "r2": 0.9042847090063326,
             "ci": [
-              0.8865299674179327,
-              0.9188243018010139
+              0.8865299674179326,
+              0.9188243018010146
             ]
           },
           "off": {
-            "r2": 0.9538718295100063,
+            "r2": 0.9538718295100086,
             "ci": [
-              0.9191087273515098,
-              0.9755018810118344
+              0.9191087273515016,
+              0.9755018810118428
             ]
           },
           "def": {
-            "r2": 0.9635585007294825,
+            "r2": 0.9635585007294845,
             "ci": [
-              0.9553087764434901,
-              0.9699593229641855
+              0.955308776443493,
+              0.9699593229641872
             ]
           }
         }
       },
       "beyond_net_rating": {
         "Style + effort": {
-          "r2": 0.032193924550276476,
+          "r2": 0.0321939245502767,
           "ci": [
-            0.010054106201959836,
+            0.01005410620195972,
             0.054124256052639465
           ]
         },
@@ -5233,7 +5707,7 @@
           "r2": 0.04114990257621365,
           "ci": [
             0.006686852192221504,
-            0.07096410832210044
+            0.0709641083221005
           ]
         }
       },
@@ -5242,10 +5716,10 @@
           "family": "Defense",
           "n_metrics": 13,
           "alone_r2": {
-            "r2": 0.6245260437460447,
+            "r2": 0.6245260437460449,
             "ci": [
-              0.5225148362507477,
-              0.7046978221744604
+              0.5225148362507479,
+              0.7046978221744611
             ]
           },
           "loss_if_removed": 0.09676008927010082
@@ -5254,13 +5728,13 @@
           "family": "Shot making",
           "n_metrics": 14,
           "alone_r2": {
-            "r2": 0.5348776771946439,
+            "r2": 0.5348776771946441,
             "ci": [
-              0.471419002668424,
-              0.6060737891902934
+              0.47141900266842424,
+              0.6060737891902936
             ]
           },
-          "loss_if_removed": 0.01156018559720573
+          "loss_if_removed": 0.011560185597206063
         },
         {
           "family": "Rebounding",
@@ -5268,47 +5742,47 @@
           "alone_r2": {
             "r2": 0.47693105334075214,
             "ci": [
-              0.39956647475966567,
-              0.5225167050613317
+              0.3995664747596656,
+              0.522516705061332
             ]
           },
-          "loss_if_removed": 0.010760879296070835
+          "loss_if_removed": 0.01076087929607128
         },
         {
           "family": "Where points come from",
           "n_metrics": 8,
           "alone_r2": {
-            "r2": 0.468557104735971,
+            "r2": 0.46855710473597423,
             "ci": [
-              0.11945198915839349,
-              0.6802714775922437
+              0.11945198915840358,
+              0.6802714775922422
             ]
           },
-          "loss_if_removed": -0.00015251500881341418
+          "loss_if_removed": -0.0001525150088130811
         },
         {
           "family": "Ball movement",
           "n_metrics": 11,
           "alone_r2": {
-            "r2": 0.42424069909548456,
+            "r2": 0.42424069909548445,
             "ci": [
-              0.15872911489823618,
+              0.15872911489823535,
               0.588830304071457
             ]
           },
-          "loss_if_removed": 0.0025507583895398867
+          "loss_if_removed": 0.0025507583895399977
         },
         {
           "family": "Attacking the paint",
           "n_metrics": 8,
           "alone_r2": {
-            "r2": 0.39925347410093237,
+            "r2": 0.39925347410093226,
             "ci": [
               0.320038315806256,
               0.4667427384633874
             ]
           },
-          "loss_if_removed": -0.0023013503401018154
+          "loss_if_removed": -0.0023013503401017044
         },
         {
           "family": "Ball security",
@@ -5317,34 +5791,34 @@
             "r2": 0.2304800883881558,
             "ci": [
               0.16907273431467967,
-              0.2953206541094714
+              0.29532065410947145
             ]
           },
-          "loss_if_removed": 0.004385005486235549
+          "loss_if_removed": 0.004385005486236215
         },
         {
           "family": "Effort and movement",
           "n_metrics": 8,
           "alone_r2": {
-            "r2": 0.2114566779541942,
+            "r2": 0.21145667795419432,
             "ci": [
-              0.07832912536411513,
-              0.31422146090445463
+              0.07832912536411524,
+              0.3142214609044546
             ]
           },
-          "loss_if_removed": -0.0009299049785672642
+          "loss_if_removed": -0.0009299049785667091
         },
         {
           "family": "Shot diet",
           "n_metrics": 11,
           "alone_r2": {
-            "r2": 0.1053573244474234,
+            "r2": 0.10535732444742263,
             "ci": [
-              -0.033836188194868395,
-              0.21364094026952501
+              -0.033836188194871164,
+              0.2136409402695253
             ]
           },
-          "loss_if_removed": 0.0016809149527163836
+          "loss_if_removed": 0.0016809149527168277
         },
         {
           "family": "Free throws",
@@ -5356,7 +5830,7 @@
               0.07263387755648296
             ]
           },
-          "loss_if_removed": 0.003609941801087202
+          "loss_if_removed": 0.0036099418010862028
         }
       ],
       "net_rating_alone": {

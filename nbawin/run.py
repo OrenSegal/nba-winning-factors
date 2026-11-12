@@ -101,14 +101,14 @@ def predictions(train: pd.DataFrame, test: pd.DataFrame, models: dict) -> dict:
 
 
 def results_table(test: pd.DataFrame, preds: dict) -> pd.DataFrame:
-    y = test["home_win"].to_numpy()
+    y, dates = test["home_win"].to_numpy(), test["GAME_DATE"].to_numpy()  # games on one date are resampled together
     rows = []
     for name, (p, y_hat) in preds.items():
         row = {"model": name, **score(y, p, y_hat)}
-        lo, hi = bootstrap_ci(y, lambda i: (y_hat[i] == y[i]).mean(), N_BOOT, SEED)
+        lo, hi = bootstrap_ci(y, lambda i: (y_hat[i] == y[i]).mean(), N_BOOT, SEED, groups=dates)
         row["accuracy_ci"] = [lo, hi]
         if p is not None:
-            row["log_loss_ci"] = list(bootstrap_ci(y, lambda i: score(y[i], p[i])["log_loss"], N_BOOT, SEED))
+            row["log_loss_ci"] = list(bootstrap_ci(y, lambda i: score(y[i], p[i])["log_loss"], N_BOOT, SEED, groups=dates))
         for season in TEST_SEASONS:
             m = (test["SEASON"] == season).to_numpy()
             row[f"accuracy_{season}"] = float((y_hat[m] == y[m]).mean())
@@ -118,18 +118,18 @@ def results_table(test: pd.DataFrame, preds: dict) -> pd.DataFrame:
 
 def paired_deltas(test: pd.DataFrame, preds: dict, model: str) -> dict:
     """Model minus each baseline, with paired bootstrap CIs over the same resampled games."""
-    y = test["home_win"].to_numpy()
+    y, dates = test["home_win"].to_numpy(), test["GAME_DATE"].to_numpy()
     p, y_hat = preds[model]
     out = {}
     for base in ["Baseline: home team wins", "Baseline: better season-to-date record wins",
                  "Simple model: logistic on win% difference only", ELO_ONLY, STRENGTH_ONLY]:
         bp, by = preds[base]
         d_acc = lambda i: (y_hat[i] == y[i]).mean() - (by[i] == y[i]).mean()
-        entry = {"accuracy_delta": float(d_acc(np.arange(len(y)))), "accuracy_delta_ci": bootstrap_ci(y, d_acc, N_BOOT, SEED)}
+        entry = {"accuracy_delta": float(d_acc(np.arange(len(y)))), "accuracy_delta_ci": bootstrap_ci(y, d_acc, N_BOOT, SEED, groups=dates)}
         if bp is not None:
             d_ll = lambda i: score(y[i], p[i])["log_loss"] - score(y[i], bp[i])["log_loss"]
             entry["log_loss_delta"] = float(d_ll(np.arange(len(y))))
-            entry["log_loss_delta_ci"] = bootstrap_ci(y, d_ll, N_BOOT, SEED)
+            entry["log_loss_delta_ci"] = bootstrap_ci(y, d_ll, N_BOOT, SEED, groups=dates)
         out[base] = entry
     return out
 
@@ -265,7 +265,7 @@ def write_report(summary: dict, table: pd.DataFrame, path: Path) -> None:
         ece = f"{r['ece']:.3f}" if pd.notna(r.get("ece")) else "n/a"
         lines.append(f"| {r['model']} | {r['accuracy']:.3f} {fmt_ci(r['accuracy_ci'])} | {ll} | {brier} | {ece} | "
                      + " | ".join(f"{r[c]:.3f}" for c in season_cols) + " |")
-    lines += ["", "Paired bootstrap over test games, model minus baseline (positive accuracy delta and negative log-loss delta = model better):", ""]
+    lines += ["", "Paired bootstrap over test dates (all games on a date are resampled together), model minus baseline (positive accuracy delta and negative log-loss delta = model better):", ""]
     for model, deltas in summary["deltas"].items():
         for base, d in deltas.items():
             s = f"- {model} vs {base}: accuracy {d['accuracy_delta']:+.3f} {fmt_ci(d['accuracy_delta_ci'])}"

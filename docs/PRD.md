@@ -37,7 +37,7 @@ A hiring manager, collaborator or reader of the repo who wants to see sound data
 - Metrics: accuracy, log loss, Brier, ECE, calibration plot.
 
 ## Success criteria
-- `uv sync --locked && uv run pytest && uv run python -m nbawin.run` works on a clean clone; two runs give byte-identical `metrics.json`.
+- `uv sync --locked && uv run pytest && uv run python -m nbawin.run` works on a clean clone; a rerun reproduces `report.md` byte for byte and every value in `metrics.json` to better than 1e-11 relative (float summation order differs between machines).
 - Leakage tests pass (own and future games cannot move a game's features).
 - README claims match `results/report.md`.
 

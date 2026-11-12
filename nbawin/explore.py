@@ -271,7 +271,7 @@ def report_lines(ex: dict) -> list[str]:
     lines += ["", "### Skill or luck? Persistence of team stats", "", "Split-half reliability (odd vs even games, Spearman-Brown) and year-over-year correlation:", "",
               "| Stat | Split-half | Year over year |", "|---|---|---|"]
     lines += [f"| {p['label']} | {p['split_half']:.2f} | {p['year_over_year']:.2f} |" for p in ex["persistence"]]
-    lines += ["", "### Opening weeks: Elo vs this season's record", "", "| Games played | Test games | Home | Elo | Record |", "|---|---|---|---|---|"]
+    lines += ["", "### Opening weeks: Elo vs this season's net rating", "", "| Games played | Test games | Home | Elo | Net rating |", "|---|---|---|---|---|"]
     lines += [f"| {r['bucket']} | {r['n_games']} | {r['acc_home']:.3f} | {r['acc_elo']:.3f} | {r['acc_record']:.3f} |" for r in ex["early_season"]]
     hc = ex["home_court"]
     lines += ["", f"### Home-court value by franchise (league average {hc['league_avg_points']:.1f} points, controlling for Elo)", "",

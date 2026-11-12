@@ -228,3 +228,14 @@ def test_season_deltas_and_holm_hand_computed():
     assert d["mean"] == pytest.approx(0.0375) and d["sign_test_p"] == pytest.approx(1.0)
     assert d["ci"][0] < 0 < d["ci"][1]
     assert explore._holm([0.01, 0.04, 0.03]) == pytest.approx([0.03, 0.06, 0.06])
+
+
+def test_bootstrap_ci_resamples_whole_groups():
+    # 50 dates of 20 games; every game on a date has the same outcome, so the 1000 rows carry 50 independent draws
+    rng = np.random.default_rng(0)
+    y = np.repeat(rng.integers(0, 2, 50), 20).astype(float)
+    dates = np.repeat(np.arange(50), 20)
+    iid = bootstrap_ci(y, lambda i: y[i].mean(), n=500)
+    by_date = bootstrap_ci(y, lambda i: y[i].mean(), n=500, groups=dates)
+    assert by_date[0] < y.mean() < by_date[1]
+    assert (by_date[1] - by_date[0]) > 3 * (iid[1] - iid[0])  # sqrt(20) = 4.5 times wider in expectation

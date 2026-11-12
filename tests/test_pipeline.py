@@ -147,6 +147,10 @@ def test_run_writes_outputs(tmp_path, monkeypatch):
     assert "## What predicts a win before tipoff" in report and "## Walk-forward across all seasons" in report
     assert "## What separates winning teams" in report and (tmp_path / "factor_atlas.csv").exists()
     assert (tmp_path / "metrics.json").exists() and (tmp_path / "walk_forward.png").exists()
+    # the Elo and team-strength references are scored on the test split and in the walk-forward
+    table, wf = report.split("Paired bootstrap")[0], report.split("## Walk-forward across all seasons")[1]
+    for name in (run.ELO_ONLY, run.STRENGTH_ONLY):
+        assert f"| {name} |" in table and name in wf
 
 
 # ---- wide factor table ------------------------------------------------------

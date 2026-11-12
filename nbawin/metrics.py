@@ -28,9 +28,19 @@ def score(y, p, y_hat=None) -> dict:
     }
 
 
-def bootstrap_ci(y, fn, n: int = 1000, seed: int = 0, alpha: float = 0.05) -> tuple[float, float]:
-    """Percentile CI of fn(idx) over n resamples of row indices (paired across models)."""
+def bootstrap_ci(y, fn, n: int = 1000, seed: int = 0, alpha: float = 0.05, groups=None) -> tuple[float, float]:
+    """Percentile CI of fn(idx) over n resamples of row indices (paired across models).
+
+    With `groups` (one label per row, e.g. the game date) whole groups are resampled, so rows that
+    share a group are never treated as independent draws.
+    """
     rng = np.random.default_rng(seed)
-    stats = [fn(rng.integers(0, len(y), len(y))) for _ in range(n)]
+    if groups is None:
+        draw = lambda: rng.integers(0, len(y), len(y))
+    else:
+        codes = np.unique(np.asarray(groups), return_inverse=True)[1]
+        members = [np.flatnonzero(codes == g) for g in range(codes.max() + 1)]
+        draw = lambda: np.concatenate([members[g] for g in rng.integers(0, len(members), len(members))])
+    stats = [fn(draw()) for _ in range(n)]
     lo, hi = np.quantile(stats, [alpha / 2, 1 - alpha / 2])
     return float(lo), float(hi)

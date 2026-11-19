@@ -201,6 +201,10 @@ def test_atlas_finds_a_planted_signal_and_ignores_shuffled_labels():
     Z = style.zscore(X, meta["SEASON"])
     assert Z["fg3a_rate"].groupby(meta["SEASON"]).mean().abs().max() < 1e-9  # era trend removed
     assert X.loc[meta["SEASON"] < "2013-14", "drives_100"].isna().all()  # tracking starts 2013-14
+    # hustle starts 2016-17: the 2015-16 table is a pilot covering 15 teams over a game or two, not a season
+    hustle = ["deflections_100", "contested_100", "charges_100", "screen_ast_100", "loose_balls_100", "box_outs_100"]
+    assert X.loc[meta["SEASON"] < "2016-17", hustle].isna().all().all()
+    assert X.loc[meta["SEASON"] >= "2017-18", hustle].notna().all().all()
     planted = Z.assign(planted=style.zscore(meta[["win"]], meta["SEASON"])["win"])
     style.META["planted"] = dict(label="planted", family="test", role="style", definition="")
     try:

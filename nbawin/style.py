@@ -1,4 +1,4 @@
-"""Team-season factor atlas: ~110 descriptive metrics (shot diet, shot making, drives, passing, rebounding,
+"""Team-season factor atlas: 86 descriptive metrics (shot diet, shot making, drives, passing, rebounding,
 defense, hustle) tested against winning.
 
 Question: is winning explained by style (how a team chooses to play) or by execution (how well the shots go
@@ -126,6 +126,11 @@ def load() -> pd.DataFrame:
 def build(raw: pd.DataFrame):
     """(meta, X): outcomes per team-season, and every metric as a raw value."""
     d = raw.copy()
+    # A season table that covers only part of the league is not a season: the 2015-16 hustle table is a pilot
+    # (15 teams over a game or two, five times the usual spread), so hustle starts with the first full season.
+    for c in [c for c in d if c.startswith("hus_")]:
+        full = d[c].notna().groupby(d["SEASON"]).transform("all")
+        d[c] = d[c].where(full)
     zone = lambda z, s: d[f"zone_{z}_{s}"]
     zs = ["RestrictedArea", "InThePaintNonRA", "MidRange", "LeftCorner3", "RightCorner3", "AbovetheBreak3", "Backcourt"]
     d["_fga"] = sum(zone(z, "FGA") for z in zs)

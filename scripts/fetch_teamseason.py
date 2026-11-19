@@ -2,7 +2,8 @@
 
 One row per team per season, columns prefixed by the table they came from. The analysis never calls
 this; it reads the committed CSVs. Refresh with:  uv run --group fetch python scripts/fetch_teamseason.py
-Delete a file to refetch that season. Tracking tables start in 2013-14, hustle in 2015-16.
+Delete a file to refetch that season. Tracking tables start in 2013-14, hustle in 2015-16
+(a 15-team pilot; nbawin/style.py uses hustle from 2016-17, the first season covering every team).
 """
 
 import time

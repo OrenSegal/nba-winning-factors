@@ -1,11 +1,11 @@
-Train: 23970 games (2000-01 to 2022-23). Test: 3212 games (2023-24, 2024-25, 2025-26).
+Train: 23969 games (2000-01 to 2022-23). Test: 3212 games (2023-24, 2024-25, 2025-26).
 
 ## Primary comparison
 
 Named before the others: walk-forward accuracy of the all-features logistic against the record rule, one difference per season. Every other comparison in this report is secondary and uncorrected unless it says otherwise.
 
-- Logistic regression (all features) minus Baseline: better season-to-date record wins, accuracy: mean +0.0175, 95% t interval [+0.0102, +0.0248] over 21 seasons; higher in 18, lower in 3; sign test p 0.0015
-- Logistic regression (all features) minus Simple model: team strength only (Elo, net rating, win%, era), accuracy: mean -0.0062, 95% t interval [-0.0094, -0.0030] over 21 seasons; higher in 3, lower in 17; sign test p 0.0026
+- Logistic regression (all features) minus Baseline: better season-to-date record wins, accuracy: mean +0.0174, 95% t interval [+0.0101, +0.0247] over 21 seasons; higher in 18, lower in 3; sign test p 0.0015
+- Logistic regression (all features) minus Simple model: team strength only (Elo, net rating, win%, era), accuracy: mean -0.0060, 95% t interval [-0.0092, -0.0028] over 21 seasons; higher in 3, lower in 17; sign test p 0.0026
 - Logistic regression (all features) minus Simple model: team strength only (Elo, net rating, win%, era), log loss: mean +0.0026, 95% t interval [+0.0010, +0.0043] over 21 seasons; higher in 15, lower in 6; sign test p 0.0784
 
 The first line is the primary comparison; the two against team strength are reported for context.
@@ -14,44 +14,44 @@ The first line is the primary comparison; the two against team strength are repo
 
 | Model | Accuracy [95% CI] | Log loss [95% CI] | Brier | ECE | Acc 2023-24 | Acc 2024-25 | Acc 2025-26 |
 |---|---|---|---|---|---|---|---|
-| Baseline: home team wins | 0.543 [0.526, 0.557] | 0.6939 [0.689, 0.700] | 0.2503 | 0.047 | 0.537 | 0.543 | 0.549 |
+| Baseline: home team wins | 0.543 [0.526, 0.557] | 0.6939 [0.689, 0.700] | 0.2504 | 0.047 | 0.537 | 0.543 | 0.549 |
 | Baseline: better season-to-date record wins | 0.658 [0.640, 0.673] | n/a | n/a | n/a | 0.641 | 0.656 | 0.676 |
-| Logistic regression (all features) | 0.664 [0.648, 0.682] | 0.6053 [0.591, 0.620] | 0.2090 | 0.036 | 0.651 | 0.659 | 0.683 |
+| Logistic regression (all features) | 0.664 [0.648, 0.682] | 0.6053 [0.591, 0.620] | 0.2090 | 0.036 | 0.650 | 0.659 | 0.683 |
 | Logistic regression (four factors + rest only) | 0.672 [0.655, 0.689] | 0.6054 [0.591, 0.620] | 0.2089 | 0.038 | 0.661 | 0.665 | 0.690 |
-| Gradient boosting (all features) | 0.663 [0.646, 0.681] | 0.6098 [0.595, 0.624] | 0.2108 | 0.040 | 0.655 | 0.655 | 0.680 |
-| XGBoost (all features) | 0.661 [0.644, 0.679] | 0.6103 [0.595, 0.626] | 0.2109 | 0.041 | 0.654 | 0.652 | 0.678 |
-| Decision tree (all features, depth 4) | 0.667 [0.651, 0.683] | 0.6145 [0.599, 0.629] | 0.2125 | 0.045 | 0.648 | 0.661 | 0.690 |
-| Simple model: logistic on win% difference only | 0.659 [0.641, 0.675] | 0.6154 [0.602, 0.629] | 0.2138 | 0.047 | 0.654 | 0.650 | 0.674 |
+| Gradient boosting (all features) | 0.663 [0.647, 0.681] | 0.6096 [0.595, 0.624] | 0.2107 | 0.039 | 0.649 | 0.658 | 0.684 |
+| XGBoost (all features) | 0.658 [0.642, 0.676] | 0.6105 [0.596, 0.626] | 0.2110 | 0.040 | 0.648 | 0.653 | 0.674 |
+| Decision tree (all features, depth 4) | 0.660 [0.643, 0.676] | 0.6151 [0.600, 0.630] | 0.2128 | 0.045 | 0.654 | 0.647 | 0.679 |
+| Simple model: logistic on win% difference only | 0.659 [0.641, 0.675] | 0.6154 [0.602, 0.629] | 0.2138 | 0.048 | 0.654 | 0.650 | 0.674 |
 | Simple model: logistic on Elo difference only | 0.668 [0.652, 0.685] | 0.6082 [0.595, 0.622] | 0.2104 | 0.045 | 0.655 | 0.665 | 0.684 |
-| Simple model: team strength only (Elo, net rating, win%, era) | 0.672 [0.656, 0.688] | 0.6029 [0.590, 0.617] | 0.2081 | 0.027 | 0.659 | 0.664 | 0.692 |
+| Simple model: team strength only (Elo, net rating, win%, era) | 0.671 [0.655, 0.688] | 0.6029 [0.590, 0.617] | 0.2081 | 0.027 | 0.659 | 0.662 | 0.692 |
 
 Paired bootstrap over test dates (all games on a date are resampled together), model minus baseline (positive accuracy delta and negative log-loss delta = model better):
 
-- Logistic regression (all features) vs Baseline: home team wins: accuracy +0.121 [0.102, 0.142], log loss -0.0886 [-0.102, -0.074]
-- Logistic regression (all features) vs Baseline: better season-to-date record wins: accuracy +0.007 [-0.007, 0.020]
-- Logistic regression (all features) vs Simple model: logistic on win% difference only: accuracy +0.005 [-0.003, 0.015], log loss -0.0101 [-0.014, -0.006]
-- Logistic regression (all features) vs Simple model: logistic on Elo difference only: accuracy -0.003 [-0.014, 0.006], log loss -0.0029 [-0.008, 0.003]
-- Logistic regression (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.007 [-0.017, 0.002], log loss +0.0024 [-0.002, 0.006]
+- Logistic regression (all features) vs Baseline: home team wins: accuracy +0.121 [0.101, 0.142], log loss -0.0886 [-0.102, -0.074]
+- Logistic regression (all features) vs Baseline: better season-to-date record wins: accuracy +0.006 [-0.007, 0.020]
+- Logistic regression (all features) vs Simple model: logistic on win% difference only: accuracy +0.005 [-0.004, 0.014], log loss -0.0101 [-0.014, -0.006]
+- Logistic regression (all features) vs Simple model: logistic on Elo difference only: accuracy -0.004 [-0.014, 0.006], log loss -0.0029 [-0.009, 0.003]
+- Logistic regression (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.007 [-0.016, 0.002], log loss +0.0024 [-0.002, 0.006]
 - Logistic regression (four factors + rest only) vs Baseline: home team wins: accuracy +0.129 [0.110, 0.149], log loss -0.0885 [-0.102, -0.074]
 - Logistic regression (four factors + rest only) vs Baseline: better season-to-date record wins: accuracy +0.015 [0.001, 0.029]
 - Logistic regression (four factors + rest only) vs Simple model: logistic on win% difference only: accuracy +0.013 [0.003, 0.023], log loss -0.0100 [-0.014, -0.006]
 - Logistic regression (four factors + rest only) vs Simple model: logistic on Elo difference only: accuracy +0.004 [-0.006, 0.015], log loss -0.0027 [-0.008, 0.003]
-- Logistic regression (four factors + rest only) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy +0.000 [-0.010, 0.009], log loss +0.0025 [-0.002, 0.007]
-- Gradient boosting (all features) vs Baseline: home team wins: accuracy +0.120 [0.100, 0.141], log loss -0.0841 [-0.098, -0.069]
+- Logistic regression (four factors + rest only) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy +0.001 [-0.009, 0.010], log loss +0.0025 [-0.002, 0.007]
+- Gradient boosting (all features) vs Baseline: home team wins: accuracy +0.120 [0.100, 0.142], log loss -0.0844 [-0.098, -0.070]
 - Gradient boosting (all features) vs Baseline: better season-to-date record wins: accuracy +0.006 [-0.007, 0.018]
-- Gradient boosting (all features) vs Simple model: logistic on win% difference only: accuracy +0.004 [-0.005, 0.013], log loss -0.0056 [-0.010, -0.002]
-- Gradient boosting (all features) vs Simple model: logistic on Elo difference only: accuracy -0.005 [-0.015, 0.006], log loss +0.0017 [-0.004, 0.007]
-- Gradient boosting (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.009 [-0.017, 0.001], log loss +0.0069 [0.003, 0.011]
-- XGBoost (all features) vs Baseline: home team wins: accuracy +0.118 [0.097, 0.139], log loss -0.0836 [-0.098, -0.068]
-- XGBoost (all features) vs Baseline: better season-to-date record wins: accuracy +0.004 [-0.010, 0.018]
-- XGBoost (all features) vs Simple model: logistic on win% difference only: accuracy +0.002 [-0.008, 0.012], log loss -0.0051 [-0.010, -0.000]
-- XGBoost (all features) vs Simple model: logistic on Elo difference only: accuracy -0.007 [-0.018, 0.005], log loss +0.0022 [-0.004, 0.009]
-- XGBoost (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.011 [-0.020, 0.000], log loss +0.0074 [0.002, 0.013]
-- Decision tree (all features, depth 4) vs Baseline: home team wins: accuracy +0.124 [0.104, 0.144], log loss -0.0794 [-0.094, -0.065]
-- Decision tree (all features, depth 4) vs Baseline: better season-to-date record wins: accuracy +0.009 [-0.005, 0.022]
-- Decision tree (all features, depth 4) vs Simple model: logistic on win% difference only: accuracy +0.007 [-0.001, 0.017], log loss -0.0009 [-0.006, 0.004]
-- Decision tree (all features, depth 4) vs Simple model: logistic on Elo difference only: accuracy -0.001 [-0.012, 0.010], log loss +0.0063 [0.000, 0.012]
-- Decision tree (all features, depth 4) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.005 [-0.015, 0.005], log loss +0.0116 [0.007, 0.016]
+- Gradient boosting (all features) vs Simple model: logistic on win% difference only: accuracy +0.004 [-0.004, 0.014], log loss -0.0058 [-0.010, -0.002]
+- Gradient boosting (all features) vs Simple model: logistic on Elo difference only: accuracy -0.004 [-0.016, 0.007], log loss +0.0014 [-0.004, 0.007]
+- Gradient boosting (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.008 [-0.017, 0.002], log loss +0.0067 [0.002, 0.011]
+- XGBoost (all features) vs Baseline: home team wins: accuracy +0.116 [0.094, 0.136], log loss -0.0834 [-0.098, -0.068]
+- XGBoost (all features) vs Baseline: better season-to-date record wins: accuracy +0.001 [-0.012, 0.015]
+- XGBoost (all features) vs Simple model: logistic on win% difference only: accuracy -0.001 [-0.011, 0.010], log loss -0.0049 [-0.010, -0.000]
+- XGBoost (all features) vs Simple model: logistic on Elo difference only: accuracy -0.009 [-0.021, 0.002], log loss +0.0023 [-0.004, 0.009]
+- XGBoost (all features) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.013 [-0.023, -0.002], log loss +0.0076 [0.003, 0.013]
+- Decision tree (all features, depth 4) vs Baseline: home team wins: accuracy +0.117 [0.098, 0.137], log loss -0.0789 [-0.093, -0.064]
+- Decision tree (all features, depth 4) vs Baseline: better season-to-date record wins: accuracy +0.002 [-0.012, 0.016]
+- Decision tree (all features, depth 4) vs Simple model: logistic on win% difference only: accuracy +0.001 [-0.005, 0.007], log loss -0.0004 [-0.006, 0.005]
+- Decision tree (all features, depth 4) vs Simple model: logistic on Elo difference only: accuracy -0.008 [-0.018, 0.002], log loss +0.0069 [0.001, 0.013]
+- Decision tree (all features, depth 4) vs Simple model: team strength only (Elo, net rating, win%, era): accuracy -0.011 [-0.021, -0.002], log loss +0.0121 [0.007, 0.017]
 
 ![Calibration on held-out seasons](calibration.png)
 
@@ -61,25 +61,25 @@ Standardized logistic coefficients, home minus away, season-to-date. Positive = 
 
 | Feature | Log-odds per 1 SD [95% CI] |
 |---|---|
-| d_off_efg | +0.506 [+0.478, +0.539] |
-| d_def_efg | -0.379 [-0.415, -0.354] |
-| d_off_tov_rate | -0.265 [-0.296, -0.237] |
-| d_def_tov_rate | +0.247 [+0.221, +0.273] |
-| d_off_orb_rate | +0.210 [+0.182, +0.241] |
-| d_def_orb_rate | -0.202 [-0.233, -0.175] |
-| away_b2b | +0.143 [+0.105, +0.181] |
-| d_off_ft_rate | +0.117 [+0.089, +0.141] |
-| d_def_ft_rate | -0.102 [-0.130, -0.071] |
-| home_b2b | -0.086 [-0.118, -0.057] |
-| d_rest | -0.018 [-0.056, +0.018] |
+| d_off_efg | +0.506 [+0.480, +0.536] |
+| d_def_efg | -0.379 [-0.414, -0.353] |
+| d_off_tov_rate | -0.265 [-0.295, -0.235] |
+| d_def_tov_rate | +0.247 [+0.219, +0.274] |
+| d_off_orb_rate | +0.209 [+0.184, +0.240] |
+| d_def_orb_rate | -0.202 [-0.234, -0.174] |
+| away_b2b | +0.143 [+0.106, +0.178] |
+| d_off_ft_rate | +0.117 [+0.091, +0.140] |
+| d_def_ft_rate | -0.102 [-0.131, -0.072] |
+| home_b2b | -0.086 [-0.120, -0.054] |
+| d_rest | -0.018 [-0.057, +0.023] |
 
 ![Pre-game factor coefficients](coefficients.png)
 
 Permutation importance on test games (increase in log loss when the feature is shuffled):
 
-- Logistic regression (all features): d_net_rtg (0.0228), d_win (0.0100), d_off_efg (0.0078), d_def_efg (0.0038), home_b2b (0.0034)
-- Gradient boosting (all features): d_net_rtg (0.0629), d_win (0.0182), home_b2b (0.0018), away_b2b (0.0010), d_off_efg (0.0008)
-- XGBoost (all features): d_net_rtg (0.0629), d_win (0.0158), home_b2b (0.0020), d_def_orb_rate (0.0014), away_b2b (0.0010)
+- Logistic regression (all features): d_net_rtg (0.0234), d_win (0.0101), d_off_efg (0.0076), d_def_efg (0.0037), home_b2b (0.0033)
+- Gradient boosting (all features): d_net_rtg (0.0612), d_win (0.0192), home_b2b (0.0014), away_b2b (0.0007), d_def_tov_rate (0.0006)
+- XGBoost (all features): d_net_rtg (0.0629), d_win (0.0151), home_b2b (0.0020), d_def_orb_rate (0.0014), away_b2b (0.0010)
 
 Depth-4 decision tree, the whole model (class = predicted home win):
 
@@ -97,15 +97,15 @@ Depth-4 decision tree, the whole model (class = predicted home win):
 |   |   |   |--- d_off_efg >  -0.002
 |   |   |   |   |--- class: 0
 |   |--- d_net_rtg >  -6.030
-|   |   |--- d_win <= -0.089
-|   |   |   |--- d_def_orb_rate <= -0.036
+|   |   |--- d_win <= -0.112
+|   |   |   |--- d_def_orb_rate <= -0.028
 |   |   |   |   |--- class: 1
-|   |   |   |--- d_def_orb_rate >  -0.036
+|   |   |   |--- d_def_orb_rate >  -0.028
 |   |   |   |   |--- class: 0
-|   |   |--- d_win >  -0.089
-|   |   |   |--- d_off_efg <= -0.025
-|   |   |   |   |--- class: 0
-|   |   |   |--- d_off_efg >  -0.025
+|   |   |--- d_win >  -0.112
+|   |   |   |--- d_net_rtg <= -2.155
+|   |   |   |   |--- class: 1
+|   |   |   |--- d_net_rtg >  -2.155
 |   |   |   |   |--- class: 1
 |--- d_net_rtg >  -0.840
 |   |--- d_net_rtg <= 5.652
@@ -135,8 +135,8 @@ Depth-4 decision tree, the whole model (class = predicted home win):
 ## Walk-forward across all seasons
 
 Each season is scored by models trained only on earlier seasons (first test season after 5 seasons of history).
-Mean over seasons: Baseline: better season-to-date record wins acc 0.647; Baseline: home team wins acc 0.579; Decision tree (all features, depth 4) acc 0.660; Gradient boosting (all features) acc 0.663; Logistic regression (all features) acc 0.664; Logistic regression (four factors + rest only) acc 0.664; Simple model: logistic on Elo difference only acc 0.667; Simple model: logistic on win% difference only acc 0.659; Simple model: team strength only (Elo, net rating, win%, era) acc 0.671; XGBoost (all features) acc 0.661.
-Mean log loss: Decision tree (all features, depth 4) 0.6164; Gradient boosting (all features) 0.6123; Logistic regression (all features) 0.6087; Logistic regression (four factors + rest only) 0.6096; Simple model: logistic on Elo difference only 0.6076; Simple model: logistic on win% difference only 0.6152; Simple model: team strength only (Elo, net rating, win%, era) 0.6061; XGBoost (all features) 0.6133.
+Mean over seasons: Baseline: better season-to-date record wins acc 0.647; Baseline: home team wins acc 0.579; Decision tree (all features, depth 4) acc 0.661; Gradient boosting (all features) acc 0.662; Logistic regression (all features) acc 0.664; Logistic regression (four factors + rest only) acc 0.664; Simple model: logistic on Elo difference only acc 0.667; Simple model: logistic on win% difference only acc 0.658; Simple model: team strength only (Elo, net rating, win%, era) acc 0.670; XGBoost (all features) acc 0.662.
+Mean log loss: Decision tree (all features, depth 4) 0.6165; Gradient boosting (all features) 0.6123; Logistic regression (all features) 0.6087; Logistic regression (four factors + rest only) 0.6096; Simple model: logistic on Elo difference only 0.6076; Simple model: logistic on win% difference only 0.6152; Simple model: team strength only (Elo, net rating, win%, era) 0.6061; XGBoost (all features) 0.6134.
 
 ![Walk-forward accuracy](walk_forward.png)
 
@@ -149,22 +149,22 @@ Mean log loss: Decision tree (all features, depth 4) 0.6164; Gradient boosting (
 | 2009-10 | 0.645 | 0.597 | 0.681 | 0.677 | 0.686 | 0.687 | 0.691 | 0.682 | 0.692 | 0.677 |
 | 2010-11 | 0.663 | 0.612 | 0.678 | 0.699 | 0.703 | 0.704 | 0.690 | 0.694 | 0.699 | 0.691 |
 | 2011-12 | 0.638 | 0.576 | 0.648 | 0.643 | 0.649 | 0.650 | 0.662 | 0.649 | 0.662 | 0.639 |
-| 2012-13 | 0.660 | 0.613 | 0.669 | 0.682 | 0.672 | 0.662 | 0.686 | 0.666 | 0.683 | 0.672 |
-| 2013-14 | 0.671 | 0.571 | 0.651 | 0.652 | 0.659 | 0.663 | 0.668 | 0.652 | 0.671 | 0.646 |
-| 2014-15 | 0.684 | 0.576 | 0.683 | 0.684 | 0.682 | 0.677 | 0.675 | 0.680 | 0.692 | 0.674 |
-| 2015-16 | 0.669 | 0.594 | 0.705 | 0.691 | 0.689 | 0.684 | 0.707 | 0.688 | 0.703 | 0.694 |
-| 2016-17 | 0.606 | 0.584 | 0.636 | 0.640 | 0.633 | 0.631 | 0.641 | 0.635 | 0.654 | 0.641 |
-| 2017-18 | 0.656 | 0.583 | 0.673 | 0.669 | 0.664 | 0.661 | 0.669 | 0.662 | 0.667 | 0.681 |
-| 2018-19 | 0.635 | 0.590 | 0.653 | 0.651 | 0.656 | 0.652 | 0.647 | 0.646 | 0.645 | 0.645 |
-| 2019-20 | 0.646 | 0.550 | 0.653 | 0.652 | 0.652 | 0.648 | 0.655 | 0.642 | 0.658 | 0.651 |
-| 2020-21 | 0.642 | 0.554 | 0.642 | 0.635 | 0.629 | 0.634 | 0.629 | 0.620 | 0.639 | 0.634 |
-| 2021-22 | 0.620 | 0.542 | 0.624 | 0.633 | 0.637 | 0.640 | 0.641 | 0.626 | 0.645 | 0.643 |
-| 2022-23 | 0.598 | 0.576 | 0.626 | 0.636 | 0.633 | 0.628 | 0.631 | 0.619 | 0.637 | 0.633 |
-| 2023-24 | 0.641 | 0.537 | 0.648 | 0.655 | 0.651 | 0.661 | 0.655 | 0.654 | 0.659 | 0.654 |
-| 2024-25 | 0.656 | 0.543 | 0.660 | 0.647 | 0.659 | 0.666 | 0.666 | 0.649 | 0.663 | 0.651 |
-| 2025-26 | 0.676 | 0.549 | 0.687 | 0.679 | 0.690 | 0.692 | 0.683 | 0.676 | 0.695 | 0.675 |
+| 2012-13 | 0.660 | 0.614 | 0.669 | 0.682 | 0.671 | 0.660 | 0.686 | 0.667 | 0.683 | 0.672 |
+| 2013-14 | 0.671 | 0.571 | 0.651 | 0.648 | 0.659 | 0.663 | 0.668 | 0.652 | 0.671 | 0.644 |
+| 2014-15 | 0.684 | 0.576 | 0.683 | 0.680 | 0.682 | 0.678 | 0.675 | 0.680 | 0.689 | 0.675 |
+| 2015-16 | 0.669 | 0.594 | 0.705 | 0.689 | 0.689 | 0.684 | 0.707 | 0.688 | 0.703 | 0.693 |
+| 2016-17 | 0.606 | 0.584 | 0.636 | 0.642 | 0.633 | 0.630 | 0.641 | 0.635 | 0.653 | 0.645 |
+| 2017-18 | 0.656 | 0.583 | 0.673 | 0.670 | 0.665 | 0.661 | 0.669 | 0.662 | 0.667 | 0.678 |
+| 2018-19 | 0.635 | 0.590 | 0.653 | 0.651 | 0.656 | 0.651 | 0.647 | 0.646 | 0.645 | 0.646 |
+| 2019-20 | 0.646 | 0.550 | 0.657 | 0.653 | 0.652 | 0.648 | 0.655 | 0.642 | 0.657 | 0.655 |
+| 2020-21 | 0.642 | 0.554 | 0.642 | 0.629 | 0.629 | 0.634 | 0.629 | 0.619 | 0.639 | 0.641 |
+| 2021-22 | 0.620 | 0.542 | 0.624 | 0.637 | 0.637 | 0.640 | 0.641 | 0.626 | 0.645 | 0.643 |
+| 2022-23 | 0.598 | 0.576 | 0.626 | 0.629 | 0.633 | 0.628 | 0.631 | 0.619 | 0.637 | 0.631 |
+| 2023-24 | 0.641 | 0.537 | 0.654 | 0.649 | 0.650 | 0.661 | 0.655 | 0.654 | 0.659 | 0.648 |
+| 2024-25 | 0.656 | 0.543 | 0.660 | 0.649 | 0.659 | 0.666 | 0.666 | 0.649 | 0.663 | 0.653 |
+| 2025-26 | 0.676 | 0.549 | 0.687 | 0.683 | 0.690 | 0.692 | 0.683 | 0.676 | 0.695 | 0.678 |
 
-Home win rate by season (the home-court edge shrank after 2018-19, so older training data miscalibrates recent seasons): 2000-01 0.597, 2001-02 0.588, 2002-03 0.624, 2003-04 0.615, 2004-05 0.606, 2005-06 0.600, 2006-07 0.588, 2007-08 0.603, 2008-09 0.615, 2009-10 0.597, 2010-11 0.612, 2011-12 0.576, 2012-13 0.613, 2013-14 0.571, 2014-15 0.576, 2015-16 0.594, 2016-17 0.584, 2017-18 0.583, 2018-19 0.590, 2019-20 0.550, 2020-21 0.554, 2021-22 0.542, 2022-23 0.576, 2023-24 0.537, 2024-25 0.543, 2025-26 0.549.
+Home win rate by season (the home-court edge shrank after 2018-19, so older training data miscalibrates recent seasons): 2000-01 0.597, 2001-02 0.588, 2002-03 0.624, 2003-04 0.615, 2004-05 0.606, 2005-06 0.600, 2006-07 0.588, 2007-08 0.603, 2008-09 0.615, 2009-10 0.597, 2010-11 0.612, 2011-12 0.576, 2012-13 0.614, 2013-14 0.571, 2014-15 0.576, 2015-16 0.594, 2016-17 0.584, 2017-18 0.583, 2018-19 0.590, 2019-20 0.550, 2020-21 0.554, 2021-22 0.542, 2022-23 0.576, 2023-24 0.537, 2024-25 0.543, 2025-26 0.549.
 
 ## What explains a win after the fact
 
@@ -179,20 +179,20 @@ Same-game four-factor differences against final margin. These are outcomes, not 
 
 ## Beyond the four factors: a wide factor screen
 
-54 candidate factors, each added to team strength (Elo, season-to-date net rating) and the current home-court regime. Train 23970 games, test 3212. 'z' is the in-sample Wald statistic (Bonferroni threshold 3.31); 'test log-loss change' is out of sample (negative = better), with a paired bootstrap CI.
+54 candidate factors, each added to team strength (Elo, season-to-date net rating) and the current home-court regime. Train 23969 games, test 3212. 'z' is the in-sample Wald statistic (Bonferroni threshold 3.31); 'test log-loss change' is out of sample (negative = better), with a paired bootstrap CI.
 
 | Factor | Family | Effect per 1 SD (log-odds) | z | Test log-loss change [95% CI] |
 |---|---|---|---|---|
-| away_b2b | Rest and schedule load | +0.119 | +8.3* | -0.0009 [-0.0027, +0.0008] |
-| d_rest | Rest and schedule load | +0.088 | +6.2* | -0.0018 [-0.0029, -0.0007] |
-| away_g4n3 | Rest and schedule load | +0.062 | +4.4* | -0.0003 [-0.0013, +0.0006] |
+| away_b2b | Rest and schedule load | +0.118 | +8.3* | -0.0009 [-0.0027, +0.0008] |
+| d_rest | Rest and schedule load | +0.087 | +6.1* | -0.0018 [-0.0029, -0.0007] |
+| away_g4n3 | Rest and schedule load | +0.062 | +4.3* | -0.0003 [-0.0013, +0.0006] |
 | d_def_fg3_pct | Pace and style | +0.063 | +4.1* | -0.0005 [-0.0012, +0.0001] |
-| home_b2b | Rest and schedule load | -0.056 | -4.0* | -0.0016 [-0.0026, -0.0006] |
+| home_b2b | Rest and schedule load | -0.055 | -3.9* | -0.0016 [-0.0025, -0.0006] |
 | away_g6n5 | Rest and schedule load | +0.052 | +3.7* | -0.0005 [-0.0014, +0.0003] |
 | home_alt_km | Altitude | +0.051 | +3.5* | -0.0000 [-0.0008, +0.0009] |
-| d_ewm5 | Recent form | +0.097 | +3.3* | -0.0008 [-0.0016, +0.0001] |
+| d_ewm5 | Recent form | +0.097 | +3.4* | -0.0008 [-0.0016, +0.0001] |
 | d_ewm8 | Recent form | +0.124 | +3.2 | -0.0007 [-0.0014, +0.0002] |
-| d_form10 | Recent form | +0.041 | +2.8 | -0.0006 [-0.0013, +0.0002] |
+| d_form10 | Recent form | +0.042 | +2.8 | -0.0006 [-0.0013, +0.0002] |
 | d_ewm20 | Recent form | +0.217 | +2.7 | -0.0003 [-0.0010, +0.0003] |
 | d_def_orb_rate | Four factors | -0.037 | -2.5 | -0.0001 [-0.0007, +0.0004] |
 | d_ast_rate | Pace and style | +0.035 | +2.4 | +0.0006 [-0.0000, +0.0011] |
@@ -206,21 +206,21 @@ Gain over strength-only (log loss, positive = family helps) and loss when remove
 
 | Family | Factors | Gain over strength [95% CI] | Holm-adjusted p for the gain | Loss if removed [95% CI] |
 |---|---|---|---|---|
-| Strength | 3 | baseline |  | -0.0002 [-0.0016, +0.0012] |
-| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | 0.602 | +0.0009 [-0.0001, +0.0019] |
-| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | 1.000 | -0.0005 [-0.0015, +0.0007] |
-| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | 1.000 | -0.0000 [-0.0010, +0.0008] |
-| Shot profile | 4 | -0.0003 [-0.0008, +0.0002] | 1.000 | -0.0004 [-0.0010, +0.0002] |
-| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | 0.048 | +0.0033 [+0.0012, +0.0056] |
-| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | 1.000 | -0.0004 [-0.0010, +0.0002] |
-| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | 1.000 | +0.0003 [-0.0004, +0.0010] |
-| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | 1.000 | +0.0000 [-0.0009, +0.0009] |
-| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | 1.000 | -0.0000 [-0.0008, +0.0007] |
-| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | 1.000 | -0.0002 [-0.0005, +0.0001] |
-| Era regime | 1 | baseline |  | +0.0019 [+0.0008, +0.0030] |
-| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | 1.000 | -0.0001 [-0.0003, +0.0002] |
+| Strength | 3 | baseline |  | -0.0001 [-0.0014, +0.0012] |
+| Recent form | 4 | +0.0008 [-0.0000, +0.0017] | 0.580 | +0.0009 [-0.0000, +0.0019] |
+| Four factors | 8 | +0.0004 [-0.0005, +0.0015] | 1.000 | -0.0003 [-0.0013, +0.0008] |
+| Pace and style | 11 | +0.0000 [-0.0011, +0.0011] | 1.000 | +0.0000 [-0.0009, +0.0009] |
+| Shot profile | 4 | -0.0003 [-0.0008, +0.0002] | 1.000 | -0.0003 [-0.0008, +0.0002] |
+| Rest and schedule load | 7 | +0.0032 [+0.0010, +0.0055] | 0.048 | +0.0034 [+0.0013, +0.0057] |
+| Home stands and road trips | 2 | -0.0002 [-0.0008, +0.0004] | 1.000 | -0.0002 [-0.0008, +0.0004] |
+| Travel and time zones | 6 | +0.0004 [-0.0003, +0.0012] | 1.000 | +0.0005 [-0.0002, +0.0011] |
+| Altitude | 2 | +0.0001 [-0.0009, +0.0009] | 1.000 | +0.0001 [-0.0008, +0.0010] |
+| Luck and regression | 2 | +0.0001 [-0.0002, +0.0004] | 1.000 | +0.0002 [-0.0005, +0.0008] |
+| Volatility and matchup shape | 4 | -0.0001 [-0.0004, +0.0003] | 1.000 | -0.0001 [-0.0004, +0.0002] |
+| Era regime | 1 | baseline |  | +0.0020 [+0.0010, +0.0031] |
+| Calendar and rematches | 3 | +0.0000 [-0.0003, +0.0003] | 1.000 | +0.0001 [-0.0002, +0.0004] |
 
-All 57 factors in a logistic model: log loss 0.5990, accuracy 0.674 (strength only 0.6029, 0.672; gradient boosting 0.6035).
+All 57 factors in a logistic model: log loss 0.5989, accuracy 0.675 (strength only 0.6029, 0.671; gradient boosting 0.6024).
 
 ### How long is a team's memory?
 
@@ -228,11 +228,11 @@ Leave-one-season-out log loss of one rating signal (lower is better):
 
 | Signal | Log loss | SE |
 |---|---|---|
-| EWMA half-life 2 games | 0.6393 | 0.0029 |
+| EWMA half-life 2 games | 0.6392 | 0.0030 |
 | EWMA half-life 3 games | 0.6305 | 0.0032 |
 | EWMA half-life 5 games | 0.6207 | 0.0035 |
 | EWMA half-life 8 games | 0.6144 | 0.0037 |
-| EWMA half-life 12 games | 0.6113 | 0.0038 |
+| EWMA half-life 12 games | 0.6112 | 0.0038 |
 | EWMA half-life 20 games | 0.6097 | 0.0039 |
 | EWMA half-life 30 games | 0.6096 | 0.0040 |
 | EWMA half-life 50 games | 0.6098 | 0.0040 |
@@ -275,7 +275,7 @@ Split-half reliability (odd vs even games, Spearman-Brown) and year-over-year co
 | 6-10 | 229 | 0.616 | 0.664 | 0.686 |
 | 11-20 | 460 | 0.576 | 0.670 | 0.676 |
 | 21-40 | 909 | 0.550 | 0.644 | 0.640 |
-| 41-60 | 892 | 0.511 | 0.647 | 0.640 |
+| 41-60 | 892 | 0.511 | 0.647 | 0.641 |
 | 61+ | 951 | 0.550 | 0.710 | 0.715 |
 
 ### Home-court value by franchise (league average 2.7 points, controlling for Elo)
@@ -293,7 +293,7 @@ Split-half reliability (odd vs even games, Spearman-Brown) and year-over-year co
 | LAL | 2.88 | 0.40 |
 | POR | 2.84 | 0.40 |
 | CLE | 2.79 | 0.40 |
-| BOS | 2.78 | 0.40 |
+| BOS | 2.77 | 0.40 |
 | PHX | 2.67 | 0.40 |
 | ATL | 2.66 | 0.40 |
 | MIL | 2.65 | 0.40 |

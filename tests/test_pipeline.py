@@ -251,3 +251,22 @@ def test_bootstrap_ci_resamples_whole_groups():
     by_date = bootstrap_ci(y, lambda i: y[i].mean(), n=500, groups=dates)
     assert by_date[0] < y.mean() < by_date[1]
     assert (by_date[1] - by_date[0]) > 3 * (iid[1] - iid[0])  # sqrt(20) = 4.5 times wider in expectation
+
+
+# ---- claims vs results ------------------------------------------------------
+
+def test_readme_results_table_matches_the_generated_report():
+    """Every row of the README's headline table is a row of results/report.md, digit for digit."""
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parent.parent
+    report = (root / "results" / "report.md").read_text().splitlines()
+    readme = (root / "README.md").read_text()
+    table = readme.split("| Model | Accuracy [95% CI] | Log loss [95% CI] | Brier | ECE |")[1].split("\n\n")[0]
+    rows = [r for r in table.splitlines() if r.startswith("| ") and not r.startswith("|---")]
+    assert len(rows) == 10
+    for row in rows:
+        assert any(line.startswith(row) for line in report), f"README row not in results/report.md: {row}"
+    counts = report[0]  # "Train: N games (...). Test: M games (...)."
+    for n in (counts.split("Train: ")[1].split(" ")[0], counts.split("Test: ")[1].split(" ")[0]):
+        assert f"({int(n):,} games)" in readme, f"README does not state {int(n):,} games"

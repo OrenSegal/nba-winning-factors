@@ -45,8 +45,12 @@ def to_games(logs: pd.DataFrame) -> pd.DataFrame:
 
     MATCHUP reads 'LAL vs. MIN' for the home team and 'MIN @ LAL' for the away team.
     Neutral-site games (both rows use '@', e.g. Paris, Mexico City, NBA Cup
-    semifinals) have no home team and are dropped.
+    semifinals) have no home team and are dropped. So are games that were never played:
+    the snapshot keeps a cancelled game as a 0-0 row pair with no result (2013-04-16
+    BOS vs. IND), which would otherwise be scored as a home loss.
     """
+    played = logs["PTS"].groupby(logs["GAME_ID"]).transform("sum") > 0
+    logs = logs[played]
     is_home = logs["MATCHUP"].str.contains(" vs. ", regex=False)
     n_home = is_home.groupby(logs["GAME_ID"]).transform("sum")
     logs, is_home = logs[n_home == 1], is_home[n_home == 1]

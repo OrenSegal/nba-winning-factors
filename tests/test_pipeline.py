@@ -29,6 +29,14 @@ def test_neutral_site_games_dropped(games):
         assert gid not in set(games["GAME_ID"])
 
 
+def test_unplayed_games_dropped(games):
+    # 2013-04-16 BOS vs. IND was cancelled after the Boston Marathon bombing and never replayed; the
+    # snapshot carries it as a 0-0 game with no result, which would otherwise count as a home loss
+    assert "0021201214" not in set(games["GAME_ID"])
+    assert (games["home_PTS"] + games["away_PTS"] > 0).all()
+    assert (games["margin"] != 0).all()  # an NBA game cannot end level
+
+
 # ---- feature arithmetic -----------------------------------------------------
 
 def test_four_factors_hand_computed():

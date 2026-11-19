@@ -14,7 +14,7 @@ Question 2 uses box-score stats from the game itself. Those are consequences of 
 - Seasons: 2000-01 through 2025-26 regular seasons (26 seasons), one CSV per season in `data/raw/` (committed). The analysis reads only these files; it makes no network calls.
 - Size: 31,244 games after dropping neutral-site and unplayed games. 2011-12 (990 games), 2019-20 and 2020-21 were shortened by lockout and COVID.
 - `load_team_logs` validates the snapshot on every load (no nulls, exactly two rows per game, no duplicates, no negative box-score values) and fails loudly otherwise.
-- Neutral-site games (Paris, Mexico City, NBA Cup semifinals) list both teams as away and are dropped.
+- Neutral-site games that the log marks as such (both teams listed as away) are dropped. The snapshot only does this for 2024-25 and 2025-26 (5 games each: Paris, Mexico City, NBA Cup semifinals). Earlier neutral-site games carry a nominal home team and are kept as home games; see Limitations.
 - One game was never played: 2013-04-16 BOS vs. IND, cancelled after the Boston Marathon bombing, sits in the log as 0-0 with no result. It is dropped.
 - One row per game is built from `MATCHUP` (`LAL vs. MIN` = LAL at home). Target: `home_win` (home points > away points).
 
@@ -151,6 +151,8 @@ What came out (full tables in `results/report.md`):
 - The factor screen and the factor-family table use one train/test split, so a "no gain" cannot distinguish a real zero from an effect too small for 3,212 games to detect; the memory half-life table is leave-one-season-out (it trains on future seasons) and is not comparable to the walk-forward numbers.
 - The held-out seasons have been looked at many times: `results/report.md` carries 25 paired comparisons (5 models against 5 references), 54 screened factors and 11 factor families, all scored on the same three seasons. Only the primary comparison above was fixed in advance and only the family gains are multiplicity-corrected; read the rest as description. The same-game four-factor R2 and 95.8% accuracy are close to an accounting identity and describe, not forecast.
 - The home-court table is 30 fixed effects with near-identical standard errors; partial pooling would shrink the extremes. Rest-day edge and the back-to-back flags are collinear, so the sign of the rest-day coefficient alone should not be read.
+- Venue is taken from the log's home/away label. Before 2024-25 the log gives neutral-site games a nominal home team, so they are scored as home games: the 88 seeding games of the 2020 Orlando bubble, Toronto's 36 "home" games in Tampa in 2020-21, and a handful of international and 2023 NBA Cup semifinal games (four of them in the 2023-24 test season: Las Vegas twice, Paris, Mexico City). Home-win rates, travel, time-zone and altitude factors are wrong for those games. They are under 0.5% of the sample.
+- Rest days and back-to-back flags are computed from the games kept, so a team's first game after a dropped neutral-site game looks more rested than it was (10 dropped games).
 - No player-level information: injuries, rest days of stars, trades and lineup changes are invisible. Season-to-date averages lag these.
 - No betting lines. The market spread is the real benchmark for game forecasts and would very likely beat these models.
 - Early-season games (first 10 per team) are excluded, so these results do not cover the opening weeks.
@@ -196,9 +198,10 @@ nbawin/dashboard.py  per-season data for the dashboard
 site/                dashboard (index.html): dash.js drives the timeline, story.js renders the findings panels
 nbawin/metrics.py    ECE, scoring, bootstrap CIs
 nbawin/run.py        models, baselines, figures, report
-scripts/fetch_data.py
+scripts/             fetch_data.py and fetch_teamseason.py (refresh data/raw), build_site.py (copy results into site/)
 tests/               feature arithmetic, leakage, split, metrics
 docs/PRD.md          goals, non-goals, success criteria
+docs/decisions.md    choices made and alternatives rejected
 .github/workflows/   CI: locked install + tests
 results/             generated outputs (committed for reading on GitHub)
 ```

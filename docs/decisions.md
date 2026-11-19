@@ -4,7 +4,7 @@ Short records of the choices that shaped the project. Each lists what was chosen
 
 **Static report site, no live service.** Chosen: a static page reading `metrics.json`. Rejected: FastAPI + MLflow + Streamlit (the first version; its only endpoint failed on every call and no model was ever served) and a hosted prediction API. Nothing consumes live predictions, and a static page cannot rot.
 
-**CSV snapshot, no database or persisted feature store.** The data is 8.5 MB and the full run takes about two minutes. Rejected: DuckDB/Parquet layers and an orchestrator. A persisted intermediate table would add a stale-cache failure mode for no speed gain. Validation runs on every load instead.
+**CSV snapshot, no database or persisted feature store.** The data is 8.5 MB and the full run takes about four minutes. Rejected: DuckDB/Parquet layers and an orchestrator. A persisted intermediate table would add a stale-cache failure mode for no speed gain. Validation runs on every load instead.
 
 **Time-ordered split plus walk-forward, never a random split.** The scaffold used a random split on same-game stats including the target. Chosen: train 2000-01 to 2022-23, hold out 2023-24 to 2025-26, assert train precedes test, and run an expanding-window backtest as an independent check. Hyperparameters are fixed, not tuned, so the test seasons never selected a model.
 
@@ -18,9 +18,9 @@ Short records of the choices that shaped the project. Each lists what was chosen
 
 **Era control: a rolling league home-win rate, not season fixed effects.** Season dummies cannot be applied to a season the model has not seen and would absorb the very drift being studied. The rolling rate is known at tipoff. Raw pace is kept only as a diagnostic to show the confound.
 
-**Factor screen: Bonferroni on in-sample Wald z, plus out-of-sample log-loss change with a paired bootstrap.** Chosen for simplicity and conservatism. Rejected: Holm or Benjamini-Hochberg (less conservative, defensible, not implemented), and p-value hacking via many specifications. Known gap: the screen uses one split.
+**Factor screen: Bonferroni on in-sample Wald z, plus out-of-sample log-loss change with a paired bootstrap.** Chosen for simplicity and conservatism. Holm's step-down correction is used for the 11 factor-family gains, with a standard error clustered by game date. Rejected: Benjamini-Hochberg for the screen (less conservative, defensible, not implemented), and p-value hacking via many specifications. Known gap: the screen uses one split.
 
-**Bootstrap resamples games as independent.** Simple and paired across models. Rejected for now: resampling by date or week (clustered), which would widen intervals somewhat. Listed as a limitation.
+**Bootstrap resamples whole game dates for the headline table and the paired deltas.** All games on a date are drawn together because they share teams, rest and news; differences stay paired across models. The factor screen and the family intervals still resample single games, and coefficient intervals resample training games; neither teams nor seasons are clustered. Listed as a limitation.
 
 **Home-court by franchise as fixed effects (OLS on margin with Elo).** Rejected: a hierarchical model with partial pooling (PyMC), which would shrink noisy extremes but adds a dependency for a descriptive table.
 
@@ -28,7 +28,7 @@ Short records of the choices that shaped the project. Each lists what was chosen
 
 **Early-season games excluded from the main models (first 10 games per team).** Season-to-date averages are too noisy there. They are scored separately with Elo.
 
-**Neutral-site games dropped.** No home team to define the target. Paris, Mexico City and NBA Cup semifinals are a handful of games.
+**Neutral-site games dropped where the log marks them.** No home team to define the target. The log marks them (both teams away) only from 2024-25: ten games across Paris, Mexico City and NBA Cup semifinals. Earlier neutral-site games, the 2020 bubble and Toronto's Tampa season carry a nominal home team and are kept; a hand-kept venue list would be needed to drop them. The one game never played (2013-04-16 BOS vs. IND, 0-0 in the log) is dropped.
 
 **No betting lines.** The market is the real benchmark and would very likely win. Rejected for now: licensing and ingestion cost; listed as the next benchmark.
 
